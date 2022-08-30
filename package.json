@@ -10,13 +10,16 @@
         "zeus": "zeus https://api-eu-central-1.hygraph.com/v2/cl6pf5b2z20oo01szgaeke2r9/master --ts ./"
     },
     "dependencies": {
-        "@react-three/fiber": "^8.6.0",
+        "@fullpage/react-fullpage": "^0.1.27",
+        "formik": "^2.2.9",
+        "framer-motion": "^7.2.1",
         "hamburger-react": "^2.5.0",
         "next": "12.2.5",
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "tabler-icons-react": "^1.54.0",
-        "three": "^0.143.0"
+        "unstated-next": "^1.1.0",
+        "yup": "^0.32.11"
     },
     "devDependencies": {
         "@types/node": "18.7.13",
@@ -25,6 +28,7 @@
         "autoprefixer": "^10.4.8",
         "eslint": "8.23.0",
         "eslint-config-next": "12.2.5",
+        "eslint-plugin-prettier": "^4.2.1",
         "graphql-zeus": "^5.1.7",
         "postcss": "^8.4.16",
         "tailwindcss": "^3.1.8",

@@ -9,12 +9,6 @@ module.exports = {
             primary: '#ff4d5a',
             secondary: '#353e48',
             disabled: '#798591'
-        },
-        extend: {
-            backgroundImage: {
-                'gradient-radial':
-                    'radial-gradient(circle at 75%, rgba(6,21,38,1) 0%, rgba(6,21,38,1) 70%, rgba(0,0,0,0) 150%)'
-            }
         }
     },
     plugins: []

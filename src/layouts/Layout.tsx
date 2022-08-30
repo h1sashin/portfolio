@@ -1,12 +1,10 @@
-import { BackgroundGradient, Navbar } from 'components'
+import { Navbar } from 'components'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { WithChildren } from 'react'
 
-export const Layout: React.FCC = ({ children }) => {
-    const router = useRouter()
+export const Layout: React.FC<WithChildren> = ({ children }) => {
     return (
         <div>
-            {router.pathname === '/' && <BackgroundGradient />}
             <Navbar />
             {children}
         </div>

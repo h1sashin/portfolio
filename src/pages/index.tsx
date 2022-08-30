@@ -1,14 +1,31 @@
-import { HomeSection, Section } from 'components'
-import { getPagesMetadata } from 'lib/chain'
-import type { GetStaticProps, NextPage } from 'next'
+import { AboutMeSection, ContactSection, HomeSection, PortfolioSection, Section } from 'components'
+import type { NextPage } from 'next'
+import ReactFullPage from '@fullpage/react-fullpage'
 
 const Home: NextPage = () => {
     return (
-        <div className="">
-            <Section>
-                <HomeSection />
-            </Section>
-        </div>
+        <ReactFullPage
+            navigation
+            easing="easeInOutCubic"
+            keyboardScrolling
+            licenseKey=""
+            render={() => (
+                <>
+                    <Section id="home">
+                        <HomeSection />
+                    </Section>
+                    <Section id="portfolio">
+                        <PortfolioSection />
+                    </Section>
+                    <Section id="about-me">
+                        <AboutMeSection />
+                    </Section>
+                    <Section id="contact">
+                        <ContactSection />
+                    </Section>
+                </>
+            )}
+        />
     )
 }
 
