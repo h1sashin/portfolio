@@ -8,7 +8,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({ children, fu
         ref={ref}
         className={`${
             fullWidth ? 'w-full' : 'w-max'
-        } relative bg-primary px-5 py-4 text-xl font-bold text-white leading-none`}
+        } relative rounded-lg flex gap-4 items-center bg-primary px-5 py-4 text-2xl font-bold text-white leading-none`}
         {...props}
     >
         {children}

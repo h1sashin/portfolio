@@ -1,12 +1,12 @@
 import { Navbar } from 'components'
-import { useRouter } from 'next/router'
+import { motion } from 'framer-motion'
 import React, { WithChildren } from 'react'
 
 export const Layout: React.FC<WithChildren> = ({ children }) => {
     return (
-        <div>
+        <motion.div layoutScroll className="px-64 flex flex-col">
             <Navbar />
             {children}
-        </div>
+        </motion.div>
     )
 }

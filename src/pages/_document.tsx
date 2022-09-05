@@ -3,7 +3,7 @@ import { Html, Head, Main, NextScript } from 'next/document'
 
 const Document: DocumentType = () => {
     return (
-        <Html lang="en" className="bg-black">
+        <Html lang="en" className="bg-black overflow-y-scroll">
             <Head>
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />

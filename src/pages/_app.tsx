@@ -6,11 +6,11 @@ import { AnimatePresence } from 'framer-motion'
 
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
     return (
-        <Layout>
-            <AnimatePresence exitBeforeEnter>
+        <AnimatePresence>
+            <Layout>
                 <Component {...pageProps} />
-            </AnimatePresence>
-        </Layout>
+            </Layout>
+        </AnimatePresence>
     )
 }
 

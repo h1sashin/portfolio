@@ -9,7 +9,7 @@ export const Navbar: React.FC = () => {
             <span className="text-3xl text-white font-light">{`<DS />`}</span>
             <div className="flex items-center gap-8">
                 {socials.map((social) => (
-                    <Link key={social.name} href={social.url} passHref>
+                    <Link scroll={false} key={social.name} href={social.url} passHref>
                         <a target="_blank">
                             {React.cloneElement(social.icon, { size: 36, key: social.name, color: 'white' })}
                         </a>
