@@ -9,7 +9,8 @@ export const imageAnimation: MotionProps = {
     },
     transition: {
         duration: 0.75
-    }
+    },
+    viewport: { once: true }
 }
 
 export const wrapperAnimation: MotionProps = {
@@ -21,5 +22,15 @@ export const wrapperAnimation: MotionProps = {
     },
     transition: {
         duration: 0.75
+    },
+    viewport: { once: true }
+}
+
+export const portfolioExit: MotionProps = {
+    exit: {
+        position: 'absolute',
+        right: 0,
+        top: 0,
+        height: '100vh'
     }
 }

@@ -10,5 +10,6 @@ export const animation: MotionProps = {
     transition: {
         duration: 0.75,
         ease: 'easeInOut'
-    }
+    },
+    viewport: { once: true }
 }

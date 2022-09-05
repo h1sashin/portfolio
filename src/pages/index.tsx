@@ -8,7 +8,7 @@ const Home: NextPage = () => {
             navigation
             easing="easeInOutCubic"
             keyboardScrolling
-            licenseKey=""
+            licenseKey="123456789"
             render={() => (
                 <>
                     <Section id="home">

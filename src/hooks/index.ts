@@ -1,1 +1,1 @@
-export * from './useSmoothTransform'
+export {}

@@ -1,8 +1,9 @@
+import { DocumentType } from 'next/dist/shared/lib/utils'
 import { Html, Head, Main, NextScript } from 'next/document'
 
-const Document = () => {
+const Document: DocumentType = () => {
     return (
-        <Html lang="en">
+        <Html lang="en" className="bg-black">
             <Head>
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />

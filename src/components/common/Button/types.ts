@@ -1,3 +1,5 @@
-import { HTMLAttributes } from 'react'
+import { MotionProps } from 'framer-motion'
+import { ButtonHTMLAttributes } from 'react'
 
-export type ButtonProps = HTMLAttributes<HTMLButtonElement> & { fullWidth?: boolean }
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
+    MotionProps & { fullWidth?: boolean; loading?: boolean }

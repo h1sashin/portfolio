@@ -12,15 +12,15 @@ export const SectionTitle: React.FC<SectionTitleProps> = ({ subtitle, title, mor
                 {title}
             </motion.h1>
             <motion.div {...animation} className="flex flex-col gap-4">
-                <motion.span {...animation} className="bg-primary w-24 h-2 rounded-xl" />
-                <motion.span {...animation} className="bg-primary w-24 h-2 rounded-xl ml-16" />
+                <motion.span {...animation} className="bg-primary w-24 h-2" />
+                <motion.span {...animation} className="bg-primary w-24 h-2 ml-16" />
             </motion.div>
             <motion.p {...animation} className="text-4xl leading-relaxed">
                 {subtitle}
             </motion.p>
             {moreUrl && (
                 <motion.div {...animation}>
-                    <Link href={moreUrl} passHref>
+                    <Link href={moreUrl} passHref scroll={false}>
                         <Button>Know more!</Button>
                     </Link>
                 </motion.div>
