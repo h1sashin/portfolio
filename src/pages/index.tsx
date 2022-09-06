@@ -3,6 +3,12 @@ import type { GetStaticProps, NextPage } from 'next'
 import { LandingProps } from 'types/global'
 
 const Home: NextPage<LandingProps> = ({ aboutMe, portfolio, seo, skills }) => {
+    console.log(
+        process.env.NEXT_PUBLIC_VERCEL_URL,
+        process.env.VERCEL_URL,
+        process.env.CMS_TOKEN,
+        process.env.NEXT_PUBLIC_URL
+    )
     return (
         <div>
             <HeroSection links={aboutMe.links} company={aboutMe.company} />
