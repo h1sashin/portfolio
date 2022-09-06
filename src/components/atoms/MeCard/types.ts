@@ -1,4 +1,4 @@
-import { AboutMeType } from 'pages/api/chain/selectors'
+import { AboutMeType } from 'chain/selectors'
 
 export interface MeCardProps {
     image?: string

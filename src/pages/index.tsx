@@ -1,3 +1,4 @@
+import { getAboutMe, getProjects, getSeo, getSkillCategories } from 'chain'
 import { AboutMeSection, ContactSection, HeroSection, PortfolioSection } from 'components'
 import type { GetStaticProps, NextPage } from 'next'
 import { LandingProps } from 'types/global'
@@ -19,7 +20,13 @@ const Home: NextPage<LandingProps> = ({ aboutMe, portfolio, seo, skills }) => {
     )
 }
 
-export const getStaticProps: GetStaticProps<LandingProps> = async () =>
-    await (await fetch(process.env.NEXT_PUBLIC_VERCEL_URL + '/api/getCmsData')).json()
+export const getStaticProps: GetStaticProps<LandingProps> = async () => ({
+    props: {
+        portfolio: (await getProjects()).projects,
+        seo: (await getSeo()).seos[0],
+        aboutMe: (await getAboutMe()).aboutMes[0],
+        skills: (await getSkillCategories()).skillCategories
+    }
+})
 
 export default Home

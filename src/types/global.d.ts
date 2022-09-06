@@ -1,4 +1,4 @@
-import { AboutMeType, ProjectType, SeoType, SkillCategoryType } from 'pages/api/chain/selectors'
+import { AboutMeType, ProjectType, SeoType, SkillCategoryType } from 'chain/selectors'
 
 declare module 'types/global' {
     interface LandingProps {

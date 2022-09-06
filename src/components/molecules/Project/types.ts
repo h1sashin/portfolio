@@ -1,4 +1,4 @@
-import { ProjectType } from 'pages/api/chain/selectors'
+import { ProjectType } from 'chain/selectors'
 
 export interface ProjectProps {
     project: ProjectType

@@ -1,4 +1,4 @@
-import { AboutMeType, CompanyType, LinkType, ProjectType, SkillCategoryType } from 'pages/api/chain/selectors'
+import { AboutMeType, CompanyType, LinkType, ProjectType, SkillCategoryType } from 'chain/selectors'
 
 export interface HeroProps {
     links: LinkType[]
