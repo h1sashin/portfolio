@@ -14,6 +14,6 @@ const Home: NextPage<LandingProps> = ({ aboutMe, portfolio, seo, skills }) => {
 }
 
 export const getStaticProps: GetStaticProps<LandingProps> = async () =>
-    await (await fetch(process.env.VERCEL_URL + '/api/getCmsData')).json()
+    await (await fetch(process.env.NEXT_PUBLIC_VERCEL_URL + '/api/getCmsData')).json()
 
 export default Home
