@@ -1,6 +1,222 @@
 /* eslint-disable */
 
 export const AllTypesProps: Record<string,any> = {
+	AboutMe:{
+		documentInStages:{
+			stages:"Stage"
+		},
+		company:{
+			locales:"Locale"
+		},
+		links:{
+			locales:"Locale"
+		},
+		publishedBy:{
+			locales:"Locale"
+		},
+		updatedBy:{
+			locales:"Locale"
+		},
+		createdBy:{
+			locales:"Locale"
+		},
+		photo:{
+			locales:"Locale"
+		},
+		scheduledIn:{
+			where:"ScheduledOperationWhereInput",
+			locales:"Locale"
+		},
+		history:{
+			stageOverride:"Stage"
+		}
+	},
+	AboutMeConnectInput:{
+		where:"AboutMeWhereUniqueInput",
+		position:"ConnectPositionInput"
+	},
+	AboutMeCreateInput:{
+		updatedAt:"DateTime",
+		createdAt:"DateTime",
+		company:"CompanyCreateOneInlineInput",
+		links:"AboutMelinksUnionCreateManyInlineInput",
+		photo:"AssetCreateOneInlineInput"
+	},
+	AboutMeCreateManyInlineInput:{
+		create:"AboutMeCreateInput",
+		connect:"AboutMeWhereUniqueInput"
+	},
+	AboutMeCreateOneInlineInput:{
+		create:"AboutMeCreateInput",
+		connect:"AboutMeWhereUniqueInput"
+	},
+	AboutMeManyWhereInput:{
+		AND:"AboutMeWhereInput",
+		OR:"AboutMeWhereInput",
+		NOT:"AboutMeWhereInput",
+		publishedAt:"DateTime",
+		publishedAt_not:"DateTime",
+		publishedAt_in:"DateTime",
+		publishedAt_not_in:"DateTime",
+		publishedAt_lt:"DateTime",
+		publishedAt_lte:"DateTime",
+		publishedAt_gt:"DateTime",
+		publishedAt_gte:"DateTime",
+		updatedAt:"DateTime",
+		updatedAt_not:"DateTime",
+		updatedAt_in:"DateTime",
+		updatedAt_not_in:"DateTime",
+		updatedAt_lt:"DateTime",
+		updatedAt_lte:"DateTime",
+		updatedAt_gt:"DateTime",
+		updatedAt_gte:"DateTime",
+		createdAt:"DateTime",
+		createdAt_not:"DateTime",
+		createdAt_in:"DateTime",
+		createdAt_not_in:"DateTime",
+		createdAt_lt:"DateTime",
+		createdAt_lte:"DateTime",
+		createdAt_gt:"DateTime",
+		createdAt_gte:"DateTime",
+		company:"CompanyWhereInput",
+		publishedBy:"UserWhereInput",
+		updatedBy:"UserWhereInput",
+		createdBy:"UserWhereInput",
+		photo:"AssetWhereInput",
+		scheduledIn_every:"ScheduledOperationWhereInput",
+		scheduledIn_some:"ScheduledOperationWhereInput",
+		scheduledIn_none:"ScheduledOperationWhereInput"
+	},
+	AboutMeOrderByInput: "enum" as const,
+	AboutMeUpdateInput:{
+		company:"CompanyUpdateOneInlineInput",
+		links:"AboutMelinksUnionUpdateManyInlineInput",
+		photo:"AssetUpdateOneInlineInput"
+	},
+	AboutMeUpdateManyInlineInput:{
+		create:"AboutMeCreateInput",
+		connect:"AboutMeConnectInput",
+		set:"AboutMeWhereUniqueInput",
+		update:"AboutMeUpdateWithNestedWhereUniqueInput",
+		upsert:"AboutMeUpsertWithNestedWhereUniqueInput",
+		disconnect:"AboutMeWhereUniqueInput",
+		delete:"AboutMeWhereUniqueInput"
+	},
+	AboutMeUpdateManyInput:{
+
+	},
+	AboutMeUpdateManyWithNestedWhereInput:{
+		where:"AboutMeWhereInput",
+		data:"AboutMeUpdateManyInput"
+	},
+	AboutMeUpdateOneInlineInput:{
+		create:"AboutMeCreateInput",
+		update:"AboutMeUpdateWithNestedWhereUniqueInput",
+		upsert:"AboutMeUpsertWithNestedWhereUniqueInput",
+		connect:"AboutMeWhereUniqueInput"
+	},
+	AboutMeUpdateWithNestedWhereUniqueInput:{
+		where:"AboutMeWhereUniqueInput",
+		data:"AboutMeUpdateInput"
+	},
+	AboutMeUpsertInput:{
+		create:"AboutMeCreateInput",
+		update:"AboutMeUpdateInput"
+	},
+	AboutMeUpsertWithNestedWhereUniqueInput:{
+		where:"AboutMeWhereUniqueInput",
+		data:"AboutMeUpsertInput"
+	},
+	AboutMeWhereInput:{
+		AND:"AboutMeWhereInput",
+		OR:"AboutMeWhereInput",
+		NOT:"AboutMeWhereInput",
+		publishedAt:"DateTime",
+		publishedAt_not:"DateTime",
+		publishedAt_in:"DateTime",
+		publishedAt_not_in:"DateTime",
+		publishedAt_lt:"DateTime",
+		publishedAt_lte:"DateTime",
+		publishedAt_gt:"DateTime",
+		publishedAt_gte:"DateTime",
+		updatedAt:"DateTime",
+		updatedAt_not:"DateTime",
+		updatedAt_in:"DateTime",
+		updatedAt_not_in:"DateTime",
+		updatedAt_lt:"DateTime",
+		updatedAt_lte:"DateTime",
+		updatedAt_gt:"DateTime",
+		updatedAt_gte:"DateTime",
+		createdAt:"DateTime",
+		createdAt_not:"DateTime",
+		createdAt_in:"DateTime",
+		createdAt_not_in:"DateTime",
+		createdAt_lt:"DateTime",
+		createdAt_lte:"DateTime",
+		createdAt_gt:"DateTime",
+		createdAt_gte:"DateTime",
+		company:"CompanyWhereInput",
+		publishedBy:"UserWhereInput",
+		updatedBy:"UserWhereInput",
+		createdBy:"UserWhereInput",
+		photo:"AssetWhereInput",
+		scheduledIn_every:"ScheduledOperationWhereInput",
+		scheduledIn_some:"ScheduledOperationWhereInput",
+		scheduledIn_none:"ScheduledOperationWhereInput"
+	},
+	AboutMeWhereUniqueInput:{
+
+	},
+	AboutMelinksUnionConnectInput:{
+		Link:"LinkConnectInput"
+	},
+	AboutMelinksUnionCreateInput:{
+		Link:"LinkCreateInput"
+	},
+	AboutMelinksUnionCreateManyInlineInput:{
+		create:"AboutMelinksUnionCreateInput"
+	},
+	AboutMelinksUnionCreateOneInlineInput:{
+		create:"AboutMelinksUnionCreateInput"
+	},
+	AboutMelinksUnionCreateWithPositionInput:{
+		Link:"LinkCreateWithPositionInput"
+	},
+	AboutMelinksUnionUpdateInput:{
+		Link:"LinkUpdateInput"
+	},
+	AboutMelinksUnionUpdateManyInlineInput:{
+		create:"AboutMelinksUnionCreateWithPositionInput",
+		update:"AboutMelinksUnionUpdateWithNestedWhereUniqueAndPositionInput",
+		upsert:"AboutMelinksUnionUpsertWithNestedWhereUniqueAndPositionInput",
+		delete:"AboutMelinksUnionWhereUniqueInput"
+	},
+	AboutMelinksUnionUpdateManyWithNestedWhereInput:{
+		Link:"LinkUpdateManyWithNestedWhereInput"
+	},
+	AboutMelinksUnionUpdateOneInlineInput:{
+		create:"AboutMelinksUnionCreateInput",
+		update:"AboutMelinksUnionUpdateWithNestedWhereUniqueInput",
+		upsert:"AboutMelinksUnionUpsertWithNestedWhereUniqueInput"
+	},
+	AboutMelinksUnionUpdateWithNestedWhereUniqueAndPositionInput:{
+		Link:"LinkUpdateWithNestedWhereUniqueAndPositionInput"
+	},
+	AboutMelinksUnionUpdateWithNestedWhereUniqueInput:{
+		Link:"LinkUpdateWithNestedWhereUniqueInput"
+	},
+	AboutMelinksUnionUpsertWithNestedWhereUniqueAndPositionInput:{
+		Link:"LinkUpsertWithNestedWhereUniqueAndPositionInput"
+	},
+	AboutMelinksUnionUpsertWithNestedWhereUniqueInput:{
+		Link:"LinkUpsertWithNestedWhereUniqueInput"
+	},
+	AboutMelinksUnionWhereInput:{
+		Link:"LinkWhereInput"
+	},
+	AboutMelinksUnionWhereUniqueInput:{
+		Link:"LinkWhereUniqueInput"
+	},
 	Asset:{
 		localizations:{
 			locales:"Locale"
@@ -31,19 +247,14 @@ export const AllTypesProps: Record<string,any> = {
 			orderBy:"ProjectOrderByInput",
 			locales:"Locale"
 		},
-		imageSocial:{
-			where:"SocialWhereInput",
-			orderBy:"SocialOrderByInput",
+		og_imageSeo:{
+			where:"SeoWhereInput",
+			orderBy:"SeoOrderByInput",
 			locales:"Locale"
 		},
-		imagePageMetadata:{
-			where:"PageMetadataWhereInput",
-			orderBy:"PageMetadataOrderByInput",
-			locales:"Locale"
-		},
-		iconSkill:{
-			where:"SkillWhereInput",
-			orderBy:"SkillOrderByInput",
+		photoAboutMe:{
+			where:"AboutMeWhereInput",
+			orderBy:"AboutMeOrderByInput",
 			locales:"Locale"
 		},
 		scheduledIn:{
@@ -65,9 +276,10 @@ export const AllTypesProps: Record<string,any> = {
 		updatedAt:"DateTime",
 		createdAt:"DateTime",
 		imageProject:"ProjectCreateManyInlineInput",
-		imageSocial:"SocialCreateManyInlineInput",
-		imagePageMetadata:"PageMetadataCreateManyInlineInput",
+		og_imageSeo:"SeoCreateManyInlineInput",
+		iconLink:"LinkCreateManyInlineInput",
 		iconSkill:"SkillCreateManyInlineInput",
+		photoAboutMe:"AboutMeCreateManyInlineInput",
 		localizations:"AssetCreateLocalizationsInput"
 	},
 	AssetCreateLocalizationDataInput:{
@@ -123,15 +335,12 @@ export const AllTypesProps: Record<string,any> = {
 		imageProject_every:"ProjectWhereInput",
 		imageProject_some:"ProjectWhereInput",
 		imageProject_none:"ProjectWhereInput",
-		imageSocial_every:"SocialWhereInput",
-		imageSocial_some:"SocialWhereInput",
-		imageSocial_none:"SocialWhereInput",
-		imagePageMetadata_every:"PageMetadataWhereInput",
-		imagePageMetadata_some:"PageMetadataWhereInput",
-		imagePageMetadata_none:"PageMetadataWhereInput",
-		iconSkill_every:"SkillWhereInput",
-		iconSkill_some:"SkillWhereInput",
-		iconSkill_none:"SkillWhereInput",
+		og_imageSeo_every:"SeoWhereInput",
+		og_imageSeo_some:"SeoWhereInput",
+		og_imageSeo_none:"SeoWhereInput",
+		photoAboutMe_every:"AboutMeWhereInput",
+		photoAboutMe_some:"AboutMeWhereInput",
+		photoAboutMe_none:"AboutMeWhereInput",
 		scheduledIn_every:"ScheduledOperationWhereInput",
 		scheduledIn_some:"ScheduledOperationWhereInput",
 		scheduledIn_none:"ScheduledOperationWhereInput"
@@ -143,9 +352,10 @@ export const AllTypesProps: Record<string,any> = {
 	},
 	AssetUpdateInput:{
 		imageProject:"ProjectUpdateManyInlineInput",
-		imageSocial:"SocialUpdateManyInlineInput",
-		imagePageMetadata:"PageMetadataUpdateManyInlineInput",
+		og_imageSeo:"SeoUpdateManyInlineInput",
+		iconLink:"LinkUpdateManyInlineInput",
 		iconSkill:"SkillUpdateManyInlineInput",
+		photoAboutMe:"AboutMeUpdateManyInlineInput",
 		localizations:"AssetUpdateLocalizationsInput"
 	},
 	AssetUpdateLocalizationDataInput:{
@@ -244,15 +454,12 @@ export const AllTypesProps: Record<string,any> = {
 		imageProject_every:"ProjectWhereInput",
 		imageProject_some:"ProjectWhereInput",
 		imageProject_none:"ProjectWhereInput",
-		imageSocial_every:"SocialWhereInput",
-		imageSocial_some:"SocialWhereInput",
-		imageSocial_none:"SocialWhereInput",
-		imagePageMetadata_every:"PageMetadataWhereInput",
-		imagePageMetadata_some:"PageMetadataWhereInput",
-		imagePageMetadata_none:"PageMetadataWhereInput",
-		iconSkill_every:"SkillWhereInput",
-		iconSkill_some:"SkillWhereInput",
-		iconSkill_none:"SkillWhereInput",
+		og_imageSeo_every:"SeoWhereInput",
+		og_imageSeo_some:"SeoWhereInput",
+		og_imageSeo_none:"SeoWhereInput",
+		photoAboutMe_every:"AboutMeWhereInput",
+		photoAboutMe_some:"AboutMeWhereInput",
+		photoAboutMe_none:"AboutMeWhereInput",
 		scheduledIn_every:"ScheduledOperationWhereInput",
 		scheduledIn_some:"ScheduledOperationWhereInput",
 		scheduledIn_none:"ScheduledOperationWhereInput"
@@ -263,6 +470,127 @@ export const AllTypesProps: Record<string,any> = {
 	ColorInput:{
 		hex:"Hex",
 		rgba:"RGBAInput"
+	},
+	CompanyConnectInput:{
+		where:"CompanyWhereUniqueInput",
+		position:"ConnectPositionInput"
+	},
+	CompanyCreateInput:{
+
+	},
+	CompanyCreateManyInlineInput:{
+		create:"CompanyCreateInput"
+	},
+	CompanyCreateOneInlineInput:{
+		create:"CompanyCreateInput"
+	},
+	CompanyCreateWithPositionInput:{
+		position:"ConnectPositionInput",
+		data:"CompanyCreateInput"
+	},
+	CompanyManyWhereInput:{
+		AND:"CompanyWhereInput",
+		OR:"CompanyWhereInput",
+		NOT:"CompanyWhereInput"
+	},
+	CompanyOrderByInput: "enum" as const,
+	CompanyParentConnectInput:{
+		AboutMe:"AboutMeConnectInput"
+	},
+	CompanyParentCreateInput:{
+		AboutMe:"AboutMeCreateInput"
+	},
+	CompanyParentCreateManyInlineInput:{
+		create:"CompanyParentCreateInput",
+		connect:"CompanyParentWhereUniqueInput"
+	},
+	CompanyParentCreateOneInlineInput:{
+		create:"CompanyParentCreateInput",
+		connect:"CompanyParentWhereUniqueInput"
+	},
+	CompanyParentUpdateInput:{
+		AboutMe:"AboutMeUpdateInput"
+	},
+	CompanyParentUpdateManyInlineInput:{
+		create:"CompanyParentCreateInput",
+		connect:"CompanyParentConnectInput",
+		set:"CompanyParentWhereUniqueInput",
+		update:"CompanyParentUpdateWithNestedWhereUniqueInput",
+		upsert:"CompanyParentUpsertWithNestedWhereUniqueInput",
+		disconnect:"CompanyParentWhereUniqueInput",
+		delete:"CompanyParentWhereUniqueInput"
+	},
+	CompanyParentUpdateManyWithNestedWhereInput:{
+		AboutMe:"AboutMeUpdateManyWithNestedWhereInput"
+	},
+	CompanyParentUpdateOneInlineInput:{
+		create:"CompanyParentCreateInput",
+		update:"CompanyParentUpdateWithNestedWhereUniqueInput",
+		upsert:"CompanyParentUpsertWithNestedWhereUniqueInput",
+		connect:"CompanyParentWhereUniqueInput"
+	},
+	CompanyParentUpdateWithNestedWhereUniqueInput:{
+		AboutMe:"AboutMeUpdateWithNestedWhereUniqueInput"
+	},
+	CompanyParentUpsertWithNestedWhereUniqueInput:{
+		AboutMe:"AboutMeUpsertWithNestedWhereUniqueInput"
+	},
+	CompanyParentWhereInput:{
+		AboutMe:"AboutMeWhereInput"
+	},
+	CompanyParentWhereUniqueInput:{
+		AboutMe:"AboutMeWhereUniqueInput"
+	},
+	CompanyUpdateInput:{
+
+	},
+	CompanyUpdateManyInlineInput:{
+		create:"CompanyCreateWithPositionInput",
+		update:"CompanyUpdateWithNestedWhereUniqueAndPositionInput",
+		upsert:"CompanyUpsertWithNestedWhereUniqueAndPositionInput",
+		delete:"CompanyWhereUniqueInput"
+	},
+	CompanyUpdateManyInput:{
+
+	},
+	CompanyUpdateManyWithNestedWhereInput:{
+		where:"CompanyWhereInput",
+		data:"CompanyUpdateManyInput"
+	},
+	CompanyUpdateOneInlineInput:{
+		create:"CompanyCreateInput",
+		update:"CompanyUpdateWithNestedWhereUniqueInput",
+		upsert:"CompanyUpsertWithNestedWhereUniqueInput"
+	},
+	CompanyUpdateWithNestedWhereUniqueAndPositionInput:{
+		where:"CompanyWhereUniqueInput",
+		position:"ConnectPositionInput",
+		data:"CompanyUpdateInput"
+	},
+	CompanyUpdateWithNestedWhereUniqueInput:{
+		where:"CompanyWhereUniqueInput",
+		data:"CompanyUpdateInput"
+	},
+	CompanyUpsertInput:{
+		create:"CompanyCreateInput",
+		update:"CompanyUpdateInput"
+	},
+	CompanyUpsertWithNestedWhereUniqueAndPositionInput:{
+		where:"CompanyWhereUniqueInput",
+		position:"ConnectPositionInput",
+		data:"CompanyUpsertInput"
+	},
+	CompanyUpsertWithNestedWhereUniqueInput:{
+		where:"CompanyWhereUniqueInput",
+		data:"CompanyUpsertInput"
+	},
+	CompanyWhereInput:{
+		AND:"CompanyWhereInput",
+		OR:"CompanyWhereInput",
+		NOT:"CompanyWhereInput"
+	},
+	CompanyWhereUniqueInput:{
+
 	},
 	ConnectPositionInput:{
 
@@ -285,6 +613,134 @@ export const AllTypesProps: Record<string,any> = {
 		resize:"ImageResizeInput"
 	},
 	Json: `scalar.Json` as const,
+	Link:{
+		icon:{
+			locales:"Locale"
+		}
+	},
+	LinkConnectInput:{
+		where:"LinkWhereUniqueInput",
+		position:"ConnectPositionInput"
+	},
+	LinkCreateInput:{
+		icon:"AssetCreateOneInlineInput"
+	},
+	LinkCreateManyInlineInput:{
+		create:"LinkCreateInput"
+	},
+	LinkCreateOneInlineInput:{
+		create:"LinkCreateInput"
+	},
+	LinkCreateWithPositionInput:{
+		position:"ConnectPositionInput",
+		data:"LinkCreateInput"
+	},
+	LinkManyWhereInput:{
+		AND:"LinkWhereInput",
+		OR:"LinkWhereInput",
+		NOT:"LinkWhereInput",
+		icon:"AssetWhereInput"
+	},
+	LinkOrderByInput: "enum" as const,
+	LinkParentConnectInput:{
+		AboutMe:"AboutMeConnectInput"
+	},
+	LinkParentCreateInput:{
+		AboutMe:"AboutMeCreateInput"
+	},
+	LinkParentCreateManyInlineInput:{
+		create:"LinkParentCreateInput",
+		connect:"LinkParentWhereUniqueInput"
+	},
+	LinkParentCreateOneInlineInput:{
+		create:"LinkParentCreateInput",
+		connect:"LinkParentWhereUniqueInput"
+	},
+	LinkParentUpdateInput:{
+		AboutMe:"AboutMeUpdateInput"
+	},
+	LinkParentUpdateManyInlineInput:{
+		create:"LinkParentCreateInput",
+		connect:"LinkParentConnectInput",
+		set:"LinkParentWhereUniqueInput",
+		update:"LinkParentUpdateWithNestedWhereUniqueInput",
+		upsert:"LinkParentUpsertWithNestedWhereUniqueInput",
+		disconnect:"LinkParentWhereUniqueInput",
+		delete:"LinkParentWhereUniqueInput"
+	},
+	LinkParentUpdateManyWithNestedWhereInput:{
+		AboutMe:"AboutMeUpdateManyWithNestedWhereInput"
+	},
+	LinkParentUpdateOneInlineInput:{
+		create:"LinkParentCreateInput",
+		update:"LinkParentUpdateWithNestedWhereUniqueInput",
+		upsert:"LinkParentUpsertWithNestedWhereUniqueInput",
+		connect:"LinkParentWhereUniqueInput"
+	},
+	LinkParentUpdateWithNestedWhereUniqueInput:{
+		AboutMe:"AboutMeUpdateWithNestedWhereUniqueInput"
+	},
+	LinkParentUpsertWithNestedWhereUniqueInput:{
+		AboutMe:"AboutMeUpsertWithNestedWhereUniqueInput"
+	},
+	LinkParentWhereInput:{
+		AboutMe:"AboutMeWhereInput"
+	},
+	LinkParentWhereUniqueInput:{
+		AboutMe:"AboutMeWhereUniqueInput"
+	},
+	LinkUpdateInput:{
+		icon:"AssetUpdateOneInlineInput"
+	},
+	LinkUpdateManyInlineInput:{
+		create:"LinkCreateWithPositionInput",
+		update:"LinkUpdateWithNestedWhereUniqueAndPositionInput",
+		upsert:"LinkUpsertWithNestedWhereUniqueAndPositionInput",
+		delete:"LinkWhereUniqueInput"
+	},
+	LinkUpdateManyInput:{
+
+	},
+	LinkUpdateManyWithNestedWhereInput:{
+		where:"LinkWhereInput",
+		data:"LinkUpdateManyInput"
+	},
+	LinkUpdateOneInlineInput:{
+		create:"LinkCreateInput",
+		update:"LinkUpdateWithNestedWhereUniqueInput",
+		upsert:"LinkUpsertWithNestedWhereUniqueInput"
+	},
+	LinkUpdateWithNestedWhereUniqueAndPositionInput:{
+		where:"LinkWhereUniqueInput",
+		position:"ConnectPositionInput",
+		data:"LinkUpdateInput"
+	},
+	LinkUpdateWithNestedWhereUniqueInput:{
+		where:"LinkWhereUniqueInput",
+		data:"LinkUpdateInput"
+	},
+	LinkUpsertInput:{
+		create:"LinkCreateInput",
+		update:"LinkUpdateInput"
+	},
+	LinkUpsertWithNestedWhereUniqueAndPositionInput:{
+		where:"LinkWhereUniqueInput",
+		position:"ConnectPositionInput",
+		data:"LinkUpsertInput"
+	},
+	LinkUpsertWithNestedWhereUniqueInput:{
+		where:"LinkWhereUniqueInput",
+		data:"LinkUpsertInput"
+	},
+	LinkWhereInput:{
+		AND:"LinkWhereInput",
+		OR:"LinkWhereInput",
+		NOT:"LinkWhereInput",
+		icon:"AssetWhereInput"
+	},
+	LinkWhereUniqueInput:{
+
+	},
 	Locale: "enum" as const,
 	Location:{
 		distance:{
@@ -445,352 +901,198 @@ export const AllTypesProps: Record<string,any> = {
 			from:"Stage",
 			releaseAt:"DateTime"
 		},
-		createSocial:{
-			data:"SocialCreateInput"
+		createSeo:{
+			data:"SeoCreateInput"
 		},
-		updateSocial:{
-			where:"SocialWhereUniqueInput",
-			data:"SocialUpdateInput"
+		updateSeo:{
+			where:"SeoWhereUniqueInput",
+			data:"SeoUpdateInput"
 		},
-		deleteSocial:{
-			where:"SocialWhereUniqueInput"
+		deleteSeo:{
+			where:"SeoWhereUniqueInput"
 		},
-		upsertSocial:{
-			where:"SocialWhereUniqueInput",
-			upsert:"SocialUpsertInput"
+		upsertSeo:{
+			where:"SeoWhereUniqueInput",
+			upsert:"SeoUpsertInput"
 		},
-		publishSocial:{
-			where:"SocialWhereUniqueInput",
+		publishSeo:{
+			where:"SeoWhereUniqueInput",
 			to:"Stage"
 		},
-		unpublishSocial:{
-			where:"SocialWhereUniqueInput",
+		unpublishSeo:{
+			where:"SeoWhereUniqueInput",
 			from:"Stage"
 		},
-		updateManySocialsConnection:{
-			where:"SocialManyWhereInput",
-			data:"SocialUpdateManyInput"
+		updateManySeosConnection:{
+			where:"SeoManyWhereInput",
+			data:"SeoUpdateManyInput"
 		},
-		deleteManySocialsConnection:{
-			where:"SocialManyWhereInput"
+		deleteManySeosConnection:{
+			where:"SeoManyWhereInput"
 		},
-		publishManySocialsConnection:{
-			where:"SocialManyWhereInput",
+		publishManySeosConnection:{
+			where:"SeoManyWhereInput",
 			from:"Stage",
 			to:"Stage"
 		},
-		unpublishManySocialsConnection:{
-			where:"SocialManyWhereInput",
+		unpublishManySeosConnection:{
+			where:"SeoManyWhereInput",
 			stage:"Stage",
 			from:"Stage"
 		},
-		updateManySocials:{
-			where:"SocialManyWhereInput",
-			data:"SocialUpdateManyInput"
+		updateManySeos:{
+			where:"SeoManyWhereInput",
+			data:"SeoUpdateManyInput"
 		},
-		deleteManySocials:{
-			where:"SocialManyWhereInput"
+		deleteManySeos:{
+			where:"SeoManyWhereInput"
 		},
-		publishManySocials:{
-			where:"SocialManyWhereInput",
+		publishManySeos:{
+			where:"SeoManyWhereInput",
 			to:"Stage"
 		},
-		unpublishManySocials:{
-			where:"SocialManyWhereInput",
+		unpublishManySeos:{
+			where:"SeoManyWhereInput",
 			from:"Stage"
 		},
-		schedulePublishSocial:{
-			where:"SocialWhereUniqueInput",
+		schedulePublishSeo:{
+			where:"SeoWhereUniqueInput",
 			to:"Stage",
 			releaseAt:"DateTime"
 		},
-		scheduleUnpublishSocial:{
-			where:"SocialWhereUniqueInput",
+		scheduleUnpublishSeo:{
+			where:"SeoWhereUniqueInput",
 			from:"Stage",
 			releaseAt:"DateTime"
 		},
-		createPageMetadata:{
-			data:"PageMetadataCreateInput"
+		createAboutMe:{
+			data:"AboutMeCreateInput"
 		},
-		updatePageMetadata:{
-			where:"PageMetadataWhereUniqueInput",
-			data:"PageMetadataUpdateInput"
+		updateAboutMe:{
+			where:"AboutMeWhereUniqueInput",
+			data:"AboutMeUpdateInput"
 		},
-		deletePageMetadata:{
-			where:"PageMetadataWhereUniqueInput"
+		deleteAboutMe:{
+			where:"AboutMeWhereUniqueInput"
 		},
-		upsertPageMetadata:{
-			where:"PageMetadataWhereUniqueInput",
-			upsert:"PageMetadataUpsertInput"
+		upsertAboutMe:{
+			where:"AboutMeWhereUniqueInput",
+			upsert:"AboutMeUpsertInput"
 		},
-		publishPageMetadata:{
-			where:"PageMetadataWhereUniqueInput",
+		publishAboutMe:{
+			where:"AboutMeWhereUniqueInput",
 			to:"Stage"
 		},
-		unpublishPageMetadata:{
-			where:"PageMetadataWhereUniqueInput",
+		unpublishAboutMe:{
+			where:"AboutMeWhereUniqueInput",
 			from:"Stage"
 		},
-		updateManyPagesMetadataConnection:{
-			where:"PageMetadataManyWhereInput",
-			data:"PageMetadataUpdateManyInput"
+		updateManyAboutMesConnection:{
+			where:"AboutMeManyWhereInput",
+			data:"AboutMeUpdateManyInput"
 		},
-		deleteManyPagesMetadataConnection:{
-			where:"PageMetadataManyWhereInput"
+		deleteManyAboutMesConnection:{
+			where:"AboutMeManyWhereInput"
 		},
-		publishManyPagesMetadataConnection:{
-			where:"PageMetadataManyWhereInput",
+		publishManyAboutMesConnection:{
+			where:"AboutMeManyWhereInput",
 			from:"Stage",
 			to:"Stage"
 		},
-		unpublishManyPagesMetadataConnection:{
-			where:"PageMetadataManyWhereInput",
+		unpublishManyAboutMesConnection:{
+			where:"AboutMeManyWhereInput",
 			stage:"Stage",
 			from:"Stage"
 		},
-		updateManyPagesMetadata:{
-			where:"PageMetadataManyWhereInput",
-			data:"PageMetadataUpdateManyInput"
+		updateManyAboutMes:{
+			where:"AboutMeManyWhereInput",
+			data:"AboutMeUpdateManyInput"
 		},
-		deleteManyPagesMetadata:{
-			where:"PageMetadataManyWhereInput"
+		deleteManyAboutMes:{
+			where:"AboutMeManyWhereInput"
 		},
-		publishManyPagesMetadata:{
-			where:"PageMetadataManyWhereInput",
+		publishManyAboutMes:{
+			where:"AboutMeManyWhereInput",
 			to:"Stage"
 		},
-		unpublishManyPagesMetadata:{
-			where:"PageMetadataManyWhereInput",
+		unpublishManyAboutMes:{
+			where:"AboutMeManyWhereInput",
 			from:"Stage"
 		},
-		schedulePublishPageMetadata:{
-			where:"PageMetadataWhereUniqueInput",
+		schedulePublishAboutMe:{
+			where:"AboutMeWhereUniqueInput",
 			to:"Stage",
 			releaseAt:"DateTime"
 		},
-		scheduleUnpublishPageMetadata:{
-			where:"PageMetadataWhereUniqueInput",
+		scheduleUnpublishAboutMe:{
+			where:"AboutMeWhereUniqueInput",
 			from:"Stage",
 			releaseAt:"DateTime"
 		},
-		createSkill:{
-			data:"SkillCreateInput"
+		createSkillCategory:{
+			data:"SkillCategoryCreateInput"
 		},
-		updateSkill:{
-			where:"SkillWhereUniqueInput",
-			data:"SkillUpdateInput"
+		updateSkillCategory:{
+			where:"SkillCategoryWhereUniqueInput",
+			data:"SkillCategoryUpdateInput"
 		},
-		deleteSkill:{
-			where:"SkillWhereUniqueInput"
+		deleteSkillCategory:{
+			where:"SkillCategoryWhereUniqueInput"
 		},
-		upsertSkill:{
-			where:"SkillWhereUniqueInput",
-			upsert:"SkillUpsertInput"
+		upsertSkillCategory:{
+			where:"SkillCategoryWhereUniqueInput",
+			upsert:"SkillCategoryUpsertInput"
 		},
-		publishSkill:{
-			where:"SkillWhereUniqueInput",
+		publishSkillCategory:{
+			where:"SkillCategoryWhereUniqueInput",
 			to:"Stage"
 		},
-		unpublishSkill:{
-			where:"SkillWhereUniqueInput",
+		unpublishSkillCategory:{
+			where:"SkillCategoryWhereUniqueInput",
 			from:"Stage"
 		},
-		updateManySkillsConnection:{
-			where:"SkillManyWhereInput",
-			data:"SkillUpdateManyInput"
+		updateManySkillCategoriesConnection:{
+			where:"SkillCategoryManyWhereInput",
+			data:"SkillCategoryUpdateManyInput"
 		},
-		deleteManySkillsConnection:{
-			where:"SkillManyWhereInput"
+		deleteManySkillCategoriesConnection:{
+			where:"SkillCategoryManyWhereInput"
 		},
-		publishManySkillsConnection:{
-			where:"SkillManyWhereInput",
+		publishManySkillCategoriesConnection:{
+			where:"SkillCategoryManyWhereInput",
 			from:"Stage",
 			to:"Stage"
 		},
-		unpublishManySkillsConnection:{
-			where:"SkillManyWhereInput",
+		unpublishManySkillCategoriesConnection:{
+			where:"SkillCategoryManyWhereInput",
 			stage:"Stage",
 			from:"Stage"
 		},
-		updateManySkills:{
-			where:"SkillManyWhereInput",
-			data:"SkillUpdateManyInput"
+		updateManySkillCategories:{
+			where:"SkillCategoryManyWhereInput",
+			data:"SkillCategoryUpdateManyInput"
 		},
-		deleteManySkills:{
-			where:"SkillManyWhereInput"
+		deleteManySkillCategories:{
+			where:"SkillCategoryManyWhereInput"
 		},
-		publishManySkills:{
-			where:"SkillManyWhereInput",
+		publishManySkillCategories:{
+			where:"SkillCategoryManyWhereInput",
 			to:"Stage"
 		},
-		unpublishManySkills:{
-			where:"SkillManyWhereInput",
+		unpublishManySkillCategories:{
+			where:"SkillCategoryManyWhereInput",
 			from:"Stage"
 		},
-		schedulePublishSkill:{
-			where:"SkillWhereUniqueInput",
+		schedulePublishSkillCategory:{
+			where:"SkillCategoryWhereUniqueInput",
 			to:"Stage",
 			releaseAt:"DateTime"
 		},
-		scheduleUnpublishSkill:{
-			where:"SkillWhereUniqueInput",
+		scheduleUnpublishSkillCategory:{
+			where:"SkillCategoryWhereUniqueInput",
 			from:"Stage",
 			releaseAt:"DateTime"
 		}
-	},
-	PageMetadata:{
-		documentInStages:{
-			stages:"Stage"
-		},
-		publishedBy:{
-			locales:"Locale"
-		},
-		updatedBy:{
-			locales:"Locale"
-		},
-		createdBy:{
-			locales:"Locale"
-		},
-		image:{
-			locales:"Locale"
-		},
-		scheduledIn:{
-			where:"ScheduledOperationWhereInput",
-			locales:"Locale"
-		},
-		history:{
-			stageOverride:"Stage"
-		}
-	},
-	PageMetadataConnectInput:{
-		where:"PageMetadataWhereUniqueInput",
-		position:"ConnectPositionInput"
-	},
-	PageMetadataCreateInput:{
-		updatedAt:"DateTime",
-		createdAt:"DateTime",
-		image:"AssetCreateOneInlineInput"
-	},
-	PageMetadataCreateManyInlineInput:{
-		create:"PageMetadataCreateInput",
-		connect:"PageMetadataWhereUniqueInput"
-	},
-	PageMetadataCreateOneInlineInput:{
-		create:"PageMetadataCreateInput",
-		connect:"PageMetadataWhereUniqueInput"
-	},
-	PageMetadataManyWhereInput:{
-		AND:"PageMetadataWhereInput",
-		OR:"PageMetadataWhereInput",
-		NOT:"PageMetadataWhereInput",
-		publishedAt:"DateTime",
-		publishedAt_not:"DateTime",
-		publishedAt_in:"DateTime",
-		publishedAt_not_in:"DateTime",
-		publishedAt_lt:"DateTime",
-		publishedAt_lte:"DateTime",
-		publishedAt_gt:"DateTime",
-		publishedAt_gte:"DateTime",
-		updatedAt:"DateTime",
-		updatedAt_not:"DateTime",
-		updatedAt_in:"DateTime",
-		updatedAt_not_in:"DateTime",
-		updatedAt_lt:"DateTime",
-		updatedAt_lte:"DateTime",
-		updatedAt_gt:"DateTime",
-		updatedAt_gte:"DateTime",
-		createdAt:"DateTime",
-		createdAt_not:"DateTime",
-		createdAt_in:"DateTime",
-		createdAt_not_in:"DateTime",
-		createdAt_lt:"DateTime",
-		createdAt_lte:"DateTime",
-		createdAt_gt:"DateTime",
-		createdAt_gte:"DateTime",
-		publishedBy:"UserWhereInput",
-		updatedBy:"UserWhereInput",
-		createdBy:"UserWhereInput",
-		image:"AssetWhereInput",
-		scheduledIn_every:"ScheduledOperationWhereInput",
-		scheduledIn_some:"ScheduledOperationWhereInput",
-		scheduledIn_none:"ScheduledOperationWhereInput"
-	},
-	PageMetadataOrderByInput: "enum" as const,
-	PageMetadataUpdateInput:{
-		image:"AssetUpdateOneInlineInput"
-	},
-	PageMetadataUpdateManyInlineInput:{
-		create:"PageMetadataCreateInput",
-		connect:"PageMetadataConnectInput",
-		set:"PageMetadataWhereUniqueInput",
-		update:"PageMetadataUpdateWithNestedWhereUniqueInput",
-		upsert:"PageMetadataUpsertWithNestedWhereUniqueInput",
-		disconnect:"PageMetadataWhereUniqueInput",
-		delete:"PageMetadataWhereUniqueInput"
-	},
-	PageMetadataUpdateManyInput:{
-
-	},
-	PageMetadataUpdateManyWithNestedWhereInput:{
-		where:"PageMetadataWhereInput",
-		data:"PageMetadataUpdateManyInput"
-	},
-	PageMetadataUpdateOneInlineInput:{
-		create:"PageMetadataCreateInput",
-		update:"PageMetadataUpdateWithNestedWhereUniqueInput",
-		upsert:"PageMetadataUpsertWithNestedWhereUniqueInput",
-		connect:"PageMetadataWhereUniqueInput"
-	},
-	PageMetadataUpdateWithNestedWhereUniqueInput:{
-		where:"PageMetadataWhereUniqueInput",
-		data:"PageMetadataUpdateInput"
-	},
-	PageMetadataUpsertInput:{
-		create:"PageMetadataCreateInput",
-		update:"PageMetadataUpdateInput"
-	},
-	PageMetadataUpsertWithNestedWhereUniqueInput:{
-		where:"PageMetadataWhereUniqueInput",
-		data:"PageMetadataUpsertInput"
-	},
-	PageMetadataWhereInput:{
-		AND:"PageMetadataWhereInput",
-		OR:"PageMetadataWhereInput",
-		NOT:"PageMetadataWhereInput",
-		publishedAt:"DateTime",
-		publishedAt_not:"DateTime",
-		publishedAt_in:"DateTime",
-		publishedAt_not_in:"DateTime",
-		publishedAt_lt:"DateTime",
-		publishedAt_lte:"DateTime",
-		publishedAt_gt:"DateTime",
-		publishedAt_gte:"DateTime",
-		updatedAt:"DateTime",
-		updatedAt_not:"DateTime",
-		updatedAt_in:"DateTime",
-		updatedAt_not_in:"DateTime",
-		updatedAt_lt:"DateTime",
-		updatedAt_lte:"DateTime",
-		updatedAt_gt:"DateTime",
-		updatedAt_gte:"DateTime",
-		createdAt:"DateTime",
-		createdAt_not:"DateTime",
-		createdAt_in:"DateTime",
-		createdAt_not_in:"DateTime",
-		createdAt_lt:"DateTime",
-		createdAt_lte:"DateTime",
-		createdAt_gt:"DateTime",
-		createdAt_gte:"DateTime",
-		publishedBy:"UserWhereInput",
-		updatedBy:"UserWhereInput",
-		createdBy:"UserWhereInput",
-		image:"AssetWhereInput",
-		scheduledIn_every:"ScheduledOperationWhereInput",
-		scheduledIn_some:"ScheduledOperationWhereInput",
-		scheduledIn_none:"ScheduledOperationWhereInput"
-	},
-	PageMetadataWhereUniqueInput:{
-
 	},
 	Project:{
 		documentInStages:{
@@ -825,7 +1127,8 @@ export const AllTypesProps: Record<string,any> = {
 	ProjectCreateInput:{
 		updatedAt:"DateTime",
 		createdAt:"DateTime",
-		image:"AssetCreateManyInlineInput"
+		image:"AssetCreateManyInlineInput",
+		stack:"Technologies"
 	},
 	ProjectCreateManyInlineInput:{
 		create:"ProjectCreateInput",
@@ -869,13 +1172,19 @@ export const AllTypesProps: Record<string,any> = {
 		image_every:"AssetWhereInput",
 		image_some:"AssetWhereInput",
 		image_none:"AssetWhereInput",
+		stack:"Technologies",
+		stack_not:"Technologies",
+		stack_contains_all:"Technologies",
+		stack_contains_some:"Technologies",
+		stack_contains_none:"Technologies",
 		scheduledIn_every:"ScheduledOperationWhereInput",
 		scheduledIn_some:"ScheduledOperationWhereInput",
 		scheduledIn_none:"ScheduledOperationWhereInput"
 	},
 	ProjectOrderByInput: "enum" as const,
 	ProjectUpdateInput:{
-		image:"AssetUpdateManyInlineInput"
+		image:"AssetUpdateManyInlineInput",
+		stack:"Technologies"
 	},
 	ProjectUpdateManyInlineInput:{
 		create:"ProjectCreateInput",
@@ -887,7 +1196,7 @@ export const AllTypesProps: Record<string,any> = {
 		delete:"ProjectWhereUniqueInput"
 	},
 	ProjectUpdateManyInput:{
-
+		stack:"Technologies"
 	},
 	ProjectUpdateManyWithNestedWhereInput:{
 		where:"ProjectWhereInput",
@@ -945,6 +1254,11 @@ export const AllTypesProps: Record<string,any> = {
 		image_every:"AssetWhereInput",
 		image_some:"AssetWhereInput",
 		image_none:"AssetWhereInput",
+		stack:"Technologies",
+		stack_not:"Technologies",
+		stack_contains_all:"Technologies",
+		stack_contains_some:"Technologies",
+		stack_contains_none:"Technologies",
 		scheduledIn_every:"ScheduledOperationWhereInput",
 		scheduledIn_some:"ScheduledOperationWhereInput",
 		scheduledIn_none:"ScheduledOperationWhereInput"
@@ -1052,64 +1366,64 @@ export const AllTypesProps: Record<string,any> = {
 		projectVersion:{
 			where:"VersionWhereInput"
 		},
-		socials:{
-			where:"SocialWhereInput",
-			orderBy:"SocialOrderByInput",
+		seos:{
+			where:"SeoWhereInput",
+			orderBy:"SeoOrderByInput",
 			stage:"Stage",
 			locales:"Locale"
 		},
-		social:{
-			where:"SocialWhereUniqueInput",
+		seo:{
+			where:"SeoWhereUniqueInput",
 			stage:"Stage",
 			locales:"Locale"
 		},
-		socialsConnection:{
-			where:"SocialWhereInput",
-			orderBy:"SocialOrderByInput",
+		seosConnection:{
+			where:"SeoWhereInput",
+			orderBy:"SeoOrderByInput",
 			stage:"Stage",
 			locales:"Locale"
 		},
-		socialVersion:{
+		seoVersion:{
 			where:"VersionWhereInput"
 		},
-		pagesMetadata:{
-			where:"PageMetadataWhereInput",
-			orderBy:"PageMetadataOrderByInput",
+		aboutMes:{
+			where:"AboutMeWhereInput",
+			orderBy:"AboutMeOrderByInput",
 			stage:"Stage",
 			locales:"Locale"
 		},
-		pageMetadata:{
-			where:"PageMetadataWhereUniqueInput",
+		aboutMe:{
+			where:"AboutMeWhereUniqueInput",
 			stage:"Stage",
 			locales:"Locale"
 		},
-		pagesMetadataConnection:{
-			where:"PageMetadataWhereInput",
-			orderBy:"PageMetadataOrderByInput",
+		aboutMesConnection:{
+			where:"AboutMeWhereInput",
+			orderBy:"AboutMeOrderByInput",
 			stage:"Stage",
 			locales:"Locale"
 		},
-		pageMetadataVersion:{
+		aboutMeVersion:{
 			where:"VersionWhereInput"
 		},
-		skills:{
-			where:"SkillWhereInput",
-			orderBy:"SkillOrderByInput",
+		skillCategories:{
+			where:"SkillCategoryWhereInput",
+			orderBy:"SkillCategoryOrderByInput",
 			stage:"Stage",
 			locales:"Locale"
 		},
-		skill:{
-			where:"SkillWhereUniqueInput",
+		skillCategory:{
+			where:"SkillCategoryWhereUniqueInput",
 			stage:"Stage",
 			locales:"Locale"
 		},
-		skillsConnection:{
-			where:"SkillWhereInput",
-			orderBy:"SkillOrderByInput",
+		skillCategoriesConnection:{
+			where:"SkillCategoryWhereInput",
+			orderBy:"SkillCategoryOrderByInput",
 			stage:"Stage",
 			locales:"Locale"
 		},
-		skillVersion:{
+		skillCategoryVersion:{
 			where:"VersionWhereInput"
 		}
 	},
@@ -1411,7 +1725,7 @@ export const AllTypesProps: Record<string,any> = {
 	ScheduledReleaseWhereUniqueInput:{
 
 	},
-	Skill:{
+	Seo:{
 		documentInStages:{
 			stages:"Stage"
 		},
@@ -1424,7 +1738,7 @@ export const AllTypesProps: Record<string,any> = {
 		createdBy:{
 			locales:"Locale"
 		},
-		icon:{
+		og_image:{
 			locales:"Locale"
 		},
 		scheduledIn:{
@@ -1435,27 +1749,27 @@ export const AllTypesProps: Record<string,any> = {
 			stageOverride:"Stage"
 		}
 	},
-	SkillConnectInput:{
-		where:"SkillWhereUniqueInput",
+	SeoConnectInput:{
+		where:"SeoWhereUniqueInput",
 		position:"ConnectPositionInput"
 	},
-	SkillCreateInput:{
+	SeoCreateInput:{
 		updatedAt:"DateTime",
 		createdAt:"DateTime",
-		icon:"AssetCreateOneInlineInput"
+		og_image:"AssetCreateOneInlineInput"
 	},
-	SkillCreateManyInlineInput:{
-		create:"SkillCreateInput",
-		connect:"SkillWhereUniqueInput"
+	SeoCreateManyInlineInput:{
+		create:"SeoCreateInput",
+		connect:"SeoWhereUniqueInput"
 	},
-	SkillCreateOneInlineInput:{
-		create:"SkillCreateInput",
-		connect:"SkillWhereUniqueInput"
+	SeoCreateOneInlineInput:{
+		create:"SeoCreateInput",
+		connect:"SeoWhereUniqueInput"
 	},
-	SkillManyWhereInput:{
-		AND:"SkillWhereInput",
-		OR:"SkillWhereInput",
-		NOT:"SkillWhereInput",
+	SeoManyWhereInput:{
+		AND:"SeoWhereInput",
+		OR:"SeoWhereInput",
+		NOT:"SeoWhereInput",
 		publishedAt:"DateTime",
 		publishedAt_not:"DateTime",
 		publishedAt_in:"DateTime",
@@ -1483,22 +1797,373 @@ export const AllTypesProps: Record<string,any> = {
 		publishedBy:"UserWhereInput",
 		updatedBy:"UserWhereInput",
 		createdBy:"UserWhereInput",
-		icon:"AssetWhereInput",
+		og_image:"AssetWhereInput",
 		scheduledIn_every:"ScheduledOperationWhereInput",
 		scheduledIn_some:"ScheduledOperationWhereInput",
 		scheduledIn_none:"ScheduledOperationWhereInput"
 	},
+	SeoOrderByInput: "enum" as const,
+	SeoUpdateInput:{
+		og_image:"AssetUpdateOneInlineInput"
+	},
+	SeoUpdateManyInlineInput:{
+		create:"SeoCreateInput",
+		connect:"SeoConnectInput",
+		set:"SeoWhereUniqueInput",
+		update:"SeoUpdateWithNestedWhereUniqueInput",
+		upsert:"SeoUpsertWithNestedWhereUniqueInput",
+		disconnect:"SeoWhereUniqueInput",
+		delete:"SeoWhereUniqueInput"
+	},
+	SeoUpdateManyInput:{
+
+	},
+	SeoUpdateManyWithNestedWhereInput:{
+		where:"SeoWhereInput",
+		data:"SeoUpdateManyInput"
+	},
+	SeoUpdateOneInlineInput:{
+		create:"SeoCreateInput",
+		update:"SeoUpdateWithNestedWhereUniqueInput",
+		upsert:"SeoUpsertWithNestedWhereUniqueInput",
+		connect:"SeoWhereUniqueInput"
+	},
+	SeoUpdateWithNestedWhereUniqueInput:{
+		where:"SeoWhereUniqueInput",
+		data:"SeoUpdateInput"
+	},
+	SeoUpsertInput:{
+		create:"SeoCreateInput",
+		update:"SeoUpdateInput"
+	},
+	SeoUpsertWithNestedWhereUniqueInput:{
+		where:"SeoWhereUniqueInput",
+		data:"SeoUpsertInput"
+	},
+	SeoWhereInput:{
+		AND:"SeoWhereInput",
+		OR:"SeoWhereInput",
+		NOT:"SeoWhereInput",
+		publishedAt:"DateTime",
+		publishedAt_not:"DateTime",
+		publishedAt_in:"DateTime",
+		publishedAt_not_in:"DateTime",
+		publishedAt_lt:"DateTime",
+		publishedAt_lte:"DateTime",
+		publishedAt_gt:"DateTime",
+		publishedAt_gte:"DateTime",
+		updatedAt:"DateTime",
+		updatedAt_not:"DateTime",
+		updatedAt_in:"DateTime",
+		updatedAt_not_in:"DateTime",
+		updatedAt_lt:"DateTime",
+		updatedAt_lte:"DateTime",
+		updatedAt_gt:"DateTime",
+		updatedAt_gte:"DateTime",
+		createdAt:"DateTime",
+		createdAt_not:"DateTime",
+		createdAt_in:"DateTime",
+		createdAt_not_in:"DateTime",
+		createdAt_lt:"DateTime",
+		createdAt_lte:"DateTime",
+		createdAt_gt:"DateTime",
+		createdAt_gte:"DateTime",
+		publishedBy:"UserWhereInput",
+		updatedBy:"UserWhereInput",
+		createdBy:"UserWhereInput",
+		og_image:"AssetWhereInput",
+		scheduledIn_every:"ScheduledOperationWhereInput",
+		scheduledIn_some:"ScheduledOperationWhereInput",
+		scheduledIn_none:"ScheduledOperationWhereInput"
+	},
+	SeoWhereUniqueInput:{
+
+	},
+	Skill:{
+		icon:{
+			locales:"Locale"
+		}
+	},
+	SkillCategory:{
+		documentInStages:{
+			stages:"Stage"
+		},
+		skillsList:{
+			locales:"Locale"
+		},
+		publishedBy:{
+			locales:"Locale"
+		},
+		updatedBy:{
+			locales:"Locale"
+		},
+		createdBy:{
+			locales:"Locale"
+		},
+		scheduledIn:{
+			where:"ScheduledOperationWhereInput",
+			locales:"Locale"
+		},
+		history:{
+			stageOverride:"Stage"
+		}
+	},
+	SkillCategoryConnectInput:{
+		where:"SkillCategoryWhereUniqueInput",
+		position:"ConnectPositionInput"
+	},
+	SkillCategoryCreateInput:{
+		updatedAt:"DateTime",
+		createdAt:"DateTime",
+		skillsList:"SkillCategoryskillsListUnionCreateManyInlineInput"
+	},
+	SkillCategoryCreateManyInlineInput:{
+		create:"SkillCategoryCreateInput",
+		connect:"SkillCategoryWhereUniqueInput"
+	},
+	SkillCategoryCreateOneInlineInput:{
+		create:"SkillCategoryCreateInput",
+		connect:"SkillCategoryWhereUniqueInput"
+	},
+	SkillCategoryManyWhereInput:{
+		AND:"SkillCategoryWhereInput",
+		OR:"SkillCategoryWhereInput",
+		NOT:"SkillCategoryWhereInput",
+		publishedAt:"DateTime",
+		publishedAt_not:"DateTime",
+		publishedAt_in:"DateTime",
+		publishedAt_not_in:"DateTime",
+		publishedAt_lt:"DateTime",
+		publishedAt_lte:"DateTime",
+		publishedAt_gt:"DateTime",
+		publishedAt_gte:"DateTime",
+		updatedAt:"DateTime",
+		updatedAt_not:"DateTime",
+		updatedAt_in:"DateTime",
+		updatedAt_not_in:"DateTime",
+		updatedAt_lt:"DateTime",
+		updatedAt_lte:"DateTime",
+		updatedAt_gt:"DateTime",
+		updatedAt_gte:"DateTime",
+		createdAt:"DateTime",
+		createdAt_not:"DateTime",
+		createdAt_in:"DateTime",
+		createdAt_not_in:"DateTime",
+		createdAt_lt:"DateTime",
+		createdAt_lte:"DateTime",
+		createdAt_gt:"DateTime",
+		createdAt_gte:"DateTime",
+		publishedBy:"UserWhereInput",
+		updatedBy:"UserWhereInput",
+		createdBy:"UserWhereInput",
+		scheduledIn_every:"ScheduledOperationWhereInput",
+		scheduledIn_some:"ScheduledOperationWhereInput",
+		scheduledIn_none:"ScheduledOperationWhereInput"
+	},
+	SkillCategoryOrderByInput: "enum" as const,
+	SkillCategoryUpdateInput:{
+		skillsList:"SkillCategoryskillsListUnionUpdateManyInlineInput"
+	},
+	SkillCategoryUpdateManyInlineInput:{
+		create:"SkillCategoryCreateInput",
+		connect:"SkillCategoryConnectInput",
+		set:"SkillCategoryWhereUniqueInput",
+		update:"SkillCategoryUpdateWithNestedWhereUniqueInput",
+		upsert:"SkillCategoryUpsertWithNestedWhereUniqueInput",
+		disconnect:"SkillCategoryWhereUniqueInput",
+		delete:"SkillCategoryWhereUniqueInput"
+	},
+	SkillCategoryUpdateManyInput:{
+
+	},
+	SkillCategoryUpdateManyWithNestedWhereInput:{
+		where:"SkillCategoryWhereInput",
+		data:"SkillCategoryUpdateManyInput"
+	},
+	SkillCategoryUpdateOneInlineInput:{
+		create:"SkillCategoryCreateInput",
+		update:"SkillCategoryUpdateWithNestedWhereUniqueInput",
+		upsert:"SkillCategoryUpsertWithNestedWhereUniqueInput",
+		connect:"SkillCategoryWhereUniqueInput"
+	},
+	SkillCategoryUpdateWithNestedWhereUniqueInput:{
+		where:"SkillCategoryWhereUniqueInput",
+		data:"SkillCategoryUpdateInput"
+	},
+	SkillCategoryUpsertInput:{
+		create:"SkillCategoryCreateInput",
+		update:"SkillCategoryUpdateInput"
+	},
+	SkillCategoryUpsertWithNestedWhereUniqueInput:{
+		where:"SkillCategoryWhereUniqueInput",
+		data:"SkillCategoryUpsertInput"
+	},
+	SkillCategoryWhereInput:{
+		AND:"SkillCategoryWhereInput",
+		OR:"SkillCategoryWhereInput",
+		NOT:"SkillCategoryWhereInput",
+		publishedAt:"DateTime",
+		publishedAt_not:"DateTime",
+		publishedAt_in:"DateTime",
+		publishedAt_not_in:"DateTime",
+		publishedAt_lt:"DateTime",
+		publishedAt_lte:"DateTime",
+		publishedAt_gt:"DateTime",
+		publishedAt_gte:"DateTime",
+		updatedAt:"DateTime",
+		updatedAt_not:"DateTime",
+		updatedAt_in:"DateTime",
+		updatedAt_not_in:"DateTime",
+		updatedAt_lt:"DateTime",
+		updatedAt_lte:"DateTime",
+		updatedAt_gt:"DateTime",
+		updatedAt_gte:"DateTime",
+		createdAt:"DateTime",
+		createdAt_not:"DateTime",
+		createdAt_in:"DateTime",
+		createdAt_not_in:"DateTime",
+		createdAt_lt:"DateTime",
+		createdAt_lte:"DateTime",
+		createdAt_gt:"DateTime",
+		createdAt_gte:"DateTime",
+		publishedBy:"UserWhereInput",
+		updatedBy:"UserWhereInput",
+		createdBy:"UserWhereInput",
+		scheduledIn_every:"ScheduledOperationWhereInput",
+		scheduledIn_some:"ScheduledOperationWhereInput",
+		scheduledIn_none:"ScheduledOperationWhereInput"
+	},
+	SkillCategoryWhereUniqueInput:{
+
+	},
+	SkillCategoryskillsListUnionConnectInput:{
+		Skill:"SkillConnectInput"
+	},
+	SkillCategoryskillsListUnionCreateInput:{
+		Skill:"SkillCreateInput"
+	},
+	SkillCategoryskillsListUnionCreateManyInlineInput:{
+		create:"SkillCategoryskillsListUnionCreateInput"
+	},
+	SkillCategoryskillsListUnionCreateOneInlineInput:{
+		create:"SkillCategoryskillsListUnionCreateInput"
+	},
+	SkillCategoryskillsListUnionCreateWithPositionInput:{
+		Skill:"SkillCreateWithPositionInput"
+	},
+	SkillCategoryskillsListUnionUpdateInput:{
+		Skill:"SkillUpdateInput"
+	},
+	SkillCategoryskillsListUnionUpdateManyInlineInput:{
+		create:"SkillCategoryskillsListUnionCreateWithPositionInput",
+		update:"SkillCategoryskillsListUnionUpdateWithNestedWhereUniqueAndPositionInput",
+		upsert:"SkillCategoryskillsListUnionUpsertWithNestedWhereUniqueAndPositionInput",
+		delete:"SkillCategoryskillsListUnionWhereUniqueInput"
+	},
+	SkillCategoryskillsListUnionUpdateManyWithNestedWhereInput:{
+		Skill:"SkillUpdateManyWithNestedWhereInput"
+	},
+	SkillCategoryskillsListUnionUpdateOneInlineInput:{
+		create:"SkillCategoryskillsListUnionCreateInput",
+		update:"SkillCategoryskillsListUnionUpdateWithNestedWhereUniqueInput",
+		upsert:"SkillCategoryskillsListUnionUpsertWithNestedWhereUniqueInput"
+	},
+	SkillCategoryskillsListUnionUpdateWithNestedWhereUniqueAndPositionInput:{
+		Skill:"SkillUpdateWithNestedWhereUniqueAndPositionInput"
+	},
+	SkillCategoryskillsListUnionUpdateWithNestedWhereUniqueInput:{
+		Skill:"SkillUpdateWithNestedWhereUniqueInput"
+	},
+	SkillCategoryskillsListUnionUpsertWithNestedWhereUniqueAndPositionInput:{
+		Skill:"SkillUpsertWithNestedWhereUniqueAndPositionInput"
+	},
+	SkillCategoryskillsListUnionUpsertWithNestedWhereUniqueInput:{
+		Skill:"SkillUpsertWithNestedWhereUniqueInput"
+	},
+	SkillCategoryskillsListUnionWhereInput:{
+		Skill:"SkillWhereInput"
+	},
+	SkillCategoryskillsListUnionWhereUniqueInput:{
+		Skill:"SkillWhereUniqueInput"
+	},
+	SkillConnectInput:{
+		where:"SkillWhereUniqueInput",
+		position:"ConnectPositionInput"
+	},
+	SkillCreateInput:{
+		icon:"AssetCreateOneInlineInput"
+	},
+	SkillCreateManyInlineInput:{
+		create:"SkillCreateInput"
+	},
+	SkillCreateOneInlineInput:{
+		create:"SkillCreateInput"
+	},
+	SkillCreateWithPositionInput:{
+		position:"ConnectPositionInput",
+		data:"SkillCreateInput"
+	},
+	SkillManyWhereInput:{
+		AND:"SkillWhereInput",
+		OR:"SkillWhereInput",
+		NOT:"SkillWhereInput",
+		icon:"AssetWhereInput"
+	},
 	SkillOrderByInput: "enum" as const,
+	SkillParentConnectInput:{
+		SkillCategory:"SkillCategoryConnectInput"
+	},
+	SkillParentCreateInput:{
+		SkillCategory:"SkillCategoryCreateInput"
+	},
+	SkillParentCreateManyInlineInput:{
+		create:"SkillParentCreateInput",
+		connect:"SkillParentWhereUniqueInput"
+	},
+	SkillParentCreateOneInlineInput:{
+		create:"SkillParentCreateInput",
+		connect:"SkillParentWhereUniqueInput"
+	},
+	SkillParentUpdateInput:{
+		SkillCategory:"SkillCategoryUpdateInput"
+	},
+	SkillParentUpdateManyInlineInput:{
+		create:"SkillParentCreateInput",
+		connect:"SkillParentConnectInput",
+		set:"SkillParentWhereUniqueInput",
+		update:"SkillParentUpdateWithNestedWhereUniqueInput",
+		upsert:"SkillParentUpsertWithNestedWhereUniqueInput",
+		disconnect:"SkillParentWhereUniqueInput",
+		delete:"SkillParentWhereUniqueInput"
+	},
+	SkillParentUpdateManyWithNestedWhereInput:{
+		SkillCategory:"SkillCategoryUpdateManyWithNestedWhereInput"
+	},
+	SkillParentUpdateOneInlineInput:{
+		create:"SkillParentCreateInput",
+		update:"SkillParentUpdateWithNestedWhereUniqueInput",
+		upsert:"SkillParentUpsertWithNestedWhereUniqueInput",
+		connect:"SkillParentWhereUniqueInput"
+	},
+	SkillParentUpdateWithNestedWhereUniqueInput:{
+		SkillCategory:"SkillCategoryUpdateWithNestedWhereUniqueInput"
+	},
+	SkillParentUpsertWithNestedWhereUniqueInput:{
+		SkillCategory:"SkillCategoryUpsertWithNestedWhereUniqueInput"
+	},
+	SkillParentWhereInput:{
+		SkillCategory:"SkillCategoryWhereInput"
+	},
+	SkillParentWhereUniqueInput:{
+		SkillCategory:"SkillCategoryWhereUniqueInput"
+	},
 	SkillUpdateInput:{
 		icon:"AssetUpdateOneInlineInput"
 	},
 	SkillUpdateManyInlineInput:{
-		create:"SkillCreateInput",
-		connect:"SkillConnectInput",
-		set:"SkillWhereUniqueInput",
-		update:"SkillUpdateWithNestedWhereUniqueInput",
-		upsert:"SkillUpsertWithNestedWhereUniqueInput",
-		disconnect:"SkillWhereUniqueInput",
+		create:"SkillCreateWithPositionInput",
+		update:"SkillUpdateWithNestedWhereUniqueAndPositionInput",
+		upsert:"SkillUpsertWithNestedWhereUniqueAndPositionInput",
 		delete:"SkillWhereUniqueInput"
 	},
 	SkillUpdateManyInput:{
@@ -1511,8 +2176,12 @@ export const AllTypesProps: Record<string,any> = {
 	SkillUpdateOneInlineInput:{
 		create:"SkillCreateInput",
 		update:"SkillUpdateWithNestedWhereUniqueInput",
-		upsert:"SkillUpsertWithNestedWhereUniqueInput",
-		connect:"SkillWhereUniqueInput"
+		upsert:"SkillUpsertWithNestedWhereUniqueInput"
+	},
+	SkillUpdateWithNestedWhereUniqueAndPositionInput:{
+		where:"SkillWhereUniqueInput",
+		position:"ConnectPositionInput",
+		data:"SkillUpdateInput"
 	},
 	SkillUpdateWithNestedWhereUniqueInput:{
 		where:"SkillWhereUniqueInput",
@@ -1522,6 +2191,11 @@ export const AllTypesProps: Record<string,any> = {
 		create:"SkillCreateInput",
 		update:"SkillUpdateInput"
 	},
+	SkillUpsertWithNestedWhereUniqueAndPositionInput:{
+		where:"SkillWhereUniqueInput",
+		position:"ConnectPositionInput",
+		data:"SkillUpsertInput"
+	},
 	SkillUpsertWithNestedWhereUniqueInput:{
 		where:"SkillWhereUniqueInput",
 		data:"SkillUpsertInput"
@@ -1530,199 +2204,14 @@ export const AllTypesProps: Record<string,any> = {
 		AND:"SkillWhereInput",
 		OR:"SkillWhereInput",
 		NOT:"SkillWhereInput",
-		publishedAt:"DateTime",
-		publishedAt_not:"DateTime",
-		publishedAt_in:"DateTime",
-		publishedAt_not_in:"DateTime",
-		publishedAt_lt:"DateTime",
-		publishedAt_lte:"DateTime",
-		publishedAt_gt:"DateTime",
-		publishedAt_gte:"DateTime",
-		updatedAt:"DateTime",
-		updatedAt_not:"DateTime",
-		updatedAt_in:"DateTime",
-		updatedAt_not_in:"DateTime",
-		updatedAt_lt:"DateTime",
-		updatedAt_lte:"DateTime",
-		updatedAt_gt:"DateTime",
-		updatedAt_gte:"DateTime",
-		createdAt:"DateTime",
-		createdAt_not:"DateTime",
-		createdAt_in:"DateTime",
-		createdAt_not_in:"DateTime",
-		createdAt_lt:"DateTime",
-		createdAt_lte:"DateTime",
-		createdAt_gt:"DateTime",
-		createdAt_gte:"DateTime",
-		publishedBy:"UserWhereInput",
-		updatedBy:"UserWhereInput",
-		createdBy:"UserWhereInput",
-		icon:"AssetWhereInput",
-		scheduledIn_every:"ScheduledOperationWhereInput",
-		scheduledIn_some:"ScheduledOperationWhereInput",
-		scheduledIn_none:"ScheduledOperationWhereInput"
+		icon:"AssetWhereInput"
 	},
 	SkillWhereUniqueInput:{
 
 	},
-	Social:{
-		documentInStages:{
-			stages:"Stage"
-		},
-		publishedBy:{
-			locales:"Locale"
-		},
-		updatedBy:{
-			locales:"Locale"
-		},
-		createdBy:{
-			locales:"Locale"
-		},
-		image:{
-			locales:"Locale"
-		},
-		scheduledIn:{
-			where:"ScheduledOperationWhereInput",
-			locales:"Locale"
-		},
-		history:{
-			stageOverride:"Stage"
-		}
-	},
-	SocialConnectInput:{
-		where:"SocialWhereUniqueInput",
-		position:"ConnectPositionInput"
-	},
-	SocialCreateInput:{
-		updatedAt:"DateTime",
-		createdAt:"DateTime",
-		color:"ColorInput",
-		image:"AssetCreateOneInlineInput"
-	},
-	SocialCreateManyInlineInput:{
-		create:"SocialCreateInput",
-		connect:"SocialWhereUniqueInput"
-	},
-	SocialCreateOneInlineInput:{
-		create:"SocialCreateInput",
-		connect:"SocialWhereUniqueInput"
-	},
-	SocialManyWhereInput:{
-		AND:"SocialWhereInput",
-		OR:"SocialWhereInput",
-		NOT:"SocialWhereInput",
-		publishedAt:"DateTime",
-		publishedAt_not:"DateTime",
-		publishedAt_in:"DateTime",
-		publishedAt_not_in:"DateTime",
-		publishedAt_lt:"DateTime",
-		publishedAt_lte:"DateTime",
-		publishedAt_gt:"DateTime",
-		publishedAt_gte:"DateTime",
-		updatedAt:"DateTime",
-		updatedAt_not:"DateTime",
-		updatedAt_in:"DateTime",
-		updatedAt_not_in:"DateTime",
-		updatedAt_lt:"DateTime",
-		updatedAt_lte:"DateTime",
-		updatedAt_gt:"DateTime",
-		updatedAt_gte:"DateTime",
-		createdAt:"DateTime",
-		createdAt_not:"DateTime",
-		createdAt_in:"DateTime",
-		createdAt_not_in:"DateTime",
-		createdAt_lt:"DateTime",
-		createdAt_lte:"DateTime",
-		createdAt_gt:"DateTime",
-		createdAt_gte:"DateTime",
-		publishedBy:"UserWhereInput",
-		updatedBy:"UserWhereInput",
-		createdBy:"UserWhereInput",
-		image:"AssetWhereInput",
-		scheduledIn_every:"ScheduledOperationWhereInput",
-		scheduledIn_some:"ScheduledOperationWhereInput",
-		scheduledIn_none:"ScheduledOperationWhereInput"
-	},
-	SocialOrderByInput: "enum" as const,
-	SocialUpdateInput:{
-		color:"ColorInput",
-		image:"AssetUpdateOneInlineInput"
-	},
-	SocialUpdateManyInlineInput:{
-		create:"SocialCreateInput",
-		connect:"SocialConnectInput",
-		set:"SocialWhereUniqueInput",
-		update:"SocialUpdateWithNestedWhereUniqueInput",
-		upsert:"SocialUpsertWithNestedWhereUniqueInput",
-		disconnect:"SocialWhereUniqueInput",
-		delete:"SocialWhereUniqueInput"
-	},
-	SocialUpdateManyInput:{
-		color:"ColorInput"
-	},
-	SocialUpdateManyWithNestedWhereInput:{
-		where:"SocialWhereInput",
-		data:"SocialUpdateManyInput"
-	},
-	SocialUpdateOneInlineInput:{
-		create:"SocialCreateInput",
-		update:"SocialUpdateWithNestedWhereUniqueInput",
-		upsert:"SocialUpsertWithNestedWhereUniqueInput",
-		connect:"SocialWhereUniqueInput"
-	},
-	SocialUpdateWithNestedWhereUniqueInput:{
-		where:"SocialWhereUniqueInput",
-		data:"SocialUpdateInput"
-	},
-	SocialUpsertInput:{
-		create:"SocialCreateInput",
-		update:"SocialUpdateInput"
-	},
-	SocialUpsertWithNestedWhereUniqueInput:{
-		where:"SocialWhereUniqueInput",
-		data:"SocialUpsertInput"
-	},
-	SocialWhereInput:{
-		AND:"SocialWhereInput",
-		OR:"SocialWhereInput",
-		NOT:"SocialWhereInput",
-		publishedAt:"DateTime",
-		publishedAt_not:"DateTime",
-		publishedAt_in:"DateTime",
-		publishedAt_not_in:"DateTime",
-		publishedAt_lt:"DateTime",
-		publishedAt_lte:"DateTime",
-		publishedAt_gt:"DateTime",
-		publishedAt_gte:"DateTime",
-		updatedAt:"DateTime",
-		updatedAt_not:"DateTime",
-		updatedAt_in:"DateTime",
-		updatedAt_not_in:"DateTime",
-		updatedAt_lt:"DateTime",
-		updatedAt_lte:"DateTime",
-		updatedAt_gt:"DateTime",
-		updatedAt_gte:"DateTime",
-		createdAt:"DateTime",
-		createdAt_not:"DateTime",
-		createdAt_in:"DateTime",
-		createdAt_not_in:"DateTime",
-		createdAt_lt:"DateTime",
-		createdAt_lte:"DateTime",
-		createdAt_gt:"DateTime",
-		createdAt_gte:"DateTime",
-		publishedBy:"UserWhereInput",
-		updatedBy:"UserWhereInput",
-		createdBy:"UserWhereInput",
-		image:"AssetWhereInput",
-		scheduledIn_every:"ScheduledOperationWhereInput",
-		scheduledIn_some:"ScheduledOperationWhereInput",
-		scheduledIn_none:"ScheduledOperationWhereInput"
-	},
-	SocialWhereUniqueInput:{
-
-	},
 	Stage: "enum" as const,
 	SystemDateTimeFieldVariation: "enum" as const,
+	Technologies: "enum" as const,
 	UnpublishLocaleInput:{
 		locale:"Locale",
 		stages:"Stage"
@@ -1835,6 +2324,36 @@ export const AllTypesProps: Record<string,any> = {
 }
 
 export const ReturnTypes: Record<string,any> = {
+	AboutMe:{
+		stage:"Stage",
+		documentInStages:"AboutMe",
+		publishedAt:"DateTime",
+		updatedAt:"DateTime",
+		createdAt:"DateTime",
+		id:"ID",
+		contactEmail:"String",
+		description:"String",
+		company:"Company",
+		links:"AboutMelinksUnion",
+		publishedBy:"User",
+		updatedBy:"User",
+		createdBy:"User",
+		photo:"Asset",
+		scheduledIn:"ScheduledOperation",
+		history:"Version"
+	},
+	AboutMeConnection:{
+		pageInfo:"PageInfo",
+		edges:"AboutMeEdge",
+		aggregate:"Aggregate"
+	},
+	AboutMeEdge:{
+		node:"AboutMe",
+		cursor:"String"
+	},
+	AboutMelinksUnion:{
+		"...on Link":"Link"
+	},
 	Aggregate:{
 		count:"Int"
 	},
@@ -1857,9 +2376,8 @@ export const ReturnTypes: Record<string,any> = {
 		updatedBy:"User",
 		createdBy:"User",
 		imageProject:"Project",
-		imageSocial:"Social",
-		imagePageMetadata:"PageMetadata",
-		iconSkill:"Skill",
+		og_imageSeo:"Seo",
+		photoAboutMe:"AboutMe",
 		scheduledIn:"ScheduledOperation",
 		history:"Version",
 		url:"String"
@@ -1881,6 +2399,24 @@ export const ReturnTypes: Record<string,any> = {
 		rgba:"RGBA",
 		css:"String"
 	},
+	Company:{
+		stage:"Stage",
+		id:"ID",
+		companyName:"String",
+		companyWebsite:"String"
+	},
+	CompanyConnection:{
+		pageInfo:"PageInfo",
+		edges:"CompanyEdge",
+		aggregate:"Aggregate"
+	},
+	CompanyEdge:{
+		node:"Company",
+		cursor:"String"
+	},
+	CompanyParent:{
+		"...on AboutMe":"AboutMe"
+	},
 	Date: `scalar.Date` as const,
 	DateTime: `scalar.DateTime` as const,
 	DocumentVersion:{
@@ -1892,6 +2428,25 @@ export const ReturnTypes: Record<string,any> = {
 	},
 	Hex: `scalar.Hex` as const,
 	Json: `scalar.Json` as const,
+	Link:{
+		stage:"Stage",
+		id:"ID",
+		name:"String",
+		url:"String",
+		icon:"Asset"
+	},
+	LinkConnection:{
+		pageInfo:"PageInfo",
+		edges:"LinkEdge",
+		aggregate:"Aggregate"
+	},
+	LinkEdge:{
+		node:"Link",
+		cursor:"String"
+	},
+	LinkParent:{
+		"...on AboutMe":"AboutMe"
+	},
 	Location:{
 		latitude:"Float",
 		longitude:"Float",
@@ -1935,63 +2490,63 @@ export const ReturnTypes: Record<string,any> = {
 		unpublishManyProjects:"BatchPayload",
 		schedulePublishProject:"Project",
 		scheduleUnpublishProject:"Project",
-		createSocial:"Social",
-		updateSocial:"Social",
-		deleteSocial:"Social",
-		upsertSocial:"Social",
-		publishSocial:"Social",
-		unpublishSocial:"Social",
-		updateManySocialsConnection:"SocialConnection",
-		deleteManySocialsConnection:"SocialConnection",
-		publishManySocialsConnection:"SocialConnection",
-		unpublishManySocialsConnection:"SocialConnection",
-		updateManySocials:"BatchPayload",
-		deleteManySocials:"BatchPayload",
-		publishManySocials:"BatchPayload",
-		unpublishManySocials:"BatchPayload",
-		schedulePublishSocial:"Social",
-		scheduleUnpublishSocial:"Social",
-		createPageMetadata:"PageMetadata",
-		updatePageMetadata:"PageMetadata",
-		deletePageMetadata:"PageMetadata",
-		upsertPageMetadata:"PageMetadata",
-		publishPageMetadata:"PageMetadata",
-		unpublishPageMetadata:"PageMetadata",
-		updateManyPagesMetadataConnection:"PageMetadataConnection",
-		deleteManyPagesMetadataConnection:"PageMetadataConnection",
-		publishManyPagesMetadataConnection:"PageMetadataConnection",
-		unpublishManyPagesMetadataConnection:"PageMetadataConnection",
-		updateManyPagesMetadata:"BatchPayload",
-		deleteManyPagesMetadata:"BatchPayload",
-		publishManyPagesMetadata:"BatchPayload",
-		unpublishManyPagesMetadata:"BatchPayload",
-		schedulePublishPageMetadata:"PageMetadata",
-		scheduleUnpublishPageMetadata:"PageMetadata",
-		createSkill:"Skill",
-		updateSkill:"Skill",
-		deleteSkill:"Skill",
-		upsertSkill:"Skill",
-		publishSkill:"Skill",
-		unpublishSkill:"Skill",
-		updateManySkillsConnection:"SkillConnection",
-		deleteManySkillsConnection:"SkillConnection",
-		publishManySkillsConnection:"SkillConnection",
-		unpublishManySkillsConnection:"SkillConnection",
-		updateManySkills:"BatchPayload",
-		deleteManySkills:"BatchPayload",
-		publishManySkills:"BatchPayload",
-		unpublishManySkills:"BatchPayload",
-		schedulePublishSkill:"Skill",
-		scheduleUnpublishSkill:"Skill"
+		createSeo:"Seo",
+		updateSeo:"Seo",
+		deleteSeo:"Seo",
+		upsertSeo:"Seo",
+		publishSeo:"Seo",
+		unpublishSeo:"Seo",
+		updateManySeosConnection:"SeoConnection",
+		deleteManySeosConnection:"SeoConnection",
+		publishManySeosConnection:"SeoConnection",
+		unpublishManySeosConnection:"SeoConnection",
+		updateManySeos:"BatchPayload",
+		deleteManySeos:"BatchPayload",
+		publishManySeos:"BatchPayload",
+		unpublishManySeos:"BatchPayload",
+		schedulePublishSeo:"Seo",
+		scheduleUnpublishSeo:"Seo",
+		createAboutMe:"AboutMe",
+		updateAboutMe:"AboutMe",
+		deleteAboutMe:"AboutMe",
+		upsertAboutMe:"AboutMe",
+		publishAboutMe:"AboutMe",
+		unpublishAboutMe:"AboutMe",
+		updateManyAboutMesConnection:"AboutMeConnection",
+		deleteManyAboutMesConnection:"AboutMeConnection",
+		publishManyAboutMesConnection:"AboutMeConnection",
+		unpublishManyAboutMesConnection:"AboutMeConnection",
+		updateManyAboutMes:"BatchPayload",
+		deleteManyAboutMes:"BatchPayload",
+		publishManyAboutMes:"BatchPayload",
+		unpublishManyAboutMes:"BatchPayload",
+		schedulePublishAboutMe:"AboutMe",
+		scheduleUnpublishAboutMe:"AboutMe",
+		createSkillCategory:"SkillCategory",
+		updateSkillCategory:"SkillCategory",
+		deleteSkillCategory:"SkillCategory",
+		upsertSkillCategory:"SkillCategory",
+		publishSkillCategory:"SkillCategory",
+		unpublishSkillCategory:"SkillCategory",
+		updateManySkillCategoriesConnection:"SkillCategoryConnection",
+		deleteManySkillCategoriesConnection:"SkillCategoryConnection",
+		publishManySkillCategoriesConnection:"SkillCategoryConnection",
+		unpublishManySkillCategoriesConnection:"SkillCategoryConnection",
+		updateManySkillCategories:"BatchPayload",
+		deleteManySkillCategories:"BatchPayload",
+		publishManySkillCategories:"BatchPayload",
+		unpublishManySkillCategories:"BatchPayload",
+		schedulePublishSkillCategory:"SkillCategory",
+		scheduleUnpublishSkillCategory:"SkillCategory"
 	},
 	Node:{
+		"...on AboutMe": "AboutMe",
 		"...on Asset": "Asset",
-		"...on PageMetadata": "PageMetadata",
 		"...on Project": "Project",
 		"...on ScheduledOperation": "ScheduledOperation",
 		"...on ScheduledRelease": "ScheduledRelease",
-		"...on Skill": "Skill",
-		"...on Social": "Social",
+		"...on Seo": "Seo",
+		"...on SkillCategory": "SkillCategory",
 		"...on User": "User",
 		id:"ID",
 		stage:"Stage"
@@ -2003,33 +2558,6 @@ export const ReturnTypes: Record<string,any> = {
 		endCursor:"String",
 		pageSize:"Int"
 	},
-	PageMetadata:{
-		stage:"Stage",
-		documentInStages:"PageMetadata",
-		publishedAt:"DateTime",
-		updatedAt:"DateTime",
-		createdAt:"DateTime",
-		id:"ID",
-		title:"String",
-		summary:"String",
-		slug:"String",
-		pageNumber:"Int",
-		publishedBy:"User",
-		updatedBy:"User",
-		createdBy:"User",
-		image:"Asset",
-		scheduledIn:"ScheduledOperation",
-		history:"Version"
-	},
-	PageMetadataConnection:{
-		pageInfo:"PageInfo",
-		edges:"PageMetadataEdge",
-		aggregate:"Aggregate"
-	},
-	PageMetadataEdge:{
-		node:"PageMetadata",
-		cursor:"String"
-	},
 	Project:{
 		stage:"Stage",
 		documentInStages:"Project",
@@ -2038,15 +2566,14 @@ export const ReturnTypes: Record<string,any> = {
 		createdAt:"DateTime",
 		id:"ID",
 		name:"String",
-		slug:"String",
 		description:"String",
-		tags:"String",
 		demo:"String",
 		sourceCode:"String",
 		publishedBy:"User",
 		updatedBy:"User",
 		createdBy:"User",
 		image:"Asset",
+		stack:"Technologies",
 		scheduledIn:"ScheduledOperation",
 		history:"Version"
 	},
@@ -2078,18 +2605,18 @@ export const ReturnTypes: Record<string,any> = {
 		project:"Project",
 		projectsConnection:"ProjectConnection",
 		projectVersion:"DocumentVersion",
-		socials:"Social",
-		social:"Social",
-		socialsConnection:"SocialConnection",
-		socialVersion:"DocumentVersion",
-		pagesMetadata:"PageMetadata",
-		pageMetadata:"PageMetadata",
-		pagesMetadataConnection:"PageMetadataConnection",
-		pageMetadataVersion:"DocumentVersion",
-		skills:"Skill",
-		skill:"Skill",
-		skillsConnection:"SkillConnection",
-		skillVersion:"DocumentVersion"
+		seos:"Seo",
+		seo:"Seo",
+		seosConnection:"SeoConnection",
+		seoVersion:"DocumentVersion",
+		aboutMes:"AboutMe",
+		aboutMe:"AboutMe",
+		aboutMesConnection:"AboutMeConnection",
+		aboutMeVersion:"DocumentVersion",
+		skillCategories:"SkillCategory",
+		skillCategory:"SkillCategory",
+		skillCategoriesConnection:"SkillCategoryConnection",
+		skillCategoryVersion:"DocumentVersion"
 	},
 	RGBA:{
 		r:"RGBAHue",
@@ -2124,11 +2651,11 @@ export const ReturnTypes: Record<string,any> = {
 		affectedDocuments:"ScheduledOperationAffectedDocument"
 	},
 	ScheduledOperationAffectedDocument:{
+		"...on AboutMe":"AboutMe",
 		"...on Asset":"Asset",
-		"...on PageMetadata":"PageMetadata",
 		"...on Project":"Project",
-		"...on Skill":"Skill",
-		"...on Social":"Social"
+		"...on Seo":"Seo",
+		"...on SkillCategory":"SkillCategory"
 	},
 	ScheduledOperationConnection:{
 		pageInfo:"PageInfo",
@@ -2167,20 +2694,64 @@ export const ReturnTypes: Record<string,any> = {
 		node:"ScheduledRelease",
 		cursor:"String"
 	},
+	Seo:{
+		stage:"Stage",
+		documentInStages:"Seo",
+		publishedAt:"DateTime",
+		updatedAt:"DateTime",
+		createdAt:"DateTime",
+		id:"ID",
+		title:"String",
+		description:"String",
+		keywords:"String",
+		publishedBy:"User",
+		updatedBy:"User",
+		createdBy:"User",
+		og_image:"Asset",
+		scheduledIn:"ScheduledOperation",
+		history:"Version"
+	},
+	SeoConnection:{
+		pageInfo:"PageInfo",
+		edges:"SeoEdge",
+		aggregate:"Aggregate"
+	},
+	SeoEdge:{
+		node:"Seo",
+		cursor:"String"
+	},
 	Skill:{
 		stage:"Stage",
-		documentInStages:"Skill",
+		id:"ID",
+		name:"String",
+		icon:"Asset"
+	},
+	SkillCategory:{
+		stage:"Stage",
+		documentInStages:"SkillCategory",
 		publishedAt:"DateTime",
 		updatedAt:"DateTime",
 		createdAt:"DateTime",
 		id:"ID",
 		name:"String",
+		skillsList:"SkillCategoryskillsListUnion",
 		publishedBy:"User",
 		updatedBy:"User",
 		createdBy:"User",
-		icon:"Asset",
 		scheduledIn:"ScheduledOperation",
 		history:"Version"
+	},
+	SkillCategoryConnection:{
+		pageInfo:"PageInfo",
+		edges:"SkillCategoryEdge",
+		aggregate:"Aggregate"
+	},
+	SkillCategoryEdge:{
+		node:"SkillCategory",
+		cursor:"String"
+	},
+	SkillCategoryskillsListUnion:{
+		"...on Skill":"Skill"
 	},
 	SkillConnection:{
 		pageInfo:"PageInfo",
@@ -2191,31 +2762,8 @@ export const ReturnTypes: Record<string,any> = {
 		node:"Skill",
 		cursor:"String"
 	},
-	Social:{
-		stage:"Stage",
-		documentInStages:"Social",
-		publishedAt:"DateTime",
-		updatedAt:"DateTime",
-		createdAt:"DateTime",
-		id:"ID",
-		name:"String",
-		url:"String",
-		color:"Color",
-		publishedBy:"User",
-		updatedBy:"User",
-		createdBy:"User",
-		image:"Asset",
-		scheduledIn:"ScheduledOperation",
-		history:"Version"
-	},
-	SocialConnection:{
-		pageInfo:"PageInfo",
-		edges:"SocialEdge",
-		aggregate:"Aggregate"
-	},
-	SocialEdge:{
-		node:"Social",
-		cursor:"String"
+	SkillParent:{
+		"...on SkillCategory":"SkillCategory"
 	},
 	User:{
 		stage:"Stage",

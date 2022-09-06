@@ -4,7 +4,7 @@ import React, { WithChildren } from 'react'
 
 export const Layout: React.FC<WithChildren> = ({ children }) => {
     return (
-        <motion.div layoutScroll className="px-64 flex flex-col">
+        <motion.div layoutScroll className="px-16 lg:px-64 flex flex-col">
             <Navbar />
             {children}
         </motion.div>

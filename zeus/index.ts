@@ -817,10 +817,500 @@ export type ScalarCoders = {
 	RGBATransparency?: ScalarResolver;
 	RichTextAST?: ScalarResolver;
 }
-type ZEUS_UNIONS = GraphQLTypes["ScheduledOperationAffectedDocument"]
+type ZEUS_UNIONS = GraphQLTypes["AboutMelinksUnion"] | GraphQLTypes["CompanyParent"] | GraphQLTypes["LinkParent"] | GraphQLTypes["ScheduledOperationAffectedDocument"] | GraphQLTypes["SkillCategoryskillsListUnion"] | GraphQLTypes["SkillParent"]
 
 export type ValueTypes = {
-    ["Aggregate"]: AliasType<{
+    ["AboutMe"]: AliasType<{
+	/** System stage field */
+	stage?:boolean | `@${string}`,
+documentInStages?: [{	/** Potential stages that should be returned */
+	stages: Array<ValueTypes["Stage"]> | Variable<any, string>,	/** Decides if the current stage should be included or not */
+	includeCurrent: boolean | Variable<any, string>,	/** Decides if the documents should match the parent documents locale or should use the fallback order defined in the tree */
+	inheritLocale: boolean | Variable<any, string>},ValueTypes["AboutMe"]],
+	/** The time the document was published. Null on documents in draft stage. */
+	publishedAt?:boolean | `@${string}`,
+	/** The time the document was updated */
+	updatedAt?:boolean | `@${string}`,
+	/** The time the document was created */
+	createdAt?:boolean | `@${string}`,
+	/** The unique identifier */
+	id?:boolean | `@${string}`,
+	contactEmail?:boolean | `@${string}`,
+	description?:boolean | `@${string}`,
+company?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
+
+Note that `company` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
+	locales?: Array<ValueTypes["Locale"]> | undefined | null | Variable<any, string>},ValueTypes["Company"]],
+links?: [{	skip?: number | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	/** Allows to optionally override locale filtering behaviour in the query's subtree.
+
+Note that `links` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
+	locales?: Array<ValueTypes["Locale"]> | undefined | null | Variable<any, string>},ValueTypes["AboutMelinksUnion"]],
+publishedBy?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
+
+Note that `publishedBy` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
+	locales?: Array<ValueTypes["Locale"]> | undefined | null | Variable<any, string>},ValueTypes["User"]],
+updatedBy?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
+
+Note that `updatedBy` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
+	locales?: Array<ValueTypes["Locale"]> | undefined | null | Variable<any, string>},ValueTypes["User"]],
+createdBy?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
+
+Note that `createdBy` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
+	locales?: Array<ValueTypes["Locale"]> | undefined | null | Variable<any, string>},ValueTypes["User"]],
+photo?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
+
+Note that `photo` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
+	locales?: Array<ValueTypes["Locale"]> | undefined | null | Variable<any, string>},ValueTypes["Asset"]],
+scheduledIn?: [{	where?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	/** Allows to optionally override locale filtering behaviour in the query's subtree.
+
+Note that `scheduledIn` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
+	locales?: Array<ValueTypes["Locale"]> | undefined | null | Variable<any, string>},ValueTypes["ScheduledOperation"]],
+history?: [{	limit: number | Variable<any, string>,	skip: number | Variable<any, string>,	/** This is optional and can be used to fetch the document version history for a specific stage instead of the current one */
+	stageOverride?: ValueTypes["Stage"] | undefined | null | Variable<any, string>},ValueTypes["Version"]],
+		__typename?: boolean | `@${string}`
+}>;
+	["AboutMeConnectInput"]: {
+	/** Document to connect */
+	where: ValueTypes["AboutMeWhereUniqueInput"] | Variable<any, string>,
+	/** Allow to specify document position in list of connected documents, will default to appending at end of list */
+	position?: ValueTypes["ConnectPositionInput"] | undefined | null | Variable<any, string>
+};
+	/** A connection to a list of items. */
+["AboutMeConnection"]: AliasType<{
+	/** Information to aid in pagination. */
+	pageInfo?:ValueTypes["PageInfo"],
+	/** A list of edges. */
+	edges?:ValueTypes["AboutMeEdge"],
+	aggregate?:ValueTypes["Aggregate"],
+		__typename?: boolean | `@${string}`
+}>;
+	["AboutMeCreateInput"]: {
+	updatedAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	contactEmail: string | Variable<any, string>,
+	description: string | Variable<any, string>,
+	company?: ValueTypes["CompanyCreateOneInlineInput"] | undefined | null | Variable<any, string>,
+	links?: ValueTypes["AboutMelinksUnionCreateManyInlineInput"] | undefined | null | Variable<any, string>,
+	photo: ValueTypes["AssetCreateOneInlineInput"] | Variable<any, string>
+};
+	["AboutMeCreateManyInlineInput"]: {
+	/** Create and connect multiple existing AboutMe documents */
+	create?: Array<ValueTypes["AboutMeCreateInput"]> | undefined | null | Variable<any, string>,
+	/** Connect multiple existing AboutMe documents */
+	connect?: Array<ValueTypes["AboutMeWhereUniqueInput"]> | undefined | null | Variable<any, string>
+};
+	["AboutMeCreateOneInlineInput"]: {
+	/** Create and connect one AboutMe document */
+	create?: ValueTypes["AboutMeCreateInput"] | undefined | null | Variable<any, string>,
+	/** Connect one existing AboutMe document */
+	connect?: ValueTypes["AboutMeWhereUniqueInput"] | undefined | null | Variable<any, string>
+};
+	/** An edge in a connection. */
+["AboutMeEdge"]: AliasType<{
+	/** The item at the end of the edge. */
+	node?:ValueTypes["AboutMe"],
+	/** A cursor for use in pagination. */
+	cursor?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** Identifies documents */
+["AboutMeManyWhereInput"]: {
+	/** Contains search across all appropriate fields. */
+	_search?: string | undefined | null | Variable<any, string>,
+	/** Logical AND on all given filters. */
+	AND?: Array<ValueTypes["AboutMeWhereInput"]> | undefined | null | Variable<any, string>,
+	/** Logical OR on all given filters. */
+	OR?: Array<ValueTypes["AboutMeWhereInput"]> | undefined | null | Variable<any, string>,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<ValueTypes["AboutMeWhereInput"]> | undefined | null | Variable<any, string>,
+	publishedAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	publishedAt_not?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	publishedAt_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	publishedAt_not_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values less than the given value. */
+	publishedAt_lt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values less than or equal the given value. */
+	publishedAt_lte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values greater than the given value. */
+	publishedAt_gt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values greater than or equal the given value. */
+	publishedAt_gte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	updatedAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	updatedAt_not?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	updatedAt_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	updatedAt_not_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values less than the given value. */
+	updatedAt_lt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values less than or equal the given value. */
+	updatedAt_lte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values greater than the given value. */
+	updatedAt_gt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values greater than or equal the given value. */
+	updatedAt_gte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	createdAt_not?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	createdAt_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	createdAt_not_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values less than the given value. */
+	createdAt_lt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values less than or equal the given value. */
+	createdAt_lte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values greater than the given value. */
+	createdAt_gt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values greater than or equal the given value. */
+	createdAt_gte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	id?: string | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values containing the given string. */
+	id_contains?: string | undefined | null | Variable<any, string>,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined | null | Variable<any, string>,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined | null | Variable<any, string>,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined | null | Variable<any, string>,
+	contactEmail?: string | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	contactEmail_not?: string | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	contactEmail_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	contactEmail_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values containing the given string. */
+	contactEmail_contains?: string | undefined | null | Variable<any, string>,
+	/** All values not containing the given string. */
+	contactEmail_not_contains?: string | undefined | null | Variable<any, string>,
+	/** All values starting with the given string. */
+	contactEmail_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values not starting with the given string. */
+	contactEmail_not_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values ending with the given string. */
+	contactEmail_ends_with?: string | undefined | null | Variable<any, string>,
+	/** All values not ending with the given string */
+	contactEmail_not_ends_with?: string | undefined | null | Variable<any, string>,
+	description?: string | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	description_not?: string | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	description_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	description_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values containing the given string. */
+	description_contains?: string | undefined | null | Variable<any, string>,
+	/** All values not containing the given string. */
+	description_not_contains?: string | undefined | null | Variable<any, string>,
+	/** All values starting with the given string. */
+	description_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values not starting with the given string. */
+	description_not_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values ending with the given string. */
+	description_ends_with?: string | undefined | null | Variable<any, string>,
+	/** All values not ending with the given string */
+	description_not_ends_with?: string | undefined | null | Variable<any, string>,
+	company?: ValueTypes["CompanyWhereInput"] | undefined | null | Variable<any, string>,
+	publishedBy?: ValueTypes["UserWhereInput"] | undefined | null | Variable<any, string>,
+	updatedBy?: ValueTypes["UserWhereInput"] | undefined | null | Variable<any, string>,
+	createdBy?: ValueTypes["UserWhereInput"] | undefined | null | Variable<any, string>,
+	photo?: ValueTypes["AssetWhereInput"] | undefined | null | Variable<any, string>,
+	scheduledIn_every?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>,
+	scheduledIn_some?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>,
+	scheduledIn_none?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>
+};
+	["AboutMeOrderByInput"]:AboutMeOrderByInput;
+	["AboutMeUpdateInput"]: {
+	contactEmail?: string | undefined | null | Variable<any, string>,
+	description?: string | undefined | null | Variable<any, string>,
+	company?: ValueTypes["CompanyUpdateOneInlineInput"] | undefined | null | Variable<any, string>,
+	links?: ValueTypes["AboutMelinksUnionUpdateManyInlineInput"] | undefined | null | Variable<any, string>,
+	photo?: ValueTypes["AssetUpdateOneInlineInput"] | undefined | null | Variable<any, string>
+};
+	["AboutMeUpdateManyInlineInput"]: {
+	/** Create and connect multiple AboutMe documents */
+	create?: Array<ValueTypes["AboutMeCreateInput"]> | undefined | null | Variable<any, string>,
+	/** Connect multiple existing AboutMe documents */
+	connect?: Array<ValueTypes["AboutMeConnectInput"]> | undefined | null | Variable<any, string>,
+	/** Override currently-connected documents with multiple existing AboutMe documents */
+	set?: Array<ValueTypes["AboutMeWhereUniqueInput"]> | undefined | null | Variable<any, string>,
+	/** Update multiple AboutMe documents */
+	update?: Array<ValueTypes["AboutMeUpdateWithNestedWhereUniqueInput"]> | undefined | null | Variable<any, string>,
+	/** Upsert multiple AboutMe documents */
+	upsert?: Array<ValueTypes["AboutMeUpsertWithNestedWhereUniqueInput"]> | undefined | null | Variable<any, string>,
+	/** Disconnect multiple AboutMe documents */
+	disconnect?: Array<ValueTypes["AboutMeWhereUniqueInput"]> | undefined | null | Variable<any, string>,
+	/** Delete multiple AboutMe documents */
+	delete?: Array<ValueTypes["AboutMeWhereUniqueInput"]> | undefined | null | Variable<any, string>
+};
+	["AboutMeUpdateManyInput"]: {
+	contactEmail?: string | undefined | null | Variable<any, string>,
+	description?: string | undefined | null | Variable<any, string>
+};
+	["AboutMeUpdateManyWithNestedWhereInput"]: {
+	/** Document search */
+	where: ValueTypes["AboutMeWhereInput"] | Variable<any, string>,
+	/** Update many input */
+	data: ValueTypes["AboutMeUpdateManyInput"] | Variable<any, string>
+};
+	["AboutMeUpdateOneInlineInput"]: {
+	/** Create and connect one AboutMe document */
+	create?: ValueTypes["AboutMeCreateInput"] | undefined | null | Variable<any, string>,
+	/** Update single AboutMe document */
+	update?: ValueTypes["AboutMeUpdateWithNestedWhereUniqueInput"] | undefined | null | Variable<any, string>,
+	/** Upsert single AboutMe document */
+	upsert?: ValueTypes["AboutMeUpsertWithNestedWhereUniqueInput"] | undefined | null | Variable<any, string>,
+	/** Connect existing AboutMe document */
+	connect?: ValueTypes["AboutMeWhereUniqueInput"] | undefined | null | Variable<any, string>,
+	/** Disconnect currently connected AboutMe document */
+	disconnect?: boolean | undefined | null | Variable<any, string>,
+	/** Delete currently connected AboutMe document */
+	delete?: boolean | undefined | null | Variable<any, string>
+};
+	["AboutMeUpdateWithNestedWhereUniqueInput"]: {
+	/** Unique document search */
+	where: ValueTypes["AboutMeWhereUniqueInput"] | Variable<any, string>,
+	/** Document to update */
+	data: ValueTypes["AboutMeUpdateInput"] | Variable<any, string>
+};
+	["AboutMeUpsertInput"]: {
+	/** Create document if it didn't exist */
+	create: ValueTypes["AboutMeCreateInput"] | Variable<any, string>,
+	/** Update document if it exists */
+	update: ValueTypes["AboutMeUpdateInput"] | Variable<any, string>
+};
+	["AboutMeUpsertWithNestedWhereUniqueInput"]: {
+	/** Unique document search */
+	where: ValueTypes["AboutMeWhereUniqueInput"] | Variable<any, string>,
+	/** Upsert data */
+	data: ValueTypes["AboutMeUpsertInput"] | Variable<any, string>
+};
+	/** Identifies documents */
+["AboutMeWhereInput"]: {
+	/** Contains search across all appropriate fields. */
+	_search?: string | undefined | null | Variable<any, string>,
+	/** Logical AND on all given filters. */
+	AND?: Array<ValueTypes["AboutMeWhereInput"]> | undefined | null | Variable<any, string>,
+	/** Logical OR on all given filters. */
+	OR?: Array<ValueTypes["AboutMeWhereInput"]> | undefined | null | Variable<any, string>,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<ValueTypes["AboutMeWhereInput"]> | undefined | null | Variable<any, string>,
+	publishedAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	publishedAt_not?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	publishedAt_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	publishedAt_not_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values less than the given value. */
+	publishedAt_lt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values less than or equal the given value. */
+	publishedAt_lte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values greater than the given value. */
+	publishedAt_gt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values greater than or equal the given value. */
+	publishedAt_gte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	updatedAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	updatedAt_not?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	updatedAt_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	updatedAt_not_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values less than the given value. */
+	updatedAt_lt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values less than or equal the given value. */
+	updatedAt_lte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values greater than the given value. */
+	updatedAt_gt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values greater than or equal the given value. */
+	updatedAt_gte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	createdAt_not?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	createdAt_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	createdAt_not_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values less than the given value. */
+	createdAt_lt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values less than or equal the given value. */
+	createdAt_lte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values greater than the given value. */
+	createdAt_gt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values greater than or equal the given value. */
+	createdAt_gte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	id?: string | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values containing the given string. */
+	id_contains?: string | undefined | null | Variable<any, string>,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined | null | Variable<any, string>,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined | null | Variable<any, string>,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined | null | Variable<any, string>,
+	contactEmail?: string | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	contactEmail_not?: string | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	contactEmail_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	contactEmail_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values containing the given string. */
+	contactEmail_contains?: string | undefined | null | Variable<any, string>,
+	/** All values not containing the given string. */
+	contactEmail_not_contains?: string | undefined | null | Variable<any, string>,
+	/** All values starting with the given string. */
+	contactEmail_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values not starting with the given string. */
+	contactEmail_not_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values ending with the given string. */
+	contactEmail_ends_with?: string | undefined | null | Variable<any, string>,
+	/** All values not ending with the given string */
+	contactEmail_not_ends_with?: string | undefined | null | Variable<any, string>,
+	description?: string | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	description_not?: string | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	description_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	description_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values containing the given string. */
+	description_contains?: string | undefined | null | Variable<any, string>,
+	/** All values not containing the given string. */
+	description_not_contains?: string | undefined | null | Variable<any, string>,
+	/** All values starting with the given string. */
+	description_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values not starting with the given string. */
+	description_not_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values ending with the given string. */
+	description_ends_with?: string | undefined | null | Variable<any, string>,
+	/** All values not ending with the given string */
+	description_not_ends_with?: string | undefined | null | Variable<any, string>,
+	company?: ValueTypes["CompanyWhereInput"] | undefined | null | Variable<any, string>,
+	publishedBy?: ValueTypes["UserWhereInput"] | undefined | null | Variable<any, string>,
+	updatedBy?: ValueTypes["UserWhereInput"] | undefined | null | Variable<any, string>,
+	createdBy?: ValueTypes["UserWhereInput"] | undefined | null | Variable<any, string>,
+	photo?: ValueTypes["AssetWhereInput"] | undefined | null | Variable<any, string>,
+	scheduledIn_every?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>,
+	scheduledIn_some?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>,
+	scheduledIn_none?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>
+};
+	/** References AboutMe record uniquely */
+["AboutMeWhereUniqueInput"]: {
+	id?: string | undefined | null | Variable<any, string>
+};
+	["AboutMelinksUnion"]: AliasType<{		["...on Link"] : ValueTypes["Link"]
+		__typename?: boolean | `@${string}`
+}>;
+	["AboutMelinksUnionConnectInput"]: {
+	Link?: ValueTypes["LinkConnectInput"] | undefined | null | Variable<any, string>
+};
+	["AboutMelinksUnionCreateInput"]: {
+	Link?: ValueTypes["LinkCreateInput"] | undefined | null | Variable<any, string>
+};
+	["AboutMelinksUnionCreateManyInlineInput"]: {
+	/** Create and connect multiple existing AboutMelinksUnion documents */
+	create?: Array<ValueTypes["AboutMelinksUnionCreateInput"]> | undefined | null | Variable<any, string>
+};
+	["AboutMelinksUnionCreateOneInlineInput"]: {
+	/** Create and connect one AboutMelinksUnion document */
+	create?: ValueTypes["AboutMelinksUnionCreateInput"] | undefined | null | Variable<any, string>
+};
+	["AboutMelinksUnionCreateWithPositionInput"]: {
+	Link?: ValueTypes["LinkCreateWithPositionInput"] | undefined | null | Variable<any, string>
+};
+	["AboutMelinksUnionUpdateInput"]: {
+	Link?: ValueTypes["LinkUpdateInput"] | undefined | null | Variable<any, string>
+};
+	["AboutMelinksUnionUpdateManyInlineInput"]: {
+	/** Create and connect multiple AboutMelinksUnion component instances */
+	create?: Array<ValueTypes["AboutMelinksUnionCreateWithPositionInput"]> | undefined | null | Variable<any, string>,
+	/** Update multiple AboutMelinksUnion component instances */
+	update?: Array<ValueTypes["AboutMelinksUnionUpdateWithNestedWhereUniqueAndPositionInput"]> | undefined | null | Variable<any, string>,
+	/** Upsert multiple AboutMelinksUnion component instances */
+	upsert?: Array<ValueTypes["AboutMelinksUnionUpsertWithNestedWhereUniqueAndPositionInput"]> | undefined | null | Variable<any, string>,
+	/** Delete multiple AboutMelinksUnion documents */
+	delete?: Array<ValueTypes["AboutMelinksUnionWhereUniqueInput"]> | undefined | null | Variable<any, string>
+};
+	["AboutMelinksUnionUpdateManyWithNestedWhereInput"]: {
+	Link?: ValueTypes["LinkUpdateManyWithNestedWhereInput"] | undefined | null | Variable<any, string>
+};
+	["AboutMelinksUnionUpdateOneInlineInput"]: {
+	/** Create and connect one AboutMelinksUnion document */
+	create?: ValueTypes["AboutMelinksUnionCreateInput"] | undefined | null | Variable<any, string>,
+	/** Update single AboutMelinksUnion document */
+	update?: ValueTypes["AboutMelinksUnionUpdateWithNestedWhereUniqueInput"] | undefined | null | Variable<any, string>,
+	/** Upsert single AboutMelinksUnion document */
+	upsert?: ValueTypes["AboutMelinksUnionUpsertWithNestedWhereUniqueInput"] | undefined | null | Variable<any, string>,
+	/** Delete currently connected AboutMelinksUnion document */
+	delete?: boolean | undefined | null | Variable<any, string>
+};
+	["AboutMelinksUnionUpdateWithNestedWhereUniqueAndPositionInput"]: {
+	Link?: ValueTypes["LinkUpdateWithNestedWhereUniqueAndPositionInput"] | undefined | null | Variable<any, string>
+};
+	["AboutMelinksUnionUpdateWithNestedWhereUniqueInput"]: {
+	Link?: ValueTypes["LinkUpdateWithNestedWhereUniqueInput"] | undefined | null | Variable<any, string>
+};
+	["AboutMelinksUnionUpsertWithNestedWhereUniqueAndPositionInput"]: {
+	Link?: ValueTypes["LinkUpsertWithNestedWhereUniqueAndPositionInput"] | undefined | null | Variable<any, string>
+};
+	["AboutMelinksUnionUpsertWithNestedWhereUniqueInput"]: {
+	Link?: ValueTypes["LinkUpsertWithNestedWhereUniqueInput"] | undefined | null | Variable<any, string>
+};
+	["AboutMelinksUnionWhereInput"]: {
+	Link?: ValueTypes["LinkWhereInput"] | undefined | null | Variable<any, string>
+};
+	["AboutMelinksUnionWhereUniqueInput"]: {
+	Link?: ValueTypes["LinkWhereUniqueInput"] | undefined | null | Variable<any, string>
+};
+	["Aggregate"]: AliasType<{
 	count?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -885,27 +1375,20 @@ For related models with localized fields in the query's subtree, the first local
 
 This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
 	locales?: Array<ValueTypes["Locale"]> | undefined | null | Variable<any, string>},ValueTypes["Project"]],
-imageSocial?: [{	where?: ValueTypes["SocialWhereInput"] | undefined | null | Variable<any, string>,	orderBy?: ValueTypes["SocialOrderByInput"] | undefined | null | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	/** Allows to optionally override locale filtering behaviour in the query's subtree.
+og_imageSeo?: [{	where?: ValueTypes["SeoWhereInput"] | undefined | null | Variable<any, string>,	orderBy?: ValueTypes["SeoOrderByInput"] | undefined | null | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	/** Allows to optionally override locale filtering behaviour in the query's subtree.
 
-Note that `imageSocial` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+Note that `og_imageSeo` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
 For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
 
 This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
-	locales?: Array<ValueTypes["Locale"]> | undefined | null | Variable<any, string>},ValueTypes["Social"]],
-imagePageMetadata?: [{	where?: ValueTypes["PageMetadataWhereInput"] | undefined | null | Variable<any, string>,	orderBy?: ValueTypes["PageMetadataOrderByInput"] | undefined | null | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	/** Allows to optionally override locale filtering behaviour in the query's subtree.
+	locales?: Array<ValueTypes["Locale"]> | undefined | null | Variable<any, string>},ValueTypes["Seo"]],
+photoAboutMe?: [{	where?: ValueTypes["AboutMeWhereInput"] | undefined | null | Variable<any, string>,	orderBy?: ValueTypes["AboutMeOrderByInput"] | undefined | null | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	/** Allows to optionally override locale filtering behaviour in the query's subtree.
 
-Note that `imagePageMetadata` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+Note that `photoAboutMe` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
 For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
 
 This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
-	locales?: Array<ValueTypes["Locale"]> | undefined | null | Variable<any, string>},ValueTypes["PageMetadata"]],
-iconSkill?: [{	where?: ValueTypes["SkillWhereInput"] | undefined | null | Variable<any, string>,	orderBy?: ValueTypes["SkillOrderByInput"] | undefined | null | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	/** Allows to optionally override locale filtering behaviour in the query's subtree.
-
-Note that `iconSkill` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
-For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
-
-This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
-	locales?: Array<ValueTypes["Locale"]> | undefined | null | Variable<any, string>},ValueTypes["Skill"]],
+	locales?: Array<ValueTypes["Locale"]> | undefined | null | Variable<any, string>},ValueTypes["AboutMe"]],
 scheduledIn?: [{	where?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	/** Allows to optionally override locale filtering behaviour in the query's subtree.
 
 Note that `scheduledIn` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
@@ -943,9 +1426,10 @@ url?: [{	transformation?: ValueTypes["AssetTransformationInput"] | undefined | n
 	updatedAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
 	createdAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
 	imageProject?: ValueTypes["ProjectCreateManyInlineInput"] | undefined | null | Variable<any, string>,
-	imageSocial?: ValueTypes["SocialCreateManyInlineInput"] | undefined | null | Variable<any, string>,
-	imagePageMetadata?: ValueTypes["PageMetadataCreateManyInlineInput"] | undefined | null | Variable<any, string>,
+	og_imageSeo?: ValueTypes["SeoCreateManyInlineInput"] | undefined | null | Variable<any, string>,
+	iconLink?: ValueTypes["LinkCreateManyInlineInput"] | undefined | null | Variable<any, string>,
 	iconSkill?: ValueTypes["SkillCreateManyInlineInput"] | undefined | null | Variable<any, string>,
+	photoAboutMe?: ValueTypes["AboutMeCreateManyInlineInput"] | undefined | null | Variable<any, string>,
 	/** Inline mutations for managing document localizations excluding the default locale */
 	localizations?: ValueTypes["AssetCreateLocalizationsInput"] | undefined | null | Variable<any, string>
 };
@@ -1068,15 +1552,12 @@ url?: [{	transformation?: ValueTypes["AssetTransformationInput"] | undefined | n
 	imageProject_every?: ValueTypes["ProjectWhereInput"] | undefined | null | Variable<any, string>,
 	imageProject_some?: ValueTypes["ProjectWhereInput"] | undefined | null | Variable<any, string>,
 	imageProject_none?: ValueTypes["ProjectWhereInput"] | undefined | null | Variable<any, string>,
-	imageSocial_every?: ValueTypes["SocialWhereInput"] | undefined | null | Variable<any, string>,
-	imageSocial_some?: ValueTypes["SocialWhereInput"] | undefined | null | Variable<any, string>,
-	imageSocial_none?: ValueTypes["SocialWhereInput"] | undefined | null | Variable<any, string>,
-	imagePageMetadata_every?: ValueTypes["PageMetadataWhereInput"] | undefined | null | Variable<any, string>,
-	imagePageMetadata_some?: ValueTypes["PageMetadataWhereInput"] | undefined | null | Variable<any, string>,
-	imagePageMetadata_none?: ValueTypes["PageMetadataWhereInput"] | undefined | null | Variable<any, string>,
-	iconSkill_every?: ValueTypes["SkillWhereInput"] | undefined | null | Variable<any, string>,
-	iconSkill_some?: ValueTypes["SkillWhereInput"] | undefined | null | Variable<any, string>,
-	iconSkill_none?: ValueTypes["SkillWhereInput"] | undefined | null | Variable<any, string>,
+	og_imageSeo_every?: ValueTypes["SeoWhereInput"] | undefined | null | Variable<any, string>,
+	og_imageSeo_some?: ValueTypes["SeoWhereInput"] | undefined | null | Variable<any, string>,
+	og_imageSeo_none?: ValueTypes["SeoWhereInput"] | undefined | null | Variable<any, string>,
+	photoAboutMe_every?: ValueTypes["AboutMeWhereInput"] | undefined | null | Variable<any, string>,
+	photoAboutMe_some?: ValueTypes["AboutMeWhereInput"] | undefined | null | Variable<any, string>,
+	photoAboutMe_none?: ValueTypes["AboutMeWhereInput"] | undefined | null | Variable<any, string>,
 	scheduledIn_every?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>,
 	scheduledIn_some?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>,
 	scheduledIn_none?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>
@@ -1097,9 +1578,10 @@ url?: [{	transformation?: ValueTypes["AssetTransformationInput"] | undefined | n
 	fileName?: string | undefined | null | Variable<any, string>,
 	handle?: string | undefined | null | Variable<any, string>,
 	imageProject?: ValueTypes["ProjectUpdateManyInlineInput"] | undefined | null | Variable<any, string>,
-	imageSocial?: ValueTypes["SocialUpdateManyInlineInput"] | undefined | null | Variable<any, string>,
-	imagePageMetadata?: ValueTypes["PageMetadataUpdateManyInlineInput"] | undefined | null | Variable<any, string>,
+	og_imageSeo?: ValueTypes["SeoUpdateManyInlineInput"] | undefined | null | Variable<any, string>,
+	iconLink?: ValueTypes["LinkUpdateManyInlineInput"] | undefined | null | Variable<any, string>,
 	iconSkill?: ValueTypes["SkillUpdateManyInlineInput"] | undefined | null | Variable<any, string>,
+	photoAboutMe?: ValueTypes["AboutMeUpdateManyInlineInput"] | undefined | null | Variable<any, string>,
 	/** Manage document localizations */
 	localizations?: ValueTypes["AssetUpdateLocalizationsInput"] | undefined | null | Variable<any, string>
 };
@@ -1389,15 +1871,12 @@ url?: [{	transformation?: ValueTypes["AssetTransformationInput"] | undefined | n
 	imageProject_every?: ValueTypes["ProjectWhereInput"] | undefined | null | Variable<any, string>,
 	imageProject_some?: ValueTypes["ProjectWhereInput"] | undefined | null | Variable<any, string>,
 	imageProject_none?: ValueTypes["ProjectWhereInput"] | undefined | null | Variable<any, string>,
-	imageSocial_every?: ValueTypes["SocialWhereInput"] | undefined | null | Variable<any, string>,
-	imageSocial_some?: ValueTypes["SocialWhereInput"] | undefined | null | Variable<any, string>,
-	imageSocial_none?: ValueTypes["SocialWhereInput"] | undefined | null | Variable<any, string>,
-	imagePageMetadata_every?: ValueTypes["PageMetadataWhereInput"] | undefined | null | Variable<any, string>,
-	imagePageMetadata_some?: ValueTypes["PageMetadataWhereInput"] | undefined | null | Variable<any, string>,
-	imagePageMetadata_none?: ValueTypes["PageMetadataWhereInput"] | undefined | null | Variable<any, string>,
-	iconSkill_every?: ValueTypes["SkillWhereInput"] | undefined | null | Variable<any, string>,
-	iconSkill_some?: ValueTypes["SkillWhereInput"] | undefined | null | Variable<any, string>,
-	iconSkill_none?: ValueTypes["SkillWhereInput"] | undefined | null | Variable<any, string>,
+	og_imageSeo_every?: ValueTypes["SeoWhereInput"] | undefined | null | Variable<any, string>,
+	og_imageSeo_some?: ValueTypes["SeoWhereInput"] | undefined | null | Variable<any, string>,
+	og_imageSeo_none?: ValueTypes["SeoWhereInput"] | undefined | null | Variable<any, string>,
+	photoAboutMe_every?: ValueTypes["AboutMeWhereInput"] | undefined | null | Variable<any, string>,
+	photoAboutMe_some?: ValueTypes["AboutMeWhereInput"] | undefined | null | Variable<any, string>,
+	photoAboutMe_none?: ValueTypes["AboutMeWhereInput"] | undefined | null | Variable<any, string>,
 	scheduledIn_every?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>,
 	scheduledIn_some?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>,
 	scheduledIn_none?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>
@@ -1422,6 +1901,334 @@ url?: [{	transformation?: ValueTypes["AssetTransformationInput"] | undefined | n
 ["ColorInput"]: {
 	hex?: ValueTypes["Hex"] | undefined | null | Variable<any, string>,
 	rgba?: ValueTypes["RGBAInput"] | undefined | null | Variable<any, string>
+};
+	["Company"]: AliasType<{
+	/** System stage field */
+	stage?:boolean | `@${string}`,
+	/** The unique identifier */
+	id?:boolean | `@${string}`,
+	companyName?:boolean | `@${string}`,
+	companyWebsite?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	["CompanyConnectInput"]: {
+	/** Document to connect */
+	where: ValueTypes["CompanyWhereUniqueInput"] | Variable<any, string>,
+	/** Allow to specify document position in list of connected documents, will default to appending at end of list */
+	position?: ValueTypes["ConnectPositionInput"] | undefined | null | Variable<any, string>
+};
+	/** A connection to a list of items. */
+["CompanyConnection"]: AliasType<{
+	/** Information to aid in pagination. */
+	pageInfo?:ValueTypes["PageInfo"],
+	/** A list of edges. */
+	edges?:ValueTypes["CompanyEdge"],
+	aggregate?:ValueTypes["Aggregate"],
+		__typename?: boolean | `@${string}`
+}>;
+	["CompanyCreateInput"]: {
+	companyName: string | Variable<any, string>,
+	companyWebsite: string | Variable<any, string>
+};
+	["CompanyCreateManyInlineInput"]: {
+	/** Create and connect multiple existing Company documents */
+	create?: Array<ValueTypes["CompanyCreateInput"]> | undefined | null | Variable<any, string>
+};
+	["CompanyCreateOneInlineInput"]: {
+	/** Create and connect one Company document */
+	create?: ValueTypes["CompanyCreateInput"] | undefined | null | Variable<any, string>
+};
+	["CompanyCreateWithPositionInput"]: {
+	/** Position in the list of existing component instances, will default to appending at the end of list */
+	position?: ValueTypes["ConnectPositionInput"] | undefined | null | Variable<any, string>,
+	/** Document to create */
+	data: ValueTypes["CompanyCreateInput"] | Variable<any, string>
+};
+	/** An edge in a connection. */
+["CompanyEdge"]: AliasType<{
+	/** The item at the end of the edge. */
+	node?:ValueTypes["Company"],
+	/** A cursor for use in pagination. */
+	cursor?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** Identifies documents */
+["CompanyManyWhereInput"]: {
+	/** Contains search across all appropriate fields. */
+	_search?: string | undefined | null | Variable<any, string>,
+	/** Logical AND on all given filters. */
+	AND?: Array<ValueTypes["CompanyWhereInput"]> | undefined | null | Variable<any, string>,
+	/** Logical OR on all given filters. */
+	OR?: Array<ValueTypes["CompanyWhereInput"]> | undefined | null | Variable<any, string>,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<ValueTypes["CompanyWhereInput"]> | undefined | null | Variable<any, string>,
+	id?: string | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values containing the given string. */
+	id_contains?: string | undefined | null | Variable<any, string>,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined | null | Variable<any, string>,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined | null | Variable<any, string>,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined | null | Variable<any, string>,
+	companyName?: string | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	companyName_not?: string | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	companyName_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	companyName_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values containing the given string. */
+	companyName_contains?: string | undefined | null | Variable<any, string>,
+	/** All values not containing the given string. */
+	companyName_not_contains?: string | undefined | null | Variable<any, string>,
+	/** All values starting with the given string. */
+	companyName_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values not starting with the given string. */
+	companyName_not_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values ending with the given string. */
+	companyName_ends_with?: string | undefined | null | Variable<any, string>,
+	/** All values not ending with the given string */
+	companyName_not_ends_with?: string | undefined | null | Variable<any, string>,
+	companyWebsite?: string | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	companyWebsite_not?: string | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	companyWebsite_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	companyWebsite_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values containing the given string. */
+	companyWebsite_contains?: string | undefined | null | Variable<any, string>,
+	/** All values not containing the given string. */
+	companyWebsite_not_contains?: string | undefined | null | Variable<any, string>,
+	/** All values starting with the given string. */
+	companyWebsite_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values not starting with the given string. */
+	companyWebsite_not_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values ending with the given string. */
+	companyWebsite_ends_with?: string | undefined | null | Variable<any, string>,
+	/** All values not ending with the given string */
+	companyWebsite_not_ends_with?: string | undefined | null | Variable<any, string>
+};
+	["CompanyOrderByInput"]:CompanyOrderByInput;
+	["CompanyParent"]: AliasType<{		["...on AboutMe"] : ValueTypes["AboutMe"]
+		__typename?: boolean | `@${string}`
+}>;
+	["CompanyParentConnectInput"]: {
+	AboutMe?: ValueTypes["AboutMeConnectInput"] | undefined | null | Variable<any, string>
+};
+	["CompanyParentCreateInput"]: {
+	AboutMe?: ValueTypes["AboutMeCreateInput"] | undefined | null | Variable<any, string>
+};
+	["CompanyParentCreateManyInlineInput"]: {
+	/** Create and connect multiple existing CompanyParent documents */
+	create?: Array<ValueTypes["CompanyParentCreateInput"]> | undefined | null | Variable<any, string>,
+	/** Connect multiple existing CompanyParent documents */
+	connect?: Array<ValueTypes["CompanyParentWhereUniqueInput"]> | undefined | null | Variable<any, string>
+};
+	["CompanyParentCreateOneInlineInput"]: {
+	/** Create and connect one CompanyParent document */
+	create?: ValueTypes["CompanyParentCreateInput"] | undefined | null | Variable<any, string>,
+	/** Connect one existing CompanyParent document */
+	connect?: ValueTypes["CompanyParentWhereUniqueInput"] | undefined | null | Variable<any, string>
+};
+	["CompanyParentUpdateInput"]: {
+	AboutMe?: ValueTypes["AboutMeUpdateInput"] | undefined | null | Variable<any, string>
+};
+	["CompanyParentUpdateManyInlineInput"]: {
+	/** Create and connect multiple CompanyParent documents */
+	create?: Array<ValueTypes["CompanyParentCreateInput"]> | undefined | null | Variable<any, string>,
+	/** Connect multiple existing CompanyParent documents */
+	connect?: Array<ValueTypes["CompanyParentConnectInput"]> | undefined | null | Variable<any, string>,
+	/** Override currently-connected documents with multiple existing CompanyParent documents */
+	set?: Array<ValueTypes["CompanyParentWhereUniqueInput"]> | undefined | null | Variable<any, string>,
+	/** Update multiple CompanyParent documents */
+	update?: Array<ValueTypes["CompanyParentUpdateWithNestedWhereUniqueInput"]> | undefined | null | Variable<any, string>,
+	/** Upsert multiple CompanyParent documents */
+	upsert?: Array<ValueTypes["CompanyParentUpsertWithNestedWhereUniqueInput"]> | undefined | null | Variable<any, string>,
+	/** Disconnect multiple CompanyParent documents */
+	disconnect?: Array<ValueTypes["CompanyParentWhereUniqueInput"]> | undefined | null | Variable<any, string>,
+	/** Delete multiple CompanyParent documents */
+	delete?: Array<ValueTypes["CompanyParentWhereUniqueInput"]> | undefined | null | Variable<any, string>
+};
+	["CompanyParentUpdateManyWithNestedWhereInput"]: {
+	AboutMe?: ValueTypes["AboutMeUpdateManyWithNestedWhereInput"] | undefined | null | Variable<any, string>
+};
+	["CompanyParentUpdateOneInlineInput"]: {
+	/** Create and connect one CompanyParent document */
+	create?: ValueTypes["CompanyParentCreateInput"] | undefined | null | Variable<any, string>,
+	/** Update single CompanyParent document */
+	update?: ValueTypes["CompanyParentUpdateWithNestedWhereUniqueInput"] | undefined | null | Variable<any, string>,
+	/** Upsert single CompanyParent document */
+	upsert?: ValueTypes["CompanyParentUpsertWithNestedWhereUniqueInput"] | undefined | null | Variable<any, string>,
+	/** Connect existing CompanyParent document */
+	connect?: ValueTypes["CompanyParentWhereUniqueInput"] | undefined | null | Variable<any, string>,
+	/** Disconnect currently connected CompanyParent document */
+	disconnect?: boolean | undefined | null | Variable<any, string>,
+	/** Delete currently connected CompanyParent document */
+	delete?: boolean | undefined | null | Variable<any, string>
+};
+	["CompanyParentUpdateWithNestedWhereUniqueInput"]: {
+	AboutMe?: ValueTypes["AboutMeUpdateWithNestedWhereUniqueInput"] | undefined | null | Variable<any, string>
+};
+	["CompanyParentUpsertWithNestedWhereUniqueInput"]: {
+	AboutMe?: ValueTypes["AboutMeUpsertWithNestedWhereUniqueInput"] | undefined | null | Variable<any, string>
+};
+	["CompanyParentWhereInput"]: {
+	AboutMe?: ValueTypes["AboutMeWhereInput"] | undefined | null | Variable<any, string>
+};
+	["CompanyParentWhereUniqueInput"]: {
+	AboutMe?: ValueTypes["AboutMeWhereUniqueInput"] | undefined | null | Variable<any, string>
+};
+	["CompanyUpdateInput"]: {
+	companyName?: string | undefined | null | Variable<any, string>,
+	companyWebsite?: string | undefined | null | Variable<any, string>
+};
+	["CompanyUpdateManyInlineInput"]: {
+	/** Create and connect multiple Company component instances */
+	create?: Array<ValueTypes["CompanyCreateWithPositionInput"]> | undefined | null | Variable<any, string>,
+	/** Update multiple Company component instances */
+	update?: Array<ValueTypes["CompanyUpdateWithNestedWhereUniqueAndPositionInput"]> | undefined | null | Variable<any, string>,
+	/** Upsert multiple Company component instances */
+	upsert?: Array<ValueTypes["CompanyUpsertWithNestedWhereUniqueAndPositionInput"]> | undefined | null | Variable<any, string>,
+	/** Delete multiple Company documents */
+	delete?: Array<ValueTypes["CompanyWhereUniqueInput"]> | undefined | null | Variable<any, string>
+};
+	["CompanyUpdateManyInput"]: {
+	companyName?: string | undefined | null | Variable<any, string>,
+	companyWebsite?: string | undefined | null | Variable<any, string>
+};
+	["CompanyUpdateManyWithNestedWhereInput"]: {
+	/** Document search */
+	where: ValueTypes["CompanyWhereInput"] | Variable<any, string>,
+	/** Update many input */
+	data: ValueTypes["CompanyUpdateManyInput"] | Variable<any, string>
+};
+	["CompanyUpdateOneInlineInput"]: {
+	/** Create and connect one Company document */
+	create?: ValueTypes["CompanyCreateInput"] | undefined | null | Variable<any, string>,
+	/** Update single Company document */
+	update?: ValueTypes["CompanyUpdateWithNestedWhereUniqueInput"] | undefined | null | Variable<any, string>,
+	/** Upsert single Company document */
+	upsert?: ValueTypes["CompanyUpsertWithNestedWhereUniqueInput"] | undefined | null | Variable<any, string>,
+	/** Delete currently connected Company document */
+	delete?: boolean | undefined | null | Variable<any, string>
+};
+	["CompanyUpdateWithNestedWhereUniqueAndPositionInput"]: {
+	/** Unique component instance search */
+	where: ValueTypes["CompanyWhereUniqueInput"] | Variable<any, string>,
+	/** Position in the list of existing component instances, will default to appending at the end of list */
+	position?: ValueTypes["ConnectPositionInput"] | undefined | null | Variable<any, string>,
+	/** Document to update */
+	data?: ValueTypes["CompanyUpdateInput"] | undefined | null | Variable<any, string>
+};
+	["CompanyUpdateWithNestedWhereUniqueInput"]: {
+	/** Unique document search */
+	where: ValueTypes["CompanyWhereUniqueInput"] | Variable<any, string>,
+	/** Document to update */
+	data: ValueTypes["CompanyUpdateInput"] | Variable<any, string>
+};
+	["CompanyUpsertInput"]: {
+	/** Create document if it didn't exist */
+	create: ValueTypes["CompanyCreateInput"] | Variable<any, string>,
+	/** Update document if it exists */
+	update: ValueTypes["CompanyUpdateInput"] | Variable<any, string>
+};
+	["CompanyUpsertWithNestedWhereUniqueAndPositionInput"]: {
+	/** Unique component instance search */
+	where: ValueTypes["CompanyWhereUniqueInput"] | Variable<any, string>,
+	/** Position in the list of existing component instances, will default to appending at the end of list */
+	position?: ValueTypes["ConnectPositionInput"] | undefined | null | Variable<any, string>,
+	/** Document to upsert */
+	data?: ValueTypes["CompanyUpsertInput"] | undefined | null | Variable<any, string>
+};
+	["CompanyUpsertWithNestedWhereUniqueInput"]: {
+	/** Unique document search */
+	where: ValueTypes["CompanyWhereUniqueInput"] | Variable<any, string>,
+	/** Upsert data */
+	data: ValueTypes["CompanyUpsertInput"] | Variable<any, string>
+};
+	/** Identifies documents */
+["CompanyWhereInput"]: {
+	/** Contains search across all appropriate fields. */
+	_search?: string | undefined | null | Variable<any, string>,
+	/** Logical AND on all given filters. */
+	AND?: Array<ValueTypes["CompanyWhereInput"]> | undefined | null | Variable<any, string>,
+	/** Logical OR on all given filters. */
+	OR?: Array<ValueTypes["CompanyWhereInput"]> | undefined | null | Variable<any, string>,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<ValueTypes["CompanyWhereInput"]> | undefined | null | Variable<any, string>,
+	id?: string | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values containing the given string. */
+	id_contains?: string | undefined | null | Variable<any, string>,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined | null | Variable<any, string>,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined | null | Variable<any, string>,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined | null | Variable<any, string>,
+	companyName?: string | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	companyName_not?: string | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	companyName_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	companyName_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values containing the given string. */
+	companyName_contains?: string | undefined | null | Variable<any, string>,
+	/** All values not containing the given string. */
+	companyName_not_contains?: string | undefined | null | Variable<any, string>,
+	/** All values starting with the given string. */
+	companyName_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values not starting with the given string. */
+	companyName_not_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values ending with the given string. */
+	companyName_ends_with?: string | undefined | null | Variable<any, string>,
+	/** All values not ending with the given string */
+	companyName_not_ends_with?: string | undefined | null | Variable<any, string>,
+	companyWebsite?: string | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	companyWebsite_not?: string | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	companyWebsite_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	companyWebsite_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values containing the given string. */
+	companyWebsite_contains?: string | undefined | null | Variable<any, string>,
+	/** All values not containing the given string. */
+	companyWebsite_not_contains?: string | undefined | null | Variable<any, string>,
+	/** All values starting with the given string. */
+	companyWebsite_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values not starting with the given string. */
+	companyWebsite_not_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values ending with the given string. */
+	companyWebsite_ends_with?: string | undefined | null | Variable<any, string>,
+	/** All values not ending with the given string */
+	companyWebsite_not_ends_with?: string | undefined | null | Variable<any, string>
+};
+	/** References Company record uniquely */
+["CompanyWhereUniqueInput"]: {
+	id?: string | undefined | null | Variable<any, string>
 };
 	["ConnectPositionInput"]: {
 	/** Connect document after specified document */
@@ -1495,6 +2302,345 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 };
 	/** Raw JSON value */
 ["Json"]:unknown;
+	["Link"]: AliasType<{
+	/** System stage field */
+	stage?:boolean | `@${string}`,
+	/** The unique identifier */
+	id?:boolean | `@${string}`,
+	name?:boolean | `@${string}`,
+	url?:boolean | `@${string}`,
+icon?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
+
+Note that `icon` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
+	locales?: Array<ValueTypes["Locale"]> | undefined | null | Variable<any, string>},ValueTypes["Asset"]],
+		__typename?: boolean | `@${string}`
+}>;
+	["LinkConnectInput"]: {
+	/** Document to connect */
+	where: ValueTypes["LinkWhereUniqueInput"] | Variable<any, string>,
+	/** Allow to specify document position in list of connected documents, will default to appending at end of list */
+	position?: ValueTypes["ConnectPositionInput"] | undefined | null | Variable<any, string>
+};
+	/** A connection to a list of items. */
+["LinkConnection"]: AliasType<{
+	/** Information to aid in pagination. */
+	pageInfo?:ValueTypes["PageInfo"],
+	/** A list of edges. */
+	edges?:ValueTypes["LinkEdge"],
+	aggregate?:ValueTypes["Aggregate"],
+		__typename?: boolean | `@${string}`
+}>;
+	["LinkCreateInput"]: {
+	name: string | Variable<any, string>,
+	url: string | Variable<any, string>,
+	icon?: ValueTypes["AssetCreateOneInlineInput"] | undefined | null | Variable<any, string>
+};
+	["LinkCreateManyInlineInput"]: {
+	/** Create and connect multiple existing Link documents */
+	create?: Array<ValueTypes["LinkCreateInput"]> | undefined | null | Variable<any, string>
+};
+	["LinkCreateOneInlineInput"]: {
+	/** Create and connect one Link document */
+	create?: ValueTypes["LinkCreateInput"] | undefined | null | Variable<any, string>
+};
+	["LinkCreateWithPositionInput"]: {
+	/** Position in the list of existing component instances, will default to appending at the end of list */
+	position?: ValueTypes["ConnectPositionInput"] | undefined | null | Variable<any, string>,
+	/** Document to create */
+	data: ValueTypes["LinkCreateInput"] | Variable<any, string>
+};
+	/** An edge in a connection. */
+["LinkEdge"]: AliasType<{
+	/** The item at the end of the edge. */
+	node?:ValueTypes["Link"],
+	/** A cursor for use in pagination. */
+	cursor?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** Identifies documents */
+["LinkManyWhereInput"]: {
+	/** Contains search across all appropriate fields. */
+	_search?: string | undefined | null | Variable<any, string>,
+	/** Logical AND on all given filters. */
+	AND?: Array<ValueTypes["LinkWhereInput"]> | undefined | null | Variable<any, string>,
+	/** Logical OR on all given filters. */
+	OR?: Array<ValueTypes["LinkWhereInput"]> | undefined | null | Variable<any, string>,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<ValueTypes["LinkWhereInput"]> | undefined | null | Variable<any, string>,
+	id?: string | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values containing the given string. */
+	id_contains?: string | undefined | null | Variable<any, string>,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined | null | Variable<any, string>,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined | null | Variable<any, string>,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined | null | Variable<any, string>,
+	name?: string | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	name_not?: string | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	name_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	name_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values containing the given string. */
+	name_contains?: string | undefined | null | Variable<any, string>,
+	/** All values not containing the given string. */
+	name_not_contains?: string | undefined | null | Variable<any, string>,
+	/** All values starting with the given string. */
+	name_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values not starting with the given string. */
+	name_not_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values ending with the given string. */
+	name_ends_with?: string | undefined | null | Variable<any, string>,
+	/** All values not ending with the given string */
+	name_not_ends_with?: string | undefined | null | Variable<any, string>,
+	url?: string | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	url_not?: string | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	url_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	url_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values containing the given string. */
+	url_contains?: string | undefined | null | Variable<any, string>,
+	/** All values not containing the given string. */
+	url_not_contains?: string | undefined | null | Variable<any, string>,
+	/** All values starting with the given string. */
+	url_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values not starting with the given string. */
+	url_not_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values ending with the given string. */
+	url_ends_with?: string | undefined | null | Variable<any, string>,
+	/** All values not ending with the given string */
+	url_not_ends_with?: string | undefined | null | Variable<any, string>,
+	icon?: ValueTypes["AssetWhereInput"] | undefined | null | Variable<any, string>
+};
+	["LinkOrderByInput"]:LinkOrderByInput;
+	["LinkParent"]: AliasType<{		["...on AboutMe"] : ValueTypes["AboutMe"]
+		__typename?: boolean | `@${string}`
+}>;
+	["LinkParentConnectInput"]: {
+	AboutMe?: ValueTypes["AboutMeConnectInput"] | undefined | null | Variable<any, string>
+};
+	["LinkParentCreateInput"]: {
+	AboutMe?: ValueTypes["AboutMeCreateInput"] | undefined | null | Variable<any, string>
+};
+	["LinkParentCreateManyInlineInput"]: {
+	/** Create and connect multiple existing LinkParent documents */
+	create?: Array<ValueTypes["LinkParentCreateInput"]> | undefined | null | Variable<any, string>,
+	/** Connect multiple existing LinkParent documents */
+	connect?: Array<ValueTypes["LinkParentWhereUniqueInput"]> | undefined | null | Variable<any, string>
+};
+	["LinkParentCreateOneInlineInput"]: {
+	/** Create and connect one LinkParent document */
+	create?: ValueTypes["LinkParentCreateInput"] | undefined | null | Variable<any, string>,
+	/** Connect one existing LinkParent document */
+	connect?: ValueTypes["LinkParentWhereUniqueInput"] | undefined | null | Variable<any, string>
+};
+	["LinkParentUpdateInput"]: {
+	AboutMe?: ValueTypes["AboutMeUpdateInput"] | undefined | null | Variable<any, string>
+};
+	["LinkParentUpdateManyInlineInput"]: {
+	/** Create and connect multiple LinkParent documents */
+	create?: Array<ValueTypes["LinkParentCreateInput"]> | undefined | null | Variable<any, string>,
+	/** Connect multiple existing LinkParent documents */
+	connect?: Array<ValueTypes["LinkParentConnectInput"]> | undefined | null | Variable<any, string>,
+	/** Override currently-connected documents with multiple existing LinkParent documents */
+	set?: Array<ValueTypes["LinkParentWhereUniqueInput"]> | undefined | null | Variable<any, string>,
+	/** Update multiple LinkParent documents */
+	update?: Array<ValueTypes["LinkParentUpdateWithNestedWhereUniqueInput"]> | undefined | null | Variable<any, string>,
+	/** Upsert multiple LinkParent documents */
+	upsert?: Array<ValueTypes["LinkParentUpsertWithNestedWhereUniqueInput"]> | undefined | null | Variable<any, string>,
+	/** Disconnect multiple LinkParent documents */
+	disconnect?: Array<ValueTypes["LinkParentWhereUniqueInput"]> | undefined | null | Variable<any, string>,
+	/** Delete multiple LinkParent documents */
+	delete?: Array<ValueTypes["LinkParentWhereUniqueInput"]> | undefined | null | Variable<any, string>
+};
+	["LinkParentUpdateManyWithNestedWhereInput"]: {
+	AboutMe?: ValueTypes["AboutMeUpdateManyWithNestedWhereInput"] | undefined | null | Variable<any, string>
+};
+	["LinkParentUpdateOneInlineInput"]: {
+	/** Create and connect one LinkParent document */
+	create?: ValueTypes["LinkParentCreateInput"] | undefined | null | Variable<any, string>,
+	/** Update single LinkParent document */
+	update?: ValueTypes["LinkParentUpdateWithNestedWhereUniqueInput"] | undefined | null | Variable<any, string>,
+	/** Upsert single LinkParent document */
+	upsert?: ValueTypes["LinkParentUpsertWithNestedWhereUniqueInput"] | undefined | null | Variable<any, string>,
+	/** Connect existing LinkParent document */
+	connect?: ValueTypes["LinkParentWhereUniqueInput"] | undefined | null | Variable<any, string>,
+	/** Disconnect currently connected LinkParent document */
+	disconnect?: boolean | undefined | null | Variable<any, string>,
+	/** Delete currently connected LinkParent document */
+	delete?: boolean | undefined | null | Variable<any, string>
+};
+	["LinkParentUpdateWithNestedWhereUniqueInput"]: {
+	AboutMe?: ValueTypes["AboutMeUpdateWithNestedWhereUniqueInput"] | undefined | null | Variable<any, string>
+};
+	["LinkParentUpsertWithNestedWhereUniqueInput"]: {
+	AboutMe?: ValueTypes["AboutMeUpsertWithNestedWhereUniqueInput"] | undefined | null | Variable<any, string>
+};
+	["LinkParentWhereInput"]: {
+	AboutMe?: ValueTypes["AboutMeWhereInput"] | undefined | null | Variable<any, string>
+};
+	["LinkParentWhereUniqueInput"]: {
+	AboutMe?: ValueTypes["AboutMeWhereUniqueInput"] | undefined | null | Variable<any, string>
+};
+	["LinkUpdateInput"]: {
+	name?: string | undefined | null | Variable<any, string>,
+	url?: string | undefined | null | Variable<any, string>,
+	icon?: ValueTypes["AssetUpdateOneInlineInput"] | undefined | null | Variable<any, string>
+};
+	["LinkUpdateManyInlineInput"]: {
+	/** Create and connect multiple Link component instances */
+	create?: Array<ValueTypes["LinkCreateWithPositionInput"]> | undefined | null | Variable<any, string>,
+	/** Update multiple Link component instances */
+	update?: Array<ValueTypes["LinkUpdateWithNestedWhereUniqueAndPositionInput"]> | undefined | null | Variable<any, string>,
+	/** Upsert multiple Link component instances */
+	upsert?: Array<ValueTypes["LinkUpsertWithNestedWhereUniqueAndPositionInput"]> | undefined | null | Variable<any, string>,
+	/** Delete multiple Link documents */
+	delete?: Array<ValueTypes["LinkWhereUniqueInput"]> | undefined | null | Variable<any, string>
+};
+	["LinkUpdateManyInput"]: {
+	url?: string | undefined | null | Variable<any, string>
+};
+	["LinkUpdateManyWithNestedWhereInput"]: {
+	/** Document search */
+	where: ValueTypes["LinkWhereInput"] | Variable<any, string>,
+	/** Update many input */
+	data: ValueTypes["LinkUpdateManyInput"] | Variable<any, string>
+};
+	["LinkUpdateOneInlineInput"]: {
+	/** Create and connect one Link document */
+	create?: ValueTypes["LinkCreateInput"] | undefined | null | Variable<any, string>,
+	/** Update single Link document */
+	update?: ValueTypes["LinkUpdateWithNestedWhereUniqueInput"] | undefined | null | Variable<any, string>,
+	/** Upsert single Link document */
+	upsert?: ValueTypes["LinkUpsertWithNestedWhereUniqueInput"] | undefined | null | Variable<any, string>,
+	/** Delete currently connected Link document */
+	delete?: boolean | undefined | null | Variable<any, string>
+};
+	["LinkUpdateWithNestedWhereUniqueAndPositionInput"]: {
+	/** Unique component instance search */
+	where: ValueTypes["LinkWhereUniqueInput"] | Variable<any, string>,
+	/** Position in the list of existing component instances, will default to appending at the end of list */
+	position?: ValueTypes["ConnectPositionInput"] | undefined | null | Variable<any, string>,
+	/** Document to update */
+	data?: ValueTypes["LinkUpdateInput"] | undefined | null | Variable<any, string>
+};
+	["LinkUpdateWithNestedWhereUniqueInput"]: {
+	/** Unique document search */
+	where: ValueTypes["LinkWhereUniqueInput"] | Variable<any, string>,
+	/** Document to update */
+	data: ValueTypes["LinkUpdateInput"] | Variable<any, string>
+};
+	["LinkUpsertInput"]: {
+	/** Create document if it didn't exist */
+	create: ValueTypes["LinkCreateInput"] | Variable<any, string>,
+	/** Update document if it exists */
+	update: ValueTypes["LinkUpdateInput"] | Variable<any, string>
+};
+	["LinkUpsertWithNestedWhereUniqueAndPositionInput"]: {
+	/** Unique component instance search */
+	where: ValueTypes["LinkWhereUniqueInput"] | Variable<any, string>,
+	/** Position in the list of existing component instances, will default to appending at the end of list */
+	position?: ValueTypes["ConnectPositionInput"] | undefined | null | Variable<any, string>,
+	/** Document to upsert */
+	data?: ValueTypes["LinkUpsertInput"] | undefined | null | Variable<any, string>
+};
+	["LinkUpsertWithNestedWhereUniqueInput"]: {
+	/** Unique document search */
+	where: ValueTypes["LinkWhereUniqueInput"] | Variable<any, string>,
+	/** Upsert data */
+	data: ValueTypes["LinkUpsertInput"] | Variable<any, string>
+};
+	/** Identifies documents */
+["LinkWhereInput"]: {
+	/** Contains search across all appropriate fields. */
+	_search?: string | undefined | null | Variable<any, string>,
+	/** Logical AND on all given filters. */
+	AND?: Array<ValueTypes["LinkWhereInput"]> | undefined | null | Variable<any, string>,
+	/** Logical OR on all given filters. */
+	OR?: Array<ValueTypes["LinkWhereInput"]> | undefined | null | Variable<any, string>,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<ValueTypes["LinkWhereInput"]> | undefined | null | Variable<any, string>,
+	id?: string | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values containing the given string. */
+	id_contains?: string | undefined | null | Variable<any, string>,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined | null | Variable<any, string>,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined | null | Variable<any, string>,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined | null | Variable<any, string>,
+	name?: string | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	name_not?: string | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	name_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	name_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values containing the given string. */
+	name_contains?: string | undefined | null | Variable<any, string>,
+	/** All values not containing the given string. */
+	name_not_contains?: string | undefined | null | Variable<any, string>,
+	/** All values starting with the given string. */
+	name_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values not starting with the given string. */
+	name_not_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values ending with the given string. */
+	name_ends_with?: string | undefined | null | Variable<any, string>,
+	/** All values not ending with the given string */
+	name_not_ends_with?: string | undefined | null | Variable<any, string>,
+	url?: string | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	url_not?: string | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	url_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	url_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values containing the given string. */
+	url_contains?: string | undefined | null | Variable<any, string>,
+	/** All values not containing the given string. */
+	url_not_contains?: string | undefined | null | Variable<any, string>,
+	/** All values starting with the given string. */
+	url_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values not starting with the given string. */
+	url_not_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values ending with the given string. */
+	url_ends_with?: string | undefined | null | Variable<any, string>,
+	/** All values not ending with the given string */
+	url_not_ends_with?: string | undefined | null | Variable<any, string>,
+	icon?: ValueTypes["AssetWhereInput"] | undefined | null | Variable<any, string>
+};
+	/** References Link record uniquely */
+["LinkWhereUniqueInput"]: {
+	id?: string | undefined | null | Variable<any, string>,
+	name?: string | undefined | null | Variable<any, string>
+};
 	/** Locale system enumeration */
 ["Locale"]:Locale;
 	/** Representing a geolocation point with latitude and longitude */
@@ -1628,141 +2774,141 @@ scheduleUnpublishProject?: [{	/** Document to unpublish */
 	from: Array<ValueTypes["Stage"]> | Variable<any, string>,	/** Release at point in time, will create new release containing this operation */
 	releaseAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,	/** Optionally attach this scheduled operation to an existing release */
 	releaseId?: string | undefined | null | Variable<any, string>},ValueTypes["Project"]],
-createSocial?: [{	data: ValueTypes["SocialCreateInput"] | Variable<any, string>},ValueTypes["Social"]],
-updateSocial?: [{	where: ValueTypes["SocialWhereUniqueInput"] | Variable<any, string>,	data: ValueTypes["SocialUpdateInput"] | Variable<any, string>},ValueTypes["Social"]],
-deleteSocial?: [{	/** Document to delete */
-	where: ValueTypes["SocialWhereUniqueInput"] | Variable<any, string>},ValueTypes["Social"]],
-upsertSocial?: [{	where: ValueTypes["SocialWhereUniqueInput"] | Variable<any, string>,	upsert: ValueTypes["SocialUpsertInput"] | Variable<any, string>},ValueTypes["Social"]],
-publishSocial?: [{	/** Document to publish */
-	where: ValueTypes["SocialWhereUniqueInput"] | Variable<any, string>,	/** Publishing target stage */
-	to: Array<ValueTypes["Stage"]> | Variable<any, string>},ValueTypes["Social"]],
-unpublishSocial?: [{	/** Document to unpublish */
-	where: ValueTypes["SocialWhereUniqueInput"] | Variable<any, string>,	/** Stages to unpublish document from */
-	from: Array<ValueTypes["Stage"]> | Variable<any, string>},ValueTypes["Social"]],
-updateManySocialsConnection?: [{	/** Documents to apply update on */
-	where?: ValueTypes["SocialManyWhereInput"] | undefined | null | Variable<any, string>,	/** Updates to document content */
-	data: ValueTypes["SocialUpdateManyInput"] | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>},ValueTypes["SocialConnection"]],
-deleteManySocialsConnection?: [{	/** Documents to delete */
-	where?: ValueTypes["SocialManyWhereInput"] | undefined | null | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>},ValueTypes["SocialConnection"]],
-publishManySocialsConnection?: [{	/** Identifies documents in each stage to be published */
-	where?: ValueTypes["SocialManyWhereInput"] | undefined | null | Variable<any, string>,	/** Stage to find matching documents in */
+createSeo?: [{	data: ValueTypes["SeoCreateInput"] | Variable<any, string>},ValueTypes["Seo"]],
+updateSeo?: [{	where: ValueTypes["SeoWhereUniqueInput"] | Variable<any, string>,	data: ValueTypes["SeoUpdateInput"] | Variable<any, string>},ValueTypes["Seo"]],
+deleteSeo?: [{	/** Document to delete */
+	where: ValueTypes["SeoWhereUniqueInput"] | Variable<any, string>},ValueTypes["Seo"]],
+upsertSeo?: [{	where: ValueTypes["SeoWhereUniqueInput"] | Variable<any, string>,	upsert: ValueTypes["SeoUpsertInput"] | Variable<any, string>},ValueTypes["Seo"]],
+publishSeo?: [{	/** Document to publish */
+	where: ValueTypes["SeoWhereUniqueInput"] | Variable<any, string>,	/** Publishing target stage */
+	to: Array<ValueTypes["Stage"]> | Variable<any, string>},ValueTypes["Seo"]],
+unpublishSeo?: [{	/** Document to unpublish */
+	where: ValueTypes["SeoWhereUniqueInput"] | Variable<any, string>,	/** Stages to unpublish document from */
+	from: Array<ValueTypes["Stage"]> | Variable<any, string>},ValueTypes["Seo"]],
+updateManySeosConnection?: [{	/** Documents to apply update on */
+	where?: ValueTypes["SeoManyWhereInput"] | undefined | null | Variable<any, string>,	/** Updates to document content */
+	data: ValueTypes["SeoUpdateManyInput"] | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>},ValueTypes["SeoConnection"]],
+deleteManySeosConnection?: [{	/** Documents to delete */
+	where?: ValueTypes["SeoManyWhereInput"] | undefined | null | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>},ValueTypes["SeoConnection"]],
+publishManySeosConnection?: [{	/** Identifies documents in each stage to be published */
+	where?: ValueTypes["SeoManyWhereInput"] | undefined | null | Variable<any, string>,	/** Stage to find matching documents in */
 	from?: ValueTypes["Stage"] | undefined | null | Variable<any, string>,	/** Stages to publish documents to */
-	to: Array<ValueTypes["Stage"]> | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>},ValueTypes["SocialConnection"]],
-unpublishManySocialsConnection?: [{	/** Identifies documents in draft stage */
-	where?: ValueTypes["SocialManyWhereInput"] | undefined | null | Variable<any, string>,	/** Stage to find matching documents in */
+	to: Array<ValueTypes["Stage"]> | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>},ValueTypes["SeoConnection"]],
+unpublishManySeosConnection?: [{	/** Identifies documents in draft stage */
+	where?: ValueTypes["SeoManyWhereInput"] | undefined | null | Variable<any, string>,	/** Stage to find matching documents in */
 	stage?: ValueTypes["Stage"] | undefined | null | Variable<any, string>,	/** Stages to unpublish documents from */
-	from: Array<ValueTypes["Stage"]> | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>},ValueTypes["SocialConnection"]],
-updateManySocials?: [{	/** Documents to apply update on */
-	where?: ValueTypes["SocialManyWhereInput"] | undefined | null | Variable<any, string>,	/** Updates to document content */
-	data: ValueTypes["SocialUpdateManyInput"] | Variable<any, string>},ValueTypes["BatchPayload"]],
-deleteManySocials?: [{	/** Documents to delete */
-	where?: ValueTypes["SocialManyWhereInput"] | undefined | null | Variable<any, string>},ValueTypes["BatchPayload"]],
-publishManySocials?: [{	/** Identifies documents in each stage to be published */
-	where?: ValueTypes["SocialManyWhereInput"] | undefined | null | Variable<any, string>,	/** Stages to publish documents to */
+	from: Array<ValueTypes["Stage"]> | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>},ValueTypes["SeoConnection"]],
+updateManySeos?: [{	/** Documents to apply update on */
+	where?: ValueTypes["SeoManyWhereInput"] | undefined | null | Variable<any, string>,	/** Updates to document content */
+	data: ValueTypes["SeoUpdateManyInput"] | Variable<any, string>},ValueTypes["BatchPayload"]],
+deleteManySeos?: [{	/** Documents to delete */
+	where?: ValueTypes["SeoManyWhereInput"] | undefined | null | Variable<any, string>},ValueTypes["BatchPayload"]],
+publishManySeos?: [{	/** Identifies documents in each stage to be published */
+	where?: ValueTypes["SeoManyWhereInput"] | undefined | null | Variable<any, string>,	/** Stages to publish documents to */
 	to: Array<ValueTypes["Stage"]> | Variable<any, string>},ValueTypes["BatchPayload"]],
-unpublishManySocials?: [{	/** Identifies documents in each stage */
-	where?: ValueTypes["SocialManyWhereInput"] | undefined | null | Variable<any, string>,	/** Stages to unpublish documents from */
+unpublishManySeos?: [{	/** Identifies documents in each stage */
+	where?: ValueTypes["SeoManyWhereInput"] | undefined | null | Variable<any, string>,	/** Stages to unpublish documents from */
 	from: Array<ValueTypes["Stage"]> | Variable<any, string>},ValueTypes["BatchPayload"]],
-schedulePublishSocial?: [{	/** Document to publish */
-	where: ValueTypes["SocialWhereUniqueInput"] | Variable<any, string>,	/** Publishing target stage */
+schedulePublishSeo?: [{	/** Document to publish */
+	where: ValueTypes["SeoWhereUniqueInput"] | Variable<any, string>,	/** Publishing target stage */
 	to: Array<ValueTypes["Stage"]> | Variable<any, string>,	/** Release at point in time, will create new release containing this operation */
 	releaseAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,	/** Optionally attach this scheduled operation to an existing release */
-	releaseId?: string | undefined | null | Variable<any, string>},ValueTypes["Social"]],
-scheduleUnpublishSocial?: [{	/** Document to unpublish */
-	where: ValueTypes["SocialWhereUniqueInput"] | Variable<any, string>,	/** Stages to unpublish document from */
+	releaseId?: string | undefined | null | Variable<any, string>},ValueTypes["Seo"]],
+scheduleUnpublishSeo?: [{	/** Document to unpublish */
+	where: ValueTypes["SeoWhereUniqueInput"] | Variable<any, string>,	/** Stages to unpublish document from */
 	from: Array<ValueTypes["Stage"]> | Variable<any, string>,	/** Release at point in time, will create new release containing this operation */
 	releaseAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,	/** Optionally attach this scheduled operation to an existing release */
-	releaseId?: string | undefined | null | Variable<any, string>},ValueTypes["Social"]],
-createPageMetadata?: [{	data: ValueTypes["PageMetadataCreateInput"] | Variable<any, string>},ValueTypes["PageMetadata"]],
-updatePageMetadata?: [{	where: ValueTypes["PageMetadataWhereUniqueInput"] | Variable<any, string>,	data: ValueTypes["PageMetadataUpdateInput"] | Variable<any, string>},ValueTypes["PageMetadata"]],
-deletePageMetadata?: [{	/** Document to delete */
-	where: ValueTypes["PageMetadataWhereUniqueInput"] | Variable<any, string>},ValueTypes["PageMetadata"]],
-upsertPageMetadata?: [{	where: ValueTypes["PageMetadataWhereUniqueInput"] | Variable<any, string>,	upsert: ValueTypes["PageMetadataUpsertInput"] | Variable<any, string>},ValueTypes["PageMetadata"]],
-publishPageMetadata?: [{	/** Document to publish */
-	where: ValueTypes["PageMetadataWhereUniqueInput"] | Variable<any, string>,	/** Publishing target stage */
-	to: Array<ValueTypes["Stage"]> | Variable<any, string>},ValueTypes["PageMetadata"]],
-unpublishPageMetadata?: [{	/** Document to unpublish */
-	where: ValueTypes["PageMetadataWhereUniqueInput"] | Variable<any, string>,	/** Stages to unpublish document from */
-	from: Array<ValueTypes["Stage"]> | Variable<any, string>},ValueTypes["PageMetadata"]],
-updateManyPagesMetadataConnection?: [{	/** Documents to apply update on */
-	where?: ValueTypes["PageMetadataManyWhereInput"] | undefined | null | Variable<any, string>,	/** Updates to document content */
-	data: ValueTypes["PageMetadataUpdateManyInput"] | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>},ValueTypes["PageMetadataConnection"]],
-deleteManyPagesMetadataConnection?: [{	/** Documents to delete */
-	where?: ValueTypes["PageMetadataManyWhereInput"] | undefined | null | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>},ValueTypes["PageMetadataConnection"]],
-publishManyPagesMetadataConnection?: [{	/** Identifies documents in each stage to be published */
-	where?: ValueTypes["PageMetadataManyWhereInput"] | undefined | null | Variable<any, string>,	/** Stage to find matching documents in */
+	releaseId?: string | undefined | null | Variable<any, string>},ValueTypes["Seo"]],
+createAboutMe?: [{	data: ValueTypes["AboutMeCreateInput"] | Variable<any, string>},ValueTypes["AboutMe"]],
+updateAboutMe?: [{	where: ValueTypes["AboutMeWhereUniqueInput"] | Variable<any, string>,	data: ValueTypes["AboutMeUpdateInput"] | Variable<any, string>},ValueTypes["AboutMe"]],
+deleteAboutMe?: [{	/** Document to delete */
+	where: ValueTypes["AboutMeWhereUniqueInput"] | Variable<any, string>},ValueTypes["AboutMe"]],
+upsertAboutMe?: [{	where: ValueTypes["AboutMeWhereUniqueInput"] | Variable<any, string>,	upsert: ValueTypes["AboutMeUpsertInput"] | Variable<any, string>},ValueTypes["AboutMe"]],
+publishAboutMe?: [{	/** Document to publish */
+	where: ValueTypes["AboutMeWhereUniqueInput"] | Variable<any, string>,	/** Publishing target stage */
+	to: Array<ValueTypes["Stage"]> | Variable<any, string>},ValueTypes["AboutMe"]],
+unpublishAboutMe?: [{	/** Document to unpublish */
+	where: ValueTypes["AboutMeWhereUniqueInput"] | Variable<any, string>,	/** Stages to unpublish document from */
+	from: Array<ValueTypes["Stage"]> | Variable<any, string>},ValueTypes["AboutMe"]],
+updateManyAboutMesConnection?: [{	/** Documents to apply update on */
+	where?: ValueTypes["AboutMeManyWhereInput"] | undefined | null | Variable<any, string>,	/** Updates to document content */
+	data: ValueTypes["AboutMeUpdateManyInput"] | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>},ValueTypes["AboutMeConnection"]],
+deleteManyAboutMesConnection?: [{	/** Documents to delete */
+	where?: ValueTypes["AboutMeManyWhereInput"] | undefined | null | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>},ValueTypes["AboutMeConnection"]],
+publishManyAboutMesConnection?: [{	/** Identifies documents in each stage to be published */
+	where?: ValueTypes["AboutMeManyWhereInput"] | undefined | null | Variable<any, string>,	/** Stage to find matching documents in */
 	from?: ValueTypes["Stage"] | undefined | null | Variable<any, string>,	/** Stages to publish documents to */
-	to: Array<ValueTypes["Stage"]> | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>},ValueTypes["PageMetadataConnection"]],
-unpublishManyPagesMetadataConnection?: [{	/** Identifies documents in draft stage */
-	where?: ValueTypes["PageMetadataManyWhereInput"] | undefined | null | Variable<any, string>,	/** Stage to find matching documents in */
+	to: Array<ValueTypes["Stage"]> | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>},ValueTypes["AboutMeConnection"]],
+unpublishManyAboutMesConnection?: [{	/** Identifies documents in draft stage */
+	where?: ValueTypes["AboutMeManyWhereInput"] | undefined | null | Variable<any, string>,	/** Stage to find matching documents in */
 	stage?: ValueTypes["Stage"] | undefined | null | Variable<any, string>,	/** Stages to unpublish documents from */
-	from: Array<ValueTypes["Stage"]> | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>},ValueTypes["PageMetadataConnection"]],
-updateManyPagesMetadata?: [{	/** Documents to apply update on */
-	where?: ValueTypes["PageMetadataManyWhereInput"] | undefined | null | Variable<any, string>,	/** Updates to document content */
-	data: ValueTypes["PageMetadataUpdateManyInput"] | Variable<any, string>},ValueTypes["BatchPayload"]],
-deleteManyPagesMetadata?: [{	/** Documents to delete */
-	where?: ValueTypes["PageMetadataManyWhereInput"] | undefined | null | Variable<any, string>},ValueTypes["BatchPayload"]],
-publishManyPagesMetadata?: [{	/** Identifies documents in each stage to be published */
-	where?: ValueTypes["PageMetadataManyWhereInput"] | undefined | null | Variable<any, string>,	/** Stages to publish documents to */
+	from: Array<ValueTypes["Stage"]> | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>},ValueTypes["AboutMeConnection"]],
+updateManyAboutMes?: [{	/** Documents to apply update on */
+	where?: ValueTypes["AboutMeManyWhereInput"] | undefined | null | Variable<any, string>,	/** Updates to document content */
+	data: ValueTypes["AboutMeUpdateManyInput"] | Variable<any, string>},ValueTypes["BatchPayload"]],
+deleteManyAboutMes?: [{	/** Documents to delete */
+	where?: ValueTypes["AboutMeManyWhereInput"] | undefined | null | Variable<any, string>},ValueTypes["BatchPayload"]],
+publishManyAboutMes?: [{	/** Identifies documents in each stage to be published */
+	where?: ValueTypes["AboutMeManyWhereInput"] | undefined | null | Variable<any, string>,	/** Stages to publish documents to */
 	to: Array<ValueTypes["Stage"]> | Variable<any, string>},ValueTypes["BatchPayload"]],
-unpublishManyPagesMetadata?: [{	/** Identifies documents in each stage */
-	where?: ValueTypes["PageMetadataManyWhereInput"] | undefined | null | Variable<any, string>,	/** Stages to unpublish documents from */
+unpublishManyAboutMes?: [{	/** Identifies documents in each stage */
+	where?: ValueTypes["AboutMeManyWhereInput"] | undefined | null | Variable<any, string>,	/** Stages to unpublish documents from */
 	from: Array<ValueTypes["Stage"]> | Variable<any, string>},ValueTypes["BatchPayload"]],
-schedulePublishPageMetadata?: [{	/** Document to publish */
-	where: ValueTypes["PageMetadataWhereUniqueInput"] | Variable<any, string>,	/** Publishing target stage */
+schedulePublishAboutMe?: [{	/** Document to publish */
+	where: ValueTypes["AboutMeWhereUniqueInput"] | Variable<any, string>,	/** Publishing target stage */
 	to: Array<ValueTypes["Stage"]> | Variable<any, string>,	/** Release at point in time, will create new release containing this operation */
 	releaseAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,	/** Optionally attach this scheduled operation to an existing release */
-	releaseId?: string | undefined | null | Variable<any, string>},ValueTypes["PageMetadata"]],
-scheduleUnpublishPageMetadata?: [{	/** Document to unpublish */
-	where: ValueTypes["PageMetadataWhereUniqueInput"] | Variable<any, string>,	/** Stages to unpublish document from */
+	releaseId?: string | undefined | null | Variable<any, string>},ValueTypes["AboutMe"]],
+scheduleUnpublishAboutMe?: [{	/** Document to unpublish */
+	where: ValueTypes["AboutMeWhereUniqueInput"] | Variable<any, string>,	/** Stages to unpublish document from */
 	from: Array<ValueTypes["Stage"]> | Variable<any, string>,	/** Release at point in time, will create new release containing this operation */
 	releaseAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,	/** Optionally attach this scheduled operation to an existing release */
-	releaseId?: string | undefined | null | Variable<any, string>},ValueTypes["PageMetadata"]],
-createSkill?: [{	data: ValueTypes["SkillCreateInput"] | Variable<any, string>},ValueTypes["Skill"]],
-updateSkill?: [{	where: ValueTypes["SkillWhereUniqueInput"] | Variable<any, string>,	data: ValueTypes["SkillUpdateInput"] | Variable<any, string>},ValueTypes["Skill"]],
-deleteSkill?: [{	/** Document to delete */
-	where: ValueTypes["SkillWhereUniqueInput"] | Variable<any, string>},ValueTypes["Skill"]],
-upsertSkill?: [{	where: ValueTypes["SkillWhereUniqueInput"] | Variable<any, string>,	upsert: ValueTypes["SkillUpsertInput"] | Variable<any, string>},ValueTypes["Skill"]],
-publishSkill?: [{	/** Document to publish */
-	where: ValueTypes["SkillWhereUniqueInput"] | Variable<any, string>,	/** Publishing target stage */
-	to: Array<ValueTypes["Stage"]> | Variable<any, string>},ValueTypes["Skill"]],
-unpublishSkill?: [{	/** Document to unpublish */
-	where: ValueTypes["SkillWhereUniqueInput"] | Variable<any, string>,	/** Stages to unpublish document from */
-	from: Array<ValueTypes["Stage"]> | Variable<any, string>},ValueTypes["Skill"]],
-updateManySkillsConnection?: [{	/** Documents to apply update on */
-	where?: ValueTypes["SkillManyWhereInput"] | undefined | null | Variable<any, string>,	/** Updates to document content */
-	data: ValueTypes["SkillUpdateManyInput"] | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>},ValueTypes["SkillConnection"]],
-deleteManySkillsConnection?: [{	/** Documents to delete */
-	where?: ValueTypes["SkillManyWhereInput"] | undefined | null | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>},ValueTypes["SkillConnection"]],
-publishManySkillsConnection?: [{	/** Identifies documents in each stage to be published */
-	where?: ValueTypes["SkillManyWhereInput"] | undefined | null | Variable<any, string>,	/** Stage to find matching documents in */
+	releaseId?: string | undefined | null | Variable<any, string>},ValueTypes["AboutMe"]],
+createSkillCategory?: [{	data: ValueTypes["SkillCategoryCreateInput"] | Variable<any, string>},ValueTypes["SkillCategory"]],
+updateSkillCategory?: [{	where: ValueTypes["SkillCategoryWhereUniqueInput"] | Variable<any, string>,	data: ValueTypes["SkillCategoryUpdateInput"] | Variable<any, string>},ValueTypes["SkillCategory"]],
+deleteSkillCategory?: [{	/** Document to delete */
+	where: ValueTypes["SkillCategoryWhereUniqueInput"] | Variable<any, string>},ValueTypes["SkillCategory"]],
+upsertSkillCategory?: [{	where: ValueTypes["SkillCategoryWhereUniqueInput"] | Variable<any, string>,	upsert: ValueTypes["SkillCategoryUpsertInput"] | Variable<any, string>},ValueTypes["SkillCategory"]],
+publishSkillCategory?: [{	/** Document to publish */
+	where: ValueTypes["SkillCategoryWhereUniqueInput"] | Variable<any, string>,	/** Publishing target stage */
+	to: Array<ValueTypes["Stage"]> | Variable<any, string>},ValueTypes["SkillCategory"]],
+unpublishSkillCategory?: [{	/** Document to unpublish */
+	where: ValueTypes["SkillCategoryWhereUniqueInput"] | Variable<any, string>,	/** Stages to unpublish document from */
+	from: Array<ValueTypes["Stage"]> | Variable<any, string>},ValueTypes["SkillCategory"]],
+updateManySkillCategoriesConnection?: [{	/** Documents to apply update on */
+	where?: ValueTypes["SkillCategoryManyWhereInput"] | undefined | null | Variable<any, string>,	/** Updates to document content */
+	data: ValueTypes["SkillCategoryUpdateManyInput"] | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>},ValueTypes["SkillCategoryConnection"]],
+deleteManySkillCategoriesConnection?: [{	/** Documents to delete */
+	where?: ValueTypes["SkillCategoryManyWhereInput"] | undefined | null | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>},ValueTypes["SkillCategoryConnection"]],
+publishManySkillCategoriesConnection?: [{	/** Identifies documents in each stage to be published */
+	where?: ValueTypes["SkillCategoryManyWhereInput"] | undefined | null | Variable<any, string>,	/** Stage to find matching documents in */
 	from?: ValueTypes["Stage"] | undefined | null | Variable<any, string>,	/** Stages to publish documents to */
-	to: Array<ValueTypes["Stage"]> | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>},ValueTypes["SkillConnection"]],
-unpublishManySkillsConnection?: [{	/** Identifies documents in draft stage */
-	where?: ValueTypes["SkillManyWhereInput"] | undefined | null | Variable<any, string>,	/** Stage to find matching documents in */
+	to: Array<ValueTypes["Stage"]> | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>},ValueTypes["SkillCategoryConnection"]],
+unpublishManySkillCategoriesConnection?: [{	/** Identifies documents in draft stage */
+	where?: ValueTypes["SkillCategoryManyWhereInput"] | undefined | null | Variable<any, string>,	/** Stage to find matching documents in */
 	stage?: ValueTypes["Stage"] | undefined | null | Variable<any, string>,	/** Stages to unpublish documents from */
-	from: Array<ValueTypes["Stage"]> | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>},ValueTypes["SkillConnection"]],
-updateManySkills?: [{	/** Documents to apply update on */
-	where?: ValueTypes["SkillManyWhereInput"] | undefined | null | Variable<any, string>,	/** Updates to document content */
-	data: ValueTypes["SkillUpdateManyInput"] | Variable<any, string>},ValueTypes["BatchPayload"]],
-deleteManySkills?: [{	/** Documents to delete */
-	where?: ValueTypes["SkillManyWhereInput"] | undefined | null | Variable<any, string>},ValueTypes["BatchPayload"]],
-publishManySkills?: [{	/** Identifies documents in each stage to be published */
-	where?: ValueTypes["SkillManyWhereInput"] | undefined | null | Variable<any, string>,	/** Stages to publish documents to */
+	from: Array<ValueTypes["Stage"]> | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>},ValueTypes["SkillCategoryConnection"]],
+updateManySkillCategories?: [{	/** Documents to apply update on */
+	where?: ValueTypes["SkillCategoryManyWhereInput"] | undefined | null | Variable<any, string>,	/** Updates to document content */
+	data: ValueTypes["SkillCategoryUpdateManyInput"] | Variable<any, string>},ValueTypes["BatchPayload"]],
+deleteManySkillCategories?: [{	/** Documents to delete */
+	where?: ValueTypes["SkillCategoryManyWhereInput"] | undefined | null | Variable<any, string>},ValueTypes["BatchPayload"]],
+publishManySkillCategories?: [{	/** Identifies documents in each stage to be published */
+	where?: ValueTypes["SkillCategoryManyWhereInput"] | undefined | null | Variable<any, string>,	/** Stages to publish documents to */
 	to: Array<ValueTypes["Stage"]> | Variable<any, string>},ValueTypes["BatchPayload"]],
-unpublishManySkills?: [{	/** Identifies documents in each stage */
-	where?: ValueTypes["SkillManyWhereInput"] | undefined | null | Variable<any, string>,	/** Stages to unpublish documents from */
+unpublishManySkillCategories?: [{	/** Identifies documents in each stage */
+	where?: ValueTypes["SkillCategoryManyWhereInput"] | undefined | null | Variable<any, string>,	/** Stages to unpublish documents from */
 	from: Array<ValueTypes["Stage"]> | Variable<any, string>},ValueTypes["BatchPayload"]],
-schedulePublishSkill?: [{	/** Document to publish */
-	where: ValueTypes["SkillWhereUniqueInput"] | Variable<any, string>,	/** Publishing target stage */
+schedulePublishSkillCategory?: [{	/** Document to publish */
+	where: ValueTypes["SkillCategoryWhereUniqueInput"] | Variable<any, string>,	/** Publishing target stage */
 	to: Array<ValueTypes["Stage"]> | Variable<any, string>,	/** Release at point in time, will create new release containing this operation */
 	releaseAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,	/** Optionally attach this scheduled operation to an existing release */
-	releaseId?: string | undefined | null | Variable<any, string>},ValueTypes["Skill"]],
-scheduleUnpublishSkill?: [{	/** Document to unpublish */
-	where: ValueTypes["SkillWhereUniqueInput"] | Variable<any, string>,	/** Stages to unpublish document from */
+	releaseId?: string | undefined | null | Variable<any, string>},ValueTypes["SkillCategory"]],
+scheduleUnpublishSkillCategory?: [{	/** Document to unpublish */
+	where: ValueTypes["SkillCategoryWhereUniqueInput"] | Variable<any, string>,	/** Stages to unpublish document from */
 	from: Array<ValueTypes["Stage"]> | Variable<any, string>,	/** Release at point in time, will create new release containing this operation */
 	releaseAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,	/** Optionally attach this scheduled operation to an existing release */
-	releaseId?: string | undefined | null | Variable<any, string>},ValueTypes["Skill"]],
+	releaseId?: string | undefined | null | Variable<any, string>},ValueTypes["SkillCategory"]],
 		__typename?: boolean | `@${string}`
 }>;
 	/** An object with an ID */
@@ -1771,13 +2917,13 @@ scheduleUnpublishSkill?: [{	/** Document to unpublish */
 	id?:boolean | `@${string}`,
 	/** The Stage of an object */
 	stage?:boolean | `@${string}`;
+		['...on AboutMe']?: Omit<ValueTypes["AboutMe"],keyof ValueTypes["Node"]>;
 		['...on Asset']?: Omit<ValueTypes["Asset"],keyof ValueTypes["Node"]>;
-		['...on PageMetadata']?: Omit<ValueTypes["PageMetadata"],keyof ValueTypes["Node"]>;
 		['...on Project']?: Omit<ValueTypes["Project"],keyof ValueTypes["Node"]>;
 		['...on ScheduledOperation']?: Omit<ValueTypes["ScheduledOperation"],keyof ValueTypes["Node"]>;
 		['...on ScheduledRelease']?: Omit<ValueTypes["ScheduledRelease"],keyof ValueTypes["Node"]>;
-		['...on Skill']?: Omit<ValueTypes["Skill"],keyof ValueTypes["Node"]>;
-		['...on Social']?: Omit<ValueTypes["Social"],keyof ValueTypes["Node"]>;
+		['...on Seo']?: Omit<ValueTypes["Seo"],keyof ValueTypes["Node"]>;
+		['...on SkillCategory']?: Omit<ValueTypes["SkillCategory"],keyof ValueTypes["Node"]>;
 		['...on User']?: Omit<ValueTypes["User"],keyof ValueTypes["Node"]>;
 		__typename?: boolean | `@${string}`
 }>;
@@ -1795,493 +2941,6 @@ scheduleUnpublishSkill?: [{	/** Document to unpublish */
 	pageSize?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
-	/** Page Metadata */
-["PageMetadata"]: AliasType<{
-	/** System stage field */
-	stage?:boolean | `@${string}`,
-documentInStages?: [{	/** Potential stages that should be returned */
-	stages: Array<ValueTypes["Stage"]> | Variable<any, string>,	/** Decides if the current stage should be included or not */
-	includeCurrent: boolean | Variable<any, string>,	/** Decides if the documents should match the parent documents locale or should use the fallback order defined in the tree */
-	inheritLocale: boolean | Variable<any, string>},ValueTypes["PageMetadata"]],
-	/** The time the document was published. Null on documents in draft stage. */
-	publishedAt?:boolean | `@${string}`,
-	/** The time the document was updated */
-	updatedAt?:boolean | `@${string}`,
-	/** The time the document was created */
-	createdAt?:boolean | `@${string}`,
-	/** The unique identifier */
-	id?:boolean | `@${string}`,
-	/** Page title */
-	title?:boolean | `@${string}`,
-	/** Page content summary */
-	summary?:boolean | `@${string}`,
-	/** Page slug */
-	slug?:boolean | `@${string}`,
-	/** Page number */
-	pageNumber?:boolean | `@${string}`,
-publishedBy?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
-
-Note that `publishedBy` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
-For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
-
-This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
-	locales?: Array<ValueTypes["Locale"]> | undefined | null | Variable<any, string>},ValueTypes["User"]],
-updatedBy?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
-
-Note that `updatedBy` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
-For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
-
-This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
-	locales?: Array<ValueTypes["Locale"]> | undefined | null | Variable<any, string>},ValueTypes["User"]],
-createdBy?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
-
-Note that `createdBy` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
-For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
-
-This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
-	locales?: Array<ValueTypes["Locale"]> | undefined | null | Variable<any, string>},ValueTypes["User"]],
-image?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
-
-Note that `image` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
-For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
-
-This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
-	locales?: Array<ValueTypes["Locale"]> | undefined | null | Variable<any, string>},ValueTypes["Asset"]],
-scheduledIn?: [{	where?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	/** Allows to optionally override locale filtering behaviour in the query's subtree.
-
-Note that `scheduledIn` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
-For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
-
-This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
-	locales?: Array<ValueTypes["Locale"]> | undefined | null | Variable<any, string>},ValueTypes["ScheduledOperation"]],
-history?: [{	limit: number | Variable<any, string>,	skip: number | Variable<any, string>,	/** This is optional and can be used to fetch the document version history for a specific stage instead of the current one */
-	stageOverride?: ValueTypes["Stage"] | undefined | null | Variable<any, string>},ValueTypes["Version"]],
-		__typename?: boolean | `@${string}`
-}>;
-	["PageMetadataConnectInput"]: {
-	/** Document to connect */
-	where: ValueTypes["PageMetadataWhereUniqueInput"] | Variable<any, string>,
-	/** Allow to specify document position in list of connected documents, will default to appending at end of list */
-	position?: ValueTypes["ConnectPositionInput"] | undefined | null | Variable<any, string>
-};
-	/** A connection to a list of items. */
-["PageMetadataConnection"]: AliasType<{
-	/** Information to aid in pagination. */
-	pageInfo?:ValueTypes["PageInfo"],
-	/** A list of edges. */
-	edges?:ValueTypes["PageMetadataEdge"],
-	aggregate?:ValueTypes["Aggregate"],
-		__typename?: boolean | `@${string}`
-}>;
-	["PageMetadataCreateInput"]: {
-	updatedAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	createdAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	title: string | Variable<any, string>,
-	summary: string | Variable<any, string>,
-	slug?: string | undefined | null | Variable<any, string>,
-	pageNumber: number | Variable<any, string>,
-	image?: ValueTypes["AssetCreateOneInlineInput"] | undefined | null | Variable<any, string>
-};
-	["PageMetadataCreateManyInlineInput"]: {
-	/** Create and connect multiple existing PageMetadata documents */
-	create?: Array<ValueTypes["PageMetadataCreateInput"]> | undefined | null | Variable<any, string>,
-	/** Connect multiple existing PageMetadata documents */
-	connect?: Array<ValueTypes["PageMetadataWhereUniqueInput"]> | undefined | null | Variable<any, string>
-};
-	["PageMetadataCreateOneInlineInput"]: {
-	/** Create and connect one PageMetadata document */
-	create?: ValueTypes["PageMetadataCreateInput"] | undefined | null | Variable<any, string>,
-	/** Connect one existing PageMetadata document */
-	connect?: ValueTypes["PageMetadataWhereUniqueInput"] | undefined | null | Variable<any, string>
-};
-	/** An edge in a connection. */
-["PageMetadataEdge"]: AliasType<{
-	/** The item at the end of the edge. */
-	node?:ValueTypes["PageMetadata"],
-	/** A cursor for use in pagination. */
-	cursor?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
-}>;
-	/** Identifies documents */
-["PageMetadataManyWhereInput"]: {
-	/** Contains search across all appropriate fields. */
-	_search?: string | undefined | null | Variable<any, string>,
-	/** Logical AND on all given filters. */
-	AND?: Array<ValueTypes["PageMetadataWhereInput"]> | undefined | null | Variable<any, string>,
-	/** Logical OR on all given filters. */
-	OR?: Array<ValueTypes["PageMetadataWhereInput"]> | undefined | null | Variable<any, string>,
-	/** Logical NOT on all given filters combined by AND. */
-	NOT?: Array<ValueTypes["PageMetadataWhereInput"]> | undefined | null | Variable<any, string>,
-	publishedAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values that are not equal to given value. */
-	publishedAt_not?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values that are contained in given list. */
-	publishedAt_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values that are not contained in given list. */
-	publishedAt_not_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values less than the given value. */
-	publishedAt_lt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values less than or equal the given value. */
-	publishedAt_lte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values greater than the given value. */
-	publishedAt_gt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values greater than or equal the given value. */
-	publishedAt_gte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	updatedAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values that are not equal to given value. */
-	updatedAt_not?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values that are contained in given list. */
-	updatedAt_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values that are not contained in given list. */
-	updatedAt_not_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values less than the given value. */
-	updatedAt_lt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values less than or equal the given value. */
-	updatedAt_lte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values greater than the given value. */
-	updatedAt_gt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values greater than or equal the given value. */
-	updatedAt_gte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	createdAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values that are not equal to given value. */
-	createdAt_not?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values that are contained in given list. */
-	createdAt_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values that are not contained in given list. */
-	createdAt_not_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values less than the given value. */
-	createdAt_lt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values less than or equal the given value. */
-	createdAt_lte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values greater than the given value. */
-	createdAt_gt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values greater than or equal the given value. */
-	createdAt_gte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	id?: string | undefined | null | Variable<any, string>,
-	/** All values that are not equal to given value. */
-	id_not?: string | undefined | null | Variable<any, string>,
-	/** All values that are contained in given list. */
-	id_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values that are not contained in given list. */
-	id_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values containing the given string. */
-	id_contains?: string | undefined | null | Variable<any, string>,
-	/** All values not containing the given string. */
-	id_not_contains?: string | undefined | null | Variable<any, string>,
-	/** All values starting with the given string. */
-	id_starts_with?: string | undefined | null | Variable<any, string>,
-	/** All values not starting with the given string. */
-	id_not_starts_with?: string | undefined | null | Variable<any, string>,
-	/** All values ending with the given string. */
-	id_ends_with?: string | undefined | null | Variable<any, string>,
-	/** All values not ending with the given string */
-	id_not_ends_with?: string | undefined | null | Variable<any, string>,
-	title?: string | undefined | null | Variable<any, string>,
-	/** All values that are not equal to given value. */
-	title_not?: string | undefined | null | Variable<any, string>,
-	/** All values that are contained in given list. */
-	title_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values that are not contained in given list. */
-	title_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values containing the given string. */
-	title_contains?: string | undefined | null | Variable<any, string>,
-	/** All values not containing the given string. */
-	title_not_contains?: string | undefined | null | Variable<any, string>,
-	/** All values starting with the given string. */
-	title_starts_with?: string | undefined | null | Variable<any, string>,
-	/** All values not starting with the given string. */
-	title_not_starts_with?: string | undefined | null | Variable<any, string>,
-	/** All values ending with the given string. */
-	title_ends_with?: string | undefined | null | Variable<any, string>,
-	/** All values not ending with the given string */
-	title_not_ends_with?: string | undefined | null | Variable<any, string>,
-	summary?: string | undefined | null | Variable<any, string>,
-	/** All values that are not equal to given value. */
-	summary_not?: string | undefined | null | Variable<any, string>,
-	/** All values that are contained in given list. */
-	summary_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values that are not contained in given list. */
-	summary_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values containing the given string. */
-	summary_contains?: string | undefined | null | Variable<any, string>,
-	/** All values not containing the given string. */
-	summary_not_contains?: string | undefined | null | Variable<any, string>,
-	/** All values starting with the given string. */
-	summary_starts_with?: string | undefined | null | Variable<any, string>,
-	/** All values not starting with the given string. */
-	summary_not_starts_with?: string | undefined | null | Variable<any, string>,
-	/** All values ending with the given string. */
-	summary_ends_with?: string | undefined | null | Variable<any, string>,
-	/** All values not ending with the given string */
-	summary_not_ends_with?: string | undefined | null | Variable<any, string>,
-	slug?: string | undefined | null | Variable<any, string>,
-	/** All values that are not equal to given value. */
-	slug_not?: string | undefined | null | Variable<any, string>,
-	/** All values that are contained in given list. */
-	slug_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values that are not contained in given list. */
-	slug_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values containing the given string. */
-	slug_contains?: string | undefined | null | Variable<any, string>,
-	/** All values not containing the given string. */
-	slug_not_contains?: string | undefined | null | Variable<any, string>,
-	/** All values starting with the given string. */
-	slug_starts_with?: string | undefined | null | Variable<any, string>,
-	/** All values not starting with the given string. */
-	slug_not_starts_with?: string | undefined | null | Variable<any, string>,
-	/** All values ending with the given string. */
-	slug_ends_with?: string | undefined | null | Variable<any, string>,
-	/** All values not ending with the given string */
-	slug_not_ends_with?: string | undefined | null | Variable<any, string>,
-	pageNumber?: number | undefined | null | Variable<any, string>,
-	/** All values that are not equal to given value. */
-	pageNumber_not?: number | undefined | null | Variable<any, string>,
-	/** All values that are contained in given list. */
-	pageNumber_in?: Array<number | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values that are not contained in given list. */
-	pageNumber_not_in?: Array<number | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values less than the given value. */
-	pageNumber_lt?: number | undefined | null | Variable<any, string>,
-	/** All values less than or equal the given value. */
-	pageNumber_lte?: number | undefined | null | Variable<any, string>,
-	/** All values greater than the given value. */
-	pageNumber_gt?: number | undefined | null | Variable<any, string>,
-	/** All values greater than or equal the given value. */
-	pageNumber_gte?: number | undefined | null | Variable<any, string>,
-	publishedBy?: ValueTypes["UserWhereInput"] | undefined | null | Variable<any, string>,
-	updatedBy?: ValueTypes["UserWhereInput"] | undefined | null | Variable<any, string>,
-	createdBy?: ValueTypes["UserWhereInput"] | undefined | null | Variable<any, string>,
-	image?: ValueTypes["AssetWhereInput"] | undefined | null | Variable<any, string>,
-	scheduledIn_every?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>,
-	scheduledIn_some?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>,
-	scheduledIn_none?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>
-};
-	["PageMetadataOrderByInput"]:PageMetadataOrderByInput;
-	["PageMetadataUpdateInput"]: {
-	title?: string | undefined | null | Variable<any, string>,
-	summary?: string | undefined | null | Variable<any, string>,
-	slug?: string | undefined | null | Variable<any, string>,
-	pageNumber?: number | undefined | null | Variable<any, string>,
-	image?: ValueTypes["AssetUpdateOneInlineInput"] | undefined | null | Variable<any, string>
-};
-	["PageMetadataUpdateManyInlineInput"]: {
-	/** Create and connect multiple PageMetadata documents */
-	create?: Array<ValueTypes["PageMetadataCreateInput"]> | undefined | null | Variable<any, string>,
-	/** Connect multiple existing PageMetadata documents */
-	connect?: Array<ValueTypes["PageMetadataConnectInput"]> | undefined | null | Variable<any, string>,
-	/** Override currently-connected documents with multiple existing PageMetadata documents */
-	set?: Array<ValueTypes["PageMetadataWhereUniqueInput"]> | undefined | null | Variable<any, string>,
-	/** Update multiple PageMetadata documents */
-	update?: Array<ValueTypes["PageMetadataUpdateWithNestedWhereUniqueInput"]> | undefined | null | Variable<any, string>,
-	/** Upsert multiple PageMetadata documents */
-	upsert?: Array<ValueTypes["PageMetadataUpsertWithNestedWhereUniqueInput"]> | undefined | null | Variable<any, string>,
-	/** Disconnect multiple PageMetadata documents */
-	disconnect?: Array<ValueTypes["PageMetadataWhereUniqueInput"]> | undefined | null | Variable<any, string>,
-	/** Delete multiple PageMetadata documents */
-	delete?: Array<ValueTypes["PageMetadataWhereUniqueInput"]> | undefined | null | Variable<any, string>
-};
-	["PageMetadataUpdateManyInput"]: {
-	summary?: string | undefined | null | Variable<any, string>,
-	pageNumber?: number | undefined | null | Variable<any, string>
-};
-	["PageMetadataUpdateManyWithNestedWhereInput"]: {
-	/** Document search */
-	where: ValueTypes["PageMetadataWhereInput"] | Variable<any, string>,
-	/** Update many input */
-	data: ValueTypes["PageMetadataUpdateManyInput"] | Variable<any, string>
-};
-	["PageMetadataUpdateOneInlineInput"]: {
-	/** Create and connect one PageMetadata document */
-	create?: ValueTypes["PageMetadataCreateInput"] | undefined | null | Variable<any, string>,
-	/** Update single PageMetadata document */
-	update?: ValueTypes["PageMetadataUpdateWithNestedWhereUniqueInput"] | undefined | null | Variable<any, string>,
-	/** Upsert single PageMetadata document */
-	upsert?: ValueTypes["PageMetadataUpsertWithNestedWhereUniqueInput"] | undefined | null | Variable<any, string>,
-	/** Connect existing PageMetadata document */
-	connect?: ValueTypes["PageMetadataWhereUniqueInput"] | undefined | null | Variable<any, string>,
-	/** Disconnect currently connected PageMetadata document */
-	disconnect?: boolean | undefined | null | Variable<any, string>,
-	/** Delete currently connected PageMetadata document */
-	delete?: boolean | undefined | null | Variable<any, string>
-};
-	["PageMetadataUpdateWithNestedWhereUniqueInput"]: {
-	/** Unique document search */
-	where: ValueTypes["PageMetadataWhereUniqueInput"] | Variable<any, string>,
-	/** Document to update */
-	data: ValueTypes["PageMetadataUpdateInput"] | Variable<any, string>
-};
-	["PageMetadataUpsertInput"]: {
-	/** Create document if it didn't exist */
-	create: ValueTypes["PageMetadataCreateInput"] | Variable<any, string>,
-	/** Update document if it exists */
-	update: ValueTypes["PageMetadataUpdateInput"] | Variable<any, string>
-};
-	["PageMetadataUpsertWithNestedWhereUniqueInput"]: {
-	/** Unique document search */
-	where: ValueTypes["PageMetadataWhereUniqueInput"] | Variable<any, string>,
-	/** Upsert data */
-	data: ValueTypes["PageMetadataUpsertInput"] | Variable<any, string>
-};
-	/** Identifies documents */
-["PageMetadataWhereInput"]: {
-	/** Contains search across all appropriate fields. */
-	_search?: string | undefined | null | Variable<any, string>,
-	/** Logical AND on all given filters. */
-	AND?: Array<ValueTypes["PageMetadataWhereInput"]> | undefined | null | Variable<any, string>,
-	/** Logical OR on all given filters. */
-	OR?: Array<ValueTypes["PageMetadataWhereInput"]> | undefined | null | Variable<any, string>,
-	/** Logical NOT on all given filters combined by AND. */
-	NOT?: Array<ValueTypes["PageMetadataWhereInput"]> | undefined | null | Variable<any, string>,
-	publishedAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values that are not equal to given value. */
-	publishedAt_not?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values that are contained in given list. */
-	publishedAt_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values that are not contained in given list. */
-	publishedAt_not_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values less than the given value. */
-	publishedAt_lt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values less than or equal the given value. */
-	publishedAt_lte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values greater than the given value. */
-	publishedAt_gt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values greater than or equal the given value. */
-	publishedAt_gte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	updatedAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values that are not equal to given value. */
-	updatedAt_not?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values that are contained in given list. */
-	updatedAt_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values that are not contained in given list. */
-	updatedAt_not_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values less than the given value. */
-	updatedAt_lt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values less than or equal the given value. */
-	updatedAt_lte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values greater than the given value. */
-	updatedAt_gt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values greater than or equal the given value. */
-	updatedAt_gte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	createdAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values that are not equal to given value. */
-	createdAt_not?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values that are contained in given list. */
-	createdAt_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values that are not contained in given list. */
-	createdAt_not_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values less than the given value. */
-	createdAt_lt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values less than or equal the given value. */
-	createdAt_lte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values greater than the given value. */
-	createdAt_gt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values greater than or equal the given value. */
-	createdAt_gte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	id?: string | undefined | null | Variable<any, string>,
-	/** All values that are not equal to given value. */
-	id_not?: string | undefined | null | Variable<any, string>,
-	/** All values that are contained in given list. */
-	id_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values that are not contained in given list. */
-	id_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values containing the given string. */
-	id_contains?: string | undefined | null | Variable<any, string>,
-	/** All values not containing the given string. */
-	id_not_contains?: string | undefined | null | Variable<any, string>,
-	/** All values starting with the given string. */
-	id_starts_with?: string | undefined | null | Variable<any, string>,
-	/** All values not starting with the given string. */
-	id_not_starts_with?: string | undefined | null | Variable<any, string>,
-	/** All values ending with the given string. */
-	id_ends_with?: string | undefined | null | Variable<any, string>,
-	/** All values not ending with the given string */
-	id_not_ends_with?: string | undefined | null | Variable<any, string>,
-	title?: string | undefined | null | Variable<any, string>,
-	/** All values that are not equal to given value. */
-	title_not?: string | undefined | null | Variable<any, string>,
-	/** All values that are contained in given list. */
-	title_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values that are not contained in given list. */
-	title_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values containing the given string. */
-	title_contains?: string | undefined | null | Variable<any, string>,
-	/** All values not containing the given string. */
-	title_not_contains?: string | undefined | null | Variable<any, string>,
-	/** All values starting with the given string. */
-	title_starts_with?: string | undefined | null | Variable<any, string>,
-	/** All values not starting with the given string. */
-	title_not_starts_with?: string | undefined | null | Variable<any, string>,
-	/** All values ending with the given string. */
-	title_ends_with?: string | undefined | null | Variable<any, string>,
-	/** All values not ending with the given string */
-	title_not_ends_with?: string | undefined | null | Variable<any, string>,
-	summary?: string | undefined | null | Variable<any, string>,
-	/** All values that are not equal to given value. */
-	summary_not?: string | undefined | null | Variable<any, string>,
-	/** All values that are contained in given list. */
-	summary_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values that are not contained in given list. */
-	summary_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values containing the given string. */
-	summary_contains?: string | undefined | null | Variable<any, string>,
-	/** All values not containing the given string. */
-	summary_not_contains?: string | undefined | null | Variable<any, string>,
-	/** All values starting with the given string. */
-	summary_starts_with?: string | undefined | null | Variable<any, string>,
-	/** All values not starting with the given string. */
-	summary_not_starts_with?: string | undefined | null | Variable<any, string>,
-	/** All values ending with the given string. */
-	summary_ends_with?: string | undefined | null | Variable<any, string>,
-	/** All values not ending with the given string */
-	summary_not_ends_with?: string | undefined | null | Variable<any, string>,
-	slug?: string | undefined | null | Variable<any, string>,
-	/** All values that are not equal to given value. */
-	slug_not?: string | undefined | null | Variable<any, string>,
-	/** All values that are contained in given list. */
-	slug_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values that are not contained in given list. */
-	slug_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values containing the given string. */
-	slug_contains?: string | undefined | null | Variable<any, string>,
-	/** All values not containing the given string. */
-	slug_not_contains?: string | undefined | null | Variable<any, string>,
-	/** All values starting with the given string. */
-	slug_starts_with?: string | undefined | null | Variable<any, string>,
-	/** All values not starting with the given string. */
-	slug_not_starts_with?: string | undefined | null | Variable<any, string>,
-	/** All values ending with the given string. */
-	slug_ends_with?: string | undefined | null | Variable<any, string>,
-	/** All values not ending with the given string */
-	slug_not_ends_with?: string | undefined | null | Variable<any, string>,
-	pageNumber?: number | undefined | null | Variable<any, string>,
-	/** All values that are not equal to given value. */
-	pageNumber_not?: number | undefined | null | Variable<any, string>,
-	/** All values that are contained in given list. */
-	pageNumber_in?: Array<number | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values that are not contained in given list. */
-	pageNumber_not_in?: Array<number | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values less than the given value. */
-	pageNumber_lt?: number | undefined | null | Variable<any, string>,
-	/** All values less than or equal the given value. */
-	pageNumber_lte?: number | undefined | null | Variable<any, string>,
-	/** All values greater than the given value. */
-	pageNumber_gt?: number | undefined | null | Variable<any, string>,
-	/** All values greater than or equal the given value. */
-	pageNumber_gte?: number | undefined | null | Variable<any, string>,
-	publishedBy?: ValueTypes["UserWhereInput"] | undefined | null | Variable<any, string>,
-	updatedBy?: ValueTypes["UserWhereInput"] | undefined | null | Variable<any, string>,
-	createdBy?: ValueTypes["UserWhereInput"] | undefined | null | Variable<any, string>,
-	image?: ValueTypes["AssetWhereInput"] | undefined | null | Variable<any, string>,
-	scheduledIn_every?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>,
-	scheduledIn_some?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>,
-	scheduledIn_none?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>
-};
-	/** References PageMetadata record uniquely */
-["PageMetadataWhereUniqueInput"]: {
-	id?: string | undefined | null | Variable<any, string>,
-	title?: string | undefined | null | Variable<any, string>,
-	slug?: string | undefined | null | Variable<any, string>
-};
 	["Project"]: AliasType<{
 	/** System stage field */
 	stage?:boolean | `@${string}`,
@@ -2298,9 +2957,7 @@ documentInStages?: [{	/** Potential stages that should be returned */
 	/** The unique identifier */
 	id?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
-	slug?:boolean | `@${string}`,
 	description?:boolean | `@${string}`,
-	tags?:boolean | `@${string}`,
 	demo?:boolean | `@${string}`,
 	sourceCode?:boolean | `@${string}`,
 publishedBy?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
@@ -2331,6 +2988,8 @@ For related models with localized fields in the query's subtree, the first local
 
 This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
 	locales?: Array<ValueTypes["Locale"]> | undefined | null | Variable<any, string>},ValueTypes["Asset"]],
+	/** Tech stack for project */
+	stack?:boolean | `@${string}`,
 scheduledIn?: [{	where?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	/** Allows to optionally override locale filtering behaviour in the query's subtree.
 
 Note that `scheduledIn` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
@@ -2361,12 +3020,11 @@ history?: [{	limit: number | Variable<any, string>,	skip: number | Variable<any,
 	updatedAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
 	createdAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
 	name: string | Variable<any, string>,
-	slug?: string | undefined | null | Variable<any, string>,
 	description: string | Variable<any, string>,
-	tags?: Array<string> | undefined | null | Variable<any, string>,
 	demo?: string | undefined | null | Variable<any, string>,
 	sourceCode?: string | undefined | null | Variable<any, string>,
-	image: ValueTypes["AssetCreateManyInlineInput"] | Variable<any, string>
+	image: ValueTypes["AssetCreateManyInlineInput"] | Variable<any, string>,
+	stack?: Array<ValueTypes["Technologies"]> | undefined | null | Variable<any, string>
 };
 	["ProjectCreateManyInlineInput"]: {
 	/** Create and connect multiple existing Project documents */
@@ -2481,25 +3139,6 @@ history?: [{	limit: number | Variable<any, string>,	skip: number | Variable<any,
 	name_ends_with?: string | undefined | null | Variable<any, string>,
 	/** All values not ending with the given string */
 	name_not_ends_with?: string | undefined | null | Variable<any, string>,
-	slug?: string | undefined | null | Variable<any, string>,
-	/** All values that are not equal to given value. */
-	slug_not?: string | undefined | null | Variable<any, string>,
-	/** All values that are contained in given list. */
-	slug_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values that are not contained in given list. */
-	slug_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values containing the given string. */
-	slug_contains?: string | undefined | null | Variable<any, string>,
-	/** All values not containing the given string. */
-	slug_not_contains?: string | undefined | null | Variable<any, string>,
-	/** All values starting with the given string. */
-	slug_starts_with?: string | undefined | null | Variable<any, string>,
-	/** All values not starting with the given string. */
-	slug_not_starts_with?: string | undefined | null | Variable<any, string>,
-	/** All values ending with the given string. */
-	slug_ends_with?: string | undefined | null | Variable<any, string>,
-	/** All values not ending with the given string */
-	slug_not_ends_with?: string | undefined | null | Variable<any, string>,
 	description?: string | undefined | null | Variable<any, string>,
 	/** All values that are not equal to given value. */
 	description_not?: string | undefined | null | Variable<any, string>,
@@ -2519,16 +3158,6 @@ history?: [{	limit: number | Variable<any, string>,	skip: number | Variable<any,
 	description_ends_with?: string | undefined | null | Variable<any, string>,
 	/** All values not ending with the given string */
 	description_not_ends_with?: string | undefined | null | Variable<any, string>,
-	/** Matches if the field array contains *all* items provided to the filter and order does match */
-	tags?: Array<string> | undefined | null | Variable<any, string>,
-	/** Matches if the field array does not contains *all* items provided to the filter or order does not match */
-	tags_not?: Array<string> | undefined | null | Variable<any, string>,
-	/** Matches if the field array contains *all* items provided to the filter */
-	tags_contains_all?: Array<string> | undefined | null | Variable<any, string>,
-	/** Matches if the field array contains at least one item provided to the filter */
-	tags_contains_some?: Array<string> | undefined | null | Variable<any, string>,
-	/** Matches if the field array does not contain any of the items provided to the filter */
-	tags_contains_none?: Array<string> | undefined | null | Variable<any, string>,
 	demo?: string | undefined | null | Variable<any, string>,
 	/** All values that are not equal to given value. */
 	demo_not?: string | undefined | null | Variable<any, string>,
@@ -2573,6 +3202,16 @@ history?: [{	limit: number | Variable<any, string>,	skip: number | Variable<any,
 	image_every?: ValueTypes["AssetWhereInput"] | undefined | null | Variable<any, string>,
 	image_some?: ValueTypes["AssetWhereInput"] | undefined | null | Variable<any, string>,
 	image_none?: ValueTypes["AssetWhereInput"] | undefined | null | Variable<any, string>,
+	/** Matches if the field array contains *all* items provided to the filter and order does match */
+	stack?: Array<ValueTypes["Technologies"]> | undefined | null | Variable<any, string>,
+	/** Matches if the field array does not contains *all* items provided to the filter or order does not match */
+	stack_not?: Array<ValueTypes["Technologies"]> | undefined | null | Variable<any, string>,
+	/** Matches if the field array contains *all* items provided to the filter */
+	stack_contains_all?: Array<ValueTypes["Technologies"]> | undefined | null | Variable<any, string>,
+	/** Matches if the field array contains at least one item provided to the filter */
+	stack_contains_some?: Array<ValueTypes["Technologies"]> | undefined | null | Variable<any, string>,
+	/** Matches if the field array does not contain any of the items provided to the filter */
+	stack_contains_none?: Array<ValueTypes["Technologies"]> | undefined | null | Variable<any, string>,
 	scheduledIn_every?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>,
 	scheduledIn_some?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>,
 	scheduledIn_none?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>
@@ -2580,12 +3219,11 @@ history?: [{	limit: number | Variable<any, string>,	skip: number | Variable<any,
 	["ProjectOrderByInput"]:ProjectOrderByInput;
 	["ProjectUpdateInput"]: {
 	name?: string | undefined | null | Variable<any, string>,
-	slug?: string | undefined | null | Variable<any, string>,
 	description?: string | undefined | null | Variable<any, string>,
-	tags?: Array<string> | undefined | null | Variable<any, string>,
 	demo?: string | undefined | null | Variable<any, string>,
 	sourceCode?: string | undefined | null | Variable<any, string>,
-	image?: ValueTypes["AssetUpdateManyInlineInput"] | undefined | null | Variable<any, string>
+	image?: ValueTypes["AssetUpdateManyInlineInput"] | undefined | null | Variable<any, string>,
+	stack?: Array<ValueTypes["Technologies"]> | undefined | null | Variable<any, string>
 };
 	["ProjectUpdateManyInlineInput"]: {
 	/** Create and connect multiple Project documents */
@@ -2605,9 +3243,9 @@ history?: [{	limit: number | Variable<any, string>,	skip: number | Variable<any,
 };
 	["ProjectUpdateManyInput"]: {
 	description?: string | undefined | null | Variable<any, string>,
-	tags?: Array<string> | undefined | null | Variable<any, string>,
 	demo?: string | undefined | null | Variable<any, string>,
-	sourceCode?: string | undefined | null | Variable<any, string>
+	sourceCode?: string | undefined | null | Variable<any, string>,
+	stack?: Array<ValueTypes["Technologies"]> | undefined | null | Variable<any, string>
 };
 	["ProjectUpdateManyWithNestedWhereInput"]: {
 	/** Document search */
@@ -2740,25 +3378,6 @@ history?: [{	limit: number | Variable<any, string>,	skip: number | Variable<any,
 	name_ends_with?: string | undefined | null | Variable<any, string>,
 	/** All values not ending with the given string */
 	name_not_ends_with?: string | undefined | null | Variable<any, string>,
-	slug?: string | undefined | null | Variable<any, string>,
-	/** All values that are not equal to given value. */
-	slug_not?: string | undefined | null | Variable<any, string>,
-	/** All values that are contained in given list. */
-	slug_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values that are not contained in given list. */
-	slug_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values containing the given string. */
-	slug_contains?: string | undefined | null | Variable<any, string>,
-	/** All values not containing the given string. */
-	slug_not_contains?: string | undefined | null | Variable<any, string>,
-	/** All values starting with the given string. */
-	slug_starts_with?: string | undefined | null | Variable<any, string>,
-	/** All values not starting with the given string. */
-	slug_not_starts_with?: string | undefined | null | Variable<any, string>,
-	/** All values ending with the given string. */
-	slug_ends_with?: string | undefined | null | Variable<any, string>,
-	/** All values not ending with the given string */
-	slug_not_ends_with?: string | undefined | null | Variable<any, string>,
 	description?: string | undefined | null | Variable<any, string>,
 	/** All values that are not equal to given value. */
 	description_not?: string | undefined | null | Variable<any, string>,
@@ -2778,16 +3397,6 @@ history?: [{	limit: number | Variable<any, string>,	skip: number | Variable<any,
 	description_ends_with?: string | undefined | null | Variable<any, string>,
 	/** All values not ending with the given string */
 	description_not_ends_with?: string | undefined | null | Variable<any, string>,
-	/** Matches if the field array contains *all* items provided to the filter and order does match */
-	tags?: Array<string> | undefined | null | Variable<any, string>,
-	/** Matches if the field array does not contains *all* items provided to the filter or order does not match */
-	tags_not?: Array<string> | undefined | null | Variable<any, string>,
-	/** Matches if the field array contains *all* items provided to the filter */
-	tags_contains_all?: Array<string> | undefined | null | Variable<any, string>,
-	/** Matches if the field array contains at least one item provided to the filter */
-	tags_contains_some?: Array<string> | undefined | null | Variable<any, string>,
-	/** Matches if the field array does not contain any of the items provided to the filter */
-	tags_contains_none?: Array<string> | undefined | null | Variable<any, string>,
 	demo?: string | undefined | null | Variable<any, string>,
 	/** All values that are not equal to given value. */
 	demo_not?: string | undefined | null | Variable<any, string>,
@@ -2832,6 +3441,16 @@ history?: [{	limit: number | Variable<any, string>,	skip: number | Variable<any,
 	image_every?: ValueTypes["AssetWhereInput"] | undefined | null | Variable<any, string>,
 	image_some?: ValueTypes["AssetWhereInput"] | undefined | null | Variable<any, string>,
 	image_none?: ValueTypes["AssetWhereInput"] | undefined | null | Variable<any, string>,
+	/** Matches if the field array contains *all* items provided to the filter and order does match */
+	stack?: Array<ValueTypes["Technologies"]> | undefined | null | Variable<any, string>,
+	/** Matches if the field array does not contains *all* items provided to the filter or order does not match */
+	stack_not?: Array<ValueTypes["Technologies"]> | undefined | null | Variable<any, string>,
+	/** Matches if the field array contains *all* items provided to the filter */
+	stack_contains_all?: Array<ValueTypes["Technologies"]> | undefined | null | Variable<any, string>,
+	/** Matches if the field array contains at least one item provided to the filter */
+	stack_contains_some?: Array<ValueTypes["Technologies"]> | undefined | null | Variable<any, string>,
+	/** Matches if the field array does not contain any of the items provided to the filter */
+	stack_contains_none?: Array<ValueTypes["Technologies"]> | undefined | null | Variable<any, string>,
 	scheduledIn_every?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>,
 	scheduledIn_some?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>,
 	scheduledIn_none?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>
@@ -2839,8 +3458,7 @@ history?: [{	limit: number | Variable<any, string>,	skip: number | Variable<any,
 	/** References Project record uniquely */
 ["ProjectWhereUniqueInput"]: {
 	id?: string | undefined | null | Variable<any, string>,
-	name?: string | undefined | null | Variable<any, string>,
-	slug?: string | undefined | null | Variable<any, string>
+	name?: string | undefined | null | Variable<any, string>
 };
 	["PublishLocaleInput"]: {
 	/** Locales to publish */
@@ -2964,72 +3582,72 @@ For related models with localized fields in the query's subtree, the first local
 This argument may be overwritten by another locales definition in a relational child field, this will effectively use the overwritten argument for the affected query's subtree. */
 	locales: Array<ValueTypes["Locale"]> | Variable<any, string>},ValueTypes["ProjectConnection"]],
 projectVersion?: [{	where: ValueTypes["VersionWhereInput"] | Variable<any, string>},ValueTypes["DocumentVersion"]],
-socials?: [{	where?: ValueTypes["SocialWhereInput"] | undefined | null | Variable<any, string>,	orderBy?: ValueTypes["SocialOrderByInput"] | undefined | null | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	stage: ValueTypes["Stage"] | Variable<any, string>,	/** Defines which locales should be returned.
+seos?: [{	where?: ValueTypes["SeoWhereInput"] | undefined | null | Variable<any, string>,	orderBy?: ValueTypes["SeoOrderByInput"] | undefined | null | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	stage: ValueTypes["Stage"] | Variable<any, string>,	/** Defines which locales should be returned.
 
-Note that `Social` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+Note that `Seo` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
 For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
 
 This argument may be overwritten by another locales definition in a relational child field, this will effectively use the overwritten argument for the affected query's subtree. */
-	locales: Array<ValueTypes["Locale"]> | Variable<any, string>},ValueTypes["Social"]],
-social?: [{	where: ValueTypes["SocialWhereUniqueInput"] | Variable<any, string>,	stage: ValueTypes["Stage"] | Variable<any, string>,	/** Defines which locales should be returned.
+	locales: Array<ValueTypes["Locale"]> | Variable<any, string>},ValueTypes["Seo"]],
+seo?: [{	where: ValueTypes["SeoWhereUniqueInput"] | Variable<any, string>,	stage: ValueTypes["Stage"] | Variable<any, string>,	/** Defines which locales should be returned.
 
-Note that `Social` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+Note that `Seo` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
 For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
 
 This argument may be overwritten by another locales definition in a relational child field, this will effectively use the overwritten argument for the affected query's subtree. */
-	locales: Array<ValueTypes["Locale"]> | Variable<any, string>},ValueTypes["Social"]],
-socialsConnection?: [{	where?: ValueTypes["SocialWhereInput"] | undefined | null | Variable<any, string>,	orderBy?: ValueTypes["SocialOrderByInput"] | undefined | null | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	stage: ValueTypes["Stage"] | Variable<any, string>,	/** Defines which locales should be returned.
+	locales: Array<ValueTypes["Locale"]> | Variable<any, string>},ValueTypes["Seo"]],
+seosConnection?: [{	where?: ValueTypes["SeoWhereInput"] | undefined | null | Variable<any, string>,	orderBy?: ValueTypes["SeoOrderByInput"] | undefined | null | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	stage: ValueTypes["Stage"] | Variable<any, string>,	/** Defines which locales should be returned.
 
-Note that `Social` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+Note that `Seo` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
 For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
 
 This argument may be overwritten by another locales definition in a relational child field, this will effectively use the overwritten argument for the affected query's subtree. */
-	locales: Array<ValueTypes["Locale"]> | Variable<any, string>},ValueTypes["SocialConnection"]],
-socialVersion?: [{	where: ValueTypes["VersionWhereInput"] | Variable<any, string>},ValueTypes["DocumentVersion"]],
-pagesMetadata?: [{	where?: ValueTypes["PageMetadataWhereInput"] | undefined | null | Variable<any, string>,	orderBy?: ValueTypes["PageMetadataOrderByInput"] | undefined | null | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	stage: ValueTypes["Stage"] | Variable<any, string>,	/** Defines which locales should be returned.
+	locales: Array<ValueTypes["Locale"]> | Variable<any, string>},ValueTypes["SeoConnection"]],
+seoVersion?: [{	where: ValueTypes["VersionWhereInput"] | Variable<any, string>},ValueTypes["DocumentVersion"]],
+aboutMes?: [{	where?: ValueTypes["AboutMeWhereInput"] | undefined | null | Variable<any, string>,	orderBy?: ValueTypes["AboutMeOrderByInput"] | undefined | null | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	stage: ValueTypes["Stage"] | Variable<any, string>,	/** Defines which locales should be returned.
 
-Note that `PageMetadata` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+Note that `AboutMe` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
 For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
 
 This argument may be overwritten by another locales definition in a relational child field, this will effectively use the overwritten argument for the affected query's subtree. */
-	locales: Array<ValueTypes["Locale"]> | Variable<any, string>},ValueTypes["PageMetadata"]],
-pageMetadata?: [{	where: ValueTypes["PageMetadataWhereUniqueInput"] | Variable<any, string>,	stage: ValueTypes["Stage"] | Variable<any, string>,	/** Defines which locales should be returned.
+	locales: Array<ValueTypes["Locale"]> | Variable<any, string>},ValueTypes["AboutMe"]],
+aboutMe?: [{	where: ValueTypes["AboutMeWhereUniqueInput"] | Variable<any, string>,	stage: ValueTypes["Stage"] | Variable<any, string>,	/** Defines which locales should be returned.
 
-Note that `PageMetadata` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+Note that `AboutMe` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
 For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
 
 This argument may be overwritten by another locales definition in a relational child field, this will effectively use the overwritten argument for the affected query's subtree. */
-	locales: Array<ValueTypes["Locale"]> | Variable<any, string>},ValueTypes["PageMetadata"]],
-pagesMetadataConnection?: [{	where?: ValueTypes["PageMetadataWhereInput"] | undefined | null | Variable<any, string>,	orderBy?: ValueTypes["PageMetadataOrderByInput"] | undefined | null | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	stage: ValueTypes["Stage"] | Variable<any, string>,	/** Defines which locales should be returned.
+	locales: Array<ValueTypes["Locale"]> | Variable<any, string>},ValueTypes["AboutMe"]],
+aboutMesConnection?: [{	where?: ValueTypes["AboutMeWhereInput"] | undefined | null | Variable<any, string>,	orderBy?: ValueTypes["AboutMeOrderByInput"] | undefined | null | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	stage: ValueTypes["Stage"] | Variable<any, string>,	/** Defines which locales should be returned.
 
-Note that `PageMetadata` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+Note that `AboutMe` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
 For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
 
 This argument may be overwritten by another locales definition in a relational child field, this will effectively use the overwritten argument for the affected query's subtree. */
-	locales: Array<ValueTypes["Locale"]> | Variable<any, string>},ValueTypes["PageMetadataConnection"]],
-pageMetadataVersion?: [{	where: ValueTypes["VersionWhereInput"] | Variable<any, string>},ValueTypes["DocumentVersion"]],
-skills?: [{	where?: ValueTypes["SkillWhereInput"] | undefined | null | Variable<any, string>,	orderBy?: ValueTypes["SkillOrderByInput"] | undefined | null | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	stage: ValueTypes["Stage"] | Variable<any, string>,	/** Defines which locales should be returned.
+	locales: Array<ValueTypes["Locale"]> | Variable<any, string>},ValueTypes["AboutMeConnection"]],
+aboutMeVersion?: [{	where: ValueTypes["VersionWhereInput"] | Variable<any, string>},ValueTypes["DocumentVersion"]],
+skillCategories?: [{	where?: ValueTypes["SkillCategoryWhereInput"] | undefined | null | Variable<any, string>,	orderBy?: ValueTypes["SkillCategoryOrderByInput"] | undefined | null | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	stage: ValueTypes["Stage"] | Variable<any, string>,	/** Defines which locales should be returned.
 
-Note that `Skill` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+Note that `SkillCategory` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
 For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
 
 This argument may be overwritten by another locales definition in a relational child field, this will effectively use the overwritten argument for the affected query's subtree. */
-	locales: Array<ValueTypes["Locale"]> | Variable<any, string>},ValueTypes["Skill"]],
-skill?: [{	where: ValueTypes["SkillWhereUniqueInput"] | Variable<any, string>,	stage: ValueTypes["Stage"] | Variable<any, string>,	/** Defines which locales should be returned.
+	locales: Array<ValueTypes["Locale"]> | Variable<any, string>},ValueTypes["SkillCategory"]],
+skillCategory?: [{	where: ValueTypes["SkillCategoryWhereUniqueInput"] | Variable<any, string>,	stage: ValueTypes["Stage"] | Variable<any, string>,	/** Defines which locales should be returned.
 
-Note that `Skill` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+Note that `SkillCategory` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
 For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
 
 This argument may be overwritten by another locales definition in a relational child field, this will effectively use the overwritten argument for the affected query's subtree. */
-	locales: Array<ValueTypes["Locale"]> | Variable<any, string>},ValueTypes["Skill"]],
-skillsConnection?: [{	where?: ValueTypes["SkillWhereInput"] | undefined | null | Variable<any, string>,	orderBy?: ValueTypes["SkillOrderByInput"] | undefined | null | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	stage: ValueTypes["Stage"] | Variable<any, string>,	/** Defines which locales should be returned.
+	locales: Array<ValueTypes["Locale"]> | Variable<any, string>},ValueTypes["SkillCategory"]],
+skillCategoriesConnection?: [{	where?: ValueTypes["SkillCategoryWhereInput"] | undefined | null | Variable<any, string>,	orderBy?: ValueTypes["SkillCategoryOrderByInput"] | undefined | null | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	stage: ValueTypes["Stage"] | Variable<any, string>,	/** Defines which locales should be returned.
 
-Note that `Skill` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+Note that `SkillCategory` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
 For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
 
 This argument may be overwritten by another locales definition in a relational child field, this will effectively use the overwritten argument for the affected query's subtree. */
-	locales: Array<ValueTypes["Locale"]> | Variable<any, string>},ValueTypes["SkillConnection"]],
-skillVersion?: [{	where: ValueTypes["VersionWhereInput"] | Variable<any, string>},ValueTypes["DocumentVersion"]],
+	locales: Array<ValueTypes["Locale"]> | Variable<any, string>},ValueTypes["SkillCategoryConnection"]],
+skillCategoryVersion?: [{	where: ValueTypes["VersionWhereInput"] | Variable<any, string>},ValueTypes["DocumentVersion"]],
 		__typename?: boolean | `@${string}`
 }>;
 	/** Representing a RGBA color value: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#rgb()_and_rgba() */
@@ -3124,11 +3742,11 @@ This argument will overwrite any existing locale filtering defined in the query'
 	locales?: Array<ValueTypes["Locale"]> | undefined | null | Variable<any, string>},ValueTypes["ScheduledOperationAffectedDocument"]],
 		__typename?: boolean | `@${string}`
 }>;
-	["ScheduledOperationAffectedDocument"]: AliasType<{		["...on Asset"] : ValueTypes["Asset"],
-		["...on PageMetadata"] : ValueTypes["PageMetadata"],
+	["ScheduledOperationAffectedDocument"]: AliasType<{		["...on AboutMe"] : ValueTypes["AboutMe"],
+		["...on Asset"] : ValueTypes["Asset"],
 		["...on Project"] : ValueTypes["Project"],
-		["...on Skill"] : ValueTypes["Skill"],
-		["...on Social"] : ValueTypes["Social"]
+		["...on Seo"] : ValueTypes["Seo"],
+		["...on SkillCategory"] : ValueTypes["SkillCategory"]
 		__typename?: boolean | `@${string}`
 }>;
 	["ScheduledOperationConnectInput"]: {
@@ -3942,13 +4560,13 @@ This argument will overwrite any existing locale filtering defined in the query'
 ["ScheduledReleaseWhereUniqueInput"]: {
 	id?: string | undefined | null | Variable<any, string>
 };
-	["Skill"]: AliasType<{
+	["Seo"]: AliasType<{
 	/** System stage field */
 	stage?:boolean | `@${string}`,
 documentInStages?: [{	/** Potential stages that should be returned */
 	stages: Array<ValueTypes["Stage"]> | Variable<any, string>,	/** Decides if the current stage should be included or not */
 	includeCurrent: boolean | Variable<any, string>,	/** Decides if the documents should match the parent documents locale or should use the fallback order defined in the tree */
-	inheritLocale: boolean | Variable<any, string>},ValueTypes["Skill"]],
+	inheritLocale: boolean | Variable<any, string>},ValueTypes["Seo"]],
 	/** The time the document was published. Null on documents in draft stage. */
 	publishedAt?:boolean | `@${string}`,
 	/** The time the document was updated */
@@ -3957,7 +4575,9 @@ documentInStages?: [{	/** Potential stages that should be returned */
 	createdAt?:boolean | `@${string}`,
 	/** The unique identifier */
 	id?:boolean | `@${string}`,
-	name?:boolean | `@${string}`,
+	title?:boolean | `@${string}`,
+	description?:boolean | `@${string}`,
+	keywords?:boolean | `@${string}`,
 publishedBy?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
 
 Note that `publishedBy` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
@@ -3979,9 +4599,9 @@ For related models with localized fields in the query's subtree, the first local
 
 This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
 	locales?: Array<ValueTypes["Locale"]> | undefined | null | Variable<any, string>},ValueTypes["User"]],
-icon?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
+og_image?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
 
-Note that `icon` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+Note that `og_image` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
 For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
 
 This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
@@ -3997,57 +4617,500 @@ history?: [{	limit: number | Variable<any, string>,	skip: number | Variable<any,
 	stageOverride?: ValueTypes["Stage"] | undefined | null | Variable<any, string>},ValueTypes["Version"]],
 		__typename?: boolean | `@${string}`
 }>;
-	["SkillConnectInput"]: {
+	["SeoConnectInput"]: {
 	/** Document to connect */
-	where: ValueTypes["SkillWhereUniqueInput"] | Variable<any, string>,
+	where: ValueTypes["SeoWhereUniqueInput"] | Variable<any, string>,
 	/** Allow to specify document position in list of connected documents, will default to appending at end of list */
 	position?: ValueTypes["ConnectPositionInput"] | undefined | null | Variable<any, string>
 };
 	/** A connection to a list of items. */
-["SkillConnection"]: AliasType<{
+["SeoConnection"]: AliasType<{
 	/** Information to aid in pagination. */
 	pageInfo?:ValueTypes["PageInfo"],
 	/** A list of edges. */
-	edges?:ValueTypes["SkillEdge"],
+	edges?:ValueTypes["SeoEdge"],
 	aggregate?:ValueTypes["Aggregate"],
 		__typename?: boolean | `@${string}`
 }>;
-	["SkillCreateInput"]: {
+	["SeoCreateInput"]: {
 	updatedAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
 	createdAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	name: string | Variable<any, string>,
-	icon?: ValueTypes["AssetCreateOneInlineInput"] | undefined | null | Variable<any, string>
+	title: string | Variable<any, string>,
+	description: string | Variable<any, string>,
+	keywords: Array<string> | Variable<any, string>,
+	og_image: ValueTypes["AssetCreateOneInlineInput"] | Variable<any, string>
 };
-	["SkillCreateManyInlineInput"]: {
-	/** Create and connect multiple existing Skill documents */
-	create?: Array<ValueTypes["SkillCreateInput"]> | undefined | null | Variable<any, string>,
-	/** Connect multiple existing Skill documents */
-	connect?: Array<ValueTypes["SkillWhereUniqueInput"]> | undefined | null | Variable<any, string>
+	["SeoCreateManyInlineInput"]: {
+	/** Create and connect multiple existing Seo documents */
+	create?: Array<ValueTypes["SeoCreateInput"]> | undefined | null | Variable<any, string>,
+	/** Connect multiple existing Seo documents */
+	connect?: Array<ValueTypes["SeoWhereUniqueInput"]> | undefined | null | Variable<any, string>
 };
-	["SkillCreateOneInlineInput"]: {
-	/** Create and connect one Skill document */
-	create?: ValueTypes["SkillCreateInput"] | undefined | null | Variable<any, string>,
-	/** Connect one existing Skill document */
-	connect?: ValueTypes["SkillWhereUniqueInput"] | undefined | null | Variable<any, string>
+	["SeoCreateOneInlineInput"]: {
+	/** Create and connect one Seo document */
+	create?: ValueTypes["SeoCreateInput"] | undefined | null | Variable<any, string>,
+	/** Connect one existing Seo document */
+	connect?: ValueTypes["SeoWhereUniqueInput"] | undefined | null | Variable<any, string>
 };
 	/** An edge in a connection. */
-["SkillEdge"]: AliasType<{
+["SeoEdge"]: AliasType<{
 	/** The item at the end of the edge. */
-	node?:ValueTypes["Skill"],
+	node?:ValueTypes["Seo"],
 	/** A cursor for use in pagination. */
 	cursor?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** Identifies documents */
-["SkillManyWhereInput"]: {
+["SeoManyWhereInput"]: {
 	/** Contains search across all appropriate fields. */
 	_search?: string | undefined | null | Variable<any, string>,
 	/** Logical AND on all given filters. */
-	AND?: Array<ValueTypes["SkillWhereInput"]> | undefined | null | Variable<any, string>,
+	AND?: Array<ValueTypes["SeoWhereInput"]> | undefined | null | Variable<any, string>,
 	/** Logical OR on all given filters. */
-	OR?: Array<ValueTypes["SkillWhereInput"]> | undefined | null | Variable<any, string>,
+	OR?: Array<ValueTypes["SeoWhereInput"]> | undefined | null | Variable<any, string>,
 	/** Logical NOT on all given filters combined by AND. */
-	NOT?: Array<ValueTypes["SkillWhereInput"]> | undefined | null | Variable<any, string>,
+	NOT?: Array<ValueTypes["SeoWhereInput"]> | undefined | null | Variable<any, string>,
+	publishedAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	publishedAt_not?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	publishedAt_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	publishedAt_not_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values less than the given value. */
+	publishedAt_lt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values less than or equal the given value. */
+	publishedAt_lte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values greater than the given value. */
+	publishedAt_gt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values greater than or equal the given value. */
+	publishedAt_gte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	updatedAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	updatedAt_not?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	updatedAt_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	updatedAt_not_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values less than the given value. */
+	updatedAt_lt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values less than or equal the given value. */
+	updatedAt_lte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values greater than the given value. */
+	updatedAt_gt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values greater than or equal the given value. */
+	updatedAt_gte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	createdAt_not?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	createdAt_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	createdAt_not_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values less than the given value. */
+	createdAt_lt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values less than or equal the given value. */
+	createdAt_lte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values greater than the given value. */
+	createdAt_gt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values greater than or equal the given value. */
+	createdAt_gte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	id?: string | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values containing the given string. */
+	id_contains?: string | undefined | null | Variable<any, string>,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined | null | Variable<any, string>,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined | null | Variable<any, string>,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined | null | Variable<any, string>,
+	title?: string | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	title_not?: string | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	title_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	title_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values containing the given string. */
+	title_contains?: string | undefined | null | Variable<any, string>,
+	/** All values not containing the given string. */
+	title_not_contains?: string | undefined | null | Variable<any, string>,
+	/** All values starting with the given string. */
+	title_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values not starting with the given string. */
+	title_not_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values ending with the given string. */
+	title_ends_with?: string | undefined | null | Variable<any, string>,
+	/** All values not ending with the given string */
+	title_not_ends_with?: string | undefined | null | Variable<any, string>,
+	description?: string | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	description_not?: string | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	description_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	description_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values containing the given string. */
+	description_contains?: string | undefined | null | Variable<any, string>,
+	/** All values not containing the given string. */
+	description_not_contains?: string | undefined | null | Variable<any, string>,
+	/** All values starting with the given string. */
+	description_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values not starting with the given string. */
+	description_not_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values ending with the given string. */
+	description_ends_with?: string | undefined | null | Variable<any, string>,
+	/** All values not ending with the given string */
+	description_not_ends_with?: string | undefined | null | Variable<any, string>,
+	/** Matches if the field array contains *all* items provided to the filter and order does match */
+	keywords?: Array<string> | undefined | null | Variable<any, string>,
+	/** Matches if the field array does not contains *all* items provided to the filter or order does not match */
+	keywords_not?: Array<string> | undefined | null | Variable<any, string>,
+	/** Matches if the field array contains *all* items provided to the filter */
+	keywords_contains_all?: Array<string> | undefined | null | Variable<any, string>,
+	/** Matches if the field array contains at least one item provided to the filter */
+	keywords_contains_some?: Array<string> | undefined | null | Variable<any, string>,
+	/** Matches if the field array does not contain any of the items provided to the filter */
+	keywords_contains_none?: Array<string> | undefined | null | Variable<any, string>,
+	publishedBy?: ValueTypes["UserWhereInput"] | undefined | null | Variable<any, string>,
+	updatedBy?: ValueTypes["UserWhereInput"] | undefined | null | Variable<any, string>,
+	createdBy?: ValueTypes["UserWhereInput"] | undefined | null | Variable<any, string>,
+	og_image?: ValueTypes["AssetWhereInput"] | undefined | null | Variable<any, string>,
+	scheduledIn_every?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>,
+	scheduledIn_some?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>,
+	scheduledIn_none?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>
+};
+	["SeoOrderByInput"]:SeoOrderByInput;
+	["SeoUpdateInput"]: {
+	title?: string | undefined | null | Variable<any, string>,
+	description?: string | undefined | null | Variable<any, string>,
+	keywords?: Array<string> | undefined | null | Variable<any, string>,
+	og_image?: ValueTypes["AssetUpdateOneInlineInput"] | undefined | null | Variable<any, string>
+};
+	["SeoUpdateManyInlineInput"]: {
+	/** Create and connect multiple Seo documents */
+	create?: Array<ValueTypes["SeoCreateInput"]> | undefined | null | Variable<any, string>,
+	/** Connect multiple existing Seo documents */
+	connect?: Array<ValueTypes["SeoConnectInput"]> | undefined | null | Variable<any, string>,
+	/** Override currently-connected documents with multiple existing Seo documents */
+	set?: Array<ValueTypes["SeoWhereUniqueInput"]> | undefined | null | Variable<any, string>,
+	/** Update multiple Seo documents */
+	update?: Array<ValueTypes["SeoUpdateWithNestedWhereUniqueInput"]> | undefined | null | Variable<any, string>,
+	/** Upsert multiple Seo documents */
+	upsert?: Array<ValueTypes["SeoUpsertWithNestedWhereUniqueInput"]> | undefined | null | Variable<any, string>,
+	/** Disconnect multiple Seo documents */
+	disconnect?: Array<ValueTypes["SeoWhereUniqueInput"]> | undefined | null | Variable<any, string>,
+	/** Delete multiple Seo documents */
+	delete?: Array<ValueTypes["SeoWhereUniqueInput"]> | undefined | null | Variable<any, string>
+};
+	["SeoUpdateManyInput"]: {
+	title?: string | undefined | null | Variable<any, string>,
+	description?: string | undefined | null | Variable<any, string>,
+	keywords?: Array<string> | undefined | null | Variable<any, string>
+};
+	["SeoUpdateManyWithNestedWhereInput"]: {
+	/** Document search */
+	where: ValueTypes["SeoWhereInput"] | Variable<any, string>,
+	/** Update many input */
+	data: ValueTypes["SeoUpdateManyInput"] | Variable<any, string>
+};
+	["SeoUpdateOneInlineInput"]: {
+	/** Create and connect one Seo document */
+	create?: ValueTypes["SeoCreateInput"] | undefined | null | Variable<any, string>,
+	/** Update single Seo document */
+	update?: ValueTypes["SeoUpdateWithNestedWhereUniqueInput"] | undefined | null | Variable<any, string>,
+	/** Upsert single Seo document */
+	upsert?: ValueTypes["SeoUpsertWithNestedWhereUniqueInput"] | undefined | null | Variable<any, string>,
+	/** Connect existing Seo document */
+	connect?: ValueTypes["SeoWhereUniqueInput"] | undefined | null | Variable<any, string>,
+	/** Disconnect currently connected Seo document */
+	disconnect?: boolean | undefined | null | Variable<any, string>,
+	/** Delete currently connected Seo document */
+	delete?: boolean | undefined | null | Variable<any, string>
+};
+	["SeoUpdateWithNestedWhereUniqueInput"]: {
+	/** Unique document search */
+	where: ValueTypes["SeoWhereUniqueInput"] | Variable<any, string>,
+	/** Document to update */
+	data: ValueTypes["SeoUpdateInput"] | Variable<any, string>
+};
+	["SeoUpsertInput"]: {
+	/** Create document if it didn't exist */
+	create: ValueTypes["SeoCreateInput"] | Variable<any, string>,
+	/** Update document if it exists */
+	update: ValueTypes["SeoUpdateInput"] | Variable<any, string>
+};
+	["SeoUpsertWithNestedWhereUniqueInput"]: {
+	/** Unique document search */
+	where: ValueTypes["SeoWhereUniqueInput"] | Variable<any, string>,
+	/** Upsert data */
+	data: ValueTypes["SeoUpsertInput"] | Variable<any, string>
+};
+	/** Identifies documents */
+["SeoWhereInput"]: {
+	/** Contains search across all appropriate fields. */
+	_search?: string | undefined | null | Variable<any, string>,
+	/** Logical AND on all given filters. */
+	AND?: Array<ValueTypes["SeoWhereInput"]> | undefined | null | Variable<any, string>,
+	/** Logical OR on all given filters. */
+	OR?: Array<ValueTypes["SeoWhereInput"]> | undefined | null | Variable<any, string>,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<ValueTypes["SeoWhereInput"]> | undefined | null | Variable<any, string>,
+	publishedAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	publishedAt_not?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	publishedAt_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	publishedAt_not_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values less than the given value. */
+	publishedAt_lt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values less than or equal the given value. */
+	publishedAt_lte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values greater than the given value. */
+	publishedAt_gt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values greater than or equal the given value. */
+	publishedAt_gte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	updatedAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	updatedAt_not?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	updatedAt_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	updatedAt_not_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values less than the given value. */
+	updatedAt_lt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values less than or equal the given value. */
+	updatedAt_lte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values greater than the given value. */
+	updatedAt_gt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values greater than or equal the given value. */
+	updatedAt_gte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	createdAt_not?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	createdAt_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	createdAt_not_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values less than the given value. */
+	createdAt_lt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values less than or equal the given value. */
+	createdAt_lte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values greater than the given value. */
+	createdAt_gt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values greater than or equal the given value. */
+	createdAt_gte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	id?: string | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values containing the given string. */
+	id_contains?: string | undefined | null | Variable<any, string>,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined | null | Variable<any, string>,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined | null | Variable<any, string>,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined | null | Variable<any, string>,
+	title?: string | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	title_not?: string | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	title_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	title_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values containing the given string. */
+	title_contains?: string | undefined | null | Variable<any, string>,
+	/** All values not containing the given string. */
+	title_not_contains?: string | undefined | null | Variable<any, string>,
+	/** All values starting with the given string. */
+	title_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values not starting with the given string. */
+	title_not_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values ending with the given string. */
+	title_ends_with?: string | undefined | null | Variable<any, string>,
+	/** All values not ending with the given string */
+	title_not_ends_with?: string | undefined | null | Variable<any, string>,
+	description?: string | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	description_not?: string | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	description_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	description_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values containing the given string. */
+	description_contains?: string | undefined | null | Variable<any, string>,
+	/** All values not containing the given string. */
+	description_not_contains?: string | undefined | null | Variable<any, string>,
+	/** All values starting with the given string. */
+	description_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values not starting with the given string. */
+	description_not_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values ending with the given string. */
+	description_ends_with?: string | undefined | null | Variable<any, string>,
+	/** All values not ending with the given string */
+	description_not_ends_with?: string | undefined | null | Variable<any, string>,
+	/** Matches if the field array contains *all* items provided to the filter and order does match */
+	keywords?: Array<string> | undefined | null | Variable<any, string>,
+	/** Matches if the field array does not contains *all* items provided to the filter or order does not match */
+	keywords_not?: Array<string> | undefined | null | Variable<any, string>,
+	/** Matches if the field array contains *all* items provided to the filter */
+	keywords_contains_all?: Array<string> | undefined | null | Variable<any, string>,
+	/** Matches if the field array contains at least one item provided to the filter */
+	keywords_contains_some?: Array<string> | undefined | null | Variable<any, string>,
+	/** Matches if the field array does not contain any of the items provided to the filter */
+	keywords_contains_none?: Array<string> | undefined | null | Variable<any, string>,
+	publishedBy?: ValueTypes["UserWhereInput"] | undefined | null | Variable<any, string>,
+	updatedBy?: ValueTypes["UserWhereInput"] | undefined | null | Variable<any, string>,
+	createdBy?: ValueTypes["UserWhereInput"] | undefined | null | Variable<any, string>,
+	og_image?: ValueTypes["AssetWhereInput"] | undefined | null | Variable<any, string>,
+	scheduledIn_every?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>,
+	scheduledIn_some?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>,
+	scheduledIn_none?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>
+};
+	/** References Seo record uniquely */
+["SeoWhereUniqueInput"]: {
+	id?: string | undefined | null | Variable<any, string>
+};
+	["Skill"]: AliasType<{
+	/** System stage field */
+	stage?:boolean | `@${string}`,
+	/** The unique identifier */
+	id?:boolean | `@${string}`,
+	name?:boolean | `@${string}`,
+icon?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
+
+Note that `icon` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
+	locales?: Array<ValueTypes["Locale"]> | undefined | null | Variable<any, string>},ValueTypes["Asset"]],
+		__typename?: boolean | `@${string}`
+}>;
+	["SkillCategory"]: AliasType<{
+	/** System stage field */
+	stage?:boolean | `@${string}`,
+documentInStages?: [{	/** Potential stages that should be returned */
+	stages: Array<ValueTypes["Stage"]> | Variable<any, string>,	/** Decides if the current stage should be included or not */
+	includeCurrent: boolean | Variable<any, string>,	/** Decides if the documents should match the parent documents locale or should use the fallback order defined in the tree */
+	inheritLocale: boolean | Variable<any, string>},ValueTypes["SkillCategory"]],
+	/** The time the document was published. Null on documents in draft stage. */
+	publishedAt?:boolean | `@${string}`,
+	/** The time the document was updated */
+	updatedAt?:boolean | `@${string}`,
+	/** The time the document was created */
+	createdAt?:boolean | `@${string}`,
+	/** The unique identifier */
+	id?:boolean | `@${string}`,
+	name?:boolean | `@${string}`,
+skillsList?: [{	skip?: number | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	/** Allows to optionally override locale filtering behaviour in the query's subtree.
+
+Note that `skillsList` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
+	locales?: Array<ValueTypes["Locale"]> | undefined | null | Variable<any, string>},ValueTypes["SkillCategoryskillsListUnion"]],
+publishedBy?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
+
+Note that `publishedBy` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
+	locales?: Array<ValueTypes["Locale"]> | undefined | null | Variable<any, string>},ValueTypes["User"]],
+updatedBy?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
+
+Note that `updatedBy` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
+	locales?: Array<ValueTypes["Locale"]> | undefined | null | Variable<any, string>},ValueTypes["User"]],
+createdBy?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
+
+Note that `createdBy` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
+	locales?: Array<ValueTypes["Locale"]> | undefined | null | Variable<any, string>},ValueTypes["User"]],
+scheduledIn?: [{	where?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	/** Allows to optionally override locale filtering behaviour in the query's subtree.
+
+Note that `scheduledIn` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
+	locales?: Array<ValueTypes["Locale"]> | undefined | null | Variable<any, string>},ValueTypes["ScheduledOperation"]],
+history?: [{	limit: number | Variable<any, string>,	skip: number | Variable<any, string>,	/** This is optional and can be used to fetch the document version history for a specific stage instead of the current one */
+	stageOverride?: ValueTypes["Stage"] | undefined | null | Variable<any, string>},ValueTypes["Version"]],
+		__typename?: boolean | `@${string}`
+}>;
+	["SkillCategoryConnectInput"]: {
+	/** Document to connect */
+	where: ValueTypes["SkillCategoryWhereUniqueInput"] | Variable<any, string>,
+	/** Allow to specify document position in list of connected documents, will default to appending at end of list */
+	position?: ValueTypes["ConnectPositionInput"] | undefined | null | Variable<any, string>
+};
+	/** A connection to a list of items. */
+["SkillCategoryConnection"]: AliasType<{
+	/** Information to aid in pagination. */
+	pageInfo?:ValueTypes["PageInfo"],
+	/** A list of edges. */
+	edges?:ValueTypes["SkillCategoryEdge"],
+	aggregate?:ValueTypes["Aggregate"],
+		__typename?: boolean | `@${string}`
+}>;
+	["SkillCategoryCreateInput"]: {
+	updatedAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	name: string | Variable<any, string>,
+	skillsList?: ValueTypes["SkillCategoryskillsListUnionCreateManyInlineInput"] | undefined | null | Variable<any, string>
+};
+	["SkillCategoryCreateManyInlineInput"]: {
+	/** Create and connect multiple existing SkillCategory documents */
+	create?: Array<ValueTypes["SkillCategoryCreateInput"]> | undefined | null | Variable<any, string>,
+	/** Connect multiple existing SkillCategory documents */
+	connect?: Array<ValueTypes["SkillCategoryWhereUniqueInput"]> | undefined | null | Variable<any, string>
+};
+	["SkillCategoryCreateOneInlineInput"]: {
+	/** Create and connect one SkillCategory document */
+	create?: ValueTypes["SkillCategoryCreateInput"] | undefined | null | Variable<any, string>,
+	/** Connect one existing SkillCategory document */
+	connect?: ValueTypes["SkillCategoryWhereUniqueInput"] | undefined | null | Variable<any, string>
+};
+	/** An edge in a connection. */
+["SkillCategoryEdge"]: AliasType<{
+	/** The item at the end of the edge. */
+	node?:ValueTypes["SkillCategory"],
+	/** A cursor for use in pagination. */
+	cursor?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** Identifies documents */
+["SkillCategoryManyWhereInput"]: {
+	/** Contains search across all appropriate fields. */
+	_search?: string | undefined | null | Variable<any, string>,
+	/** Logical AND on all given filters. */
+	AND?: Array<ValueTypes["SkillCategoryWhereInput"]> | undefined | null | Variable<any, string>,
+	/** Logical OR on all given filters. */
+	OR?: Array<ValueTypes["SkillCategoryWhereInput"]> | undefined | null | Variable<any, string>,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<ValueTypes["SkillCategoryWhereInput"]> | undefined | null | Variable<any, string>,
 	publishedAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
 	/** All values that are not equal to given value. */
 	publishedAt_not?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
@@ -4134,29 +5197,414 @@ history?: [{	limit: number | Variable<any, string>,	skip: number | Variable<any,
 	publishedBy?: ValueTypes["UserWhereInput"] | undefined | null | Variable<any, string>,
 	updatedBy?: ValueTypes["UserWhereInput"] | undefined | null | Variable<any, string>,
 	createdBy?: ValueTypes["UserWhereInput"] | undefined | null | Variable<any, string>,
-	icon?: ValueTypes["AssetWhereInput"] | undefined | null | Variable<any, string>,
 	scheduledIn_every?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>,
 	scheduledIn_some?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>,
 	scheduledIn_none?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>
 };
+	["SkillCategoryOrderByInput"]:SkillCategoryOrderByInput;
+	["SkillCategoryUpdateInput"]: {
+	name?: string | undefined | null | Variable<any, string>,
+	skillsList?: ValueTypes["SkillCategoryskillsListUnionUpdateManyInlineInput"] | undefined | null | Variable<any, string>
+};
+	["SkillCategoryUpdateManyInlineInput"]: {
+	/** Create and connect multiple SkillCategory documents */
+	create?: Array<ValueTypes["SkillCategoryCreateInput"]> | undefined | null | Variable<any, string>,
+	/** Connect multiple existing SkillCategory documents */
+	connect?: Array<ValueTypes["SkillCategoryConnectInput"]> | undefined | null | Variable<any, string>,
+	/** Override currently-connected documents with multiple existing SkillCategory documents */
+	set?: Array<ValueTypes["SkillCategoryWhereUniqueInput"]> | undefined | null | Variable<any, string>,
+	/** Update multiple SkillCategory documents */
+	update?: Array<ValueTypes["SkillCategoryUpdateWithNestedWhereUniqueInput"]> | undefined | null | Variable<any, string>,
+	/** Upsert multiple SkillCategory documents */
+	upsert?: Array<ValueTypes["SkillCategoryUpsertWithNestedWhereUniqueInput"]> | undefined | null | Variable<any, string>,
+	/** Disconnect multiple SkillCategory documents */
+	disconnect?: Array<ValueTypes["SkillCategoryWhereUniqueInput"]> | undefined | null | Variable<any, string>,
+	/** Delete multiple SkillCategory documents */
+	delete?: Array<ValueTypes["SkillCategoryWhereUniqueInput"]> | undefined | null | Variable<any, string>
+};
+	["SkillCategoryUpdateManyInput"]: {
+	/** No fields in updateMany data input */
+	_?: string | undefined | null | Variable<any, string>
+};
+	["SkillCategoryUpdateManyWithNestedWhereInput"]: {
+	/** Document search */
+	where: ValueTypes["SkillCategoryWhereInput"] | Variable<any, string>,
+	/** Update many input */
+	data: ValueTypes["SkillCategoryUpdateManyInput"] | Variable<any, string>
+};
+	["SkillCategoryUpdateOneInlineInput"]: {
+	/** Create and connect one SkillCategory document */
+	create?: ValueTypes["SkillCategoryCreateInput"] | undefined | null | Variable<any, string>,
+	/** Update single SkillCategory document */
+	update?: ValueTypes["SkillCategoryUpdateWithNestedWhereUniqueInput"] | undefined | null | Variable<any, string>,
+	/** Upsert single SkillCategory document */
+	upsert?: ValueTypes["SkillCategoryUpsertWithNestedWhereUniqueInput"] | undefined | null | Variable<any, string>,
+	/** Connect existing SkillCategory document */
+	connect?: ValueTypes["SkillCategoryWhereUniqueInput"] | undefined | null | Variable<any, string>,
+	/** Disconnect currently connected SkillCategory document */
+	disconnect?: boolean | undefined | null | Variable<any, string>,
+	/** Delete currently connected SkillCategory document */
+	delete?: boolean | undefined | null | Variable<any, string>
+};
+	["SkillCategoryUpdateWithNestedWhereUniqueInput"]: {
+	/** Unique document search */
+	where: ValueTypes["SkillCategoryWhereUniqueInput"] | Variable<any, string>,
+	/** Document to update */
+	data: ValueTypes["SkillCategoryUpdateInput"] | Variable<any, string>
+};
+	["SkillCategoryUpsertInput"]: {
+	/** Create document if it didn't exist */
+	create: ValueTypes["SkillCategoryCreateInput"] | Variable<any, string>,
+	/** Update document if it exists */
+	update: ValueTypes["SkillCategoryUpdateInput"] | Variable<any, string>
+};
+	["SkillCategoryUpsertWithNestedWhereUniqueInput"]: {
+	/** Unique document search */
+	where: ValueTypes["SkillCategoryWhereUniqueInput"] | Variable<any, string>,
+	/** Upsert data */
+	data: ValueTypes["SkillCategoryUpsertInput"] | Variable<any, string>
+};
+	/** Identifies documents */
+["SkillCategoryWhereInput"]: {
+	/** Contains search across all appropriate fields. */
+	_search?: string | undefined | null | Variable<any, string>,
+	/** Logical AND on all given filters. */
+	AND?: Array<ValueTypes["SkillCategoryWhereInput"]> | undefined | null | Variable<any, string>,
+	/** Logical OR on all given filters. */
+	OR?: Array<ValueTypes["SkillCategoryWhereInput"]> | undefined | null | Variable<any, string>,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<ValueTypes["SkillCategoryWhereInput"]> | undefined | null | Variable<any, string>,
+	publishedAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	publishedAt_not?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	publishedAt_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	publishedAt_not_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values less than the given value. */
+	publishedAt_lt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values less than or equal the given value. */
+	publishedAt_lte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values greater than the given value. */
+	publishedAt_gt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values greater than or equal the given value. */
+	publishedAt_gte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	updatedAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	updatedAt_not?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	updatedAt_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	updatedAt_not_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values less than the given value. */
+	updatedAt_lt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values less than or equal the given value. */
+	updatedAt_lte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values greater than the given value. */
+	updatedAt_gt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values greater than or equal the given value. */
+	updatedAt_gte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	createdAt_not?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	createdAt_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	createdAt_not_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values less than the given value. */
+	createdAt_lt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values less than or equal the given value. */
+	createdAt_lte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values greater than the given value. */
+	createdAt_gt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	/** All values greater than or equal the given value. */
+	createdAt_gte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
+	id?: string | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values containing the given string. */
+	id_contains?: string | undefined | null | Variable<any, string>,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined | null | Variable<any, string>,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined | null | Variable<any, string>,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined | null | Variable<any, string>,
+	name?: string | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	name_not?: string | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	name_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	name_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values containing the given string. */
+	name_contains?: string | undefined | null | Variable<any, string>,
+	/** All values not containing the given string. */
+	name_not_contains?: string | undefined | null | Variable<any, string>,
+	/** All values starting with the given string. */
+	name_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values not starting with the given string. */
+	name_not_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values ending with the given string. */
+	name_ends_with?: string | undefined | null | Variable<any, string>,
+	/** All values not ending with the given string */
+	name_not_ends_with?: string | undefined | null | Variable<any, string>,
+	publishedBy?: ValueTypes["UserWhereInput"] | undefined | null | Variable<any, string>,
+	updatedBy?: ValueTypes["UserWhereInput"] | undefined | null | Variable<any, string>,
+	createdBy?: ValueTypes["UserWhereInput"] | undefined | null | Variable<any, string>,
+	scheduledIn_every?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>,
+	scheduledIn_some?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>,
+	scheduledIn_none?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>
+};
+	/** References SkillCategory record uniquely */
+["SkillCategoryWhereUniqueInput"]: {
+	id?: string | undefined | null | Variable<any, string>,
+	name?: string | undefined | null | Variable<any, string>
+};
+	["SkillCategoryskillsListUnion"]: AliasType<{		["...on Skill"] : ValueTypes["Skill"]
+		__typename?: boolean | `@${string}`
+}>;
+	["SkillCategoryskillsListUnionConnectInput"]: {
+	Skill?: ValueTypes["SkillConnectInput"] | undefined | null | Variable<any, string>
+};
+	["SkillCategoryskillsListUnionCreateInput"]: {
+	Skill?: ValueTypes["SkillCreateInput"] | undefined | null | Variable<any, string>
+};
+	["SkillCategoryskillsListUnionCreateManyInlineInput"]: {
+	/** Create and connect multiple existing SkillCategoryskillsListUnion documents */
+	create?: Array<ValueTypes["SkillCategoryskillsListUnionCreateInput"]> | undefined | null | Variable<any, string>
+};
+	["SkillCategoryskillsListUnionCreateOneInlineInput"]: {
+	/** Create and connect one SkillCategoryskillsListUnion document */
+	create?: ValueTypes["SkillCategoryskillsListUnionCreateInput"] | undefined | null | Variable<any, string>
+};
+	["SkillCategoryskillsListUnionCreateWithPositionInput"]: {
+	Skill?: ValueTypes["SkillCreateWithPositionInput"] | undefined | null | Variable<any, string>
+};
+	["SkillCategoryskillsListUnionUpdateInput"]: {
+	Skill?: ValueTypes["SkillUpdateInput"] | undefined | null | Variable<any, string>
+};
+	["SkillCategoryskillsListUnionUpdateManyInlineInput"]: {
+	/** Create and connect multiple SkillCategoryskillsListUnion component instances */
+	create?: Array<ValueTypes["SkillCategoryskillsListUnionCreateWithPositionInput"]> | undefined | null | Variable<any, string>,
+	/** Update multiple SkillCategoryskillsListUnion component instances */
+	update?: Array<ValueTypes["SkillCategoryskillsListUnionUpdateWithNestedWhereUniqueAndPositionInput"]> | undefined | null | Variable<any, string>,
+	/** Upsert multiple SkillCategoryskillsListUnion component instances */
+	upsert?: Array<ValueTypes["SkillCategoryskillsListUnionUpsertWithNestedWhereUniqueAndPositionInput"]> | undefined | null | Variable<any, string>,
+	/** Delete multiple SkillCategoryskillsListUnion documents */
+	delete?: Array<ValueTypes["SkillCategoryskillsListUnionWhereUniqueInput"]> | undefined | null | Variable<any, string>
+};
+	["SkillCategoryskillsListUnionUpdateManyWithNestedWhereInput"]: {
+	Skill?: ValueTypes["SkillUpdateManyWithNestedWhereInput"] | undefined | null | Variable<any, string>
+};
+	["SkillCategoryskillsListUnionUpdateOneInlineInput"]: {
+	/** Create and connect one SkillCategoryskillsListUnion document */
+	create?: ValueTypes["SkillCategoryskillsListUnionCreateInput"] | undefined | null | Variable<any, string>,
+	/** Update single SkillCategoryskillsListUnion document */
+	update?: ValueTypes["SkillCategoryskillsListUnionUpdateWithNestedWhereUniqueInput"] | undefined | null | Variable<any, string>,
+	/** Upsert single SkillCategoryskillsListUnion document */
+	upsert?: ValueTypes["SkillCategoryskillsListUnionUpsertWithNestedWhereUniqueInput"] | undefined | null | Variable<any, string>,
+	/** Delete currently connected SkillCategoryskillsListUnion document */
+	delete?: boolean | undefined | null | Variable<any, string>
+};
+	["SkillCategoryskillsListUnionUpdateWithNestedWhereUniqueAndPositionInput"]: {
+	Skill?: ValueTypes["SkillUpdateWithNestedWhereUniqueAndPositionInput"] | undefined | null | Variable<any, string>
+};
+	["SkillCategoryskillsListUnionUpdateWithNestedWhereUniqueInput"]: {
+	Skill?: ValueTypes["SkillUpdateWithNestedWhereUniqueInput"] | undefined | null | Variable<any, string>
+};
+	["SkillCategoryskillsListUnionUpsertWithNestedWhereUniqueAndPositionInput"]: {
+	Skill?: ValueTypes["SkillUpsertWithNestedWhereUniqueAndPositionInput"] | undefined | null | Variable<any, string>
+};
+	["SkillCategoryskillsListUnionUpsertWithNestedWhereUniqueInput"]: {
+	Skill?: ValueTypes["SkillUpsertWithNestedWhereUniqueInput"] | undefined | null | Variable<any, string>
+};
+	["SkillCategoryskillsListUnionWhereInput"]: {
+	Skill?: ValueTypes["SkillWhereInput"] | undefined | null | Variable<any, string>
+};
+	["SkillCategoryskillsListUnionWhereUniqueInput"]: {
+	Skill?: ValueTypes["SkillWhereUniqueInput"] | undefined | null | Variable<any, string>
+};
+	["SkillConnectInput"]: {
+	/** Document to connect */
+	where: ValueTypes["SkillWhereUniqueInput"] | Variable<any, string>,
+	/** Allow to specify document position in list of connected documents, will default to appending at end of list */
+	position?: ValueTypes["ConnectPositionInput"] | undefined | null | Variable<any, string>
+};
+	/** A connection to a list of items. */
+["SkillConnection"]: AliasType<{
+	/** Information to aid in pagination. */
+	pageInfo?:ValueTypes["PageInfo"],
+	/** A list of edges. */
+	edges?:ValueTypes["SkillEdge"],
+	aggregate?:ValueTypes["Aggregate"],
+		__typename?: boolean | `@${string}`
+}>;
+	["SkillCreateInput"]: {
+	name: string | Variable<any, string>,
+	icon: ValueTypes["AssetCreateOneInlineInput"] | Variable<any, string>
+};
+	["SkillCreateManyInlineInput"]: {
+	/** Create and connect multiple existing Skill documents */
+	create?: Array<ValueTypes["SkillCreateInput"]> | undefined | null | Variable<any, string>
+};
+	["SkillCreateOneInlineInput"]: {
+	/** Create and connect one Skill document */
+	create?: ValueTypes["SkillCreateInput"] | undefined | null | Variable<any, string>
+};
+	["SkillCreateWithPositionInput"]: {
+	/** Position in the list of existing component instances, will default to appending at the end of list */
+	position?: ValueTypes["ConnectPositionInput"] | undefined | null | Variable<any, string>,
+	/** Document to create */
+	data: ValueTypes["SkillCreateInput"] | Variable<any, string>
+};
+	/** An edge in a connection. */
+["SkillEdge"]: AliasType<{
+	/** The item at the end of the edge. */
+	node?:ValueTypes["Skill"],
+	/** A cursor for use in pagination. */
+	cursor?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** Identifies documents */
+["SkillManyWhereInput"]: {
+	/** Contains search across all appropriate fields. */
+	_search?: string | undefined | null | Variable<any, string>,
+	/** Logical AND on all given filters. */
+	AND?: Array<ValueTypes["SkillWhereInput"]> | undefined | null | Variable<any, string>,
+	/** Logical OR on all given filters. */
+	OR?: Array<ValueTypes["SkillWhereInput"]> | undefined | null | Variable<any, string>,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<ValueTypes["SkillWhereInput"]> | undefined | null | Variable<any, string>,
+	id?: string | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values containing the given string. */
+	id_contains?: string | undefined | null | Variable<any, string>,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined | null | Variable<any, string>,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined | null | Variable<any, string>,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined | null | Variable<any, string>,
+	name?: string | undefined | null | Variable<any, string>,
+	/** All values that are not equal to given value. */
+	name_not?: string | undefined | null | Variable<any, string>,
+	/** All values that are contained in given list. */
+	name_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values that are not contained in given list. */
+	name_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
+	/** All values containing the given string. */
+	name_contains?: string | undefined | null | Variable<any, string>,
+	/** All values not containing the given string. */
+	name_not_contains?: string | undefined | null | Variable<any, string>,
+	/** All values starting with the given string. */
+	name_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values not starting with the given string. */
+	name_not_starts_with?: string | undefined | null | Variable<any, string>,
+	/** All values ending with the given string. */
+	name_ends_with?: string | undefined | null | Variable<any, string>,
+	/** All values not ending with the given string */
+	name_not_ends_with?: string | undefined | null | Variable<any, string>,
+	icon?: ValueTypes["AssetWhereInput"] | undefined | null | Variable<any, string>
+};
 	["SkillOrderByInput"]:SkillOrderByInput;
+	["SkillParent"]: AliasType<{		["...on SkillCategory"] : ValueTypes["SkillCategory"]
+		__typename?: boolean | `@${string}`
+}>;
+	["SkillParentConnectInput"]: {
+	SkillCategory?: ValueTypes["SkillCategoryConnectInput"] | undefined | null | Variable<any, string>
+};
+	["SkillParentCreateInput"]: {
+	SkillCategory?: ValueTypes["SkillCategoryCreateInput"] | undefined | null | Variable<any, string>
+};
+	["SkillParentCreateManyInlineInput"]: {
+	/** Create and connect multiple existing SkillParent documents */
+	create?: Array<ValueTypes["SkillParentCreateInput"]> | undefined | null | Variable<any, string>,
+	/** Connect multiple existing SkillParent documents */
+	connect?: Array<ValueTypes["SkillParentWhereUniqueInput"]> | undefined | null | Variable<any, string>
+};
+	["SkillParentCreateOneInlineInput"]: {
+	/** Create and connect one SkillParent document */
+	create?: ValueTypes["SkillParentCreateInput"] | undefined | null | Variable<any, string>,
+	/** Connect one existing SkillParent document */
+	connect?: ValueTypes["SkillParentWhereUniqueInput"] | undefined | null | Variable<any, string>
+};
+	["SkillParentUpdateInput"]: {
+	SkillCategory?: ValueTypes["SkillCategoryUpdateInput"] | undefined | null | Variable<any, string>
+};
+	["SkillParentUpdateManyInlineInput"]: {
+	/** Create and connect multiple SkillParent documents */
+	create?: Array<ValueTypes["SkillParentCreateInput"]> | undefined | null | Variable<any, string>,
+	/** Connect multiple existing SkillParent documents */
+	connect?: Array<ValueTypes["SkillParentConnectInput"]> | undefined | null | Variable<any, string>,
+	/** Override currently-connected documents with multiple existing SkillParent documents */
+	set?: Array<ValueTypes["SkillParentWhereUniqueInput"]> | undefined | null | Variable<any, string>,
+	/** Update multiple SkillParent documents */
+	update?: Array<ValueTypes["SkillParentUpdateWithNestedWhereUniqueInput"]> | undefined | null | Variable<any, string>,
+	/** Upsert multiple SkillParent documents */
+	upsert?: Array<ValueTypes["SkillParentUpsertWithNestedWhereUniqueInput"]> | undefined | null | Variable<any, string>,
+	/** Disconnect multiple SkillParent documents */
+	disconnect?: Array<ValueTypes["SkillParentWhereUniqueInput"]> | undefined | null | Variable<any, string>,
+	/** Delete multiple SkillParent documents */
+	delete?: Array<ValueTypes["SkillParentWhereUniqueInput"]> | undefined | null | Variable<any, string>
+};
+	["SkillParentUpdateManyWithNestedWhereInput"]: {
+	SkillCategory?: ValueTypes["SkillCategoryUpdateManyWithNestedWhereInput"] | undefined | null | Variable<any, string>
+};
+	["SkillParentUpdateOneInlineInput"]: {
+	/** Create and connect one SkillParent document */
+	create?: ValueTypes["SkillParentCreateInput"] | undefined | null | Variable<any, string>,
+	/** Update single SkillParent document */
+	update?: ValueTypes["SkillParentUpdateWithNestedWhereUniqueInput"] | undefined | null | Variable<any, string>,
+	/** Upsert single SkillParent document */
+	upsert?: ValueTypes["SkillParentUpsertWithNestedWhereUniqueInput"] | undefined | null | Variable<any, string>,
+	/** Connect existing SkillParent document */
+	connect?: ValueTypes["SkillParentWhereUniqueInput"] | undefined | null | Variable<any, string>,
+	/** Disconnect currently connected SkillParent document */
+	disconnect?: boolean | undefined | null | Variable<any, string>,
+	/** Delete currently connected SkillParent document */
+	delete?: boolean | undefined | null | Variable<any, string>
+};
+	["SkillParentUpdateWithNestedWhereUniqueInput"]: {
+	SkillCategory?: ValueTypes["SkillCategoryUpdateWithNestedWhereUniqueInput"] | undefined | null | Variable<any, string>
+};
+	["SkillParentUpsertWithNestedWhereUniqueInput"]: {
+	SkillCategory?: ValueTypes["SkillCategoryUpsertWithNestedWhereUniqueInput"] | undefined | null | Variable<any, string>
+};
+	["SkillParentWhereInput"]: {
+	SkillCategory?: ValueTypes["SkillCategoryWhereInput"] | undefined | null | Variable<any, string>
+};
+	["SkillParentWhereUniqueInput"]: {
+	SkillCategory?: ValueTypes["SkillCategoryWhereUniqueInput"] | undefined | null | Variable<any, string>
+};
 	["SkillUpdateInput"]: {
 	name?: string | undefined | null | Variable<any, string>,
 	icon?: ValueTypes["AssetUpdateOneInlineInput"] | undefined | null | Variable<any, string>
 };
 	["SkillUpdateManyInlineInput"]: {
-	/** Create and connect multiple Skill documents */
-	create?: Array<ValueTypes["SkillCreateInput"]> | undefined | null | Variable<any, string>,
-	/** Connect multiple existing Skill documents */
-	connect?: Array<ValueTypes["SkillConnectInput"]> | undefined | null | Variable<any, string>,
-	/** Override currently-connected documents with multiple existing Skill documents */
-	set?: Array<ValueTypes["SkillWhereUniqueInput"]> | undefined | null | Variable<any, string>,
-	/** Update multiple Skill documents */
-	update?: Array<ValueTypes["SkillUpdateWithNestedWhereUniqueInput"]> | undefined | null | Variable<any, string>,
-	/** Upsert multiple Skill documents */
-	upsert?: Array<ValueTypes["SkillUpsertWithNestedWhereUniqueInput"]> | undefined | null | Variable<any, string>,
-	/** Disconnect multiple Skill documents */
-	disconnect?: Array<ValueTypes["SkillWhereUniqueInput"]> | undefined | null | Variable<any, string>,
+	/** Create and connect multiple Skill component instances */
+	create?: Array<ValueTypes["SkillCreateWithPositionInput"]> | undefined | null | Variable<any, string>,
+	/** Update multiple Skill component instances */
+	update?: Array<ValueTypes["SkillUpdateWithNestedWhereUniqueAndPositionInput"]> | undefined | null | Variable<any, string>,
+	/** Upsert multiple Skill component instances */
+	upsert?: Array<ValueTypes["SkillUpsertWithNestedWhereUniqueAndPositionInput"]> | undefined | null | Variable<any, string>,
 	/** Delete multiple Skill documents */
 	delete?: Array<ValueTypes["SkillWhereUniqueInput"]> | undefined | null | Variable<any, string>
 };
@@ -4177,12 +5625,16 @@ history?: [{	limit: number | Variable<any, string>,	skip: number | Variable<any,
 	update?: ValueTypes["SkillUpdateWithNestedWhereUniqueInput"] | undefined | null | Variable<any, string>,
 	/** Upsert single Skill document */
 	upsert?: ValueTypes["SkillUpsertWithNestedWhereUniqueInput"] | undefined | null | Variable<any, string>,
-	/** Connect existing Skill document */
-	connect?: ValueTypes["SkillWhereUniqueInput"] | undefined | null | Variable<any, string>,
-	/** Disconnect currently connected Skill document */
-	disconnect?: boolean | undefined | null | Variable<any, string>,
 	/** Delete currently connected Skill document */
 	delete?: boolean | undefined | null | Variable<any, string>
+};
+	["SkillUpdateWithNestedWhereUniqueAndPositionInput"]: {
+	/** Unique component instance search */
+	where: ValueTypes["SkillWhereUniqueInput"] | Variable<any, string>,
+	/** Position in the list of existing component instances, will default to appending at the end of list */
+	position?: ValueTypes["ConnectPositionInput"] | undefined | null | Variable<any, string>,
+	/** Document to update */
+	data?: ValueTypes["SkillUpdateInput"] | undefined | null | Variable<any, string>
 };
 	["SkillUpdateWithNestedWhereUniqueInput"]: {
 	/** Unique document search */
@@ -4195,6 +5647,14 @@ history?: [{	limit: number | Variable<any, string>,	skip: number | Variable<any,
 	create: ValueTypes["SkillCreateInput"] | Variable<any, string>,
 	/** Update document if it exists */
 	update: ValueTypes["SkillUpdateInput"] | Variable<any, string>
+};
+	["SkillUpsertWithNestedWhereUniqueAndPositionInput"]: {
+	/** Unique component instance search */
+	where: ValueTypes["SkillWhereUniqueInput"] | Variable<any, string>,
+	/** Position in the list of existing component instances, will default to appending at the end of list */
+	position?: ValueTypes["ConnectPositionInput"] | undefined | null | Variable<any, string>,
+	/** Document to upsert */
+	data?: ValueTypes["SkillUpsertInput"] | undefined | null | Variable<any, string>
 };
 	["SkillUpsertWithNestedWhereUniqueInput"]: {
 	/** Unique document search */
@@ -4212,51 +5672,6 @@ history?: [{	limit: number | Variable<any, string>,	skip: number | Variable<any,
 	OR?: Array<ValueTypes["SkillWhereInput"]> | undefined | null | Variable<any, string>,
 	/** Logical NOT on all given filters combined by AND. */
 	NOT?: Array<ValueTypes["SkillWhereInput"]> | undefined | null | Variable<any, string>,
-	publishedAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values that are not equal to given value. */
-	publishedAt_not?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values that are contained in given list. */
-	publishedAt_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values that are not contained in given list. */
-	publishedAt_not_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values less than the given value. */
-	publishedAt_lt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values less than or equal the given value. */
-	publishedAt_lte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values greater than the given value. */
-	publishedAt_gt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values greater than or equal the given value. */
-	publishedAt_gte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	updatedAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values that are not equal to given value. */
-	updatedAt_not?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values that are contained in given list. */
-	updatedAt_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values that are not contained in given list. */
-	updatedAt_not_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values less than the given value. */
-	updatedAt_lt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values less than or equal the given value. */
-	updatedAt_lte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values greater than the given value. */
-	updatedAt_gt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values greater than or equal the given value. */
-	updatedAt_gte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	createdAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values that are not equal to given value. */
-	createdAt_not?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values that are contained in given list. */
-	createdAt_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values that are not contained in given list. */
-	createdAt_not_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values less than the given value. */
-	createdAt_lt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values less than or equal the given value. */
-	createdAt_lte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values greater than the given value. */
-	createdAt_gt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values greater than or equal the given value. */
-	createdAt_gte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
 	id?: string | undefined | null | Variable<any, string>,
 	/** All values that are not equal to given value. */
 	id_not?: string | undefined | null | Variable<any, string>,
@@ -4295,435 +5710,17 @@ history?: [{	limit: number | Variable<any, string>,	skip: number | Variable<any,
 	name_ends_with?: string | undefined | null | Variable<any, string>,
 	/** All values not ending with the given string */
 	name_not_ends_with?: string | undefined | null | Variable<any, string>,
-	publishedBy?: ValueTypes["UserWhereInput"] | undefined | null | Variable<any, string>,
-	updatedBy?: ValueTypes["UserWhereInput"] | undefined | null | Variable<any, string>,
-	createdBy?: ValueTypes["UserWhereInput"] | undefined | null | Variable<any, string>,
-	icon?: ValueTypes["AssetWhereInput"] | undefined | null | Variable<any, string>,
-	scheduledIn_every?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>,
-	scheduledIn_some?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>,
-	scheduledIn_none?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>
+	icon?: ValueTypes["AssetWhereInput"] | undefined | null | Variable<any, string>
 };
 	/** References Skill record uniquely */
 ["SkillWhereUniqueInput"]: {
 	id?: string | undefined | null | Variable<any, string>,
 	name?: string | undefined | null | Variable<any, string>
 };
-	["Social"]: AliasType<{
-	/** System stage field */
-	stage?:boolean | `@${string}`,
-documentInStages?: [{	/** Potential stages that should be returned */
-	stages: Array<ValueTypes["Stage"]> | Variable<any, string>,	/** Decides if the current stage should be included or not */
-	includeCurrent: boolean | Variable<any, string>,	/** Decides if the documents should match the parent documents locale or should use the fallback order defined in the tree */
-	inheritLocale: boolean | Variable<any, string>},ValueTypes["Social"]],
-	/** The time the document was published. Null on documents in draft stage. */
-	publishedAt?:boolean | `@${string}`,
-	/** The time the document was updated */
-	updatedAt?:boolean | `@${string}`,
-	/** The time the document was created */
-	createdAt?:boolean | `@${string}`,
-	/** The unique identifier */
-	id?:boolean | `@${string}`,
-	/** Social media name */
-	name?:boolean | `@${string}`,
-	/** Social media link */
-	url?:boolean | `@${string}`,
-	/** Social media color */
-	color?:ValueTypes["Color"],
-publishedBy?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
-
-Note that `publishedBy` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
-For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
-
-This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
-	locales?: Array<ValueTypes["Locale"]> | undefined | null | Variable<any, string>},ValueTypes["User"]],
-updatedBy?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
-
-Note that `updatedBy` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
-For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
-
-This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
-	locales?: Array<ValueTypes["Locale"]> | undefined | null | Variable<any, string>},ValueTypes["User"]],
-createdBy?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
-
-Note that `createdBy` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
-For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
-
-This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
-	locales?: Array<ValueTypes["Locale"]> | undefined | null | Variable<any, string>},ValueTypes["User"]],
-image?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
-
-Note that `image` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
-For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
-
-This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
-	locales?: Array<ValueTypes["Locale"]> | undefined | null | Variable<any, string>},ValueTypes["Asset"]],
-scheduledIn?: [{	where?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>,	skip?: number | undefined | null | Variable<any, string>,	after?: string | undefined | null | Variable<any, string>,	before?: string | undefined | null | Variable<any, string>,	first?: number | undefined | null | Variable<any, string>,	last?: number | undefined | null | Variable<any, string>,	/** Allows to optionally override locale filtering behaviour in the query's subtree.
-
-Note that `scheduledIn` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
-For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
-
-This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
-	locales?: Array<ValueTypes["Locale"]> | undefined | null | Variable<any, string>},ValueTypes["ScheduledOperation"]],
-history?: [{	limit: number | Variable<any, string>,	skip: number | Variable<any, string>,	/** This is optional and can be used to fetch the document version history for a specific stage instead of the current one */
-	stageOverride?: ValueTypes["Stage"] | undefined | null | Variable<any, string>},ValueTypes["Version"]],
-		__typename?: boolean | `@${string}`
-}>;
-	["SocialConnectInput"]: {
-	/** Document to connect */
-	where: ValueTypes["SocialWhereUniqueInput"] | Variable<any, string>,
-	/** Allow to specify document position in list of connected documents, will default to appending at end of list */
-	position?: ValueTypes["ConnectPositionInput"] | undefined | null | Variable<any, string>
-};
-	/** A connection to a list of items. */
-["SocialConnection"]: AliasType<{
-	/** Information to aid in pagination. */
-	pageInfo?:ValueTypes["PageInfo"],
-	/** A list of edges. */
-	edges?:ValueTypes["SocialEdge"],
-	aggregate?:ValueTypes["Aggregate"],
-		__typename?: boolean | `@${string}`
-}>;
-	["SocialCreateInput"]: {
-	updatedAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	createdAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	name: string | Variable<any, string>,
-	url: string | Variable<any, string>,
-	color?: ValueTypes["ColorInput"] | undefined | null | Variable<any, string>,
-	image: ValueTypes["AssetCreateOneInlineInput"] | Variable<any, string>
-};
-	["SocialCreateManyInlineInput"]: {
-	/** Create and connect multiple existing Social documents */
-	create?: Array<ValueTypes["SocialCreateInput"]> | undefined | null | Variable<any, string>,
-	/** Connect multiple existing Social documents */
-	connect?: Array<ValueTypes["SocialWhereUniqueInput"]> | undefined | null | Variable<any, string>
-};
-	["SocialCreateOneInlineInput"]: {
-	/** Create and connect one Social document */
-	create?: ValueTypes["SocialCreateInput"] | undefined | null | Variable<any, string>,
-	/** Connect one existing Social document */
-	connect?: ValueTypes["SocialWhereUniqueInput"] | undefined | null | Variable<any, string>
-};
-	/** An edge in a connection. */
-["SocialEdge"]: AliasType<{
-	/** The item at the end of the edge. */
-	node?:ValueTypes["Social"],
-	/** A cursor for use in pagination. */
-	cursor?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
-}>;
-	/** Identifies documents */
-["SocialManyWhereInput"]: {
-	/** Contains search across all appropriate fields. */
-	_search?: string | undefined | null | Variable<any, string>,
-	/** Logical AND on all given filters. */
-	AND?: Array<ValueTypes["SocialWhereInput"]> | undefined | null | Variable<any, string>,
-	/** Logical OR on all given filters. */
-	OR?: Array<ValueTypes["SocialWhereInput"]> | undefined | null | Variable<any, string>,
-	/** Logical NOT on all given filters combined by AND. */
-	NOT?: Array<ValueTypes["SocialWhereInput"]> | undefined | null | Variable<any, string>,
-	publishedAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values that are not equal to given value. */
-	publishedAt_not?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values that are contained in given list. */
-	publishedAt_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values that are not contained in given list. */
-	publishedAt_not_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values less than the given value. */
-	publishedAt_lt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values less than or equal the given value. */
-	publishedAt_lte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values greater than the given value. */
-	publishedAt_gt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values greater than or equal the given value. */
-	publishedAt_gte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	updatedAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values that are not equal to given value. */
-	updatedAt_not?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values that are contained in given list. */
-	updatedAt_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values that are not contained in given list. */
-	updatedAt_not_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values less than the given value. */
-	updatedAt_lt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values less than or equal the given value. */
-	updatedAt_lte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values greater than the given value. */
-	updatedAt_gt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values greater than or equal the given value. */
-	updatedAt_gte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	createdAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values that are not equal to given value. */
-	createdAt_not?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values that are contained in given list. */
-	createdAt_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values that are not contained in given list. */
-	createdAt_not_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values less than the given value. */
-	createdAt_lt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values less than or equal the given value. */
-	createdAt_lte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values greater than the given value. */
-	createdAt_gt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values greater than or equal the given value. */
-	createdAt_gte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	id?: string | undefined | null | Variable<any, string>,
-	/** All values that are not equal to given value. */
-	id_not?: string | undefined | null | Variable<any, string>,
-	/** All values that are contained in given list. */
-	id_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values that are not contained in given list. */
-	id_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values containing the given string. */
-	id_contains?: string | undefined | null | Variable<any, string>,
-	/** All values not containing the given string. */
-	id_not_contains?: string | undefined | null | Variable<any, string>,
-	/** All values starting with the given string. */
-	id_starts_with?: string | undefined | null | Variable<any, string>,
-	/** All values not starting with the given string. */
-	id_not_starts_with?: string | undefined | null | Variable<any, string>,
-	/** All values ending with the given string. */
-	id_ends_with?: string | undefined | null | Variable<any, string>,
-	/** All values not ending with the given string */
-	id_not_ends_with?: string | undefined | null | Variable<any, string>,
-	name?: string | undefined | null | Variable<any, string>,
-	/** All values that are not equal to given value. */
-	name_not?: string | undefined | null | Variable<any, string>,
-	/** All values that are contained in given list. */
-	name_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values that are not contained in given list. */
-	name_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values containing the given string. */
-	name_contains?: string | undefined | null | Variable<any, string>,
-	/** All values not containing the given string. */
-	name_not_contains?: string | undefined | null | Variable<any, string>,
-	/** All values starting with the given string. */
-	name_starts_with?: string | undefined | null | Variable<any, string>,
-	/** All values not starting with the given string. */
-	name_not_starts_with?: string | undefined | null | Variable<any, string>,
-	/** All values ending with the given string. */
-	name_ends_with?: string | undefined | null | Variable<any, string>,
-	/** All values not ending with the given string */
-	name_not_ends_with?: string | undefined | null | Variable<any, string>,
-	url?: string | undefined | null | Variable<any, string>,
-	/** All values that are not equal to given value. */
-	url_not?: string | undefined | null | Variable<any, string>,
-	/** All values that are contained in given list. */
-	url_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values that are not contained in given list. */
-	url_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values containing the given string. */
-	url_contains?: string | undefined | null | Variable<any, string>,
-	/** All values not containing the given string. */
-	url_not_contains?: string | undefined | null | Variable<any, string>,
-	/** All values starting with the given string. */
-	url_starts_with?: string | undefined | null | Variable<any, string>,
-	/** All values not starting with the given string. */
-	url_not_starts_with?: string | undefined | null | Variable<any, string>,
-	/** All values ending with the given string. */
-	url_ends_with?: string | undefined | null | Variable<any, string>,
-	/** All values not ending with the given string */
-	url_not_ends_with?: string | undefined | null | Variable<any, string>,
-	publishedBy?: ValueTypes["UserWhereInput"] | undefined | null | Variable<any, string>,
-	updatedBy?: ValueTypes["UserWhereInput"] | undefined | null | Variable<any, string>,
-	createdBy?: ValueTypes["UserWhereInput"] | undefined | null | Variable<any, string>,
-	image?: ValueTypes["AssetWhereInput"] | undefined | null | Variable<any, string>,
-	scheduledIn_every?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>,
-	scheduledIn_some?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>,
-	scheduledIn_none?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>
-};
-	["SocialOrderByInput"]:SocialOrderByInput;
-	["SocialUpdateInput"]: {
-	name?: string | undefined | null | Variable<any, string>,
-	url?: string | undefined | null | Variable<any, string>,
-	color?: ValueTypes["ColorInput"] | undefined | null | Variable<any, string>,
-	image?: ValueTypes["AssetUpdateOneInlineInput"] | undefined | null | Variable<any, string>
-};
-	["SocialUpdateManyInlineInput"]: {
-	/** Create and connect multiple Social documents */
-	create?: Array<ValueTypes["SocialCreateInput"]> | undefined | null | Variable<any, string>,
-	/** Connect multiple existing Social documents */
-	connect?: Array<ValueTypes["SocialConnectInput"]> | undefined | null | Variable<any, string>,
-	/** Override currently-connected documents with multiple existing Social documents */
-	set?: Array<ValueTypes["SocialWhereUniqueInput"]> | undefined | null | Variable<any, string>,
-	/** Update multiple Social documents */
-	update?: Array<ValueTypes["SocialUpdateWithNestedWhereUniqueInput"]> | undefined | null | Variable<any, string>,
-	/** Upsert multiple Social documents */
-	upsert?: Array<ValueTypes["SocialUpsertWithNestedWhereUniqueInput"]> | undefined | null | Variable<any, string>,
-	/** Disconnect multiple Social documents */
-	disconnect?: Array<ValueTypes["SocialWhereUniqueInput"]> | undefined | null | Variable<any, string>,
-	/** Delete multiple Social documents */
-	delete?: Array<ValueTypes["SocialWhereUniqueInput"]> | undefined | null | Variable<any, string>
-};
-	["SocialUpdateManyInput"]: {
-	name?: string | undefined | null | Variable<any, string>,
-	color?: ValueTypes["ColorInput"] | undefined | null | Variable<any, string>
-};
-	["SocialUpdateManyWithNestedWhereInput"]: {
-	/** Document search */
-	where: ValueTypes["SocialWhereInput"] | Variable<any, string>,
-	/** Update many input */
-	data: ValueTypes["SocialUpdateManyInput"] | Variable<any, string>
-};
-	["SocialUpdateOneInlineInput"]: {
-	/** Create and connect one Social document */
-	create?: ValueTypes["SocialCreateInput"] | undefined | null | Variable<any, string>,
-	/** Update single Social document */
-	update?: ValueTypes["SocialUpdateWithNestedWhereUniqueInput"] | undefined | null | Variable<any, string>,
-	/** Upsert single Social document */
-	upsert?: ValueTypes["SocialUpsertWithNestedWhereUniqueInput"] | undefined | null | Variable<any, string>,
-	/** Connect existing Social document */
-	connect?: ValueTypes["SocialWhereUniqueInput"] | undefined | null | Variable<any, string>,
-	/** Disconnect currently connected Social document */
-	disconnect?: boolean | undefined | null | Variable<any, string>,
-	/** Delete currently connected Social document */
-	delete?: boolean | undefined | null | Variable<any, string>
-};
-	["SocialUpdateWithNestedWhereUniqueInput"]: {
-	/** Unique document search */
-	where: ValueTypes["SocialWhereUniqueInput"] | Variable<any, string>,
-	/** Document to update */
-	data: ValueTypes["SocialUpdateInput"] | Variable<any, string>
-};
-	["SocialUpsertInput"]: {
-	/** Create document if it didn't exist */
-	create: ValueTypes["SocialCreateInput"] | Variable<any, string>,
-	/** Update document if it exists */
-	update: ValueTypes["SocialUpdateInput"] | Variable<any, string>
-};
-	["SocialUpsertWithNestedWhereUniqueInput"]: {
-	/** Unique document search */
-	where: ValueTypes["SocialWhereUniqueInput"] | Variable<any, string>,
-	/** Upsert data */
-	data: ValueTypes["SocialUpsertInput"] | Variable<any, string>
-};
-	/** Identifies documents */
-["SocialWhereInput"]: {
-	/** Contains search across all appropriate fields. */
-	_search?: string | undefined | null | Variable<any, string>,
-	/** Logical AND on all given filters. */
-	AND?: Array<ValueTypes["SocialWhereInput"]> | undefined | null | Variable<any, string>,
-	/** Logical OR on all given filters. */
-	OR?: Array<ValueTypes["SocialWhereInput"]> | undefined | null | Variable<any, string>,
-	/** Logical NOT on all given filters combined by AND. */
-	NOT?: Array<ValueTypes["SocialWhereInput"]> | undefined | null | Variable<any, string>,
-	publishedAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values that are not equal to given value. */
-	publishedAt_not?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values that are contained in given list. */
-	publishedAt_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values that are not contained in given list. */
-	publishedAt_not_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values less than the given value. */
-	publishedAt_lt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values less than or equal the given value. */
-	publishedAt_lte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values greater than the given value. */
-	publishedAt_gt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values greater than or equal the given value. */
-	publishedAt_gte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	updatedAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values that are not equal to given value. */
-	updatedAt_not?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values that are contained in given list. */
-	updatedAt_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values that are not contained in given list. */
-	updatedAt_not_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values less than the given value. */
-	updatedAt_lt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values less than or equal the given value. */
-	updatedAt_lte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values greater than the given value. */
-	updatedAt_gt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values greater than or equal the given value. */
-	updatedAt_gte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	createdAt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values that are not equal to given value. */
-	createdAt_not?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values that are contained in given list. */
-	createdAt_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values that are not contained in given list. */
-	createdAt_not_in?: Array<ValueTypes["DateTime"] | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values less than the given value. */
-	createdAt_lt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values less than or equal the given value. */
-	createdAt_lte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values greater than the given value. */
-	createdAt_gt?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	/** All values greater than or equal the given value. */
-	createdAt_gte?: ValueTypes["DateTime"] | undefined | null | Variable<any, string>,
-	id?: string | undefined | null | Variable<any, string>,
-	/** All values that are not equal to given value. */
-	id_not?: string | undefined | null | Variable<any, string>,
-	/** All values that are contained in given list. */
-	id_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values that are not contained in given list. */
-	id_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values containing the given string. */
-	id_contains?: string | undefined | null | Variable<any, string>,
-	/** All values not containing the given string. */
-	id_not_contains?: string | undefined | null | Variable<any, string>,
-	/** All values starting with the given string. */
-	id_starts_with?: string | undefined | null | Variable<any, string>,
-	/** All values not starting with the given string. */
-	id_not_starts_with?: string | undefined | null | Variable<any, string>,
-	/** All values ending with the given string. */
-	id_ends_with?: string | undefined | null | Variable<any, string>,
-	/** All values not ending with the given string */
-	id_not_ends_with?: string | undefined | null | Variable<any, string>,
-	name?: string | undefined | null | Variable<any, string>,
-	/** All values that are not equal to given value. */
-	name_not?: string | undefined | null | Variable<any, string>,
-	/** All values that are contained in given list. */
-	name_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values that are not contained in given list. */
-	name_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values containing the given string. */
-	name_contains?: string | undefined | null | Variable<any, string>,
-	/** All values not containing the given string. */
-	name_not_contains?: string | undefined | null | Variable<any, string>,
-	/** All values starting with the given string. */
-	name_starts_with?: string | undefined | null | Variable<any, string>,
-	/** All values not starting with the given string. */
-	name_not_starts_with?: string | undefined | null | Variable<any, string>,
-	/** All values ending with the given string. */
-	name_ends_with?: string | undefined | null | Variable<any, string>,
-	/** All values not ending with the given string */
-	name_not_ends_with?: string | undefined | null | Variable<any, string>,
-	url?: string | undefined | null | Variable<any, string>,
-	/** All values that are not equal to given value. */
-	url_not?: string | undefined | null | Variable<any, string>,
-	/** All values that are contained in given list. */
-	url_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values that are not contained in given list. */
-	url_not_in?: Array<string | undefined | null> | undefined | null | Variable<any, string>,
-	/** All values containing the given string. */
-	url_contains?: string | undefined | null | Variable<any, string>,
-	/** All values not containing the given string. */
-	url_not_contains?: string | undefined | null | Variable<any, string>,
-	/** All values starting with the given string. */
-	url_starts_with?: string | undefined | null | Variable<any, string>,
-	/** All values not starting with the given string. */
-	url_not_starts_with?: string | undefined | null | Variable<any, string>,
-	/** All values ending with the given string. */
-	url_ends_with?: string | undefined | null | Variable<any, string>,
-	/** All values not ending with the given string */
-	url_not_ends_with?: string | undefined | null | Variable<any, string>,
-	publishedBy?: ValueTypes["UserWhereInput"] | undefined | null | Variable<any, string>,
-	updatedBy?: ValueTypes["UserWhereInput"] | undefined | null | Variable<any, string>,
-	createdBy?: ValueTypes["UserWhereInput"] | undefined | null | Variable<any, string>,
-	image?: ValueTypes["AssetWhereInput"] | undefined | null | Variable<any, string>,
-	scheduledIn_every?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>,
-	scheduledIn_some?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>,
-	scheduledIn_none?: ValueTypes["ScheduledOperationWhereInput"] | undefined | null | Variable<any, string>
-};
-	/** References Social record uniquely */
-["SocialWhereUniqueInput"]: {
-	id?: string | undefined | null | Variable<any, string>,
-	url?: string | undefined | null | Variable<any, string>
-};
 	/** Stage system enumeration */
 ["Stage"]:Stage;
 	["SystemDateTimeFieldVariation"]:SystemDateTimeFieldVariation;
+	["Technologies"]:Technologies;
 	["UnpublishLocaleInput"]: {
 	/** Locales to unpublish */
 	locale: ValueTypes["Locale"] | Variable<any, string>,
@@ -5077,7 +6074,498 @@ documentInStages?: [{	/** Potential stages that should be returned */
   }
 
 export type ResolverInputTypes = {
-    ["Aggregate"]: AliasType<{
+    ["AboutMe"]: AliasType<{
+	/** System stage field */
+	stage?:boolean | `@${string}`,
+documentInStages?: [{	/** Potential stages that should be returned */
+	stages: Array<ResolverInputTypes["Stage"]>,	/** Decides if the current stage should be included or not */
+	includeCurrent: boolean,	/** Decides if the documents should match the parent documents locale or should use the fallback order defined in the tree */
+	inheritLocale: boolean},ResolverInputTypes["AboutMe"]],
+	/** The time the document was published. Null on documents in draft stage. */
+	publishedAt?:boolean | `@${string}`,
+	/** The time the document was updated */
+	updatedAt?:boolean | `@${string}`,
+	/** The time the document was created */
+	createdAt?:boolean | `@${string}`,
+	/** The unique identifier */
+	id?:boolean | `@${string}`,
+	contactEmail?:boolean | `@${string}`,
+	description?:boolean | `@${string}`,
+company?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
+
+Note that `company` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
+	locales?: Array<ResolverInputTypes["Locale"]> | undefined | null},ResolverInputTypes["Company"]],
+links?: [{	skip?: number | undefined | null,	after?: string | undefined | null,	before?: string | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	/** Allows to optionally override locale filtering behaviour in the query's subtree.
+
+Note that `links` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
+	locales?: Array<ResolverInputTypes["Locale"]> | undefined | null},ResolverInputTypes["AboutMelinksUnion"]],
+publishedBy?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
+
+Note that `publishedBy` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
+	locales?: Array<ResolverInputTypes["Locale"]> | undefined | null},ResolverInputTypes["User"]],
+updatedBy?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
+
+Note that `updatedBy` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
+	locales?: Array<ResolverInputTypes["Locale"]> | undefined | null},ResolverInputTypes["User"]],
+createdBy?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
+
+Note that `createdBy` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
+	locales?: Array<ResolverInputTypes["Locale"]> | undefined | null},ResolverInputTypes["User"]],
+photo?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
+
+Note that `photo` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
+	locales?: Array<ResolverInputTypes["Locale"]> | undefined | null},ResolverInputTypes["Asset"]],
+scheduledIn?: [{	where?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null,	skip?: number | undefined | null,	after?: string | undefined | null,	before?: string | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	/** Allows to optionally override locale filtering behaviour in the query's subtree.
+
+Note that `scheduledIn` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
+	locales?: Array<ResolverInputTypes["Locale"]> | undefined | null},ResolverInputTypes["ScheduledOperation"]],
+history?: [{	limit: number,	skip: number,	/** This is optional and can be used to fetch the document version history for a specific stage instead of the current one */
+	stageOverride?: ResolverInputTypes["Stage"] | undefined | null},ResolverInputTypes["Version"]],
+		__typename?: boolean | `@${string}`
+}>;
+	["AboutMeConnectInput"]: {
+	/** Document to connect */
+	where: ResolverInputTypes["AboutMeWhereUniqueInput"],
+	/** Allow to specify document position in list of connected documents, will default to appending at end of list */
+	position?: ResolverInputTypes["ConnectPositionInput"] | undefined | null
+};
+	/** A connection to a list of items. */
+["AboutMeConnection"]: AliasType<{
+	/** Information to aid in pagination. */
+	pageInfo?:ResolverInputTypes["PageInfo"],
+	/** A list of edges. */
+	edges?:ResolverInputTypes["AboutMeEdge"],
+	aggregate?:ResolverInputTypes["Aggregate"],
+		__typename?: boolean | `@${string}`
+}>;
+	["AboutMeCreateInput"]: {
+	updatedAt?: ResolverInputTypes["DateTime"] | undefined | null,
+	createdAt?: ResolverInputTypes["DateTime"] | undefined | null,
+	contactEmail: string,
+	description: string,
+	company?: ResolverInputTypes["CompanyCreateOneInlineInput"] | undefined | null,
+	links?: ResolverInputTypes["AboutMelinksUnionCreateManyInlineInput"] | undefined | null,
+	photo: ResolverInputTypes["AssetCreateOneInlineInput"]
+};
+	["AboutMeCreateManyInlineInput"]: {
+	/** Create and connect multiple existing AboutMe documents */
+	create?: Array<ResolverInputTypes["AboutMeCreateInput"]> | undefined | null,
+	/** Connect multiple existing AboutMe documents */
+	connect?: Array<ResolverInputTypes["AboutMeWhereUniqueInput"]> | undefined | null
+};
+	["AboutMeCreateOneInlineInput"]: {
+	/** Create and connect one AboutMe document */
+	create?: ResolverInputTypes["AboutMeCreateInput"] | undefined | null,
+	/** Connect one existing AboutMe document */
+	connect?: ResolverInputTypes["AboutMeWhereUniqueInput"] | undefined | null
+};
+	/** An edge in a connection. */
+["AboutMeEdge"]: AliasType<{
+	/** The item at the end of the edge. */
+	node?:ResolverInputTypes["AboutMe"],
+	/** A cursor for use in pagination. */
+	cursor?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** Identifies documents */
+["AboutMeManyWhereInput"]: {
+	/** Contains search across all appropriate fields. */
+	_search?: string | undefined | null,
+	/** Logical AND on all given filters. */
+	AND?: Array<ResolverInputTypes["AboutMeWhereInput"]> | undefined | null,
+	/** Logical OR on all given filters. */
+	OR?: Array<ResolverInputTypes["AboutMeWhereInput"]> | undefined | null,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<ResolverInputTypes["AboutMeWhereInput"]> | undefined | null,
+	publishedAt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values that are not equal to given value. */
+	publishedAt_not?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values that are contained in given list. */
+	publishedAt_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	publishedAt_not_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
+	/** All values less than the given value. */
+	publishedAt_lt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values less than or equal the given value. */
+	publishedAt_lte?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values greater than the given value. */
+	publishedAt_gt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values greater than or equal the given value. */
+	publishedAt_gte?: ResolverInputTypes["DateTime"] | undefined | null,
+	updatedAt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values that are not equal to given value. */
+	updatedAt_not?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values that are contained in given list. */
+	updatedAt_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	updatedAt_not_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
+	/** All values less than the given value. */
+	updatedAt_lt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values less than or equal the given value. */
+	updatedAt_lte?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values greater than the given value. */
+	updatedAt_gt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values greater than or equal the given value. */
+	updatedAt_gte?: ResolverInputTypes["DateTime"] | undefined | null,
+	createdAt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values that are not equal to given value. */
+	createdAt_not?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values that are contained in given list. */
+	createdAt_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	createdAt_not_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
+	/** All values less than the given value. */
+	createdAt_lt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values less than or equal the given value. */
+	createdAt_lte?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values greater than the given value. */
+	createdAt_gt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values greater than or equal the given value. */
+	createdAt_gte?: ResolverInputTypes["DateTime"] | undefined | null,
+	id?: string | undefined | null,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined | null,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined | null> | undefined | null,
+	/** All values containing the given string. */
+	id_contains?: string | undefined | null,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined | null,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined | null,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined | null,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined | null,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined | null,
+	contactEmail?: string | undefined | null,
+	/** All values that are not equal to given value. */
+	contactEmail_not?: string | undefined | null,
+	/** All values that are contained in given list. */
+	contactEmail_in?: Array<string | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	contactEmail_not_in?: Array<string | undefined | null> | undefined | null,
+	/** All values containing the given string. */
+	contactEmail_contains?: string | undefined | null,
+	/** All values not containing the given string. */
+	contactEmail_not_contains?: string | undefined | null,
+	/** All values starting with the given string. */
+	contactEmail_starts_with?: string | undefined | null,
+	/** All values not starting with the given string. */
+	contactEmail_not_starts_with?: string | undefined | null,
+	/** All values ending with the given string. */
+	contactEmail_ends_with?: string | undefined | null,
+	/** All values not ending with the given string */
+	contactEmail_not_ends_with?: string | undefined | null,
+	description?: string | undefined | null,
+	/** All values that are not equal to given value. */
+	description_not?: string | undefined | null,
+	/** All values that are contained in given list. */
+	description_in?: Array<string | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	description_not_in?: Array<string | undefined | null> | undefined | null,
+	/** All values containing the given string. */
+	description_contains?: string | undefined | null,
+	/** All values not containing the given string. */
+	description_not_contains?: string | undefined | null,
+	/** All values starting with the given string. */
+	description_starts_with?: string | undefined | null,
+	/** All values not starting with the given string. */
+	description_not_starts_with?: string | undefined | null,
+	/** All values ending with the given string. */
+	description_ends_with?: string | undefined | null,
+	/** All values not ending with the given string */
+	description_not_ends_with?: string | undefined | null,
+	company?: ResolverInputTypes["CompanyWhereInput"] | undefined | null,
+	publishedBy?: ResolverInputTypes["UserWhereInput"] | undefined | null,
+	updatedBy?: ResolverInputTypes["UserWhereInput"] | undefined | null,
+	createdBy?: ResolverInputTypes["UserWhereInput"] | undefined | null,
+	photo?: ResolverInputTypes["AssetWhereInput"] | undefined | null,
+	scheduledIn_every?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null,
+	scheduledIn_some?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null,
+	scheduledIn_none?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null
+};
+	["AboutMeOrderByInput"]:AboutMeOrderByInput;
+	["AboutMeUpdateInput"]: {
+	contactEmail?: string | undefined | null,
+	description?: string | undefined | null,
+	company?: ResolverInputTypes["CompanyUpdateOneInlineInput"] | undefined | null,
+	links?: ResolverInputTypes["AboutMelinksUnionUpdateManyInlineInput"] | undefined | null,
+	photo?: ResolverInputTypes["AssetUpdateOneInlineInput"] | undefined | null
+};
+	["AboutMeUpdateManyInlineInput"]: {
+	/** Create and connect multiple AboutMe documents */
+	create?: Array<ResolverInputTypes["AboutMeCreateInput"]> | undefined | null,
+	/** Connect multiple existing AboutMe documents */
+	connect?: Array<ResolverInputTypes["AboutMeConnectInput"]> | undefined | null,
+	/** Override currently-connected documents with multiple existing AboutMe documents */
+	set?: Array<ResolverInputTypes["AboutMeWhereUniqueInput"]> | undefined | null,
+	/** Update multiple AboutMe documents */
+	update?: Array<ResolverInputTypes["AboutMeUpdateWithNestedWhereUniqueInput"]> | undefined | null,
+	/** Upsert multiple AboutMe documents */
+	upsert?: Array<ResolverInputTypes["AboutMeUpsertWithNestedWhereUniqueInput"]> | undefined | null,
+	/** Disconnect multiple AboutMe documents */
+	disconnect?: Array<ResolverInputTypes["AboutMeWhereUniqueInput"]> | undefined | null,
+	/** Delete multiple AboutMe documents */
+	delete?: Array<ResolverInputTypes["AboutMeWhereUniqueInput"]> | undefined | null
+};
+	["AboutMeUpdateManyInput"]: {
+	contactEmail?: string | undefined | null,
+	description?: string | undefined | null
+};
+	["AboutMeUpdateManyWithNestedWhereInput"]: {
+	/** Document search */
+	where: ResolverInputTypes["AboutMeWhereInput"],
+	/** Update many input */
+	data: ResolverInputTypes["AboutMeUpdateManyInput"]
+};
+	["AboutMeUpdateOneInlineInput"]: {
+	/** Create and connect one AboutMe document */
+	create?: ResolverInputTypes["AboutMeCreateInput"] | undefined | null,
+	/** Update single AboutMe document */
+	update?: ResolverInputTypes["AboutMeUpdateWithNestedWhereUniqueInput"] | undefined | null,
+	/** Upsert single AboutMe document */
+	upsert?: ResolverInputTypes["AboutMeUpsertWithNestedWhereUniqueInput"] | undefined | null,
+	/** Connect existing AboutMe document */
+	connect?: ResolverInputTypes["AboutMeWhereUniqueInput"] | undefined | null,
+	/** Disconnect currently connected AboutMe document */
+	disconnect?: boolean | undefined | null,
+	/** Delete currently connected AboutMe document */
+	delete?: boolean | undefined | null
+};
+	["AboutMeUpdateWithNestedWhereUniqueInput"]: {
+	/** Unique document search */
+	where: ResolverInputTypes["AboutMeWhereUniqueInput"],
+	/** Document to update */
+	data: ResolverInputTypes["AboutMeUpdateInput"]
+};
+	["AboutMeUpsertInput"]: {
+	/** Create document if it didn't exist */
+	create: ResolverInputTypes["AboutMeCreateInput"],
+	/** Update document if it exists */
+	update: ResolverInputTypes["AboutMeUpdateInput"]
+};
+	["AboutMeUpsertWithNestedWhereUniqueInput"]: {
+	/** Unique document search */
+	where: ResolverInputTypes["AboutMeWhereUniqueInput"],
+	/** Upsert data */
+	data: ResolverInputTypes["AboutMeUpsertInput"]
+};
+	/** Identifies documents */
+["AboutMeWhereInput"]: {
+	/** Contains search across all appropriate fields. */
+	_search?: string | undefined | null,
+	/** Logical AND on all given filters. */
+	AND?: Array<ResolverInputTypes["AboutMeWhereInput"]> | undefined | null,
+	/** Logical OR on all given filters. */
+	OR?: Array<ResolverInputTypes["AboutMeWhereInput"]> | undefined | null,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<ResolverInputTypes["AboutMeWhereInput"]> | undefined | null,
+	publishedAt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values that are not equal to given value. */
+	publishedAt_not?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values that are contained in given list. */
+	publishedAt_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	publishedAt_not_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
+	/** All values less than the given value. */
+	publishedAt_lt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values less than or equal the given value. */
+	publishedAt_lte?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values greater than the given value. */
+	publishedAt_gt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values greater than or equal the given value. */
+	publishedAt_gte?: ResolverInputTypes["DateTime"] | undefined | null,
+	updatedAt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values that are not equal to given value. */
+	updatedAt_not?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values that are contained in given list. */
+	updatedAt_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	updatedAt_not_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
+	/** All values less than the given value. */
+	updatedAt_lt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values less than or equal the given value. */
+	updatedAt_lte?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values greater than the given value. */
+	updatedAt_gt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values greater than or equal the given value. */
+	updatedAt_gte?: ResolverInputTypes["DateTime"] | undefined | null,
+	createdAt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values that are not equal to given value. */
+	createdAt_not?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values that are contained in given list. */
+	createdAt_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	createdAt_not_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
+	/** All values less than the given value. */
+	createdAt_lt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values less than or equal the given value. */
+	createdAt_lte?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values greater than the given value. */
+	createdAt_gt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values greater than or equal the given value. */
+	createdAt_gte?: ResolverInputTypes["DateTime"] | undefined | null,
+	id?: string | undefined | null,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined | null,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined | null> | undefined | null,
+	/** All values containing the given string. */
+	id_contains?: string | undefined | null,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined | null,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined | null,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined | null,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined | null,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined | null,
+	contactEmail?: string | undefined | null,
+	/** All values that are not equal to given value. */
+	contactEmail_not?: string | undefined | null,
+	/** All values that are contained in given list. */
+	contactEmail_in?: Array<string | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	contactEmail_not_in?: Array<string | undefined | null> | undefined | null,
+	/** All values containing the given string. */
+	contactEmail_contains?: string | undefined | null,
+	/** All values not containing the given string. */
+	contactEmail_not_contains?: string | undefined | null,
+	/** All values starting with the given string. */
+	contactEmail_starts_with?: string | undefined | null,
+	/** All values not starting with the given string. */
+	contactEmail_not_starts_with?: string | undefined | null,
+	/** All values ending with the given string. */
+	contactEmail_ends_with?: string | undefined | null,
+	/** All values not ending with the given string */
+	contactEmail_not_ends_with?: string | undefined | null,
+	description?: string | undefined | null,
+	/** All values that are not equal to given value. */
+	description_not?: string | undefined | null,
+	/** All values that are contained in given list. */
+	description_in?: Array<string | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	description_not_in?: Array<string | undefined | null> | undefined | null,
+	/** All values containing the given string. */
+	description_contains?: string | undefined | null,
+	/** All values not containing the given string. */
+	description_not_contains?: string | undefined | null,
+	/** All values starting with the given string. */
+	description_starts_with?: string | undefined | null,
+	/** All values not starting with the given string. */
+	description_not_starts_with?: string | undefined | null,
+	/** All values ending with the given string. */
+	description_ends_with?: string | undefined | null,
+	/** All values not ending with the given string */
+	description_not_ends_with?: string | undefined | null,
+	company?: ResolverInputTypes["CompanyWhereInput"] | undefined | null,
+	publishedBy?: ResolverInputTypes["UserWhereInput"] | undefined | null,
+	updatedBy?: ResolverInputTypes["UserWhereInput"] | undefined | null,
+	createdBy?: ResolverInputTypes["UserWhereInput"] | undefined | null,
+	photo?: ResolverInputTypes["AssetWhereInput"] | undefined | null,
+	scheduledIn_every?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null,
+	scheduledIn_some?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null,
+	scheduledIn_none?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null
+};
+	/** References AboutMe record uniquely */
+["AboutMeWhereUniqueInput"]: {
+	id?: string | undefined | null
+};
+	["AboutMelinksUnion"]: AliasType<{
+	Link?:ResolverInputTypes["Link"],
+		__typename?: boolean | `@${string}`
+}>;
+	["AboutMelinksUnionConnectInput"]: {
+	Link?: ResolverInputTypes["LinkConnectInput"] | undefined | null
+};
+	["AboutMelinksUnionCreateInput"]: {
+	Link?: ResolverInputTypes["LinkCreateInput"] | undefined | null
+};
+	["AboutMelinksUnionCreateManyInlineInput"]: {
+	/** Create and connect multiple existing AboutMelinksUnion documents */
+	create?: Array<ResolverInputTypes["AboutMelinksUnionCreateInput"]> | undefined | null
+};
+	["AboutMelinksUnionCreateOneInlineInput"]: {
+	/** Create and connect one AboutMelinksUnion document */
+	create?: ResolverInputTypes["AboutMelinksUnionCreateInput"] | undefined | null
+};
+	["AboutMelinksUnionCreateWithPositionInput"]: {
+	Link?: ResolverInputTypes["LinkCreateWithPositionInput"] | undefined | null
+};
+	["AboutMelinksUnionUpdateInput"]: {
+	Link?: ResolverInputTypes["LinkUpdateInput"] | undefined | null
+};
+	["AboutMelinksUnionUpdateManyInlineInput"]: {
+	/** Create and connect multiple AboutMelinksUnion component instances */
+	create?: Array<ResolverInputTypes["AboutMelinksUnionCreateWithPositionInput"]> | undefined | null,
+	/** Update multiple AboutMelinksUnion component instances */
+	update?: Array<ResolverInputTypes["AboutMelinksUnionUpdateWithNestedWhereUniqueAndPositionInput"]> | undefined | null,
+	/** Upsert multiple AboutMelinksUnion component instances */
+	upsert?: Array<ResolverInputTypes["AboutMelinksUnionUpsertWithNestedWhereUniqueAndPositionInput"]> | undefined | null,
+	/** Delete multiple AboutMelinksUnion documents */
+	delete?: Array<ResolverInputTypes["AboutMelinksUnionWhereUniqueInput"]> | undefined | null
+};
+	["AboutMelinksUnionUpdateManyWithNestedWhereInput"]: {
+	Link?: ResolverInputTypes["LinkUpdateManyWithNestedWhereInput"] | undefined | null
+};
+	["AboutMelinksUnionUpdateOneInlineInput"]: {
+	/** Create and connect one AboutMelinksUnion document */
+	create?: ResolverInputTypes["AboutMelinksUnionCreateInput"] | undefined | null,
+	/** Update single AboutMelinksUnion document */
+	update?: ResolverInputTypes["AboutMelinksUnionUpdateWithNestedWhereUniqueInput"] | undefined | null,
+	/** Upsert single AboutMelinksUnion document */
+	upsert?: ResolverInputTypes["AboutMelinksUnionUpsertWithNestedWhereUniqueInput"] | undefined | null,
+	/** Delete currently connected AboutMelinksUnion document */
+	delete?: boolean | undefined | null
+};
+	["AboutMelinksUnionUpdateWithNestedWhereUniqueAndPositionInput"]: {
+	Link?: ResolverInputTypes["LinkUpdateWithNestedWhereUniqueAndPositionInput"] | undefined | null
+};
+	["AboutMelinksUnionUpdateWithNestedWhereUniqueInput"]: {
+	Link?: ResolverInputTypes["LinkUpdateWithNestedWhereUniqueInput"] | undefined | null
+};
+	["AboutMelinksUnionUpsertWithNestedWhereUniqueAndPositionInput"]: {
+	Link?: ResolverInputTypes["LinkUpsertWithNestedWhereUniqueAndPositionInput"] | undefined | null
+};
+	["AboutMelinksUnionUpsertWithNestedWhereUniqueInput"]: {
+	Link?: ResolverInputTypes["LinkUpsertWithNestedWhereUniqueInput"] | undefined | null
+};
+	["AboutMelinksUnionWhereInput"]: {
+	Link?: ResolverInputTypes["LinkWhereInput"] | undefined | null
+};
+	["AboutMelinksUnionWhereUniqueInput"]: {
+	Link?: ResolverInputTypes["LinkWhereUniqueInput"] | undefined | null
+};
+	["Aggregate"]: AliasType<{
 	count?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -5142,27 +6630,20 @@ For related models with localized fields in the query's subtree, the first local
 
 This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
 	locales?: Array<ResolverInputTypes["Locale"]> | undefined | null},ResolverInputTypes["Project"]],
-imageSocial?: [{	where?: ResolverInputTypes["SocialWhereInput"] | undefined | null,	orderBy?: ResolverInputTypes["SocialOrderByInput"] | undefined | null,	skip?: number | undefined | null,	after?: string | undefined | null,	before?: string | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	/** Allows to optionally override locale filtering behaviour in the query's subtree.
+og_imageSeo?: [{	where?: ResolverInputTypes["SeoWhereInput"] | undefined | null,	orderBy?: ResolverInputTypes["SeoOrderByInput"] | undefined | null,	skip?: number | undefined | null,	after?: string | undefined | null,	before?: string | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	/** Allows to optionally override locale filtering behaviour in the query's subtree.
 
-Note that `imageSocial` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+Note that `og_imageSeo` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
 For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
 
 This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
-	locales?: Array<ResolverInputTypes["Locale"]> | undefined | null},ResolverInputTypes["Social"]],
-imagePageMetadata?: [{	where?: ResolverInputTypes["PageMetadataWhereInput"] | undefined | null,	orderBy?: ResolverInputTypes["PageMetadataOrderByInput"] | undefined | null,	skip?: number | undefined | null,	after?: string | undefined | null,	before?: string | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	/** Allows to optionally override locale filtering behaviour in the query's subtree.
+	locales?: Array<ResolverInputTypes["Locale"]> | undefined | null},ResolverInputTypes["Seo"]],
+photoAboutMe?: [{	where?: ResolverInputTypes["AboutMeWhereInput"] | undefined | null,	orderBy?: ResolverInputTypes["AboutMeOrderByInput"] | undefined | null,	skip?: number | undefined | null,	after?: string | undefined | null,	before?: string | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	/** Allows to optionally override locale filtering behaviour in the query's subtree.
 
-Note that `imagePageMetadata` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+Note that `photoAboutMe` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
 For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
 
 This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
-	locales?: Array<ResolverInputTypes["Locale"]> | undefined | null},ResolverInputTypes["PageMetadata"]],
-iconSkill?: [{	where?: ResolverInputTypes["SkillWhereInput"] | undefined | null,	orderBy?: ResolverInputTypes["SkillOrderByInput"] | undefined | null,	skip?: number | undefined | null,	after?: string | undefined | null,	before?: string | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	/** Allows to optionally override locale filtering behaviour in the query's subtree.
-
-Note that `iconSkill` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
-For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
-
-This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
-	locales?: Array<ResolverInputTypes["Locale"]> | undefined | null},ResolverInputTypes["Skill"]],
+	locales?: Array<ResolverInputTypes["Locale"]> | undefined | null},ResolverInputTypes["AboutMe"]],
 scheduledIn?: [{	where?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null,	skip?: number | undefined | null,	after?: string | undefined | null,	before?: string | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	/** Allows to optionally override locale filtering behaviour in the query's subtree.
 
 Note that `scheduledIn` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
@@ -5200,9 +6681,10 @@ url?: [{	transformation?: ResolverInputTypes["AssetTransformationInput"] | undef
 	updatedAt?: ResolverInputTypes["DateTime"] | undefined | null,
 	createdAt?: ResolverInputTypes["DateTime"] | undefined | null,
 	imageProject?: ResolverInputTypes["ProjectCreateManyInlineInput"] | undefined | null,
-	imageSocial?: ResolverInputTypes["SocialCreateManyInlineInput"] | undefined | null,
-	imagePageMetadata?: ResolverInputTypes["PageMetadataCreateManyInlineInput"] | undefined | null,
+	og_imageSeo?: ResolverInputTypes["SeoCreateManyInlineInput"] | undefined | null,
+	iconLink?: ResolverInputTypes["LinkCreateManyInlineInput"] | undefined | null,
 	iconSkill?: ResolverInputTypes["SkillCreateManyInlineInput"] | undefined | null,
+	photoAboutMe?: ResolverInputTypes["AboutMeCreateManyInlineInput"] | undefined | null,
 	/** Inline mutations for managing document localizations excluding the default locale */
 	localizations?: ResolverInputTypes["AssetCreateLocalizationsInput"] | undefined | null
 };
@@ -5325,15 +6807,12 @@ url?: [{	transformation?: ResolverInputTypes["AssetTransformationInput"] | undef
 	imageProject_every?: ResolverInputTypes["ProjectWhereInput"] | undefined | null,
 	imageProject_some?: ResolverInputTypes["ProjectWhereInput"] | undefined | null,
 	imageProject_none?: ResolverInputTypes["ProjectWhereInput"] | undefined | null,
-	imageSocial_every?: ResolverInputTypes["SocialWhereInput"] | undefined | null,
-	imageSocial_some?: ResolverInputTypes["SocialWhereInput"] | undefined | null,
-	imageSocial_none?: ResolverInputTypes["SocialWhereInput"] | undefined | null,
-	imagePageMetadata_every?: ResolverInputTypes["PageMetadataWhereInput"] | undefined | null,
-	imagePageMetadata_some?: ResolverInputTypes["PageMetadataWhereInput"] | undefined | null,
-	imagePageMetadata_none?: ResolverInputTypes["PageMetadataWhereInput"] | undefined | null,
-	iconSkill_every?: ResolverInputTypes["SkillWhereInput"] | undefined | null,
-	iconSkill_some?: ResolverInputTypes["SkillWhereInput"] | undefined | null,
-	iconSkill_none?: ResolverInputTypes["SkillWhereInput"] | undefined | null,
+	og_imageSeo_every?: ResolverInputTypes["SeoWhereInput"] | undefined | null,
+	og_imageSeo_some?: ResolverInputTypes["SeoWhereInput"] | undefined | null,
+	og_imageSeo_none?: ResolverInputTypes["SeoWhereInput"] | undefined | null,
+	photoAboutMe_every?: ResolverInputTypes["AboutMeWhereInput"] | undefined | null,
+	photoAboutMe_some?: ResolverInputTypes["AboutMeWhereInput"] | undefined | null,
+	photoAboutMe_none?: ResolverInputTypes["AboutMeWhereInput"] | undefined | null,
 	scheduledIn_every?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null,
 	scheduledIn_some?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null,
 	scheduledIn_none?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null
@@ -5354,9 +6833,10 @@ url?: [{	transformation?: ResolverInputTypes["AssetTransformationInput"] | undef
 	fileName?: string | undefined | null,
 	handle?: string | undefined | null,
 	imageProject?: ResolverInputTypes["ProjectUpdateManyInlineInput"] | undefined | null,
-	imageSocial?: ResolverInputTypes["SocialUpdateManyInlineInput"] | undefined | null,
-	imagePageMetadata?: ResolverInputTypes["PageMetadataUpdateManyInlineInput"] | undefined | null,
+	og_imageSeo?: ResolverInputTypes["SeoUpdateManyInlineInput"] | undefined | null,
+	iconLink?: ResolverInputTypes["LinkUpdateManyInlineInput"] | undefined | null,
 	iconSkill?: ResolverInputTypes["SkillUpdateManyInlineInput"] | undefined | null,
+	photoAboutMe?: ResolverInputTypes["AboutMeUpdateManyInlineInput"] | undefined | null,
 	/** Manage document localizations */
 	localizations?: ResolverInputTypes["AssetUpdateLocalizationsInput"] | undefined | null
 };
@@ -5646,15 +7126,12 @@ url?: [{	transformation?: ResolverInputTypes["AssetTransformationInput"] | undef
 	imageProject_every?: ResolverInputTypes["ProjectWhereInput"] | undefined | null,
 	imageProject_some?: ResolverInputTypes["ProjectWhereInput"] | undefined | null,
 	imageProject_none?: ResolverInputTypes["ProjectWhereInput"] | undefined | null,
-	imageSocial_every?: ResolverInputTypes["SocialWhereInput"] | undefined | null,
-	imageSocial_some?: ResolverInputTypes["SocialWhereInput"] | undefined | null,
-	imageSocial_none?: ResolverInputTypes["SocialWhereInput"] | undefined | null,
-	imagePageMetadata_every?: ResolverInputTypes["PageMetadataWhereInput"] | undefined | null,
-	imagePageMetadata_some?: ResolverInputTypes["PageMetadataWhereInput"] | undefined | null,
-	imagePageMetadata_none?: ResolverInputTypes["PageMetadataWhereInput"] | undefined | null,
-	iconSkill_every?: ResolverInputTypes["SkillWhereInput"] | undefined | null,
-	iconSkill_some?: ResolverInputTypes["SkillWhereInput"] | undefined | null,
-	iconSkill_none?: ResolverInputTypes["SkillWhereInput"] | undefined | null,
+	og_imageSeo_every?: ResolverInputTypes["SeoWhereInput"] | undefined | null,
+	og_imageSeo_some?: ResolverInputTypes["SeoWhereInput"] | undefined | null,
+	og_imageSeo_none?: ResolverInputTypes["SeoWhereInput"] | undefined | null,
+	photoAboutMe_every?: ResolverInputTypes["AboutMeWhereInput"] | undefined | null,
+	photoAboutMe_some?: ResolverInputTypes["AboutMeWhereInput"] | undefined | null,
+	photoAboutMe_none?: ResolverInputTypes["AboutMeWhereInput"] | undefined | null,
 	scheduledIn_every?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null,
 	scheduledIn_some?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null,
 	scheduledIn_none?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null
@@ -5679,6 +7156,335 @@ url?: [{	transformation?: ResolverInputTypes["AssetTransformationInput"] | undef
 ["ColorInput"]: {
 	hex?: ResolverInputTypes["Hex"] | undefined | null,
 	rgba?: ResolverInputTypes["RGBAInput"] | undefined | null
+};
+	["Company"]: AliasType<{
+	/** System stage field */
+	stage?:boolean | `@${string}`,
+	/** The unique identifier */
+	id?:boolean | `@${string}`,
+	companyName?:boolean | `@${string}`,
+	companyWebsite?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	["CompanyConnectInput"]: {
+	/** Document to connect */
+	where: ResolverInputTypes["CompanyWhereUniqueInput"],
+	/** Allow to specify document position in list of connected documents, will default to appending at end of list */
+	position?: ResolverInputTypes["ConnectPositionInput"] | undefined | null
+};
+	/** A connection to a list of items. */
+["CompanyConnection"]: AliasType<{
+	/** Information to aid in pagination. */
+	pageInfo?:ResolverInputTypes["PageInfo"],
+	/** A list of edges. */
+	edges?:ResolverInputTypes["CompanyEdge"],
+	aggregate?:ResolverInputTypes["Aggregate"],
+		__typename?: boolean | `@${string}`
+}>;
+	["CompanyCreateInput"]: {
+	companyName: string,
+	companyWebsite: string
+};
+	["CompanyCreateManyInlineInput"]: {
+	/** Create and connect multiple existing Company documents */
+	create?: Array<ResolverInputTypes["CompanyCreateInput"]> | undefined | null
+};
+	["CompanyCreateOneInlineInput"]: {
+	/** Create and connect one Company document */
+	create?: ResolverInputTypes["CompanyCreateInput"] | undefined | null
+};
+	["CompanyCreateWithPositionInput"]: {
+	/** Position in the list of existing component instances, will default to appending at the end of list */
+	position?: ResolverInputTypes["ConnectPositionInput"] | undefined | null,
+	/** Document to create */
+	data: ResolverInputTypes["CompanyCreateInput"]
+};
+	/** An edge in a connection. */
+["CompanyEdge"]: AliasType<{
+	/** The item at the end of the edge. */
+	node?:ResolverInputTypes["Company"],
+	/** A cursor for use in pagination. */
+	cursor?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** Identifies documents */
+["CompanyManyWhereInput"]: {
+	/** Contains search across all appropriate fields. */
+	_search?: string | undefined | null,
+	/** Logical AND on all given filters. */
+	AND?: Array<ResolverInputTypes["CompanyWhereInput"]> | undefined | null,
+	/** Logical OR on all given filters. */
+	OR?: Array<ResolverInputTypes["CompanyWhereInput"]> | undefined | null,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<ResolverInputTypes["CompanyWhereInput"]> | undefined | null,
+	id?: string | undefined | null,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined | null,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined | null> | undefined | null,
+	/** All values containing the given string. */
+	id_contains?: string | undefined | null,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined | null,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined | null,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined | null,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined | null,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined | null,
+	companyName?: string | undefined | null,
+	/** All values that are not equal to given value. */
+	companyName_not?: string | undefined | null,
+	/** All values that are contained in given list. */
+	companyName_in?: Array<string | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	companyName_not_in?: Array<string | undefined | null> | undefined | null,
+	/** All values containing the given string. */
+	companyName_contains?: string | undefined | null,
+	/** All values not containing the given string. */
+	companyName_not_contains?: string | undefined | null,
+	/** All values starting with the given string. */
+	companyName_starts_with?: string | undefined | null,
+	/** All values not starting with the given string. */
+	companyName_not_starts_with?: string | undefined | null,
+	/** All values ending with the given string. */
+	companyName_ends_with?: string | undefined | null,
+	/** All values not ending with the given string */
+	companyName_not_ends_with?: string | undefined | null,
+	companyWebsite?: string | undefined | null,
+	/** All values that are not equal to given value. */
+	companyWebsite_not?: string | undefined | null,
+	/** All values that are contained in given list. */
+	companyWebsite_in?: Array<string | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	companyWebsite_not_in?: Array<string | undefined | null> | undefined | null,
+	/** All values containing the given string. */
+	companyWebsite_contains?: string | undefined | null,
+	/** All values not containing the given string. */
+	companyWebsite_not_contains?: string | undefined | null,
+	/** All values starting with the given string. */
+	companyWebsite_starts_with?: string | undefined | null,
+	/** All values not starting with the given string. */
+	companyWebsite_not_starts_with?: string | undefined | null,
+	/** All values ending with the given string. */
+	companyWebsite_ends_with?: string | undefined | null,
+	/** All values not ending with the given string */
+	companyWebsite_not_ends_with?: string | undefined | null
+};
+	["CompanyOrderByInput"]:CompanyOrderByInput;
+	["CompanyParent"]: AliasType<{
+	AboutMe?:ResolverInputTypes["AboutMe"],
+		__typename?: boolean | `@${string}`
+}>;
+	["CompanyParentConnectInput"]: {
+	AboutMe?: ResolverInputTypes["AboutMeConnectInput"] | undefined | null
+};
+	["CompanyParentCreateInput"]: {
+	AboutMe?: ResolverInputTypes["AboutMeCreateInput"] | undefined | null
+};
+	["CompanyParentCreateManyInlineInput"]: {
+	/** Create and connect multiple existing CompanyParent documents */
+	create?: Array<ResolverInputTypes["CompanyParentCreateInput"]> | undefined | null,
+	/** Connect multiple existing CompanyParent documents */
+	connect?: Array<ResolverInputTypes["CompanyParentWhereUniqueInput"]> | undefined | null
+};
+	["CompanyParentCreateOneInlineInput"]: {
+	/** Create and connect one CompanyParent document */
+	create?: ResolverInputTypes["CompanyParentCreateInput"] | undefined | null,
+	/** Connect one existing CompanyParent document */
+	connect?: ResolverInputTypes["CompanyParentWhereUniqueInput"] | undefined | null
+};
+	["CompanyParentUpdateInput"]: {
+	AboutMe?: ResolverInputTypes["AboutMeUpdateInput"] | undefined | null
+};
+	["CompanyParentUpdateManyInlineInput"]: {
+	/** Create and connect multiple CompanyParent documents */
+	create?: Array<ResolverInputTypes["CompanyParentCreateInput"]> | undefined | null,
+	/** Connect multiple existing CompanyParent documents */
+	connect?: Array<ResolverInputTypes["CompanyParentConnectInput"]> | undefined | null,
+	/** Override currently-connected documents with multiple existing CompanyParent documents */
+	set?: Array<ResolverInputTypes["CompanyParentWhereUniqueInput"]> | undefined | null,
+	/** Update multiple CompanyParent documents */
+	update?: Array<ResolverInputTypes["CompanyParentUpdateWithNestedWhereUniqueInput"]> | undefined | null,
+	/** Upsert multiple CompanyParent documents */
+	upsert?: Array<ResolverInputTypes["CompanyParentUpsertWithNestedWhereUniqueInput"]> | undefined | null,
+	/** Disconnect multiple CompanyParent documents */
+	disconnect?: Array<ResolverInputTypes["CompanyParentWhereUniqueInput"]> | undefined | null,
+	/** Delete multiple CompanyParent documents */
+	delete?: Array<ResolverInputTypes["CompanyParentWhereUniqueInput"]> | undefined | null
+};
+	["CompanyParentUpdateManyWithNestedWhereInput"]: {
+	AboutMe?: ResolverInputTypes["AboutMeUpdateManyWithNestedWhereInput"] | undefined | null
+};
+	["CompanyParentUpdateOneInlineInput"]: {
+	/** Create and connect one CompanyParent document */
+	create?: ResolverInputTypes["CompanyParentCreateInput"] | undefined | null,
+	/** Update single CompanyParent document */
+	update?: ResolverInputTypes["CompanyParentUpdateWithNestedWhereUniqueInput"] | undefined | null,
+	/** Upsert single CompanyParent document */
+	upsert?: ResolverInputTypes["CompanyParentUpsertWithNestedWhereUniqueInput"] | undefined | null,
+	/** Connect existing CompanyParent document */
+	connect?: ResolverInputTypes["CompanyParentWhereUniqueInput"] | undefined | null,
+	/** Disconnect currently connected CompanyParent document */
+	disconnect?: boolean | undefined | null,
+	/** Delete currently connected CompanyParent document */
+	delete?: boolean | undefined | null
+};
+	["CompanyParentUpdateWithNestedWhereUniqueInput"]: {
+	AboutMe?: ResolverInputTypes["AboutMeUpdateWithNestedWhereUniqueInput"] | undefined | null
+};
+	["CompanyParentUpsertWithNestedWhereUniqueInput"]: {
+	AboutMe?: ResolverInputTypes["AboutMeUpsertWithNestedWhereUniqueInput"] | undefined | null
+};
+	["CompanyParentWhereInput"]: {
+	AboutMe?: ResolverInputTypes["AboutMeWhereInput"] | undefined | null
+};
+	["CompanyParentWhereUniqueInput"]: {
+	AboutMe?: ResolverInputTypes["AboutMeWhereUniqueInput"] | undefined | null
+};
+	["CompanyUpdateInput"]: {
+	companyName?: string | undefined | null,
+	companyWebsite?: string | undefined | null
+};
+	["CompanyUpdateManyInlineInput"]: {
+	/** Create and connect multiple Company component instances */
+	create?: Array<ResolverInputTypes["CompanyCreateWithPositionInput"]> | undefined | null,
+	/** Update multiple Company component instances */
+	update?: Array<ResolverInputTypes["CompanyUpdateWithNestedWhereUniqueAndPositionInput"]> | undefined | null,
+	/** Upsert multiple Company component instances */
+	upsert?: Array<ResolverInputTypes["CompanyUpsertWithNestedWhereUniqueAndPositionInput"]> | undefined | null,
+	/** Delete multiple Company documents */
+	delete?: Array<ResolverInputTypes["CompanyWhereUniqueInput"]> | undefined | null
+};
+	["CompanyUpdateManyInput"]: {
+	companyName?: string | undefined | null,
+	companyWebsite?: string | undefined | null
+};
+	["CompanyUpdateManyWithNestedWhereInput"]: {
+	/** Document search */
+	where: ResolverInputTypes["CompanyWhereInput"],
+	/** Update many input */
+	data: ResolverInputTypes["CompanyUpdateManyInput"]
+};
+	["CompanyUpdateOneInlineInput"]: {
+	/** Create and connect one Company document */
+	create?: ResolverInputTypes["CompanyCreateInput"] | undefined | null,
+	/** Update single Company document */
+	update?: ResolverInputTypes["CompanyUpdateWithNestedWhereUniqueInput"] | undefined | null,
+	/** Upsert single Company document */
+	upsert?: ResolverInputTypes["CompanyUpsertWithNestedWhereUniqueInput"] | undefined | null,
+	/** Delete currently connected Company document */
+	delete?: boolean | undefined | null
+};
+	["CompanyUpdateWithNestedWhereUniqueAndPositionInput"]: {
+	/** Unique component instance search */
+	where: ResolverInputTypes["CompanyWhereUniqueInput"],
+	/** Position in the list of existing component instances, will default to appending at the end of list */
+	position?: ResolverInputTypes["ConnectPositionInput"] | undefined | null,
+	/** Document to update */
+	data?: ResolverInputTypes["CompanyUpdateInput"] | undefined | null
+};
+	["CompanyUpdateWithNestedWhereUniqueInput"]: {
+	/** Unique document search */
+	where: ResolverInputTypes["CompanyWhereUniqueInput"],
+	/** Document to update */
+	data: ResolverInputTypes["CompanyUpdateInput"]
+};
+	["CompanyUpsertInput"]: {
+	/** Create document if it didn't exist */
+	create: ResolverInputTypes["CompanyCreateInput"],
+	/** Update document if it exists */
+	update: ResolverInputTypes["CompanyUpdateInput"]
+};
+	["CompanyUpsertWithNestedWhereUniqueAndPositionInput"]: {
+	/** Unique component instance search */
+	where: ResolverInputTypes["CompanyWhereUniqueInput"],
+	/** Position in the list of existing component instances, will default to appending at the end of list */
+	position?: ResolverInputTypes["ConnectPositionInput"] | undefined | null,
+	/** Document to upsert */
+	data?: ResolverInputTypes["CompanyUpsertInput"] | undefined | null
+};
+	["CompanyUpsertWithNestedWhereUniqueInput"]: {
+	/** Unique document search */
+	where: ResolverInputTypes["CompanyWhereUniqueInput"],
+	/** Upsert data */
+	data: ResolverInputTypes["CompanyUpsertInput"]
+};
+	/** Identifies documents */
+["CompanyWhereInput"]: {
+	/** Contains search across all appropriate fields. */
+	_search?: string | undefined | null,
+	/** Logical AND on all given filters. */
+	AND?: Array<ResolverInputTypes["CompanyWhereInput"]> | undefined | null,
+	/** Logical OR on all given filters. */
+	OR?: Array<ResolverInputTypes["CompanyWhereInput"]> | undefined | null,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<ResolverInputTypes["CompanyWhereInput"]> | undefined | null,
+	id?: string | undefined | null,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined | null,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined | null> | undefined | null,
+	/** All values containing the given string. */
+	id_contains?: string | undefined | null,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined | null,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined | null,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined | null,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined | null,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined | null,
+	companyName?: string | undefined | null,
+	/** All values that are not equal to given value. */
+	companyName_not?: string | undefined | null,
+	/** All values that are contained in given list. */
+	companyName_in?: Array<string | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	companyName_not_in?: Array<string | undefined | null> | undefined | null,
+	/** All values containing the given string. */
+	companyName_contains?: string | undefined | null,
+	/** All values not containing the given string. */
+	companyName_not_contains?: string | undefined | null,
+	/** All values starting with the given string. */
+	companyName_starts_with?: string | undefined | null,
+	/** All values not starting with the given string. */
+	companyName_not_starts_with?: string | undefined | null,
+	/** All values ending with the given string. */
+	companyName_ends_with?: string | undefined | null,
+	/** All values not ending with the given string */
+	companyName_not_ends_with?: string | undefined | null,
+	companyWebsite?: string | undefined | null,
+	/** All values that are not equal to given value. */
+	companyWebsite_not?: string | undefined | null,
+	/** All values that are contained in given list. */
+	companyWebsite_in?: Array<string | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	companyWebsite_not_in?: Array<string | undefined | null> | undefined | null,
+	/** All values containing the given string. */
+	companyWebsite_contains?: string | undefined | null,
+	/** All values not containing the given string. */
+	companyWebsite_not_contains?: string | undefined | null,
+	/** All values starting with the given string. */
+	companyWebsite_starts_with?: string | undefined | null,
+	/** All values not starting with the given string. */
+	companyWebsite_not_starts_with?: string | undefined | null,
+	/** All values ending with the given string. */
+	companyWebsite_ends_with?: string | undefined | null,
+	/** All values not ending with the given string */
+	companyWebsite_not_ends_with?: string | undefined | null
+};
+	/** References Company record uniquely */
+["CompanyWhereUniqueInput"]: {
+	id?: string | undefined | null
 };
 	["ConnectPositionInput"]: {
 	/** Connect document after specified document */
@@ -5752,6 +7558,346 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 };
 	/** Raw JSON value */
 ["Json"]:unknown;
+	["Link"]: AliasType<{
+	/** System stage field */
+	stage?:boolean | `@${string}`,
+	/** The unique identifier */
+	id?:boolean | `@${string}`,
+	name?:boolean | `@${string}`,
+	url?:boolean | `@${string}`,
+icon?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
+
+Note that `icon` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
+	locales?: Array<ResolverInputTypes["Locale"]> | undefined | null},ResolverInputTypes["Asset"]],
+		__typename?: boolean | `@${string}`
+}>;
+	["LinkConnectInput"]: {
+	/** Document to connect */
+	where: ResolverInputTypes["LinkWhereUniqueInput"],
+	/** Allow to specify document position in list of connected documents, will default to appending at end of list */
+	position?: ResolverInputTypes["ConnectPositionInput"] | undefined | null
+};
+	/** A connection to a list of items. */
+["LinkConnection"]: AliasType<{
+	/** Information to aid in pagination. */
+	pageInfo?:ResolverInputTypes["PageInfo"],
+	/** A list of edges. */
+	edges?:ResolverInputTypes["LinkEdge"],
+	aggregate?:ResolverInputTypes["Aggregate"],
+		__typename?: boolean | `@${string}`
+}>;
+	["LinkCreateInput"]: {
+	name: string,
+	url: string,
+	icon?: ResolverInputTypes["AssetCreateOneInlineInput"] | undefined | null
+};
+	["LinkCreateManyInlineInput"]: {
+	/** Create and connect multiple existing Link documents */
+	create?: Array<ResolverInputTypes["LinkCreateInput"]> | undefined | null
+};
+	["LinkCreateOneInlineInput"]: {
+	/** Create and connect one Link document */
+	create?: ResolverInputTypes["LinkCreateInput"] | undefined | null
+};
+	["LinkCreateWithPositionInput"]: {
+	/** Position in the list of existing component instances, will default to appending at the end of list */
+	position?: ResolverInputTypes["ConnectPositionInput"] | undefined | null,
+	/** Document to create */
+	data: ResolverInputTypes["LinkCreateInput"]
+};
+	/** An edge in a connection. */
+["LinkEdge"]: AliasType<{
+	/** The item at the end of the edge. */
+	node?:ResolverInputTypes["Link"],
+	/** A cursor for use in pagination. */
+	cursor?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** Identifies documents */
+["LinkManyWhereInput"]: {
+	/** Contains search across all appropriate fields. */
+	_search?: string | undefined | null,
+	/** Logical AND on all given filters. */
+	AND?: Array<ResolverInputTypes["LinkWhereInput"]> | undefined | null,
+	/** Logical OR on all given filters. */
+	OR?: Array<ResolverInputTypes["LinkWhereInput"]> | undefined | null,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<ResolverInputTypes["LinkWhereInput"]> | undefined | null,
+	id?: string | undefined | null,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined | null,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined | null> | undefined | null,
+	/** All values containing the given string. */
+	id_contains?: string | undefined | null,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined | null,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined | null,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined | null,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined | null,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined | null,
+	name?: string | undefined | null,
+	/** All values that are not equal to given value. */
+	name_not?: string | undefined | null,
+	/** All values that are contained in given list. */
+	name_in?: Array<string | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	name_not_in?: Array<string | undefined | null> | undefined | null,
+	/** All values containing the given string. */
+	name_contains?: string | undefined | null,
+	/** All values not containing the given string. */
+	name_not_contains?: string | undefined | null,
+	/** All values starting with the given string. */
+	name_starts_with?: string | undefined | null,
+	/** All values not starting with the given string. */
+	name_not_starts_with?: string | undefined | null,
+	/** All values ending with the given string. */
+	name_ends_with?: string | undefined | null,
+	/** All values not ending with the given string */
+	name_not_ends_with?: string | undefined | null,
+	url?: string | undefined | null,
+	/** All values that are not equal to given value. */
+	url_not?: string | undefined | null,
+	/** All values that are contained in given list. */
+	url_in?: Array<string | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	url_not_in?: Array<string | undefined | null> | undefined | null,
+	/** All values containing the given string. */
+	url_contains?: string | undefined | null,
+	/** All values not containing the given string. */
+	url_not_contains?: string | undefined | null,
+	/** All values starting with the given string. */
+	url_starts_with?: string | undefined | null,
+	/** All values not starting with the given string. */
+	url_not_starts_with?: string | undefined | null,
+	/** All values ending with the given string. */
+	url_ends_with?: string | undefined | null,
+	/** All values not ending with the given string */
+	url_not_ends_with?: string | undefined | null,
+	icon?: ResolverInputTypes["AssetWhereInput"] | undefined | null
+};
+	["LinkOrderByInput"]:LinkOrderByInput;
+	["LinkParent"]: AliasType<{
+	AboutMe?:ResolverInputTypes["AboutMe"],
+		__typename?: boolean | `@${string}`
+}>;
+	["LinkParentConnectInput"]: {
+	AboutMe?: ResolverInputTypes["AboutMeConnectInput"] | undefined | null
+};
+	["LinkParentCreateInput"]: {
+	AboutMe?: ResolverInputTypes["AboutMeCreateInput"] | undefined | null
+};
+	["LinkParentCreateManyInlineInput"]: {
+	/** Create and connect multiple existing LinkParent documents */
+	create?: Array<ResolverInputTypes["LinkParentCreateInput"]> | undefined | null,
+	/** Connect multiple existing LinkParent documents */
+	connect?: Array<ResolverInputTypes["LinkParentWhereUniqueInput"]> | undefined | null
+};
+	["LinkParentCreateOneInlineInput"]: {
+	/** Create and connect one LinkParent document */
+	create?: ResolverInputTypes["LinkParentCreateInput"] | undefined | null,
+	/** Connect one existing LinkParent document */
+	connect?: ResolverInputTypes["LinkParentWhereUniqueInput"] | undefined | null
+};
+	["LinkParentUpdateInput"]: {
+	AboutMe?: ResolverInputTypes["AboutMeUpdateInput"] | undefined | null
+};
+	["LinkParentUpdateManyInlineInput"]: {
+	/** Create and connect multiple LinkParent documents */
+	create?: Array<ResolverInputTypes["LinkParentCreateInput"]> | undefined | null,
+	/** Connect multiple existing LinkParent documents */
+	connect?: Array<ResolverInputTypes["LinkParentConnectInput"]> | undefined | null,
+	/** Override currently-connected documents with multiple existing LinkParent documents */
+	set?: Array<ResolverInputTypes["LinkParentWhereUniqueInput"]> | undefined | null,
+	/** Update multiple LinkParent documents */
+	update?: Array<ResolverInputTypes["LinkParentUpdateWithNestedWhereUniqueInput"]> | undefined | null,
+	/** Upsert multiple LinkParent documents */
+	upsert?: Array<ResolverInputTypes["LinkParentUpsertWithNestedWhereUniqueInput"]> | undefined | null,
+	/** Disconnect multiple LinkParent documents */
+	disconnect?: Array<ResolverInputTypes["LinkParentWhereUniqueInput"]> | undefined | null,
+	/** Delete multiple LinkParent documents */
+	delete?: Array<ResolverInputTypes["LinkParentWhereUniqueInput"]> | undefined | null
+};
+	["LinkParentUpdateManyWithNestedWhereInput"]: {
+	AboutMe?: ResolverInputTypes["AboutMeUpdateManyWithNestedWhereInput"] | undefined | null
+};
+	["LinkParentUpdateOneInlineInput"]: {
+	/** Create and connect one LinkParent document */
+	create?: ResolverInputTypes["LinkParentCreateInput"] | undefined | null,
+	/** Update single LinkParent document */
+	update?: ResolverInputTypes["LinkParentUpdateWithNestedWhereUniqueInput"] | undefined | null,
+	/** Upsert single LinkParent document */
+	upsert?: ResolverInputTypes["LinkParentUpsertWithNestedWhereUniqueInput"] | undefined | null,
+	/** Connect existing LinkParent document */
+	connect?: ResolverInputTypes["LinkParentWhereUniqueInput"] | undefined | null,
+	/** Disconnect currently connected LinkParent document */
+	disconnect?: boolean | undefined | null,
+	/** Delete currently connected LinkParent document */
+	delete?: boolean | undefined | null
+};
+	["LinkParentUpdateWithNestedWhereUniqueInput"]: {
+	AboutMe?: ResolverInputTypes["AboutMeUpdateWithNestedWhereUniqueInput"] | undefined | null
+};
+	["LinkParentUpsertWithNestedWhereUniqueInput"]: {
+	AboutMe?: ResolverInputTypes["AboutMeUpsertWithNestedWhereUniqueInput"] | undefined | null
+};
+	["LinkParentWhereInput"]: {
+	AboutMe?: ResolverInputTypes["AboutMeWhereInput"] | undefined | null
+};
+	["LinkParentWhereUniqueInput"]: {
+	AboutMe?: ResolverInputTypes["AboutMeWhereUniqueInput"] | undefined | null
+};
+	["LinkUpdateInput"]: {
+	name?: string | undefined | null,
+	url?: string | undefined | null,
+	icon?: ResolverInputTypes["AssetUpdateOneInlineInput"] | undefined | null
+};
+	["LinkUpdateManyInlineInput"]: {
+	/** Create and connect multiple Link component instances */
+	create?: Array<ResolverInputTypes["LinkCreateWithPositionInput"]> | undefined | null,
+	/** Update multiple Link component instances */
+	update?: Array<ResolverInputTypes["LinkUpdateWithNestedWhereUniqueAndPositionInput"]> | undefined | null,
+	/** Upsert multiple Link component instances */
+	upsert?: Array<ResolverInputTypes["LinkUpsertWithNestedWhereUniqueAndPositionInput"]> | undefined | null,
+	/** Delete multiple Link documents */
+	delete?: Array<ResolverInputTypes["LinkWhereUniqueInput"]> | undefined | null
+};
+	["LinkUpdateManyInput"]: {
+	url?: string | undefined | null
+};
+	["LinkUpdateManyWithNestedWhereInput"]: {
+	/** Document search */
+	where: ResolverInputTypes["LinkWhereInput"],
+	/** Update many input */
+	data: ResolverInputTypes["LinkUpdateManyInput"]
+};
+	["LinkUpdateOneInlineInput"]: {
+	/** Create and connect one Link document */
+	create?: ResolverInputTypes["LinkCreateInput"] | undefined | null,
+	/** Update single Link document */
+	update?: ResolverInputTypes["LinkUpdateWithNestedWhereUniqueInput"] | undefined | null,
+	/** Upsert single Link document */
+	upsert?: ResolverInputTypes["LinkUpsertWithNestedWhereUniqueInput"] | undefined | null,
+	/** Delete currently connected Link document */
+	delete?: boolean | undefined | null
+};
+	["LinkUpdateWithNestedWhereUniqueAndPositionInput"]: {
+	/** Unique component instance search */
+	where: ResolverInputTypes["LinkWhereUniqueInput"],
+	/** Position in the list of existing component instances, will default to appending at the end of list */
+	position?: ResolverInputTypes["ConnectPositionInput"] | undefined | null,
+	/** Document to update */
+	data?: ResolverInputTypes["LinkUpdateInput"] | undefined | null
+};
+	["LinkUpdateWithNestedWhereUniqueInput"]: {
+	/** Unique document search */
+	where: ResolverInputTypes["LinkWhereUniqueInput"],
+	/** Document to update */
+	data: ResolverInputTypes["LinkUpdateInput"]
+};
+	["LinkUpsertInput"]: {
+	/** Create document if it didn't exist */
+	create: ResolverInputTypes["LinkCreateInput"],
+	/** Update document if it exists */
+	update: ResolverInputTypes["LinkUpdateInput"]
+};
+	["LinkUpsertWithNestedWhereUniqueAndPositionInput"]: {
+	/** Unique component instance search */
+	where: ResolverInputTypes["LinkWhereUniqueInput"],
+	/** Position in the list of existing component instances, will default to appending at the end of list */
+	position?: ResolverInputTypes["ConnectPositionInput"] | undefined | null,
+	/** Document to upsert */
+	data?: ResolverInputTypes["LinkUpsertInput"] | undefined | null
+};
+	["LinkUpsertWithNestedWhereUniqueInput"]: {
+	/** Unique document search */
+	where: ResolverInputTypes["LinkWhereUniqueInput"],
+	/** Upsert data */
+	data: ResolverInputTypes["LinkUpsertInput"]
+};
+	/** Identifies documents */
+["LinkWhereInput"]: {
+	/** Contains search across all appropriate fields. */
+	_search?: string | undefined | null,
+	/** Logical AND on all given filters. */
+	AND?: Array<ResolverInputTypes["LinkWhereInput"]> | undefined | null,
+	/** Logical OR on all given filters. */
+	OR?: Array<ResolverInputTypes["LinkWhereInput"]> | undefined | null,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<ResolverInputTypes["LinkWhereInput"]> | undefined | null,
+	id?: string | undefined | null,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined | null,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined | null> | undefined | null,
+	/** All values containing the given string. */
+	id_contains?: string | undefined | null,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined | null,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined | null,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined | null,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined | null,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined | null,
+	name?: string | undefined | null,
+	/** All values that are not equal to given value. */
+	name_not?: string | undefined | null,
+	/** All values that are contained in given list. */
+	name_in?: Array<string | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	name_not_in?: Array<string | undefined | null> | undefined | null,
+	/** All values containing the given string. */
+	name_contains?: string | undefined | null,
+	/** All values not containing the given string. */
+	name_not_contains?: string | undefined | null,
+	/** All values starting with the given string. */
+	name_starts_with?: string | undefined | null,
+	/** All values not starting with the given string. */
+	name_not_starts_with?: string | undefined | null,
+	/** All values ending with the given string. */
+	name_ends_with?: string | undefined | null,
+	/** All values not ending with the given string */
+	name_not_ends_with?: string | undefined | null,
+	url?: string | undefined | null,
+	/** All values that are not equal to given value. */
+	url_not?: string | undefined | null,
+	/** All values that are contained in given list. */
+	url_in?: Array<string | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	url_not_in?: Array<string | undefined | null> | undefined | null,
+	/** All values containing the given string. */
+	url_contains?: string | undefined | null,
+	/** All values not containing the given string. */
+	url_not_contains?: string | undefined | null,
+	/** All values starting with the given string. */
+	url_starts_with?: string | undefined | null,
+	/** All values not starting with the given string. */
+	url_not_starts_with?: string | undefined | null,
+	/** All values ending with the given string. */
+	url_ends_with?: string | undefined | null,
+	/** All values not ending with the given string */
+	url_not_ends_with?: string | undefined | null,
+	icon?: ResolverInputTypes["AssetWhereInput"] | undefined | null
+};
+	/** References Link record uniquely */
+["LinkWhereUniqueInput"]: {
+	id?: string | undefined | null,
+	name?: string | undefined | null
+};
 	/** Locale system enumeration */
 ["Locale"]:Locale;
 	/** Representing a geolocation point with latitude and longitude */
@@ -5885,141 +8031,141 @@ scheduleUnpublishProject?: [{	/** Document to unpublish */
 	from: Array<ResolverInputTypes["Stage"]>,	/** Release at point in time, will create new release containing this operation */
 	releaseAt?: ResolverInputTypes["DateTime"] | undefined | null,	/** Optionally attach this scheduled operation to an existing release */
 	releaseId?: string | undefined | null},ResolverInputTypes["Project"]],
-createSocial?: [{	data: ResolverInputTypes["SocialCreateInput"]},ResolverInputTypes["Social"]],
-updateSocial?: [{	where: ResolverInputTypes["SocialWhereUniqueInput"],	data: ResolverInputTypes["SocialUpdateInput"]},ResolverInputTypes["Social"]],
-deleteSocial?: [{	/** Document to delete */
-	where: ResolverInputTypes["SocialWhereUniqueInput"]},ResolverInputTypes["Social"]],
-upsertSocial?: [{	where: ResolverInputTypes["SocialWhereUniqueInput"],	upsert: ResolverInputTypes["SocialUpsertInput"]},ResolverInputTypes["Social"]],
-publishSocial?: [{	/** Document to publish */
-	where: ResolverInputTypes["SocialWhereUniqueInput"],	/** Publishing target stage */
-	to: Array<ResolverInputTypes["Stage"]>},ResolverInputTypes["Social"]],
-unpublishSocial?: [{	/** Document to unpublish */
-	where: ResolverInputTypes["SocialWhereUniqueInput"],	/** Stages to unpublish document from */
-	from: Array<ResolverInputTypes["Stage"]>},ResolverInputTypes["Social"]],
-updateManySocialsConnection?: [{	/** Documents to apply update on */
-	where?: ResolverInputTypes["SocialManyWhereInput"] | undefined | null,	/** Updates to document content */
-	data: ResolverInputTypes["SocialUpdateManyInput"],	skip?: number | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	before?: string | undefined | null,	after?: string | undefined | null},ResolverInputTypes["SocialConnection"]],
-deleteManySocialsConnection?: [{	/** Documents to delete */
-	where?: ResolverInputTypes["SocialManyWhereInput"] | undefined | null,	skip?: number | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	before?: string | undefined | null,	after?: string | undefined | null},ResolverInputTypes["SocialConnection"]],
-publishManySocialsConnection?: [{	/** Identifies documents in each stage to be published */
-	where?: ResolverInputTypes["SocialManyWhereInput"] | undefined | null,	/** Stage to find matching documents in */
+createSeo?: [{	data: ResolverInputTypes["SeoCreateInput"]},ResolverInputTypes["Seo"]],
+updateSeo?: [{	where: ResolverInputTypes["SeoWhereUniqueInput"],	data: ResolverInputTypes["SeoUpdateInput"]},ResolverInputTypes["Seo"]],
+deleteSeo?: [{	/** Document to delete */
+	where: ResolverInputTypes["SeoWhereUniqueInput"]},ResolverInputTypes["Seo"]],
+upsertSeo?: [{	where: ResolverInputTypes["SeoWhereUniqueInput"],	upsert: ResolverInputTypes["SeoUpsertInput"]},ResolverInputTypes["Seo"]],
+publishSeo?: [{	/** Document to publish */
+	where: ResolverInputTypes["SeoWhereUniqueInput"],	/** Publishing target stage */
+	to: Array<ResolverInputTypes["Stage"]>},ResolverInputTypes["Seo"]],
+unpublishSeo?: [{	/** Document to unpublish */
+	where: ResolverInputTypes["SeoWhereUniqueInput"],	/** Stages to unpublish document from */
+	from: Array<ResolverInputTypes["Stage"]>},ResolverInputTypes["Seo"]],
+updateManySeosConnection?: [{	/** Documents to apply update on */
+	where?: ResolverInputTypes["SeoManyWhereInput"] | undefined | null,	/** Updates to document content */
+	data: ResolverInputTypes["SeoUpdateManyInput"],	skip?: number | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	before?: string | undefined | null,	after?: string | undefined | null},ResolverInputTypes["SeoConnection"]],
+deleteManySeosConnection?: [{	/** Documents to delete */
+	where?: ResolverInputTypes["SeoManyWhereInput"] | undefined | null,	skip?: number | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	before?: string | undefined | null,	after?: string | undefined | null},ResolverInputTypes["SeoConnection"]],
+publishManySeosConnection?: [{	/** Identifies documents in each stage to be published */
+	where?: ResolverInputTypes["SeoManyWhereInput"] | undefined | null,	/** Stage to find matching documents in */
 	from?: ResolverInputTypes["Stage"] | undefined | null,	/** Stages to publish documents to */
-	to: Array<ResolverInputTypes["Stage"]>,	skip?: number | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	before?: string | undefined | null,	after?: string | undefined | null},ResolverInputTypes["SocialConnection"]],
-unpublishManySocialsConnection?: [{	/** Identifies documents in draft stage */
-	where?: ResolverInputTypes["SocialManyWhereInput"] | undefined | null,	/** Stage to find matching documents in */
+	to: Array<ResolverInputTypes["Stage"]>,	skip?: number | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	before?: string | undefined | null,	after?: string | undefined | null},ResolverInputTypes["SeoConnection"]],
+unpublishManySeosConnection?: [{	/** Identifies documents in draft stage */
+	where?: ResolverInputTypes["SeoManyWhereInput"] | undefined | null,	/** Stage to find matching documents in */
 	stage?: ResolverInputTypes["Stage"] | undefined | null,	/** Stages to unpublish documents from */
-	from: Array<ResolverInputTypes["Stage"]>,	skip?: number | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	before?: string | undefined | null,	after?: string | undefined | null},ResolverInputTypes["SocialConnection"]],
-updateManySocials?: [{	/** Documents to apply update on */
-	where?: ResolverInputTypes["SocialManyWhereInput"] | undefined | null,	/** Updates to document content */
-	data: ResolverInputTypes["SocialUpdateManyInput"]},ResolverInputTypes["BatchPayload"]],
-deleteManySocials?: [{	/** Documents to delete */
-	where?: ResolverInputTypes["SocialManyWhereInput"] | undefined | null},ResolverInputTypes["BatchPayload"]],
-publishManySocials?: [{	/** Identifies documents in each stage to be published */
-	where?: ResolverInputTypes["SocialManyWhereInput"] | undefined | null,	/** Stages to publish documents to */
+	from: Array<ResolverInputTypes["Stage"]>,	skip?: number | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	before?: string | undefined | null,	after?: string | undefined | null},ResolverInputTypes["SeoConnection"]],
+updateManySeos?: [{	/** Documents to apply update on */
+	where?: ResolverInputTypes["SeoManyWhereInput"] | undefined | null,	/** Updates to document content */
+	data: ResolverInputTypes["SeoUpdateManyInput"]},ResolverInputTypes["BatchPayload"]],
+deleteManySeos?: [{	/** Documents to delete */
+	where?: ResolverInputTypes["SeoManyWhereInput"] | undefined | null},ResolverInputTypes["BatchPayload"]],
+publishManySeos?: [{	/** Identifies documents in each stage to be published */
+	where?: ResolverInputTypes["SeoManyWhereInput"] | undefined | null,	/** Stages to publish documents to */
 	to: Array<ResolverInputTypes["Stage"]>},ResolverInputTypes["BatchPayload"]],
-unpublishManySocials?: [{	/** Identifies documents in each stage */
-	where?: ResolverInputTypes["SocialManyWhereInput"] | undefined | null,	/** Stages to unpublish documents from */
+unpublishManySeos?: [{	/** Identifies documents in each stage */
+	where?: ResolverInputTypes["SeoManyWhereInput"] | undefined | null,	/** Stages to unpublish documents from */
 	from: Array<ResolverInputTypes["Stage"]>},ResolverInputTypes["BatchPayload"]],
-schedulePublishSocial?: [{	/** Document to publish */
-	where: ResolverInputTypes["SocialWhereUniqueInput"],	/** Publishing target stage */
+schedulePublishSeo?: [{	/** Document to publish */
+	where: ResolverInputTypes["SeoWhereUniqueInput"],	/** Publishing target stage */
 	to: Array<ResolverInputTypes["Stage"]>,	/** Release at point in time, will create new release containing this operation */
 	releaseAt?: ResolverInputTypes["DateTime"] | undefined | null,	/** Optionally attach this scheduled operation to an existing release */
-	releaseId?: string | undefined | null},ResolverInputTypes["Social"]],
-scheduleUnpublishSocial?: [{	/** Document to unpublish */
-	where: ResolverInputTypes["SocialWhereUniqueInput"],	/** Stages to unpublish document from */
+	releaseId?: string | undefined | null},ResolverInputTypes["Seo"]],
+scheduleUnpublishSeo?: [{	/** Document to unpublish */
+	where: ResolverInputTypes["SeoWhereUniqueInput"],	/** Stages to unpublish document from */
 	from: Array<ResolverInputTypes["Stage"]>,	/** Release at point in time, will create new release containing this operation */
 	releaseAt?: ResolverInputTypes["DateTime"] | undefined | null,	/** Optionally attach this scheduled operation to an existing release */
-	releaseId?: string | undefined | null},ResolverInputTypes["Social"]],
-createPageMetadata?: [{	data: ResolverInputTypes["PageMetadataCreateInput"]},ResolverInputTypes["PageMetadata"]],
-updatePageMetadata?: [{	where: ResolverInputTypes["PageMetadataWhereUniqueInput"],	data: ResolverInputTypes["PageMetadataUpdateInput"]},ResolverInputTypes["PageMetadata"]],
-deletePageMetadata?: [{	/** Document to delete */
-	where: ResolverInputTypes["PageMetadataWhereUniqueInput"]},ResolverInputTypes["PageMetadata"]],
-upsertPageMetadata?: [{	where: ResolverInputTypes["PageMetadataWhereUniqueInput"],	upsert: ResolverInputTypes["PageMetadataUpsertInput"]},ResolverInputTypes["PageMetadata"]],
-publishPageMetadata?: [{	/** Document to publish */
-	where: ResolverInputTypes["PageMetadataWhereUniqueInput"],	/** Publishing target stage */
-	to: Array<ResolverInputTypes["Stage"]>},ResolverInputTypes["PageMetadata"]],
-unpublishPageMetadata?: [{	/** Document to unpublish */
-	where: ResolverInputTypes["PageMetadataWhereUniqueInput"],	/** Stages to unpublish document from */
-	from: Array<ResolverInputTypes["Stage"]>},ResolverInputTypes["PageMetadata"]],
-updateManyPagesMetadataConnection?: [{	/** Documents to apply update on */
-	where?: ResolverInputTypes["PageMetadataManyWhereInput"] | undefined | null,	/** Updates to document content */
-	data: ResolverInputTypes["PageMetadataUpdateManyInput"],	skip?: number | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	before?: string | undefined | null,	after?: string | undefined | null},ResolverInputTypes["PageMetadataConnection"]],
-deleteManyPagesMetadataConnection?: [{	/** Documents to delete */
-	where?: ResolverInputTypes["PageMetadataManyWhereInput"] | undefined | null,	skip?: number | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	before?: string | undefined | null,	after?: string | undefined | null},ResolverInputTypes["PageMetadataConnection"]],
-publishManyPagesMetadataConnection?: [{	/** Identifies documents in each stage to be published */
-	where?: ResolverInputTypes["PageMetadataManyWhereInput"] | undefined | null,	/** Stage to find matching documents in */
+	releaseId?: string | undefined | null},ResolverInputTypes["Seo"]],
+createAboutMe?: [{	data: ResolverInputTypes["AboutMeCreateInput"]},ResolverInputTypes["AboutMe"]],
+updateAboutMe?: [{	where: ResolverInputTypes["AboutMeWhereUniqueInput"],	data: ResolverInputTypes["AboutMeUpdateInput"]},ResolverInputTypes["AboutMe"]],
+deleteAboutMe?: [{	/** Document to delete */
+	where: ResolverInputTypes["AboutMeWhereUniqueInput"]},ResolverInputTypes["AboutMe"]],
+upsertAboutMe?: [{	where: ResolverInputTypes["AboutMeWhereUniqueInput"],	upsert: ResolverInputTypes["AboutMeUpsertInput"]},ResolverInputTypes["AboutMe"]],
+publishAboutMe?: [{	/** Document to publish */
+	where: ResolverInputTypes["AboutMeWhereUniqueInput"],	/** Publishing target stage */
+	to: Array<ResolverInputTypes["Stage"]>},ResolverInputTypes["AboutMe"]],
+unpublishAboutMe?: [{	/** Document to unpublish */
+	where: ResolverInputTypes["AboutMeWhereUniqueInput"],	/** Stages to unpublish document from */
+	from: Array<ResolverInputTypes["Stage"]>},ResolverInputTypes["AboutMe"]],
+updateManyAboutMesConnection?: [{	/** Documents to apply update on */
+	where?: ResolverInputTypes["AboutMeManyWhereInput"] | undefined | null,	/** Updates to document content */
+	data: ResolverInputTypes["AboutMeUpdateManyInput"],	skip?: number | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	before?: string | undefined | null,	after?: string | undefined | null},ResolverInputTypes["AboutMeConnection"]],
+deleteManyAboutMesConnection?: [{	/** Documents to delete */
+	where?: ResolverInputTypes["AboutMeManyWhereInput"] | undefined | null,	skip?: number | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	before?: string | undefined | null,	after?: string | undefined | null},ResolverInputTypes["AboutMeConnection"]],
+publishManyAboutMesConnection?: [{	/** Identifies documents in each stage to be published */
+	where?: ResolverInputTypes["AboutMeManyWhereInput"] | undefined | null,	/** Stage to find matching documents in */
 	from?: ResolverInputTypes["Stage"] | undefined | null,	/** Stages to publish documents to */
-	to: Array<ResolverInputTypes["Stage"]>,	skip?: number | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	before?: string | undefined | null,	after?: string | undefined | null},ResolverInputTypes["PageMetadataConnection"]],
-unpublishManyPagesMetadataConnection?: [{	/** Identifies documents in draft stage */
-	where?: ResolverInputTypes["PageMetadataManyWhereInput"] | undefined | null,	/** Stage to find matching documents in */
+	to: Array<ResolverInputTypes["Stage"]>,	skip?: number | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	before?: string | undefined | null,	after?: string | undefined | null},ResolverInputTypes["AboutMeConnection"]],
+unpublishManyAboutMesConnection?: [{	/** Identifies documents in draft stage */
+	where?: ResolverInputTypes["AboutMeManyWhereInput"] | undefined | null,	/** Stage to find matching documents in */
 	stage?: ResolverInputTypes["Stage"] | undefined | null,	/** Stages to unpublish documents from */
-	from: Array<ResolverInputTypes["Stage"]>,	skip?: number | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	before?: string | undefined | null,	after?: string | undefined | null},ResolverInputTypes["PageMetadataConnection"]],
-updateManyPagesMetadata?: [{	/** Documents to apply update on */
-	where?: ResolverInputTypes["PageMetadataManyWhereInput"] | undefined | null,	/** Updates to document content */
-	data: ResolverInputTypes["PageMetadataUpdateManyInput"]},ResolverInputTypes["BatchPayload"]],
-deleteManyPagesMetadata?: [{	/** Documents to delete */
-	where?: ResolverInputTypes["PageMetadataManyWhereInput"] | undefined | null},ResolverInputTypes["BatchPayload"]],
-publishManyPagesMetadata?: [{	/** Identifies documents in each stage to be published */
-	where?: ResolverInputTypes["PageMetadataManyWhereInput"] | undefined | null,	/** Stages to publish documents to */
+	from: Array<ResolverInputTypes["Stage"]>,	skip?: number | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	before?: string | undefined | null,	after?: string | undefined | null},ResolverInputTypes["AboutMeConnection"]],
+updateManyAboutMes?: [{	/** Documents to apply update on */
+	where?: ResolverInputTypes["AboutMeManyWhereInput"] | undefined | null,	/** Updates to document content */
+	data: ResolverInputTypes["AboutMeUpdateManyInput"]},ResolverInputTypes["BatchPayload"]],
+deleteManyAboutMes?: [{	/** Documents to delete */
+	where?: ResolverInputTypes["AboutMeManyWhereInput"] | undefined | null},ResolverInputTypes["BatchPayload"]],
+publishManyAboutMes?: [{	/** Identifies documents in each stage to be published */
+	where?: ResolverInputTypes["AboutMeManyWhereInput"] | undefined | null,	/** Stages to publish documents to */
 	to: Array<ResolverInputTypes["Stage"]>},ResolverInputTypes["BatchPayload"]],
-unpublishManyPagesMetadata?: [{	/** Identifies documents in each stage */
-	where?: ResolverInputTypes["PageMetadataManyWhereInput"] | undefined | null,	/** Stages to unpublish documents from */
+unpublishManyAboutMes?: [{	/** Identifies documents in each stage */
+	where?: ResolverInputTypes["AboutMeManyWhereInput"] | undefined | null,	/** Stages to unpublish documents from */
 	from: Array<ResolverInputTypes["Stage"]>},ResolverInputTypes["BatchPayload"]],
-schedulePublishPageMetadata?: [{	/** Document to publish */
-	where: ResolverInputTypes["PageMetadataWhereUniqueInput"],	/** Publishing target stage */
+schedulePublishAboutMe?: [{	/** Document to publish */
+	where: ResolverInputTypes["AboutMeWhereUniqueInput"],	/** Publishing target stage */
 	to: Array<ResolverInputTypes["Stage"]>,	/** Release at point in time, will create new release containing this operation */
 	releaseAt?: ResolverInputTypes["DateTime"] | undefined | null,	/** Optionally attach this scheduled operation to an existing release */
-	releaseId?: string | undefined | null},ResolverInputTypes["PageMetadata"]],
-scheduleUnpublishPageMetadata?: [{	/** Document to unpublish */
-	where: ResolverInputTypes["PageMetadataWhereUniqueInput"],	/** Stages to unpublish document from */
+	releaseId?: string | undefined | null},ResolverInputTypes["AboutMe"]],
+scheduleUnpublishAboutMe?: [{	/** Document to unpublish */
+	where: ResolverInputTypes["AboutMeWhereUniqueInput"],	/** Stages to unpublish document from */
 	from: Array<ResolverInputTypes["Stage"]>,	/** Release at point in time, will create new release containing this operation */
 	releaseAt?: ResolverInputTypes["DateTime"] | undefined | null,	/** Optionally attach this scheduled operation to an existing release */
-	releaseId?: string | undefined | null},ResolverInputTypes["PageMetadata"]],
-createSkill?: [{	data: ResolverInputTypes["SkillCreateInput"]},ResolverInputTypes["Skill"]],
-updateSkill?: [{	where: ResolverInputTypes["SkillWhereUniqueInput"],	data: ResolverInputTypes["SkillUpdateInput"]},ResolverInputTypes["Skill"]],
-deleteSkill?: [{	/** Document to delete */
-	where: ResolverInputTypes["SkillWhereUniqueInput"]},ResolverInputTypes["Skill"]],
-upsertSkill?: [{	where: ResolverInputTypes["SkillWhereUniqueInput"],	upsert: ResolverInputTypes["SkillUpsertInput"]},ResolverInputTypes["Skill"]],
-publishSkill?: [{	/** Document to publish */
-	where: ResolverInputTypes["SkillWhereUniqueInput"],	/** Publishing target stage */
-	to: Array<ResolverInputTypes["Stage"]>},ResolverInputTypes["Skill"]],
-unpublishSkill?: [{	/** Document to unpublish */
-	where: ResolverInputTypes["SkillWhereUniqueInput"],	/** Stages to unpublish document from */
-	from: Array<ResolverInputTypes["Stage"]>},ResolverInputTypes["Skill"]],
-updateManySkillsConnection?: [{	/** Documents to apply update on */
-	where?: ResolverInputTypes["SkillManyWhereInput"] | undefined | null,	/** Updates to document content */
-	data: ResolverInputTypes["SkillUpdateManyInput"],	skip?: number | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	before?: string | undefined | null,	after?: string | undefined | null},ResolverInputTypes["SkillConnection"]],
-deleteManySkillsConnection?: [{	/** Documents to delete */
-	where?: ResolverInputTypes["SkillManyWhereInput"] | undefined | null,	skip?: number | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	before?: string | undefined | null,	after?: string | undefined | null},ResolverInputTypes["SkillConnection"]],
-publishManySkillsConnection?: [{	/** Identifies documents in each stage to be published */
-	where?: ResolverInputTypes["SkillManyWhereInput"] | undefined | null,	/** Stage to find matching documents in */
+	releaseId?: string | undefined | null},ResolverInputTypes["AboutMe"]],
+createSkillCategory?: [{	data: ResolverInputTypes["SkillCategoryCreateInput"]},ResolverInputTypes["SkillCategory"]],
+updateSkillCategory?: [{	where: ResolverInputTypes["SkillCategoryWhereUniqueInput"],	data: ResolverInputTypes["SkillCategoryUpdateInput"]},ResolverInputTypes["SkillCategory"]],
+deleteSkillCategory?: [{	/** Document to delete */
+	where: ResolverInputTypes["SkillCategoryWhereUniqueInput"]},ResolverInputTypes["SkillCategory"]],
+upsertSkillCategory?: [{	where: ResolverInputTypes["SkillCategoryWhereUniqueInput"],	upsert: ResolverInputTypes["SkillCategoryUpsertInput"]},ResolverInputTypes["SkillCategory"]],
+publishSkillCategory?: [{	/** Document to publish */
+	where: ResolverInputTypes["SkillCategoryWhereUniqueInput"],	/** Publishing target stage */
+	to: Array<ResolverInputTypes["Stage"]>},ResolverInputTypes["SkillCategory"]],
+unpublishSkillCategory?: [{	/** Document to unpublish */
+	where: ResolverInputTypes["SkillCategoryWhereUniqueInput"],	/** Stages to unpublish document from */
+	from: Array<ResolverInputTypes["Stage"]>},ResolverInputTypes["SkillCategory"]],
+updateManySkillCategoriesConnection?: [{	/** Documents to apply update on */
+	where?: ResolverInputTypes["SkillCategoryManyWhereInput"] | undefined | null,	/** Updates to document content */
+	data: ResolverInputTypes["SkillCategoryUpdateManyInput"],	skip?: number | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	before?: string | undefined | null,	after?: string | undefined | null},ResolverInputTypes["SkillCategoryConnection"]],
+deleteManySkillCategoriesConnection?: [{	/** Documents to delete */
+	where?: ResolverInputTypes["SkillCategoryManyWhereInput"] | undefined | null,	skip?: number | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	before?: string | undefined | null,	after?: string | undefined | null},ResolverInputTypes["SkillCategoryConnection"]],
+publishManySkillCategoriesConnection?: [{	/** Identifies documents in each stage to be published */
+	where?: ResolverInputTypes["SkillCategoryManyWhereInput"] | undefined | null,	/** Stage to find matching documents in */
 	from?: ResolverInputTypes["Stage"] | undefined | null,	/** Stages to publish documents to */
-	to: Array<ResolverInputTypes["Stage"]>,	skip?: number | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	before?: string | undefined | null,	after?: string | undefined | null},ResolverInputTypes["SkillConnection"]],
-unpublishManySkillsConnection?: [{	/** Identifies documents in draft stage */
-	where?: ResolverInputTypes["SkillManyWhereInput"] | undefined | null,	/** Stage to find matching documents in */
+	to: Array<ResolverInputTypes["Stage"]>,	skip?: number | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	before?: string | undefined | null,	after?: string | undefined | null},ResolverInputTypes["SkillCategoryConnection"]],
+unpublishManySkillCategoriesConnection?: [{	/** Identifies documents in draft stage */
+	where?: ResolverInputTypes["SkillCategoryManyWhereInput"] | undefined | null,	/** Stage to find matching documents in */
 	stage?: ResolverInputTypes["Stage"] | undefined | null,	/** Stages to unpublish documents from */
-	from: Array<ResolverInputTypes["Stage"]>,	skip?: number | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	before?: string | undefined | null,	after?: string | undefined | null},ResolverInputTypes["SkillConnection"]],
-updateManySkills?: [{	/** Documents to apply update on */
-	where?: ResolverInputTypes["SkillManyWhereInput"] | undefined | null,	/** Updates to document content */
-	data: ResolverInputTypes["SkillUpdateManyInput"]},ResolverInputTypes["BatchPayload"]],
-deleteManySkills?: [{	/** Documents to delete */
-	where?: ResolverInputTypes["SkillManyWhereInput"] | undefined | null},ResolverInputTypes["BatchPayload"]],
-publishManySkills?: [{	/** Identifies documents in each stage to be published */
-	where?: ResolverInputTypes["SkillManyWhereInput"] | undefined | null,	/** Stages to publish documents to */
+	from: Array<ResolverInputTypes["Stage"]>,	skip?: number | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	before?: string | undefined | null,	after?: string | undefined | null},ResolverInputTypes["SkillCategoryConnection"]],
+updateManySkillCategories?: [{	/** Documents to apply update on */
+	where?: ResolverInputTypes["SkillCategoryManyWhereInput"] | undefined | null,	/** Updates to document content */
+	data: ResolverInputTypes["SkillCategoryUpdateManyInput"]},ResolverInputTypes["BatchPayload"]],
+deleteManySkillCategories?: [{	/** Documents to delete */
+	where?: ResolverInputTypes["SkillCategoryManyWhereInput"] | undefined | null},ResolverInputTypes["BatchPayload"]],
+publishManySkillCategories?: [{	/** Identifies documents in each stage to be published */
+	where?: ResolverInputTypes["SkillCategoryManyWhereInput"] | undefined | null,	/** Stages to publish documents to */
 	to: Array<ResolverInputTypes["Stage"]>},ResolverInputTypes["BatchPayload"]],
-unpublishManySkills?: [{	/** Identifies documents in each stage */
-	where?: ResolverInputTypes["SkillManyWhereInput"] | undefined | null,	/** Stages to unpublish documents from */
+unpublishManySkillCategories?: [{	/** Identifies documents in each stage */
+	where?: ResolverInputTypes["SkillCategoryManyWhereInput"] | undefined | null,	/** Stages to unpublish documents from */
 	from: Array<ResolverInputTypes["Stage"]>},ResolverInputTypes["BatchPayload"]],
-schedulePublishSkill?: [{	/** Document to publish */
-	where: ResolverInputTypes["SkillWhereUniqueInput"],	/** Publishing target stage */
+schedulePublishSkillCategory?: [{	/** Document to publish */
+	where: ResolverInputTypes["SkillCategoryWhereUniqueInput"],	/** Publishing target stage */
 	to: Array<ResolverInputTypes["Stage"]>,	/** Release at point in time, will create new release containing this operation */
 	releaseAt?: ResolverInputTypes["DateTime"] | undefined | null,	/** Optionally attach this scheduled operation to an existing release */
-	releaseId?: string | undefined | null},ResolverInputTypes["Skill"]],
-scheduleUnpublishSkill?: [{	/** Document to unpublish */
-	where: ResolverInputTypes["SkillWhereUniqueInput"],	/** Stages to unpublish document from */
+	releaseId?: string | undefined | null},ResolverInputTypes["SkillCategory"]],
+scheduleUnpublishSkillCategory?: [{	/** Document to unpublish */
+	where: ResolverInputTypes["SkillCategoryWhereUniqueInput"],	/** Stages to unpublish document from */
 	from: Array<ResolverInputTypes["Stage"]>,	/** Release at point in time, will create new release containing this operation */
 	releaseAt?: ResolverInputTypes["DateTime"] | undefined | null,	/** Optionally attach this scheduled operation to an existing release */
-	releaseId?: string | undefined | null},ResolverInputTypes["Skill"]],
+	releaseId?: string | undefined | null},ResolverInputTypes["SkillCategory"]],
 		__typename?: boolean | `@${string}`
 }>;
 	/** An object with an ID */
@@ -6028,13 +8174,13 @@ scheduleUnpublishSkill?: [{	/** Document to unpublish */
 	id?:boolean | `@${string}`,
 	/** The Stage of an object */
 	stage?:boolean | `@${string}`;
+		['...on AboutMe']?: Omit<ResolverInputTypes["AboutMe"],keyof ResolverInputTypes["Node"]>;
 		['...on Asset']?: Omit<ResolverInputTypes["Asset"],keyof ResolverInputTypes["Node"]>;
-		['...on PageMetadata']?: Omit<ResolverInputTypes["PageMetadata"],keyof ResolverInputTypes["Node"]>;
 		['...on Project']?: Omit<ResolverInputTypes["Project"],keyof ResolverInputTypes["Node"]>;
 		['...on ScheduledOperation']?: Omit<ResolverInputTypes["ScheduledOperation"],keyof ResolverInputTypes["Node"]>;
 		['...on ScheduledRelease']?: Omit<ResolverInputTypes["ScheduledRelease"],keyof ResolverInputTypes["Node"]>;
-		['...on Skill']?: Omit<ResolverInputTypes["Skill"],keyof ResolverInputTypes["Node"]>;
-		['...on Social']?: Omit<ResolverInputTypes["Social"],keyof ResolverInputTypes["Node"]>;
+		['...on Seo']?: Omit<ResolverInputTypes["Seo"],keyof ResolverInputTypes["Node"]>;
+		['...on SkillCategory']?: Omit<ResolverInputTypes["SkillCategory"],keyof ResolverInputTypes["Node"]>;
 		['...on User']?: Omit<ResolverInputTypes["User"],keyof ResolverInputTypes["Node"]>;
 		__typename?: boolean | `@${string}`
 }>;
@@ -6052,493 +8198,6 @@ scheduleUnpublishSkill?: [{	/** Document to unpublish */
 	pageSize?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
-	/** Page Metadata */
-["PageMetadata"]: AliasType<{
-	/** System stage field */
-	stage?:boolean | `@${string}`,
-documentInStages?: [{	/** Potential stages that should be returned */
-	stages: Array<ResolverInputTypes["Stage"]>,	/** Decides if the current stage should be included or not */
-	includeCurrent: boolean,	/** Decides if the documents should match the parent documents locale or should use the fallback order defined in the tree */
-	inheritLocale: boolean},ResolverInputTypes["PageMetadata"]],
-	/** The time the document was published. Null on documents in draft stage. */
-	publishedAt?:boolean | `@${string}`,
-	/** The time the document was updated */
-	updatedAt?:boolean | `@${string}`,
-	/** The time the document was created */
-	createdAt?:boolean | `@${string}`,
-	/** The unique identifier */
-	id?:boolean | `@${string}`,
-	/** Page title */
-	title?:boolean | `@${string}`,
-	/** Page content summary */
-	summary?:boolean | `@${string}`,
-	/** Page slug */
-	slug?:boolean | `@${string}`,
-	/** Page number */
-	pageNumber?:boolean | `@${string}`,
-publishedBy?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
-
-Note that `publishedBy` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
-For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
-
-This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
-	locales?: Array<ResolverInputTypes["Locale"]> | undefined | null},ResolverInputTypes["User"]],
-updatedBy?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
-
-Note that `updatedBy` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
-For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
-
-This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
-	locales?: Array<ResolverInputTypes["Locale"]> | undefined | null},ResolverInputTypes["User"]],
-createdBy?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
-
-Note that `createdBy` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
-For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
-
-This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
-	locales?: Array<ResolverInputTypes["Locale"]> | undefined | null},ResolverInputTypes["User"]],
-image?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
-
-Note that `image` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
-For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
-
-This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
-	locales?: Array<ResolverInputTypes["Locale"]> | undefined | null},ResolverInputTypes["Asset"]],
-scheduledIn?: [{	where?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null,	skip?: number | undefined | null,	after?: string | undefined | null,	before?: string | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	/** Allows to optionally override locale filtering behaviour in the query's subtree.
-
-Note that `scheduledIn` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
-For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
-
-This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
-	locales?: Array<ResolverInputTypes["Locale"]> | undefined | null},ResolverInputTypes["ScheduledOperation"]],
-history?: [{	limit: number,	skip: number,	/** This is optional and can be used to fetch the document version history for a specific stage instead of the current one */
-	stageOverride?: ResolverInputTypes["Stage"] | undefined | null},ResolverInputTypes["Version"]],
-		__typename?: boolean | `@${string}`
-}>;
-	["PageMetadataConnectInput"]: {
-	/** Document to connect */
-	where: ResolverInputTypes["PageMetadataWhereUniqueInput"],
-	/** Allow to specify document position in list of connected documents, will default to appending at end of list */
-	position?: ResolverInputTypes["ConnectPositionInput"] | undefined | null
-};
-	/** A connection to a list of items. */
-["PageMetadataConnection"]: AliasType<{
-	/** Information to aid in pagination. */
-	pageInfo?:ResolverInputTypes["PageInfo"],
-	/** A list of edges. */
-	edges?:ResolverInputTypes["PageMetadataEdge"],
-	aggregate?:ResolverInputTypes["Aggregate"],
-		__typename?: boolean | `@${string}`
-}>;
-	["PageMetadataCreateInput"]: {
-	updatedAt?: ResolverInputTypes["DateTime"] | undefined | null,
-	createdAt?: ResolverInputTypes["DateTime"] | undefined | null,
-	title: string,
-	summary: string,
-	slug?: string | undefined | null,
-	pageNumber: number,
-	image?: ResolverInputTypes["AssetCreateOneInlineInput"] | undefined | null
-};
-	["PageMetadataCreateManyInlineInput"]: {
-	/** Create and connect multiple existing PageMetadata documents */
-	create?: Array<ResolverInputTypes["PageMetadataCreateInput"]> | undefined | null,
-	/** Connect multiple existing PageMetadata documents */
-	connect?: Array<ResolverInputTypes["PageMetadataWhereUniqueInput"]> | undefined | null
-};
-	["PageMetadataCreateOneInlineInput"]: {
-	/** Create and connect one PageMetadata document */
-	create?: ResolverInputTypes["PageMetadataCreateInput"] | undefined | null,
-	/** Connect one existing PageMetadata document */
-	connect?: ResolverInputTypes["PageMetadataWhereUniqueInput"] | undefined | null
-};
-	/** An edge in a connection. */
-["PageMetadataEdge"]: AliasType<{
-	/** The item at the end of the edge. */
-	node?:ResolverInputTypes["PageMetadata"],
-	/** A cursor for use in pagination. */
-	cursor?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
-}>;
-	/** Identifies documents */
-["PageMetadataManyWhereInput"]: {
-	/** Contains search across all appropriate fields. */
-	_search?: string | undefined | null,
-	/** Logical AND on all given filters. */
-	AND?: Array<ResolverInputTypes["PageMetadataWhereInput"]> | undefined | null,
-	/** Logical OR on all given filters. */
-	OR?: Array<ResolverInputTypes["PageMetadataWhereInput"]> | undefined | null,
-	/** Logical NOT on all given filters combined by AND. */
-	NOT?: Array<ResolverInputTypes["PageMetadataWhereInput"]> | undefined | null,
-	publishedAt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values that are not equal to given value. */
-	publishedAt_not?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values that are contained in given list. */
-	publishedAt_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
-	/** All values that are not contained in given list. */
-	publishedAt_not_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
-	/** All values less than the given value. */
-	publishedAt_lt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values less than or equal the given value. */
-	publishedAt_lte?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values greater than the given value. */
-	publishedAt_gt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values greater than or equal the given value. */
-	publishedAt_gte?: ResolverInputTypes["DateTime"] | undefined | null,
-	updatedAt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values that are not equal to given value. */
-	updatedAt_not?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values that are contained in given list. */
-	updatedAt_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
-	/** All values that are not contained in given list. */
-	updatedAt_not_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
-	/** All values less than the given value. */
-	updatedAt_lt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values less than or equal the given value. */
-	updatedAt_lte?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values greater than the given value. */
-	updatedAt_gt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values greater than or equal the given value. */
-	updatedAt_gte?: ResolverInputTypes["DateTime"] | undefined | null,
-	createdAt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values that are not equal to given value. */
-	createdAt_not?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values that are contained in given list. */
-	createdAt_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
-	/** All values that are not contained in given list. */
-	createdAt_not_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
-	/** All values less than the given value. */
-	createdAt_lt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values less than or equal the given value. */
-	createdAt_lte?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values greater than the given value. */
-	createdAt_gt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values greater than or equal the given value. */
-	createdAt_gte?: ResolverInputTypes["DateTime"] | undefined | null,
-	id?: string | undefined | null,
-	/** All values that are not equal to given value. */
-	id_not?: string | undefined | null,
-	/** All values that are contained in given list. */
-	id_in?: Array<string | undefined | null> | undefined | null,
-	/** All values that are not contained in given list. */
-	id_not_in?: Array<string | undefined | null> | undefined | null,
-	/** All values containing the given string. */
-	id_contains?: string | undefined | null,
-	/** All values not containing the given string. */
-	id_not_contains?: string | undefined | null,
-	/** All values starting with the given string. */
-	id_starts_with?: string | undefined | null,
-	/** All values not starting with the given string. */
-	id_not_starts_with?: string | undefined | null,
-	/** All values ending with the given string. */
-	id_ends_with?: string | undefined | null,
-	/** All values not ending with the given string */
-	id_not_ends_with?: string | undefined | null,
-	title?: string | undefined | null,
-	/** All values that are not equal to given value. */
-	title_not?: string | undefined | null,
-	/** All values that are contained in given list. */
-	title_in?: Array<string | undefined | null> | undefined | null,
-	/** All values that are not contained in given list. */
-	title_not_in?: Array<string | undefined | null> | undefined | null,
-	/** All values containing the given string. */
-	title_contains?: string | undefined | null,
-	/** All values not containing the given string. */
-	title_not_contains?: string | undefined | null,
-	/** All values starting with the given string. */
-	title_starts_with?: string | undefined | null,
-	/** All values not starting with the given string. */
-	title_not_starts_with?: string | undefined | null,
-	/** All values ending with the given string. */
-	title_ends_with?: string | undefined | null,
-	/** All values not ending with the given string */
-	title_not_ends_with?: string | undefined | null,
-	summary?: string | undefined | null,
-	/** All values that are not equal to given value. */
-	summary_not?: string | undefined | null,
-	/** All values that are contained in given list. */
-	summary_in?: Array<string | undefined | null> | undefined | null,
-	/** All values that are not contained in given list. */
-	summary_not_in?: Array<string | undefined | null> | undefined | null,
-	/** All values containing the given string. */
-	summary_contains?: string | undefined | null,
-	/** All values not containing the given string. */
-	summary_not_contains?: string | undefined | null,
-	/** All values starting with the given string. */
-	summary_starts_with?: string | undefined | null,
-	/** All values not starting with the given string. */
-	summary_not_starts_with?: string | undefined | null,
-	/** All values ending with the given string. */
-	summary_ends_with?: string | undefined | null,
-	/** All values not ending with the given string */
-	summary_not_ends_with?: string | undefined | null,
-	slug?: string | undefined | null,
-	/** All values that are not equal to given value. */
-	slug_not?: string | undefined | null,
-	/** All values that are contained in given list. */
-	slug_in?: Array<string | undefined | null> | undefined | null,
-	/** All values that are not contained in given list. */
-	slug_not_in?: Array<string | undefined | null> | undefined | null,
-	/** All values containing the given string. */
-	slug_contains?: string | undefined | null,
-	/** All values not containing the given string. */
-	slug_not_contains?: string | undefined | null,
-	/** All values starting with the given string. */
-	slug_starts_with?: string | undefined | null,
-	/** All values not starting with the given string. */
-	slug_not_starts_with?: string | undefined | null,
-	/** All values ending with the given string. */
-	slug_ends_with?: string | undefined | null,
-	/** All values not ending with the given string */
-	slug_not_ends_with?: string | undefined | null,
-	pageNumber?: number | undefined | null,
-	/** All values that are not equal to given value. */
-	pageNumber_not?: number | undefined | null,
-	/** All values that are contained in given list. */
-	pageNumber_in?: Array<number | undefined | null> | undefined | null,
-	/** All values that are not contained in given list. */
-	pageNumber_not_in?: Array<number | undefined | null> | undefined | null,
-	/** All values less than the given value. */
-	pageNumber_lt?: number | undefined | null,
-	/** All values less than or equal the given value. */
-	pageNumber_lte?: number | undefined | null,
-	/** All values greater than the given value. */
-	pageNumber_gt?: number | undefined | null,
-	/** All values greater than or equal the given value. */
-	pageNumber_gte?: number | undefined | null,
-	publishedBy?: ResolverInputTypes["UserWhereInput"] | undefined | null,
-	updatedBy?: ResolverInputTypes["UserWhereInput"] | undefined | null,
-	createdBy?: ResolverInputTypes["UserWhereInput"] | undefined | null,
-	image?: ResolverInputTypes["AssetWhereInput"] | undefined | null,
-	scheduledIn_every?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null,
-	scheduledIn_some?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null,
-	scheduledIn_none?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null
-};
-	["PageMetadataOrderByInput"]:PageMetadataOrderByInput;
-	["PageMetadataUpdateInput"]: {
-	title?: string | undefined | null,
-	summary?: string | undefined | null,
-	slug?: string | undefined | null,
-	pageNumber?: number | undefined | null,
-	image?: ResolverInputTypes["AssetUpdateOneInlineInput"] | undefined | null
-};
-	["PageMetadataUpdateManyInlineInput"]: {
-	/** Create and connect multiple PageMetadata documents */
-	create?: Array<ResolverInputTypes["PageMetadataCreateInput"]> | undefined | null,
-	/** Connect multiple existing PageMetadata documents */
-	connect?: Array<ResolverInputTypes["PageMetadataConnectInput"]> | undefined | null,
-	/** Override currently-connected documents with multiple existing PageMetadata documents */
-	set?: Array<ResolverInputTypes["PageMetadataWhereUniqueInput"]> | undefined | null,
-	/** Update multiple PageMetadata documents */
-	update?: Array<ResolverInputTypes["PageMetadataUpdateWithNestedWhereUniqueInput"]> | undefined | null,
-	/** Upsert multiple PageMetadata documents */
-	upsert?: Array<ResolverInputTypes["PageMetadataUpsertWithNestedWhereUniqueInput"]> | undefined | null,
-	/** Disconnect multiple PageMetadata documents */
-	disconnect?: Array<ResolverInputTypes["PageMetadataWhereUniqueInput"]> | undefined | null,
-	/** Delete multiple PageMetadata documents */
-	delete?: Array<ResolverInputTypes["PageMetadataWhereUniqueInput"]> | undefined | null
-};
-	["PageMetadataUpdateManyInput"]: {
-	summary?: string | undefined | null,
-	pageNumber?: number | undefined | null
-};
-	["PageMetadataUpdateManyWithNestedWhereInput"]: {
-	/** Document search */
-	where: ResolverInputTypes["PageMetadataWhereInput"],
-	/** Update many input */
-	data: ResolverInputTypes["PageMetadataUpdateManyInput"]
-};
-	["PageMetadataUpdateOneInlineInput"]: {
-	/** Create and connect one PageMetadata document */
-	create?: ResolverInputTypes["PageMetadataCreateInput"] | undefined | null,
-	/** Update single PageMetadata document */
-	update?: ResolverInputTypes["PageMetadataUpdateWithNestedWhereUniqueInput"] | undefined | null,
-	/** Upsert single PageMetadata document */
-	upsert?: ResolverInputTypes["PageMetadataUpsertWithNestedWhereUniqueInput"] | undefined | null,
-	/** Connect existing PageMetadata document */
-	connect?: ResolverInputTypes["PageMetadataWhereUniqueInput"] | undefined | null,
-	/** Disconnect currently connected PageMetadata document */
-	disconnect?: boolean | undefined | null,
-	/** Delete currently connected PageMetadata document */
-	delete?: boolean | undefined | null
-};
-	["PageMetadataUpdateWithNestedWhereUniqueInput"]: {
-	/** Unique document search */
-	where: ResolverInputTypes["PageMetadataWhereUniqueInput"],
-	/** Document to update */
-	data: ResolverInputTypes["PageMetadataUpdateInput"]
-};
-	["PageMetadataUpsertInput"]: {
-	/** Create document if it didn't exist */
-	create: ResolverInputTypes["PageMetadataCreateInput"],
-	/** Update document if it exists */
-	update: ResolverInputTypes["PageMetadataUpdateInput"]
-};
-	["PageMetadataUpsertWithNestedWhereUniqueInput"]: {
-	/** Unique document search */
-	where: ResolverInputTypes["PageMetadataWhereUniqueInput"],
-	/** Upsert data */
-	data: ResolverInputTypes["PageMetadataUpsertInput"]
-};
-	/** Identifies documents */
-["PageMetadataWhereInput"]: {
-	/** Contains search across all appropriate fields. */
-	_search?: string | undefined | null,
-	/** Logical AND on all given filters. */
-	AND?: Array<ResolverInputTypes["PageMetadataWhereInput"]> | undefined | null,
-	/** Logical OR on all given filters. */
-	OR?: Array<ResolverInputTypes["PageMetadataWhereInput"]> | undefined | null,
-	/** Logical NOT on all given filters combined by AND. */
-	NOT?: Array<ResolverInputTypes["PageMetadataWhereInput"]> | undefined | null,
-	publishedAt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values that are not equal to given value. */
-	publishedAt_not?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values that are contained in given list. */
-	publishedAt_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
-	/** All values that are not contained in given list. */
-	publishedAt_not_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
-	/** All values less than the given value. */
-	publishedAt_lt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values less than or equal the given value. */
-	publishedAt_lte?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values greater than the given value. */
-	publishedAt_gt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values greater than or equal the given value. */
-	publishedAt_gte?: ResolverInputTypes["DateTime"] | undefined | null,
-	updatedAt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values that are not equal to given value. */
-	updatedAt_not?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values that are contained in given list. */
-	updatedAt_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
-	/** All values that are not contained in given list. */
-	updatedAt_not_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
-	/** All values less than the given value. */
-	updatedAt_lt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values less than or equal the given value. */
-	updatedAt_lte?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values greater than the given value. */
-	updatedAt_gt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values greater than or equal the given value. */
-	updatedAt_gte?: ResolverInputTypes["DateTime"] | undefined | null,
-	createdAt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values that are not equal to given value. */
-	createdAt_not?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values that are contained in given list. */
-	createdAt_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
-	/** All values that are not contained in given list. */
-	createdAt_not_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
-	/** All values less than the given value. */
-	createdAt_lt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values less than or equal the given value. */
-	createdAt_lte?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values greater than the given value. */
-	createdAt_gt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values greater than or equal the given value. */
-	createdAt_gte?: ResolverInputTypes["DateTime"] | undefined | null,
-	id?: string | undefined | null,
-	/** All values that are not equal to given value. */
-	id_not?: string | undefined | null,
-	/** All values that are contained in given list. */
-	id_in?: Array<string | undefined | null> | undefined | null,
-	/** All values that are not contained in given list. */
-	id_not_in?: Array<string | undefined | null> | undefined | null,
-	/** All values containing the given string. */
-	id_contains?: string | undefined | null,
-	/** All values not containing the given string. */
-	id_not_contains?: string | undefined | null,
-	/** All values starting with the given string. */
-	id_starts_with?: string | undefined | null,
-	/** All values not starting with the given string. */
-	id_not_starts_with?: string | undefined | null,
-	/** All values ending with the given string. */
-	id_ends_with?: string | undefined | null,
-	/** All values not ending with the given string */
-	id_not_ends_with?: string | undefined | null,
-	title?: string | undefined | null,
-	/** All values that are not equal to given value. */
-	title_not?: string | undefined | null,
-	/** All values that are contained in given list. */
-	title_in?: Array<string | undefined | null> | undefined | null,
-	/** All values that are not contained in given list. */
-	title_not_in?: Array<string | undefined | null> | undefined | null,
-	/** All values containing the given string. */
-	title_contains?: string | undefined | null,
-	/** All values not containing the given string. */
-	title_not_contains?: string | undefined | null,
-	/** All values starting with the given string. */
-	title_starts_with?: string | undefined | null,
-	/** All values not starting with the given string. */
-	title_not_starts_with?: string | undefined | null,
-	/** All values ending with the given string. */
-	title_ends_with?: string | undefined | null,
-	/** All values not ending with the given string */
-	title_not_ends_with?: string | undefined | null,
-	summary?: string | undefined | null,
-	/** All values that are not equal to given value. */
-	summary_not?: string | undefined | null,
-	/** All values that are contained in given list. */
-	summary_in?: Array<string | undefined | null> | undefined | null,
-	/** All values that are not contained in given list. */
-	summary_not_in?: Array<string | undefined | null> | undefined | null,
-	/** All values containing the given string. */
-	summary_contains?: string | undefined | null,
-	/** All values not containing the given string. */
-	summary_not_contains?: string | undefined | null,
-	/** All values starting with the given string. */
-	summary_starts_with?: string | undefined | null,
-	/** All values not starting with the given string. */
-	summary_not_starts_with?: string | undefined | null,
-	/** All values ending with the given string. */
-	summary_ends_with?: string | undefined | null,
-	/** All values not ending with the given string */
-	summary_not_ends_with?: string | undefined | null,
-	slug?: string | undefined | null,
-	/** All values that are not equal to given value. */
-	slug_not?: string | undefined | null,
-	/** All values that are contained in given list. */
-	slug_in?: Array<string | undefined | null> | undefined | null,
-	/** All values that are not contained in given list. */
-	slug_not_in?: Array<string | undefined | null> | undefined | null,
-	/** All values containing the given string. */
-	slug_contains?: string | undefined | null,
-	/** All values not containing the given string. */
-	slug_not_contains?: string | undefined | null,
-	/** All values starting with the given string. */
-	slug_starts_with?: string | undefined | null,
-	/** All values not starting with the given string. */
-	slug_not_starts_with?: string | undefined | null,
-	/** All values ending with the given string. */
-	slug_ends_with?: string | undefined | null,
-	/** All values not ending with the given string */
-	slug_not_ends_with?: string | undefined | null,
-	pageNumber?: number | undefined | null,
-	/** All values that are not equal to given value. */
-	pageNumber_not?: number | undefined | null,
-	/** All values that are contained in given list. */
-	pageNumber_in?: Array<number | undefined | null> | undefined | null,
-	/** All values that are not contained in given list. */
-	pageNumber_not_in?: Array<number | undefined | null> | undefined | null,
-	/** All values less than the given value. */
-	pageNumber_lt?: number | undefined | null,
-	/** All values less than or equal the given value. */
-	pageNumber_lte?: number | undefined | null,
-	/** All values greater than the given value. */
-	pageNumber_gt?: number | undefined | null,
-	/** All values greater than or equal the given value. */
-	pageNumber_gte?: number | undefined | null,
-	publishedBy?: ResolverInputTypes["UserWhereInput"] | undefined | null,
-	updatedBy?: ResolverInputTypes["UserWhereInput"] | undefined | null,
-	createdBy?: ResolverInputTypes["UserWhereInput"] | undefined | null,
-	image?: ResolverInputTypes["AssetWhereInput"] | undefined | null,
-	scheduledIn_every?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null,
-	scheduledIn_some?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null,
-	scheduledIn_none?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null
-};
-	/** References PageMetadata record uniquely */
-["PageMetadataWhereUniqueInput"]: {
-	id?: string | undefined | null,
-	title?: string | undefined | null,
-	slug?: string | undefined | null
-};
 	["Project"]: AliasType<{
 	/** System stage field */
 	stage?:boolean | `@${string}`,
@@ -6555,9 +8214,7 @@ documentInStages?: [{	/** Potential stages that should be returned */
 	/** The unique identifier */
 	id?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
-	slug?:boolean | `@${string}`,
 	description?:boolean | `@${string}`,
-	tags?:boolean | `@${string}`,
 	demo?:boolean | `@${string}`,
 	sourceCode?:boolean | `@${string}`,
 publishedBy?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
@@ -6588,6 +8245,8 @@ For related models with localized fields in the query's subtree, the first local
 
 This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
 	locales?: Array<ResolverInputTypes["Locale"]> | undefined | null},ResolverInputTypes["Asset"]],
+	/** Tech stack for project */
+	stack?:boolean | `@${string}`,
 scheduledIn?: [{	where?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null,	skip?: number | undefined | null,	after?: string | undefined | null,	before?: string | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	/** Allows to optionally override locale filtering behaviour in the query's subtree.
 
 Note that `scheduledIn` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
@@ -6618,12 +8277,11 @@ history?: [{	limit: number,	skip: number,	/** This is optional and can be used t
 	updatedAt?: ResolverInputTypes["DateTime"] | undefined | null,
 	createdAt?: ResolverInputTypes["DateTime"] | undefined | null,
 	name: string,
-	slug?: string | undefined | null,
 	description: string,
-	tags?: Array<string> | undefined | null,
 	demo?: string | undefined | null,
 	sourceCode?: string | undefined | null,
-	image: ResolverInputTypes["AssetCreateManyInlineInput"]
+	image: ResolverInputTypes["AssetCreateManyInlineInput"],
+	stack?: Array<ResolverInputTypes["Technologies"]> | undefined | null
 };
 	["ProjectCreateManyInlineInput"]: {
 	/** Create and connect multiple existing Project documents */
@@ -6738,25 +8396,6 @@ history?: [{	limit: number,	skip: number,	/** This is optional and can be used t
 	name_ends_with?: string | undefined | null,
 	/** All values not ending with the given string */
 	name_not_ends_with?: string | undefined | null,
-	slug?: string | undefined | null,
-	/** All values that are not equal to given value. */
-	slug_not?: string | undefined | null,
-	/** All values that are contained in given list. */
-	slug_in?: Array<string | undefined | null> | undefined | null,
-	/** All values that are not contained in given list. */
-	slug_not_in?: Array<string | undefined | null> | undefined | null,
-	/** All values containing the given string. */
-	slug_contains?: string | undefined | null,
-	/** All values not containing the given string. */
-	slug_not_contains?: string | undefined | null,
-	/** All values starting with the given string. */
-	slug_starts_with?: string | undefined | null,
-	/** All values not starting with the given string. */
-	slug_not_starts_with?: string | undefined | null,
-	/** All values ending with the given string. */
-	slug_ends_with?: string | undefined | null,
-	/** All values not ending with the given string */
-	slug_not_ends_with?: string | undefined | null,
 	description?: string | undefined | null,
 	/** All values that are not equal to given value. */
 	description_not?: string | undefined | null,
@@ -6776,16 +8415,6 @@ history?: [{	limit: number,	skip: number,	/** This is optional and can be used t
 	description_ends_with?: string | undefined | null,
 	/** All values not ending with the given string */
 	description_not_ends_with?: string | undefined | null,
-	/** Matches if the field array contains *all* items provided to the filter and order does match */
-	tags?: Array<string> | undefined | null,
-	/** Matches if the field array does not contains *all* items provided to the filter or order does not match */
-	tags_not?: Array<string> | undefined | null,
-	/** Matches if the field array contains *all* items provided to the filter */
-	tags_contains_all?: Array<string> | undefined | null,
-	/** Matches if the field array contains at least one item provided to the filter */
-	tags_contains_some?: Array<string> | undefined | null,
-	/** Matches if the field array does not contain any of the items provided to the filter */
-	tags_contains_none?: Array<string> | undefined | null,
 	demo?: string | undefined | null,
 	/** All values that are not equal to given value. */
 	demo_not?: string | undefined | null,
@@ -6830,6 +8459,16 @@ history?: [{	limit: number,	skip: number,	/** This is optional and can be used t
 	image_every?: ResolverInputTypes["AssetWhereInput"] | undefined | null,
 	image_some?: ResolverInputTypes["AssetWhereInput"] | undefined | null,
 	image_none?: ResolverInputTypes["AssetWhereInput"] | undefined | null,
+	/** Matches if the field array contains *all* items provided to the filter and order does match */
+	stack?: Array<ResolverInputTypes["Technologies"]> | undefined | null,
+	/** Matches if the field array does not contains *all* items provided to the filter or order does not match */
+	stack_not?: Array<ResolverInputTypes["Technologies"]> | undefined | null,
+	/** Matches if the field array contains *all* items provided to the filter */
+	stack_contains_all?: Array<ResolverInputTypes["Technologies"]> | undefined | null,
+	/** Matches if the field array contains at least one item provided to the filter */
+	stack_contains_some?: Array<ResolverInputTypes["Technologies"]> | undefined | null,
+	/** Matches if the field array does not contain any of the items provided to the filter */
+	stack_contains_none?: Array<ResolverInputTypes["Technologies"]> | undefined | null,
 	scheduledIn_every?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null,
 	scheduledIn_some?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null,
 	scheduledIn_none?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null
@@ -6837,12 +8476,11 @@ history?: [{	limit: number,	skip: number,	/** This is optional and can be used t
 	["ProjectOrderByInput"]:ProjectOrderByInput;
 	["ProjectUpdateInput"]: {
 	name?: string | undefined | null,
-	slug?: string | undefined | null,
 	description?: string | undefined | null,
-	tags?: Array<string> | undefined | null,
 	demo?: string | undefined | null,
 	sourceCode?: string | undefined | null,
-	image?: ResolverInputTypes["AssetUpdateManyInlineInput"] | undefined | null
+	image?: ResolverInputTypes["AssetUpdateManyInlineInput"] | undefined | null,
+	stack?: Array<ResolverInputTypes["Technologies"]> | undefined | null
 };
 	["ProjectUpdateManyInlineInput"]: {
 	/** Create and connect multiple Project documents */
@@ -6862,9 +8500,9 @@ history?: [{	limit: number,	skip: number,	/** This is optional and can be used t
 };
 	["ProjectUpdateManyInput"]: {
 	description?: string | undefined | null,
-	tags?: Array<string> | undefined | null,
 	demo?: string | undefined | null,
-	sourceCode?: string | undefined | null
+	sourceCode?: string | undefined | null,
+	stack?: Array<ResolverInputTypes["Technologies"]> | undefined | null
 };
 	["ProjectUpdateManyWithNestedWhereInput"]: {
 	/** Document search */
@@ -6997,25 +8635,6 @@ history?: [{	limit: number,	skip: number,	/** This is optional and can be used t
 	name_ends_with?: string | undefined | null,
 	/** All values not ending with the given string */
 	name_not_ends_with?: string | undefined | null,
-	slug?: string | undefined | null,
-	/** All values that are not equal to given value. */
-	slug_not?: string | undefined | null,
-	/** All values that are contained in given list. */
-	slug_in?: Array<string | undefined | null> | undefined | null,
-	/** All values that are not contained in given list. */
-	slug_not_in?: Array<string | undefined | null> | undefined | null,
-	/** All values containing the given string. */
-	slug_contains?: string | undefined | null,
-	/** All values not containing the given string. */
-	slug_not_contains?: string | undefined | null,
-	/** All values starting with the given string. */
-	slug_starts_with?: string | undefined | null,
-	/** All values not starting with the given string. */
-	slug_not_starts_with?: string | undefined | null,
-	/** All values ending with the given string. */
-	slug_ends_with?: string | undefined | null,
-	/** All values not ending with the given string */
-	slug_not_ends_with?: string | undefined | null,
 	description?: string | undefined | null,
 	/** All values that are not equal to given value. */
 	description_not?: string | undefined | null,
@@ -7035,16 +8654,6 @@ history?: [{	limit: number,	skip: number,	/** This is optional and can be used t
 	description_ends_with?: string | undefined | null,
 	/** All values not ending with the given string */
 	description_not_ends_with?: string | undefined | null,
-	/** Matches if the field array contains *all* items provided to the filter and order does match */
-	tags?: Array<string> | undefined | null,
-	/** Matches if the field array does not contains *all* items provided to the filter or order does not match */
-	tags_not?: Array<string> | undefined | null,
-	/** Matches if the field array contains *all* items provided to the filter */
-	tags_contains_all?: Array<string> | undefined | null,
-	/** Matches if the field array contains at least one item provided to the filter */
-	tags_contains_some?: Array<string> | undefined | null,
-	/** Matches if the field array does not contain any of the items provided to the filter */
-	tags_contains_none?: Array<string> | undefined | null,
 	demo?: string | undefined | null,
 	/** All values that are not equal to given value. */
 	demo_not?: string | undefined | null,
@@ -7089,6 +8698,16 @@ history?: [{	limit: number,	skip: number,	/** This is optional and can be used t
 	image_every?: ResolverInputTypes["AssetWhereInput"] | undefined | null,
 	image_some?: ResolverInputTypes["AssetWhereInput"] | undefined | null,
 	image_none?: ResolverInputTypes["AssetWhereInput"] | undefined | null,
+	/** Matches if the field array contains *all* items provided to the filter and order does match */
+	stack?: Array<ResolverInputTypes["Technologies"]> | undefined | null,
+	/** Matches if the field array does not contains *all* items provided to the filter or order does not match */
+	stack_not?: Array<ResolverInputTypes["Technologies"]> | undefined | null,
+	/** Matches if the field array contains *all* items provided to the filter */
+	stack_contains_all?: Array<ResolverInputTypes["Technologies"]> | undefined | null,
+	/** Matches if the field array contains at least one item provided to the filter */
+	stack_contains_some?: Array<ResolverInputTypes["Technologies"]> | undefined | null,
+	/** Matches if the field array does not contain any of the items provided to the filter */
+	stack_contains_none?: Array<ResolverInputTypes["Technologies"]> | undefined | null,
 	scheduledIn_every?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null,
 	scheduledIn_some?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null,
 	scheduledIn_none?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null
@@ -7096,8 +8715,7 @@ history?: [{	limit: number,	skip: number,	/** This is optional and can be used t
 	/** References Project record uniquely */
 ["ProjectWhereUniqueInput"]: {
 	id?: string | undefined | null,
-	name?: string | undefined | null,
-	slug?: string | undefined | null
+	name?: string | undefined | null
 };
 	["PublishLocaleInput"]: {
 	/** Locales to publish */
@@ -7221,72 +8839,72 @@ For related models with localized fields in the query's subtree, the first local
 This argument may be overwritten by another locales definition in a relational child field, this will effectively use the overwritten argument for the affected query's subtree. */
 	locales: Array<ResolverInputTypes["Locale"]>},ResolverInputTypes["ProjectConnection"]],
 projectVersion?: [{	where: ResolverInputTypes["VersionWhereInput"]},ResolverInputTypes["DocumentVersion"]],
-socials?: [{	where?: ResolverInputTypes["SocialWhereInput"] | undefined | null,	orderBy?: ResolverInputTypes["SocialOrderByInput"] | undefined | null,	skip?: number | undefined | null,	after?: string | undefined | null,	before?: string | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	stage: ResolverInputTypes["Stage"],	/** Defines which locales should be returned.
+seos?: [{	where?: ResolverInputTypes["SeoWhereInput"] | undefined | null,	orderBy?: ResolverInputTypes["SeoOrderByInput"] | undefined | null,	skip?: number | undefined | null,	after?: string | undefined | null,	before?: string | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	stage: ResolverInputTypes["Stage"],	/** Defines which locales should be returned.
 
-Note that `Social` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+Note that `Seo` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
 For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
 
 This argument may be overwritten by another locales definition in a relational child field, this will effectively use the overwritten argument for the affected query's subtree. */
-	locales: Array<ResolverInputTypes["Locale"]>},ResolverInputTypes["Social"]],
-social?: [{	where: ResolverInputTypes["SocialWhereUniqueInput"],	stage: ResolverInputTypes["Stage"],	/** Defines which locales should be returned.
+	locales: Array<ResolverInputTypes["Locale"]>},ResolverInputTypes["Seo"]],
+seo?: [{	where: ResolverInputTypes["SeoWhereUniqueInput"],	stage: ResolverInputTypes["Stage"],	/** Defines which locales should be returned.
 
-Note that `Social` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+Note that `Seo` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
 For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
 
 This argument may be overwritten by another locales definition in a relational child field, this will effectively use the overwritten argument for the affected query's subtree. */
-	locales: Array<ResolverInputTypes["Locale"]>},ResolverInputTypes["Social"]],
-socialsConnection?: [{	where?: ResolverInputTypes["SocialWhereInput"] | undefined | null,	orderBy?: ResolverInputTypes["SocialOrderByInput"] | undefined | null,	skip?: number | undefined | null,	after?: string | undefined | null,	before?: string | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	stage: ResolverInputTypes["Stage"],	/** Defines which locales should be returned.
+	locales: Array<ResolverInputTypes["Locale"]>},ResolverInputTypes["Seo"]],
+seosConnection?: [{	where?: ResolverInputTypes["SeoWhereInput"] | undefined | null,	orderBy?: ResolverInputTypes["SeoOrderByInput"] | undefined | null,	skip?: number | undefined | null,	after?: string | undefined | null,	before?: string | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	stage: ResolverInputTypes["Stage"],	/** Defines which locales should be returned.
 
-Note that `Social` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+Note that `Seo` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
 For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
 
 This argument may be overwritten by another locales definition in a relational child field, this will effectively use the overwritten argument for the affected query's subtree. */
-	locales: Array<ResolverInputTypes["Locale"]>},ResolverInputTypes["SocialConnection"]],
-socialVersion?: [{	where: ResolverInputTypes["VersionWhereInput"]},ResolverInputTypes["DocumentVersion"]],
-pagesMetadata?: [{	where?: ResolverInputTypes["PageMetadataWhereInput"] | undefined | null,	orderBy?: ResolverInputTypes["PageMetadataOrderByInput"] | undefined | null,	skip?: number | undefined | null,	after?: string | undefined | null,	before?: string | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	stage: ResolverInputTypes["Stage"],	/** Defines which locales should be returned.
+	locales: Array<ResolverInputTypes["Locale"]>},ResolverInputTypes["SeoConnection"]],
+seoVersion?: [{	where: ResolverInputTypes["VersionWhereInput"]},ResolverInputTypes["DocumentVersion"]],
+aboutMes?: [{	where?: ResolverInputTypes["AboutMeWhereInput"] | undefined | null,	orderBy?: ResolverInputTypes["AboutMeOrderByInput"] | undefined | null,	skip?: number | undefined | null,	after?: string | undefined | null,	before?: string | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	stage: ResolverInputTypes["Stage"],	/** Defines which locales should be returned.
 
-Note that `PageMetadata` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+Note that `AboutMe` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
 For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
 
 This argument may be overwritten by another locales definition in a relational child field, this will effectively use the overwritten argument for the affected query's subtree. */
-	locales: Array<ResolverInputTypes["Locale"]>},ResolverInputTypes["PageMetadata"]],
-pageMetadata?: [{	where: ResolverInputTypes["PageMetadataWhereUniqueInput"],	stage: ResolverInputTypes["Stage"],	/** Defines which locales should be returned.
+	locales: Array<ResolverInputTypes["Locale"]>},ResolverInputTypes["AboutMe"]],
+aboutMe?: [{	where: ResolverInputTypes["AboutMeWhereUniqueInput"],	stage: ResolverInputTypes["Stage"],	/** Defines which locales should be returned.
 
-Note that `PageMetadata` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+Note that `AboutMe` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
 For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
 
 This argument may be overwritten by another locales definition in a relational child field, this will effectively use the overwritten argument for the affected query's subtree. */
-	locales: Array<ResolverInputTypes["Locale"]>},ResolverInputTypes["PageMetadata"]],
-pagesMetadataConnection?: [{	where?: ResolverInputTypes["PageMetadataWhereInput"] | undefined | null,	orderBy?: ResolverInputTypes["PageMetadataOrderByInput"] | undefined | null,	skip?: number | undefined | null,	after?: string | undefined | null,	before?: string | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	stage: ResolverInputTypes["Stage"],	/** Defines which locales should be returned.
+	locales: Array<ResolverInputTypes["Locale"]>},ResolverInputTypes["AboutMe"]],
+aboutMesConnection?: [{	where?: ResolverInputTypes["AboutMeWhereInput"] | undefined | null,	orderBy?: ResolverInputTypes["AboutMeOrderByInput"] | undefined | null,	skip?: number | undefined | null,	after?: string | undefined | null,	before?: string | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	stage: ResolverInputTypes["Stage"],	/** Defines which locales should be returned.
 
-Note that `PageMetadata` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+Note that `AboutMe` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
 For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
 
 This argument may be overwritten by another locales definition in a relational child field, this will effectively use the overwritten argument for the affected query's subtree. */
-	locales: Array<ResolverInputTypes["Locale"]>},ResolverInputTypes["PageMetadataConnection"]],
-pageMetadataVersion?: [{	where: ResolverInputTypes["VersionWhereInput"]},ResolverInputTypes["DocumentVersion"]],
-skills?: [{	where?: ResolverInputTypes["SkillWhereInput"] | undefined | null,	orderBy?: ResolverInputTypes["SkillOrderByInput"] | undefined | null,	skip?: number | undefined | null,	after?: string | undefined | null,	before?: string | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	stage: ResolverInputTypes["Stage"],	/** Defines which locales should be returned.
+	locales: Array<ResolverInputTypes["Locale"]>},ResolverInputTypes["AboutMeConnection"]],
+aboutMeVersion?: [{	where: ResolverInputTypes["VersionWhereInput"]},ResolverInputTypes["DocumentVersion"]],
+skillCategories?: [{	where?: ResolverInputTypes["SkillCategoryWhereInput"] | undefined | null,	orderBy?: ResolverInputTypes["SkillCategoryOrderByInput"] | undefined | null,	skip?: number | undefined | null,	after?: string | undefined | null,	before?: string | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	stage: ResolverInputTypes["Stage"],	/** Defines which locales should be returned.
 
-Note that `Skill` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+Note that `SkillCategory` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
 For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
 
 This argument may be overwritten by another locales definition in a relational child field, this will effectively use the overwritten argument for the affected query's subtree. */
-	locales: Array<ResolverInputTypes["Locale"]>},ResolverInputTypes["Skill"]],
-skill?: [{	where: ResolverInputTypes["SkillWhereUniqueInput"],	stage: ResolverInputTypes["Stage"],	/** Defines which locales should be returned.
+	locales: Array<ResolverInputTypes["Locale"]>},ResolverInputTypes["SkillCategory"]],
+skillCategory?: [{	where: ResolverInputTypes["SkillCategoryWhereUniqueInput"],	stage: ResolverInputTypes["Stage"],	/** Defines which locales should be returned.
 
-Note that `Skill` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+Note that `SkillCategory` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
 For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
 
 This argument may be overwritten by another locales definition in a relational child field, this will effectively use the overwritten argument for the affected query's subtree. */
-	locales: Array<ResolverInputTypes["Locale"]>},ResolverInputTypes["Skill"]],
-skillsConnection?: [{	where?: ResolverInputTypes["SkillWhereInput"] | undefined | null,	orderBy?: ResolverInputTypes["SkillOrderByInput"] | undefined | null,	skip?: number | undefined | null,	after?: string | undefined | null,	before?: string | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	stage: ResolverInputTypes["Stage"],	/** Defines which locales should be returned.
+	locales: Array<ResolverInputTypes["Locale"]>},ResolverInputTypes["SkillCategory"]],
+skillCategoriesConnection?: [{	where?: ResolverInputTypes["SkillCategoryWhereInput"] | undefined | null,	orderBy?: ResolverInputTypes["SkillCategoryOrderByInput"] | undefined | null,	skip?: number | undefined | null,	after?: string | undefined | null,	before?: string | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	stage: ResolverInputTypes["Stage"],	/** Defines which locales should be returned.
 
-Note that `Skill` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+Note that `SkillCategory` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
 For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
 
 This argument may be overwritten by another locales definition in a relational child field, this will effectively use the overwritten argument for the affected query's subtree. */
-	locales: Array<ResolverInputTypes["Locale"]>},ResolverInputTypes["SkillConnection"]],
-skillVersion?: [{	where: ResolverInputTypes["VersionWhereInput"]},ResolverInputTypes["DocumentVersion"]],
+	locales: Array<ResolverInputTypes["Locale"]>},ResolverInputTypes["SkillCategoryConnection"]],
+skillCategoryVersion?: [{	where: ResolverInputTypes["VersionWhereInput"]},ResolverInputTypes["DocumentVersion"]],
 		__typename?: boolean | `@${string}`
 }>;
 	/** Representing a RGBA color value: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#rgb()_and_rgba() */
@@ -7382,11 +9000,11 @@ This argument will overwrite any existing locale filtering defined in the query'
 		__typename?: boolean | `@${string}`
 }>;
 	["ScheduledOperationAffectedDocument"]: AliasType<{
+	AboutMe?:ResolverInputTypes["AboutMe"],
 	Asset?:ResolverInputTypes["Asset"],
-	PageMetadata?:ResolverInputTypes["PageMetadata"],
 	Project?:ResolverInputTypes["Project"],
-	Skill?:ResolverInputTypes["Skill"],
-	Social?:ResolverInputTypes["Social"],
+	Seo?:ResolverInputTypes["Seo"],
+	SkillCategory?:ResolverInputTypes["SkillCategory"],
 		__typename?: boolean | `@${string}`
 }>;
 	["ScheduledOperationConnectInput"]: {
@@ -8200,13 +9818,13 @@ This argument will overwrite any existing locale filtering defined in the query'
 ["ScheduledReleaseWhereUniqueInput"]: {
 	id?: string | undefined | null
 };
-	["Skill"]: AliasType<{
+	["Seo"]: AliasType<{
 	/** System stage field */
 	stage?:boolean | `@${string}`,
 documentInStages?: [{	/** Potential stages that should be returned */
 	stages: Array<ResolverInputTypes["Stage"]>,	/** Decides if the current stage should be included or not */
 	includeCurrent: boolean,	/** Decides if the documents should match the parent documents locale or should use the fallback order defined in the tree */
-	inheritLocale: boolean},ResolverInputTypes["Skill"]],
+	inheritLocale: boolean},ResolverInputTypes["Seo"]],
 	/** The time the document was published. Null on documents in draft stage. */
 	publishedAt?:boolean | `@${string}`,
 	/** The time the document was updated */
@@ -8215,7 +9833,9 @@ documentInStages?: [{	/** Potential stages that should be returned */
 	createdAt?:boolean | `@${string}`,
 	/** The unique identifier */
 	id?:boolean | `@${string}`,
-	name?:boolean | `@${string}`,
+	title?:boolean | `@${string}`,
+	description?:boolean | `@${string}`,
+	keywords?:boolean | `@${string}`,
 publishedBy?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
 
 Note that `publishedBy` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
@@ -8237,9 +9857,9 @@ For related models with localized fields in the query's subtree, the first local
 
 This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
 	locales?: Array<ResolverInputTypes["Locale"]> | undefined | null},ResolverInputTypes["User"]],
-icon?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
+og_image?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
 
-Note that `icon` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+Note that `og_image` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
 For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
 
 This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
@@ -8255,57 +9875,500 @@ history?: [{	limit: number,	skip: number,	/** This is optional and can be used t
 	stageOverride?: ResolverInputTypes["Stage"] | undefined | null},ResolverInputTypes["Version"]],
 		__typename?: boolean | `@${string}`
 }>;
-	["SkillConnectInput"]: {
+	["SeoConnectInput"]: {
 	/** Document to connect */
-	where: ResolverInputTypes["SkillWhereUniqueInput"],
+	where: ResolverInputTypes["SeoWhereUniqueInput"],
 	/** Allow to specify document position in list of connected documents, will default to appending at end of list */
 	position?: ResolverInputTypes["ConnectPositionInput"] | undefined | null
 };
 	/** A connection to a list of items. */
-["SkillConnection"]: AliasType<{
+["SeoConnection"]: AliasType<{
 	/** Information to aid in pagination. */
 	pageInfo?:ResolverInputTypes["PageInfo"],
 	/** A list of edges. */
-	edges?:ResolverInputTypes["SkillEdge"],
+	edges?:ResolverInputTypes["SeoEdge"],
 	aggregate?:ResolverInputTypes["Aggregate"],
 		__typename?: boolean | `@${string}`
 }>;
-	["SkillCreateInput"]: {
+	["SeoCreateInput"]: {
 	updatedAt?: ResolverInputTypes["DateTime"] | undefined | null,
 	createdAt?: ResolverInputTypes["DateTime"] | undefined | null,
-	name: string,
-	icon?: ResolverInputTypes["AssetCreateOneInlineInput"] | undefined | null
+	title: string,
+	description: string,
+	keywords: Array<string>,
+	og_image: ResolverInputTypes["AssetCreateOneInlineInput"]
 };
-	["SkillCreateManyInlineInput"]: {
-	/** Create and connect multiple existing Skill documents */
-	create?: Array<ResolverInputTypes["SkillCreateInput"]> | undefined | null,
-	/** Connect multiple existing Skill documents */
-	connect?: Array<ResolverInputTypes["SkillWhereUniqueInput"]> | undefined | null
+	["SeoCreateManyInlineInput"]: {
+	/** Create and connect multiple existing Seo documents */
+	create?: Array<ResolverInputTypes["SeoCreateInput"]> | undefined | null,
+	/** Connect multiple existing Seo documents */
+	connect?: Array<ResolverInputTypes["SeoWhereUniqueInput"]> | undefined | null
 };
-	["SkillCreateOneInlineInput"]: {
-	/** Create and connect one Skill document */
-	create?: ResolverInputTypes["SkillCreateInput"] | undefined | null,
-	/** Connect one existing Skill document */
-	connect?: ResolverInputTypes["SkillWhereUniqueInput"] | undefined | null
+	["SeoCreateOneInlineInput"]: {
+	/** Create and connect one Seo document */
+	create?: ResolverInputTypes["SeoCreateInput"] | undefined | null,
+	/** Connect one existing Seo document */
+	connect?: ResolverInputTypes["SeoWhereUniqueInput"] | undefined | null
 };
 	/** An edge in a connection. */
-["SkillEdge"]: AliasType<{
+["SeoEdge"]: AliasType<{
 	/** The item at the end of the edge. */
-	node?:ResolverInputTypes["Skill"],
+	node?:ResolverInputTypes["Seo"],
 	/** A cursor for use in pagination. */
 	cursor?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** Identifies documents */
-["SkillManyWhereInput"]: {
+["SeoManyWhereInput"]: {
 	/** Contains search across all appropriate fields. */
 	_search?: string | undefined | null,
 	/** Logical AND on all given filters. */
-	AND?: Array<ResolverInputTypes["SkillWhereInput"]> | undefined | null,
+	AND?: Array<ResolverInputTypes["SeoWhereInput"]> | undefined | null,
 	/** Logical OR on all given filters. */
-	OR?: Array<ResolverInputTypes["SkillWhereInput"]> | undefined | null,
+	OR?: Array<ResolverInputTypes["SeoWhereInput"]> | undefined | null,
 	/** Logical NOT on all given filters combined by AND. */
-	NOT?: Array<ResolverInputTypes["SkillWhereInput"]> | undefined | null,
+	NOT?: Array<ResolverInputTypes["SeoWhereInput"]> | undefined | null,
+	publishedAt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values that are not equal to given value. */
+	publishedAt_not?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values that are contained in given list. */
+	publishedAt_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	publishedAt_not_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
+	/** All values less than the given value. */
+	publishedAt_lt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values less than or equal the given value. */
+	publishedAt_lte?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values greater than the given value. */
+	publishedAt_gt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values greater than or equal the given value. */
+	publishedAt_gte?: ResolverInputTypes["DateTime"] | undefined | null,
+	updatedAt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values that are not equal to given value. */
+	updatedAt_not?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values that are contained in given list. */
+	updatedAt_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	updatedAt_not_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
+	/** All values less than the given value. */
+	updatedAt_lt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values less than or equal the given value. */
+	updatedAt_lte?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values greater than the given value. */
+	updatedAt_gt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values greater than or equal the given value. */
+	updatedAt_gte?: ResolverInputTypes["DateTime"] | undefined | null,
+	createdAt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values that are not equal to given value. */
+	createdAt_not?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values that are contained in given list. */
+	createdAt_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	createdAt_not_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
+	/** All values less than the given value. */
+	createdAt_lt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values less than or equal the given value. */
+	createdAt_lte?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values greater than the given value. */
+	createdAt_gt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values greater than or equal the given value. */
+	createdAt_gte?: ResolverInputTypes["DateTime"] | undefined | null,
+	id?: string | undefined | null,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined | null,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined | null> | undefined | null,
+	/** All values containing the given string. */
+	id_contains?: string | undefined | null,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined | null,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined | null,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined | null,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined | null,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined | null,
+	title?: string | undefined | null,
+	/** All values that are not equal to given value. */
+	title_not?: string | undefined | null,
+	/** All values that are contained in given list. */
+	title_in?: Array<string | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	title_not_in?: Array<string | undefined | null> | undefined | null,
+	/** All values containing the given string. */
+	title_contains?: string | undefined | null,
+	/** All values not containing the given string. */
+	title_not_contains?: string | undefined | null,
+	/** All values starting with the given string. */
+	title_starts_with?: string | undefined | null,
+	/** All values not starting with the given string. */
+	title_not_starts_with?: string | undefined | null,
+	/** All values ending with the given string. */
+	title_ends_with?: string | undefined | null,
+	/** All values not ending with the given string */
+	title_not_ends_with?: string | undefined | null,
+	description?: string | undefined | null,
+	/** All values that are not equal to given value. */
+	description_not?: string | undefined | null,
+	/** All values that are contained in given list. */
+	description_in?: Array<string | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	description_not_in?: Array<string | undefined | null> | undefined | null,
+	/** All values containing the given string. */
+	description_contains?: string | undefined | null,
+	/** All values not containing the given string. */
+	description_not_contains?: string | undefined | null,
+	/** All values starting with the given string. */
+	description_starts_with?: string | undefined | null,
+	/** All values not starting with the given string. */
+	description_not_starts_with?: string | undefined | null,
+	/** All values ending with the given string. */
+	description_ends_with?: string | undefined | null,
+	/** All values not ending with the given string */
+	description_not_ends_with?: string | undefined | null,
+	/** Matches if the field array contains *all* items provided to the filter and order does match */
+	keywords?: Array<string> | undefined | null,
+	/** Matches if the field array does not contains *all* items provided to the filter or order does not match */
+	keywords_not?: Array<string> | undefined | null,
+	/** Matches if the field array contains *all* items provided to the filter */
+	keywords_contains_all?: Array<string> | undefined | null,
+	/** Matches if the field array contains at least one item provided to the filter */
+	keywords_contains_some?: Array<string> | undefined | null,
+	/** Matches if the field array does not contain any of the items provided to the filter */
+	keywords_contains_none?: Array<string> | undefined | null,
+	publishedBy?: ResolverInputTypes["UserWhereInput"] | undefined | null,
+	updatedBy?: ResolverInputTypes["UserWhereInput"] | undefined | null,
+	createdBy?: ResolverInputTypes["UserWhereInput"] | undefined | null,
+	og_image?: ResolverInputTypes["AssetWhereInput"] | undefined | null,
+	scheduledIn_every?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null,
+	scheduledIn_some?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null,
+	scheduledIn_none?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null
+};
+	["SeoOrderByInput"]:SeoOrderByInput;
+	["SeoUpdateInput"]: {
+	title?: string | undefined | null,
+	description?: string | undefined | null,
+	keywords?: Array<string> | undefined | null,
+	og_image?: ResolverInputTypes["AssetUpdateOneInlineInput"] | undefined | null
+};
+	["SeoUpdateManyInlineInput"]: {
+	/** Create and connect multiple Seo documents */
+	create?: Array<ResolverInputTypes["SeoCreateInput"]> | undefined | null,
+	/** Connect multiple existing Seo documents */
+	connect?: Array<ResolverInputTypes["SeoConnectInput"]> | undefined | null,
+	/** Override currently-connected documents with multiple existing Seo documents */
+	set?: Array<ResolverInputTypes["SeoWhereUniqueInput"]> | undefined | null,
+	/** Update multiple Seo documents */
+	update?: Array<ResolverInputTypes["SeoUpdateWithNestedWhereUniqueInput"]> | undefined | null,
+	/** Upsert multiple Seo documents */
+	upsert?: Array<ResolverInputTypes["SeoUpsertWithNestedWhereUniqueInput"]> | undefined | null,
+	/** Disconnect multiple Seo documents */
+	disconnect?: Array<ResolverInputTypes["SeoWhereUniqueInput"]> | undefined | null,
+	/** Delete multiple Seo documents */
+	delete?: Array<ResolverInputTypes["SeoWhereUniqueInput"]> | undefined | null
+};
+	["SeoUpdateManyInput"]: {
+	title?: string | undefined | null,
+	description?: string | undefined | null,
+	keywords?: Array<string> | undefined | null
+};
+	["SeoUpdateManyWithNestedWhereInput"]: {
+	/** Document search */
+	where: ResolverInputTypes["SeoWhereInput"],
+	/** Update many input */
+	data: ResolverInputTypes["SeoUpdateManyInput"]
+};
+	["SeoUpdateOneInlineInput"]: {
+	/** Create and connect one Seo document */
+	create?: ResolverInputTypes["SeoCreateInput"] | undefined | null,
+	/** Update single Seo document */
+	update?: ResolverInputTypes["SeoUpdateWithNestedWhereUniqueInput"] | undefined | null,
+	/** Upsert single Seo document */
+	upsert?: ResolverInputTypes["SeoUpsertWithNestedWhereUniqueInput"] | undefined | null,
+	/** Connect existing Seo document */
+	connect?: ResolverInputTypes["SeoWhereUniqueInput"] | undefined | null,
+	/** Disconnect currently connected Seo document */
+	disconnect?: boolean | undefined | null,
+	/** Delete currently connected Seo document */
+	delete?: boolean | undefined | null
+};
+	["SeoUpdateWithNestedWhereUniqueInput"]: {
+	/** Unique document search */
+	where: ResolverInputTypes["SeoWhereUniqueInput"],
+	/** Document to update */
+	data: ResolverInputTypes["SeoUpdateInput"]
+};
+	["SeoUpsertInput"]: {
+	/** Create document if it didn't exist */
+	create: ResolverInputTypes["SeoCreateInput"],
+	/** Update document if it exists */
+	update: ResolverInputTypes["SeoUpdateInput"]
+};
+	["SeoUpsertWithNestedWhereUniqueInput"]: {
+	/** Unique document search */
+	where: ResolverInputTypes["SeoWhereUniqueInput"],
+	/** Upsert data */
+	data: ResolverInputTypes["SeoUpsertInput"]
+};
+	/** Identifies documents */
+["SeoWhereInput"]: {
+	/** Contains search across all appropriate fields. */
+	_search?: string | undefined | null,
+	/** Logical AND on all given filters. */
+	AND?: Array<ResolverInputTypes["SeoWhereInput"]> | undefined | null,
+	/** Logical OR on all given filters. */
+	OR?: Array<ResolverInputTypes["SeoWhereInput"]> | undefined | null,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<ResolverInputTypes["SeoWhereInput"]> | undefined | null,
+	publishedAt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values that are not equal to given value. */
+	publishedAt_not?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values that are contained in given list. */
+	publishedAt_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	publishedAt_not_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
+	/** All values less than the given value. */
+	publishedAt_lt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values less than or equal the given value. */
+	publishedAt_lte?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values greater than the given value. */
+	publishedAt_gt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values greater than or equal the given value. */
+	publishedAt_gte?: ResolverInputTypes["DateTime"] | undefined | null,
+	updatedAt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values that are not equal to given value. */
+	updatedAt_not?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values that are contained in given list. */
+	updatedAt_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	updatedAt_not_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
+	/** All values less than the given value. */
+	updatedAt_lt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values less than or equal the given value. */
+	updatedAt_lte?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values greater than the given value. */
+	updatedAt_gt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values greater than or equal the given value. */
+	updatedAt_gte?: ResolverInputTypes["DateTime"] | undefined | null,
+	createdAt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values that are not equal to given value. */
+	createdAt_not?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values that are contained in given list. */
+	createdAt_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	createdAt_not_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
+	/** All values less than the given value. */
+	createdAt_lt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values less than or equal the given value. */
+	createdAt_lte?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values greater than the given value. */
+	createdAt_gt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values greater than or equal the given value. */
+	createdAt_gte?: ResolverInputTypes["DateTime"] | undefined | null,
+	id?: string | undefined | null,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined | null,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined | null> | undefined | null,
+	/** All values containing the given string. */
+	id_contains?: string | undefined | null,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined | null,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined | null,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined | null,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined | null,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined | null,
+	title?: string | undefined | null,
+	/** All values that are not equal to given value. */
+	title_not?: string | undefined | null,
+	/** All values that are contained in given list. */
+	title_in?: Array<string | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	title_not_in?: Array<string | undefined | null> | undefined | null,
+	/** All values containing the given string. */
+	title_contains?: string | undefined | null,
+	/** All values not containing the given string. */
+	title_not_contains?: string | undefined | null,
+	/** All values starting with the given string. */
+	title_starts_with?: string | undefined | null,
+	/** All values not starting with the given string. */
+	title_not_starts_with?: string | undefined | null,
+	/** All values ending with the given string. */
+	title_ends_with?: string | undefined | null,
+	/** All values not ending with the given string */
+	title_not_ends_with?: string | undefined | null,
+	description?: string | undefined | null,
+	/** All values that are not equal to given value. */
+	description_not?: string | undefined | null,
+	/** All values that are contained in given list. */
+	description_in?: Array<string | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	description_not_in?: Array<string | undefined | null> | undefined | null,
+	/** All values containing the given string. */
+	description_contains?: string | undefined | null,
+	/** All values not containing the given string. */
+	description_not_contains?: string | undefined | null,
+	/** All values starting with the given string. */
+	description_starts_with?: string | undefined | null,
+	/** All values not starting with the given string. */
+	description_not_starts_with?: string | undefined | null,
+	/** All values ending with the given string. */
+	description_ends_with?: string | undefined | null,
+	/** All values not ending with the given string */
+	description_not_ends_with?: string | undefined | null,
+	/** Matches if the field array contains *all* items provided to the filter and order does match */
+	keywords?: Array<string> | undefined | null,
+	/** Matches if the field array does not contains *all* items provided to the filter or order does not match */
+	keywords_not?: Array<string> | undefined | null,
+	/** Matches if the field array contains *all* items provided to the filter */
+	keywords_contains_all?: Array<string> | undefined | null,
+	/** Matches if the field array contains at least one item provided to the filter */
+	keywords_contains_some?: Array<string> | undefined | null,
+	/** Matches if the field array does not contain any of the items provided to the filter */
+	keywords_contains_none?: Array<string> | undefined | null,
+	publishedBy?: ResolverInputTypes["UserWhereInput"] | undefined | null,
+	updatedBy?: ResolverInputTypes["UserWhereInput"] | undefined | null,
+	createdBy?: ResolverInputTypes["UserWhereInput"] | undefined | null,
+	og_image?: ResolverInputTypes["AssetWhereInput"] | undefined | null,
+	scheduledIn_every?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null,
+	scheduledIn_some?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null,
+	scheduledIn_none?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null
+};
+	/** References Seo record uniquely */
+["SeoWhereUniqueInput"]: {
+	id?: string | undefined | null
+};
+	["Skill"]: AliasType<{
+	/** System stage field */
+	stage?:boolean | `@${string}`,
+	/** The unique identifier */
+	id?:boolean | `@${string}`,
+	name?:boolean | `@${string}`,
+icon?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
+
+Note that `icon` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
+	locales?: Array<ResolverInputTypes["Locale"]> | undefined | null},ResolverInputTypes["Asset"]],
+		__typename?: boolean | `@${string}`
+}>;
+	["SkillCategory"]: AliasType<{
+	/** System stage field */
+	stage?:boolean | `@${string}`,
+documentInStages?: [{	/** Potential stages that should be returned */
+	stages: Array<ResolverInputTypes["Stage"]>,	/** Decides if the current stage should be included or not */
+	includeCurrent: boolean,	/** Decides if the documents should match the parent documents locale or should use the fallback order defined in the tree */
+	inheritLocale: boolean},ResolverInputTypes["SkillCategory"]],
+	/** The time the document was published. Null on documents in draft stage. */
+	publishedAt?:boolean | `@${string}`,
+	/** The time the document was updated */
+	updatedAt?:boolean | `@${string}`,
+	/** The time the document was created */
+	createdAt?:boolean | `@${string}`,
+	/** The unique identifier */
+	id?:boolean | `@${string}`,
+	name?:boolean | `@${string}`,
+skillsList?: [{	skip?: number | undefined | null,	after?: string | undefined | null,	before?: string | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	/** Allows to optionally override locale filtering behaviour in the query's subtree.
+
+Note that `skillsList` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
+	locales?: Array<ResolverInputTypes["Locale"]> | undefined | null},ResolverInputTypes["SkillCategoryskillsListUnion"]],
+publishedBy?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
+
+Note that `publishedBy` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
+	locales?: Array<ResolverInputTypes["Locale"]> | undefined | null},ResolverInputTypes["User"]],
+updatedBy?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
+
+Note that `updatedBy` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
+	locales?: Array<ResolverInputTypes["Locale"]> | undefined | null},ResolverInputTypes["User"]],
+createdBy?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
+
+Note that `createdBy` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
+	locales?: Array<ResolverInputTypes["Locale"]> | undefined | null},ResolverInputTypes["User"]],
+scheduledIn?: [{	where?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null,	skip?: number | undefined | null,	after?: string | undefined | null,	before?: string | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	/** Allows to optionally override locale filtering behaviour in the query's subtree.
+
+Note that `scheduledIn` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
+	locales?: Array<ResolverInputTypes["Locale"]> | undefined | null},ResolverInputTypes["ScheduledOperation"]],
+history?: [{	limit: number,	skip: number,	/** This is optional and can be used to fetch the document version history for a specific stage instead of the current one */
+	stageOverride?: ResolverInputTypes["Stage"] | undefined | null},ResolverInputTypes["Version"]],
+		__typename?: boolean | `@${string}`
+}>;
+	["SkillCategoryConnectInput"]: {
+	/** Document to connect */
+	where: ResolverInputTypes["SkillCategoryWhereUniqueInput"],
+	/** Allow to specify document position in list of connected documents, will default to appending at end of list */
+	position?: ResolverInputTypes["ConnectPositionInput"] | undefined | null
+};
+	/** A connection to a list of items. */
+["SkillCategoryConnection"]: AliasType<{
+	/** Information to aid in pagination. */
+	pageInfo?:ResolverInputTypes["PageInfo"],
+	/** A list of edges. */
+	edges?:ResolverInputTypes["SkillCategoryEdge"],
+	aggregate?:ResolverInputTypes["Aggregate"],
+		__typename?: boolean | `@${string}`
+}>;
+	["SkillCategoryCreateInput"]: {
+	updatedAt?: ResolverInputTypes["DateTime"] | undefined | null,
+	createdAt?: ResolverInputTypes["DateTime"] | undefined | null,
+	name: string,
+	skillsList?: ResolverInputTypes["SkillCategoryskillsListUnionCreateManyInlineInput"] | undefined | null
+};
+	["SkillCategoryCreateManyInlineInput"]: {
+	/** Create and connect multiple existing SkillCategory documents */
+	create?: Array<ResolverInputTypes["SkillCategoryCreateInput"]> | undefined | null,
+	/** Connect multiple existing SkillCategory documents */
+	connect?: Array<ResolverInputTypes["SkillCategoryWhereUniqueInput"]> | undefined | null
+};
+	["SkillCategoryCreateOneInlineInput"]: {
+	/** Create and connect one SkillCategory document */
+	create?: ResolverInputTypes["SkillCategoryCreateInput"] | undefined | null,
+	/** Connect one existing SkillCategory document */
+	connect?: ResolverInputTypes["SkillCategoryWhereUniqueInput"] | undefined | null
+};
+	/** An edge in a connection. */
+["SkillCategoryEdge"]: AliasType<{
+	/** The item at the end of the edge. */
+	node?:ResolverInputTypes["SkillCategory"],
+	/** A cursor for use in pagination. */
+	cursor?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** Identifies documents */
+["SkillCategoryManyWhereInput"]: {
+	/** Contains search across all appropriate fields. */
+	_search?: string | undefined | null,
+	/** Logical AND on all given filters. */
+	AND?: Array<ResolverInputTypes["SkillCategoryWhereInput"]> | undefined | null,
+	/** Logical OR on all given filters. */
+	OR?: Array<ResolverInputTypes["SkillCategoryWhereInput"]> | undefined | null,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<ResolverInputTypes["SkillCategoryWhereInput"]> | undefined | null,
 	publishedAt?: ResolverInputTypes["DateTime"] | undefined | null,
 	/** All values that are not equal to given value. */
 	publishedAt_not?: ResolverInputTypes["DateTime"] | undefined | null,
@@ -8392,29 +10455,416 @@ history?: [{	limit: number,	skip: number,	/** This is optional and can be used t
 	publishedBy?: ResolverInputTypes["UserWhereInput"] | undefined | null,
 	updatedBy?: ResolverInputTypes["UserWhereInput"] | undefined | null,
 	createdBy?: ResolverInputTypes["UserWhereInput"] | undefined | null,
-	icon?: ResolverInputTypes["AssetWhereInput"] | undefined | null,
 	scheduledIn_every?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null,
 	scheduledIn_some?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null,
 	scheduledIn_none?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null
 };
+	["SkillCategoryOrderByInput"]:SkillCategoryOrderByInput;
+	["SkillCategoryUpdateInput"]: {
+	name?: string | undefined | null,
+	skillsList?: ResolverInputTypes["SkillCategoryskillsListUnionUpdateManyInlineInput"] | undefined | null
+};
+	["SkillCategoryUpdateManyInlineInput"]: {
+	/** Create and connect multiple SkillCategory documents */
+	create?: Array<ResolverInputTypes["SkillCategoryCreateInput"]> | undefined | null,
+	/** Connect multiple existing SkillCategory documents */
+	connect?: Array<ResolverInputTypes["SkillCategoryConnectInput"]> | undefined | null,
+	/** Override currently-connected documents with multiple existing SkillCategory documents */
+	set?: Array<ResolverInputTypes["SkillCategoryWhereUniqueInput"]> | undefined | null,
+	/** Update multiple SkillCategory documents */
+	update?: Array<ResolverInputTypes["SkillCategoryUpdateWithNestedWhereUniqueInput"]> | undefined | null,
+	/** Upsert multiple SkillCategory documents */
+	upsert?: Array<ResolverInputTypes["SkillCategoryUpsertWithNestedWhereUniqueInput"]> | undefined | null,
+	/** Disconnect multiple SkillCategory documents */
+	disconnect?: Array<ResolverInputTypes["SkillCategoryWhereUniqueInput"]> | undefined | null,
+	/** Delete multiple SkillCategory documents */
+	delete?: Array<ResolverInputTypes["SkillCategoryWhereUniqueInput"]> | undefined | null
+};
+	["SkillCategoryUpdateManyInput"]: {
+	/** No fields in updateMany data input */
+	_?: string | undefined | null
+};
+	["SkillCategoryUpdateManyWithNestedWhereInput"]: {
+	/** Document search */
+	where: ResolverInputTypes["SkillCategoryWhereInput"],
+	/** Update many input */
+	data: ResolverInputTypes["SkillCategoryUpdateManyInput"]
+};
+	["SkillCategoryUpdateOneInlineInput"]: {
+	/** Create and connect one SkillCategory document */
+	create?: ResolverInputTypes["SkillCategoryCreateInput"] | undefined | null,
+	/** Update single SkillCategory document */
+	update?: ResolverInputTypes["SkillCategoryUpdateWithNestedWhereUniqueInput"] | undefined | null,
+	/** Upsert single SkillCategory document */
+	upsert?: ResolverInputTypes["SkillCategoryUpsertWithNestedWhereUniqueInput"] | undefined | null,
+	/** Connect existing SkillCategory document */
+	connect?: ResolverInputTypes["SkillCategoryWhereUniqueInput"] | undefined | null,
+	/** Disconnect currently connected SkillCategory document */
+	disconnect?: boolean | undefined | null,
+	/** Delete currently connected SkillCategory document */
+	delete?: boolean | undefined | null
+};
+	["SkillCategoryUpdateWithNestedWhereUniqueInput"]: {
+	/** Unique document search */
+	where: ResolverInputTypes["SkillCategoryWhereUniqueInput"],
+	/** Document to update */
+	data: ResolverInputTypes["SkillCategoryUpdateInput"]
+};
+	["SkillCategoryUpsertInput"]: {
+	/** Create document if it didn't exist */
+	create: ResolverInputTypes["SkillCategoryCreateInput"],
+	/** Update document if it exists */
+	update: ResolverInputTypes["SkillCategoryUpdateInput"]
+};
+	["SkillCategoryUpsertWithNestedWhereUniqueInput"]: {
+	/** Unique document search */
+	where: ResolverInputTypes["SkillCategoryWhereUniqueInput"],
+	/** Upsert data */
+	data: ResolverInputTypes["SkillCategoryUpsertInput"]
+};
+	/** Identifies documents */
+["SkillCategoryWhereInput"]: {
+	/** Contains search across all appropriate fields. */
+	_search?: string | undefined | null,
+	/** Logical AND on all given filters. */
+	AND?: Array<ResolverInputTypes["SkillCategoryWhereInput"]> | undefined | null,
+	/** Logical OR on all given filters. */
+	OR?: Array<ResolverInputTypes["SkillCategoryWhereInput"]> | undefined | null,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<ResolverInputTypes["SkillCategoryWhereInput"]> | undefined | null,
+	publishedAt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values that are not equal to given value. */
+	publishedAt_not?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values that are contained in given list. */
+	publishedAt_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	publishedAt_not_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
+	/** All values less than the given value. */
+	publishedAt_lt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values less than or equal the given value. */
+	publishedAt_lte?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values greater than the given value. */
+	publishedAt_gt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values greater than or equal the given value. */
+	publishedAt_gte?: ResolverInputTypes["DateTime"] | undefined | null,
+	updatedAt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values that are not equal to given value. */
+	updatedAt_not?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values that are contained in given list. */
+	updatedAt_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	updatedAt_not_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
+	/** All values less than the given value. */
+	updatedAt_lt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values less than or equal the given value. */
+	updatedAt_lte?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values greater than the given value. */
+	updatedAt_gt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values greater than or equal the given value. */
+	updatedAt_gte?: ResolverInputTypes["DateTime"] | undefined | null,
+	createdAt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values that are not equal to given value. */
+	createdAt_not?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values that are contained in given list. */
+	createdAt_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	createdAt_not_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
+	/** All values less than the given value. */
+	createdAt_lt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values less than or equal the given value. */
+	createdAt_lte?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values greater than the given value. */
+	createdAt_gt?: ResolverInputTypes["DateTime"] | undefined | null,
+	/** All values greater than or equal the given value. */
+	createdAt_gte?: ResolverInputTypes["DateTime"] | undefined | null,
+	id?: string | undefined | null,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined | null,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined | null> | undefined | null,
+	/** All values containing the given string. */
+	id_contains?: string | undefined | null,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined | null,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined | null,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined | null,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined | null,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined | null,
+	name?: string | undefined | null,
+	/** All values that are not equal to given value. */
+	name_not?: string | undefined | null,
+	/** All values that are contained in given list. */
+	name_in?: Array<string | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	name_not_in?: Array<string | undefined | null> | undefined | null,
+	/** All values containing the given string. */
+	name_contains?: string | undefined | null,
+	/** All values not containing the given string. */
+	name_not_contains?: string | undefined | null,
+	/** All values starting with the given string. */
+	name_starts_with?: string | undefined | null,
+	/** All values not starting with the given string. */
+	name_not_starts_with?: string | undefined | null,
+	/** All values ending with the given string. */
+	name_ends_with?: string | undefined | null,
+	/** All values not ending with the given string */
+	name_not_ends_with?: string | undefined | null,
+	publishedBy?: ResolverInputTypes["UserWhereInput"] | undefined | null,
+	updatedBy?: ResolverInputTypes["UserWhereInput"] | undefined | null,
+	createdBy?: ResolverInputTypes["UserWhereInput"] | undefined | null,
+	scheduledIn_every?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null,
+	scheduledIn_some?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null,
+	scheduledIn_none?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null
+};
+	/** References SkillCategory record uniquely */
+["SkillCategoryWhereUniqueInput"]: {
+	id?: string | undefined | null,
+	name?: string | undefined | null
+};
+	["SkillCategoryskillsListUnion"]: AliasType<{
+	Skill?:ResolverInputTypes["Skill"],
+		__typename?: boolean | `@${string}`
+}>;
+	["SkillCategoryskillsListUnionConnectInput"]: {
+	Skill?: ResolverInputTypes["SkillConnectInput"] | undefined | null
+};
+	["SkillCategoryskillsListUnionCreateInput"]: {
+	Skill?: ResolverInputTypes["SkillCreateInput"] | undefined | null
+};
+	["SkillCategoryskillsListUnionCreateManyInlineInput"]: {
+	/** Create and connect multiple existing SkillCategoryskillsListUnion documents */
+	create?: Array<ResolverInputTypes["SkillCategoryskillsListUnionCreateInput"]> | undefined | null
+};
+	["SkillCategoryskillsListUnionCreateOneInlineInput"]: {
+	/** Create and connect one SkillCategoryskillsListUnion document */
+	create?: ResolverInputTypes["SkillCategoryskillsListUnionCreateInput"] | undefined | null
+};
+	["SkillCategoryskillsListUnionCreateWithPositionInput"]: {
+	Skill?: ResolverInputTypes["SkillCreateWithPositionInput"] | undefined | null
+};
+	["SkillCategoryskillsListUnionUpdateInput"]: {
+	Skill?: ResolverInputTypes["SkillUpdateInput"] | undefined | null
+};
+	["SkillCategoryskillsListUnionUpdateManyInlineInput"]: {
+	/** Create and connect multiple SkillCategoryskillsListUnion component instances */
+	create?: Array<ResolverInputTypes["SkillCategoryskillsListUnionCreateWithPositionInput"]> | undefined | null,
+	/** Update multiple SkillCategoryskillsListUnion component instances */
+	update?: Array<ResolverInputTypes["SkillCategoryskillsListUnionUpdateWithNestedWhereUniqueAndPositionInput"]> | undefined | null,
+	/** Upsert multiple SkillCategoryskillsListUnion component instances */
+	upsert?: Array<ResolverInputTypes["SkillCategoryskillsListUnionUpsertWithNestedWhereUniqueAndPositionInput"]> | undefined | null,
+	/** Delete multiple SkillCategoryskillsListUnion documents */
+	delete?: Array<ResolverInputTypes["SkillCategoryskillsListUnionWhereUniqueInput"]> | undefined | null
+};
+	["SkillCategoryskillsListUnionUpdateManyWithNestedWhereInput"]: {
+	Skill?: ResolverInputTypes["SkillUpdateManyWithNestedWhereInput"] | undefined | null
+};
+	["SkillCategoryskillsListUnionUpdateOneInlineInput"]: {
+	/** Create and connect one SkillCategoryskillsListUnion document */
+	create?: ResolverInputTypes["SkillCategoryskillsListUnionCreateInput"] | undefined | null,
+	/** Update single SkillCategoryskillsListUnion document */
+	update?: ResolverInputTypes["SkillCategoryskillsListUnionUpdateWithNestedWhereUniqueInput"] | undefined | null,
+	/** Upsert single SkillCategoryskillsListUnion document */
+	upsert?: ResolverInputTypes["SkillCategoryskillsListUnionUpsertWithNestedWhereUniqueInput"] | undefined | null,
+	/** Delete currently connected SkillCategoryskillsListUnion document */
+	delete?: boolean | undefined | null
+};
+	["SkillCategoryskillsListUnionUpdateWithNestedWhereUniqueAndPositionInput"]: {
+	Skill?: ResolverInputTypes["SkillUpdateWithNestedWhereUniqueAndPositionInput"] | undefined | null
+};
+	["SkillCategoryskillsListUnionUpdateWithNestedWhereUniqueInput"]: {
+	Skill?: ResolverInputTypes["SkillUpdateWithNestedWhereUniqueInput"] | undefined | null
+};
+	["SkillCategoryskillsListUnionUpsertWithNestedWhereUniqueAndPositionInput"]: {
+	Skill?: ResolverInputTypes["SkillUpsertWithNestedWhereUniqueAndPositionInput"] | undefined | null
+};
+	["SkillCategoryskillsListUnionUpsertWithNestedWhereUniqueInput"]: {
+	Skill?: ResolverInputTypes["SkillUpsertWithNestedWhereUniqueInput"] | undefined | null
+};
+	["SkillCategoryskillsListUnionWhereInput"]: {
+	Skill?: ResolverInputTypes["SkillWhereInput"] | undefined | null
+};
+	["SkillCategoryskillsListUnionWhereUniqueInput"]: {
+	Skill?: ResolverInputTypes["SkillWhereUniqueInput"] | undefined | null
+};
+	["SkillConnectInput"]: {
+	/** Document to connect */
+	where: ResolverInputTypes["SkillWhereUniqueInput"],
+	/** Allow to specify document position in list of connected documents, will default to appending at end of list */
+	position?: ResolverInputTypes["ConnectPositionInput"] | undefined | null
+};
+	/** A connection to a list of items. */
+["SkillConnection"]: AliasType<{
+	/** Information to aid in pagination. */
+	pageInfo?:ResolverInputTypes["PageInfo"],
+	/** A list of edges. */
+	edges?:ResolverInputTypes["SkillEdge"],
+	aggregate?:ResolverInputTypes["Aggregate"],
+		__typename?: boolean | `@${string}`
+}>;
+	["SkillCreateInput"]: {
+	name: string,
+	icon: ResolverInputTypes["AssetCreateOneInlineInput"]
+};
+	["SkillCreateManyInlineInput"]: {
+	/** Create and connect multiple existing Skill documents */
+	create?: Array<ResolverInputTypes["SkillCreateInput"]> | undefined | null
+};
+	["SkillCreateOneInlineInput"]: {
+	/** Create and connect one Skill document */
+	create?: ResolverInputTypes["SkillCreateInput"] | undefined | null
+};
+	["SkillCreateWithPositionInput"]: {
+	/** Position in the list of existing component instances, will default to appending at the end of list */
+	position?: ResolverInputTypes["ConnectPositionInput"] | undefined | null,
+	/** Document to create */
+	data: ResolverInputTypes["SkillCreateInput"]
+};
+	/** An edge in a connection. */
+["SkillEdge"]: AliasType<{
+	/** The item at the end of the edge. */
+	node?:ResolverInputTypes["Skill"],
+	/** A cursor for use in pagination. */
+	cursor?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** Identifies documents */
+["SkillManyWhereInput"]: {
+	/** Contains search across all appropriate fields. */
+	_search?: string | undefined | null,
+	/** Logical AND on all given filters. */
+	AND?: Array<ResolverInputTypes["SkillWhereInput"]> | undefined | null,
+	/** Logical OR on all given filters. */
+	OR?: Array<ResolverInputTypes["SkillWhereInput"]> | undefined | null,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<ResolverInputTypes["SkillWhereInput"]> | undefined | null,
+	id?: string | undefined | null,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined | null,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined | null> | undefined | null,
+	/** All values containing the given string. */
+	id_contains?: string | undefined | null,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined | null,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined | null,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined | null,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined | null,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined | null,
+	name?: string | undefined | null,
+	/** All values that are not equal to given value. */
+	name_not?: string | undefined | null,
+	/** All values that are contained in given list. */
+	name_in?: Array<string | undefined | null> | undefined | null,
+	/** All values that are not contained in given list. */
+	name_not_in?: Array<string | undefined | null> | undefined | null,
+	/** All values containing the given string. */
+	name_contains?: string | undefined | null,
+	/** All values not containing the given string. */
+	name_not_contains?: string | undefined | null,
+	/** All values starting with the given string. */
+	name_starts_with?: string | undefined | null,
+	/** All values not starting with the given string. */
+	name_not_starts_with?: string | undefined | null,
+	/** All values ending with the given string. */
+	name_ends_with?: string | undefined | null,
+	/** All values not ending with the given string */
+	name_not_ends_with?: string | undefined | null,
+	icon?: ResolverInputTypes["AssetWhereInput"] | undefined | null
+};
 	["SkillOrderByInput"]:SkillOrderByInput;
+	["SkillParent"]: AliasType<{
+	SkillCategory?:ResolverInputTypes["SkillCategory"],
+		__typename?: boolean | `@${string}`
+}>;
+	["SkillParentConnectInput"]: {
+	SkillCategory?: ResolverInputTypes["SkillCategoryConnectInput"] | undefined | null
+};
+	["SkillParentCreateInput"]: {
+	SkillCategory?: ResolverInputTypes["SkillCategoryCreateInput"] | undefined | null
+};
+	["SkillParentCreateManyInlineInput"]: {
+	/** Create and connect multiple existing SkillParent documents */
+	create?: Array<ResolverInputTypes["SkillParentCreateInput"]> | undefined | null,
+	/** Connect multiple existing SkillParent documents */
+	connect?: Array<ResolverInputTypes["SkillParentWhereUniqueInput"]> | undefined | null
+};
+	["SkillParentCreateOneInlineInput"]: {
+	/** Create and connect one SkillParent document */
+	create?: ResolverInputTypes["SkillParentCreateInput"] | undefined | null,
+	/** Connect one existing SkillParent document */
+	connect?: ResolverInputTypes["SkillParentWhereUniqueInput"] | undefined | null
+};
+	["SkillParentUpdateInput"]: {
+	SkillCategory?: ResolverInputTypes["SkillCategoryUpdateInput"] | undefined | null
+};
+	["SkillParentUpdateManyInlineInput"]: {
+	/** Create and connect multiple SkillParent documents */
+	create?: Array<ResolverInputTypes["SkillParentCreateInput"]> | undefined | null,
+	/** Connect multiple existing SkillParent documents */
+	connect?: Array<ResolverInputTypes["SkillParentConnectInput"]> | undefined | null,
+	/** Override currently-connected documents with multiple existing SkillParent documents */
+	set?: Array<ResolverInputTypes["SkillParentWhereUniqueInput"]> | undefined | null,
+	/** Update multiple SkillParent documents */
+	update?: Array<ResolverInputTypes["SkillParentUpdateWithNestedWhereUniqueInput"]> | undefined | null,
+	/** Upsert multiple SkillParent documents */
+	upsert?: Array<ResolverInputTypes["SkillParentUpsertWithNestedWhereUniqueInput"]> | undefined | null,
+	/** Disconnect multiple SkillParent documents */
+	disconnect?: Array<ResolverInputTypes["SkillParentWhereUniqueInput"]> | undefined | null,
+	/** Delete multiple SkillParent documents */
+	delete?: Array<ResolverInputTypes["SkillParentWhereUniqueInput"]> | undefined | null
+};
+	["SkillParentUpdateManyWithNestedWhereInput"]: {
+	SkillCategory?: ResolverInputTypes["SkillCategoryUpdateManyWithNestedWhereInput"] | undefined | null
+};
+	["SkillParentUpdateOneInlineInput"]: {
+	/** Create and connect one SkillParent document */
+	create?: ResolverInputTypes["SkillParentCreateInput"] | undefined | null,
+	/** Update single SkillParent document */
+	update?: ResolverInputTypes["SkillParentUpdateWithNestedWhereUniqueInput"] | undefined | null,
+	/** Upsert single SkillParent document */
+	upsert?: ResolverInputTypes["SkillParentUpsertWithNestedWhereUniqueInput"] | undefined | null,
+	/** Connect existing SkillParent document */
+	connect?: ResolverInputTypes["SkillParentWhereUniqueInput"] | undefined | null,
+	/** Disconnect currently connected SkillParent document */
+	disconnect?: boolean | undefined | null,
+	/** Delete currently connected SkillParent document */
+	delete?: boolean | undefined | null
+};
+	["SkillParentUpdateWithNestedWhereUniqueInput"]: {
+	SkillCategory?: ResolverInputTypes["SkillCategoryUpdateWithNestedWhereUniqueInput"] | undefined | null
+};
+	["SkillParentUpsertWithNestedWhereUniqueInput"]: {
+	SkillCategory?: ResolverInputTypes["SkillCategoryUpsertWithNestedWhereUniqueInput"] | undefined | null
+};
+	["SkillParentWhereInput"]: {
+	SkillCategory?: ResolverInputTypes["SkillCategoryWhereInput"] | undefined | null
+};
+	["SkillParentWhereUniqueInput"]: {
+	SkillCategory?: ResolverInputTypes["SkillCategoryWhereUniqueInput"] | undefined | null
+};
 	["SkillUpdateInput"]: {
 	name?: string | undefined | null,
 	icon?: ResolverInputTypes["AssetUpdateOneInlineInput"] | undefined | null
 };
 	["SkillUpdateManyInlineInput"]: {
-	/** Create and connect multiple Skill documents */
-	create?: Array<ResolverInputTypes["SkillCreateInput"]> | undefined | null,
-	/** Connect multiple existing Skill documents */
-	connect?: Array<ResolverInputTypes["SkillConnectInput"]> | undefined | null,
-	/** Override currently-connected documents with multiple existing Skill documents */
-	set?: Array<ResolverInputTypes["SkillWhereUniqueInput"]> | undefined | null,
-	/** Update multiple Skill documents */
-	update?: Array<ResolverInputTypes["SkillUpdateWithNestedWhereUniqueInput"]> | undefined | null,
-	/** Upsert multiple Skill documents */
-	upsert?: Array<ResolverInputTypes["SkillUpsertWithNestedWhereUniqueInput"]> | undefined | null,
-	/** Disconnect multiple Skill documents */
-	disconnect?: Array<ResolverInputTypes["SkillWhereUniqueInput"]> | undefined | null,
+	/** Create and connect multiple Skill component instances */
+	create?: Array<ResolverInputTypes["SkillCreateWithPositionInput"]> | undefined | null,
+	/** Update multiple Skill component instances */
+	update?: Array<ResolverInputTypes["SkillUpdateWithNestedWhereUniqueAndPositionInput"]> | undefined | null,
+	/** Upsert multiple Skill component instances */
+	upsert?: Array<ResolverInputTypes["SkillUpsertWithNestedWhereUniqueAndPositionInput"]> | undefined | null,
 	/** Delete multiple Skill documents */
 	delete?: Array<ResolverInputTypes["SkillWhereUniqueInput"]> | undefined | null
 };
@@ -8435,12 +10885,16 @@ history?: [{	limit: number,	skip: number,	/** This is optional and can be used t
 	update?: ResolverInputTypes["SkillUpdateWithNestedWhereUniqueInput"] | undefined | null,
 	/** Upsert single Skill document */
 	upsert?: ResolverInputTypes["SkillUpsertWithNestedWhereUniqueInput"] | undefined | null,
-	/** Connect existing Skill document */
-	connect?: ResolverInputTypes["SkillWhereUniqueInput"] | undefined | null,
-	/** Disconnect currently connected Skill document */
-	disconnect?: boolean | undefined | null,
 	/** Delete currently connected Skill document */
 	delete?: boolean | undefined | null
+};
+	["SkillUpdateWithNestedWhereUniqueAndPositionInput"]: {
+	/** Unique component instance search */
+	where: ResolverInputTypes["SkillWhereUniqueInput"],
+	/** Position in the list of existing component instances, will default to appending at the end of list */
+	position?: ResolverInputTypes["ConnectPositionInput"] | undefined | null,
+	/** Document to update */
+	data?: ResolverInputTypes["SkillUpdateInput"] | undefined | null
 };
 	["SkillUpdateWithNestedWhereUniqueInput"]: {
 	/** Unique document search */
@@ -8453,6 +10907,14 @@ history?: [{	limit: number,	skip: number,	/** This is optional and can be used t
 	create: ResolverInputTypes["SkillCreateInput"],
 	/** Update document if it exists */
 	update: ResolverInputTypes["SkillUpdateInput"]
+};
+	["SkillUpsertWithNestedWhereUniqueAndPositionInput"]: {
+	/** Unique component instance search */
+	where: ResolverInputTypes["SkillWhereUniqueInput"],
+	/** Position in the list of existing component instances, will default to appending at the end of list */
+	position?: ResolverInputTypes["ConnectPositionInput"] | undefined | null,
+	/** Document to upsert */
+	data?: ResolverInputTypes["SkillUpsertInput"] | undefined | null
 };
 	["SkillUpsertWithNestedWhereUniqueInput"]: {
 	/** Unique document search */
@@ -8470,51 +10932,6 @@ history?: [{	limit: number,	skip: number,	/** This is optional and can be used t
 	OR?: Array<ResolverInputTypes["SkillWhereInput"]> | undefined | null,
 	/** Logical NOT on all given filters combined by AND. */
 	NOT?: Array<ResolverInputTypes["SkillWhereInput"]> | undefined | null,
-	publishedAt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values that are not equal to given value. */
-	publishedAt_not?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values that are contained in given list. */
-	publishedAt_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
-	/** All values that are not contained in given list. */
-	publishedAt_not_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
-	/** All values less than the given value. */
-	publishedAt_lt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values less than or equal the given value. */
-	publishedAt_lte?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values greater than the given value. */
-	publishedAt_gt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values greater than or equal the given value. */
-	publishedAt_gte?: ResolverInputTypes["DateTime"] | undefined | null,
-	updatedAt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values that are not equal to given value. */
-	updatedAt_not?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values that are contained in given list. */
-	updatedAt_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
-	/** All values that are not contained in given list. */
-	updatedAt_not_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
-	/** All values less than the given value. */
-	updatedAt_lt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values less than or equal the given value. */
-	updatedAt_lte?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values greater than the given value. */
-	updatedAt_gt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values greater than or equal the given value. */
-	updatedAt_gte?: ResolverInputTypes["DateTime"] | undefined | null,
-	createdAt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values that are not equal to given value. */
-	createdAt_not?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values that are contained in given list. */
-	createdAt_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
-	/** All values that are not contained in given list. */
-	createdAt_not_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
-	/** All values less than the given value. */
-	createdAt_lt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values less than or equal the given value. */
-	createdAt_lte?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values greater than the given value. */
-	createdAt_gt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values greater than or equal the given value. */
-	createdAt_gte?: ResolverInputTypes["DateTime"] | undefined | null,
 	id?: string | undefined | null,
 	/** All values that are not equal to given value. */
 	id_not?: string | undefined | null,
@@ -8553,435 +10970,17 @@ history?: [{	limit: number,	skip: number,	/** This is optional and can be used t
 	name_ends_with?: string | undefined | null,
 	/** All values not ending with the given string */
 	name_not_ends_with?: string | undefined | null,
-	publishedBy?: ResolverInputTypes["UserWhereInput"] | undefined | null,
-	updatedBy?: ResolverInputTypes["UserWhereInput"] | undefined | null,
-	createdBy?: ResolverInputTypes["UserWhereInput"] | undefined | null,
-	icon?: ResolverInputTypes["AssetWhereInput"] | undefined | null,
-	scheduledIn_every?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null,
-	scheduledIn_some?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null,
-	scheduledIn_none?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null
+	icon?: ResolverInputTypes["AssetWhereInput"] | undefined | null
 };
 	/** References Skill record uniquely */
 ["SkillWhereUniqueInput"]: {
 	id?: string | undefined | null,
 	name?: string | undefined | null
 };
-	["Social"]: AliasType<{
-	/** System stage field */
-	stage?:boolean | `@${string}`,
-documentInStages?: [{	/** Potential stages that should be returned */
-	stages: Array<ResolverInputTypes["Stage"]>,	/** Decides if the current stage should be included or not */
-	includeCurrent: boolean,	/** Decides if the documents should match the parent documents locale or should use the fallback order defined in the tree */
-	inheritLocale: boolean},ResolverInputTypes["Social"]],
-	/** The time the document was published. Null on documents in draft stage. */
-	publishedAt?:boolean | `@${string}`,
-	/** The time the document was updated */
-	updatedAt?:boolean | `@${string}`,
-	/** The time the document was created */
-	createdAt?:boolean | `@${string}`,
-	/** The unique identifier */
-	id?:boolean | `@${string}`,
-	/** Social media name */
-	name?:boolean | `@${string}`,
-	/** Social media link */
-	url?:boolean | `@${string}`,
-	/** Social media color */
-	color?:ResolverInputTypes["Color"],
-publishedBy?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
-
-Note that `publishedBy` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
-For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
-
-This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
-	locales?: Array<ResolverInputTypes["Locale"]> | undefined | null},ResolverInputTypes["User"]],
-updatedBy?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
-
-Note that `updatedBy` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
-For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
-
-This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
-	locales?: Array<ResolverInputTypes["Locale"]> | undefined | null},ResolverInputTypes["User"]],
-createdBy?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
-
-Note that `createdBy` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
-For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
-
-This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
-	locales?: Array<ResolverInputTypes["Locale"]> | undefined | null},ResolverInputTypes["User"]],
-image?: [{	/** Allows to optionally override locale filtering behaviour in the query's subtree.
-
-Note that `image` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
-For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
-
-This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
-	locales?: Array<ResolverInputTypes["Locale"]> | undefined | null},ResolverInputTypes["Asset"]],
-scheduledIn?: [{	where?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null,	skip?: number | undefined | null,	after?: string | undefined | null,	before?: string | undefined | null,	first?: number | undefined | null,	last?: number | undefined | null,	/** Allows to optionally override locale filtering behaviour in the query's subtree.
-
-Note that `scheduledIn` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
-For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
-
-This argument will overwrite any existing locale filtering defined in the query's tree for the subtree. */
-	locales?: Array<ResolverInputTypes["Locale"]> | undefined | null},ResolverInputTypes["ScheduledOperation"]],
-history?: [{	limit: number,	skip: number,	/** This is optional and can be used to fetch the document version history for a specific stage instead of the current one */
-	stageOverride?: ResolverInputTypes["Stage"] | undefined | null},ResolverInputTypes["Version"]],
-		__typename?: boolean | `@${string}`
-}>;
-	["SocialConnectInput"]: {
-	/** Document to connect */
-	where: ResolverInputTypes["SocialWhereUniqueInput"],
-	/** Allow to specify document position in list of connected documents, will default to appending at end of list */
-	position?: ResolverInputTypes["ConnectPositionInput"] | undefined | null
-};
-	/** A connection to a list of items. */
-["SocialConnection"]: AliasType<{
-	/** Information to aid in pagination. */
-	pageInfo?:ResolverInputTypes["PageInfo"],
-	/** A list of edges. */
-	edges?:ResolverInputTypes["SocialEdge"],
-	aggregate?:ResolverInputTypes["Aggregate"],
-		__typename?: boolean | `@${string}`
-}>;
-	["SocialCreateInput"]: {
-	updatedAt?: ResolverInputTypes["DateTime"] | undefined | null,
-	createdAt?: ResolverInputTypes["DateTime"] | undefined | null,
-	name: string,
-	url: string,
-	color?: ResolverInputTypes["ColorInput"] | undefined | null,
-	image: ResolverInputTypes["AssetCreateOneInlineInput"]
-};
-	["SocialCreateManyInlineInput"]: {
-	/** Create and connect multiple existing Social documents */
-	create?: Array<ResolverInputTypes["SocialCreateInput"]> | undefined | null,
-	/** Connect multiple existing Social documents */
-	connect?: Array<ResolverInputTypes["SocialWhereUniqueInput"]> | undefined | null
-};
-	["SocialCreateOneInlineInput"]: {
-	/** Create and connect one Social document */
-	create?: ResolverInputTypes["SocialCreateInput"] | undefined | null,
-	/** Connect one existing Social document */
-	connect?: ResolverInputTypes["SocialWhereUniqueInput"] | undefined | null
-};
-	/** An edge in a connection. */
-["SocialEdge"]: AliasType<{
-	/** The item at the end of the edge. */
-	node?:ResolverInputTypes["Social"],
-	/** A cursor for use in pagination. */
-	cursor?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
-}>;
-	/** Identifies documents */
-["SocialManyWhereInput"]: {
-	/** Contains search across all appropriate fields. */
-	_search?: string | undefined | null,
-	/** Logical AND on all given filters. */
-	AND?: Array<ResolverInputTypes["SocialWhereInput"]> | undefined | null,
-	/** Logical OR on all given filters. */
-	OR?: Array<ResolverInputTypes["SocialWhereInput"]> | undefined | null,
-	/** Logical NOT on all given filters combined by AND. */
-	NOT?: Array<ResolverInputTypes["SocialWhereInput"]> | undefined | null,
-	publishedAt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values that are not equal to given value. */
-	publishedAt_not?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values that are contained in given list. */
-	publishedAt_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
-	/** All values that are not contained in given list. */
-	publishedAt_not_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
-	/** All values less than the given value. */
-	publishedAt_lt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values less than or equal the given value. */
-	publishedAt_lte?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values greater than the given value. */
-	publishedAt_gt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values greater than or equal the given value. */
-	publishedAt_gte?: ResolverInputTypes["DateTime"] | undefined | null,
-	updatedAt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values that are not equal to given value. */
-	updatedAt_not?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values that are contained in given list. */
-	updatedAt_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
-	/** All values that are not contained in given list. */
-	updatedAt_not_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
-	/** All values less than the given value. */
-	updatedAt_lt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values less than or equal the given value. */
-	updatedAt_lte?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values greater than the given value. */
-	updatedAt_gt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values greater than or equal the given value. */
-	updatedAt_gte?: ResolverInputTypes["DateTime"] | undefined | null,
-	createdAt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values that are not equal to given value. */
-	createdAt_not?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values that are contained in given list. */
-	createdAt_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
-	/** All values that are not contained in given list. */
-	createdAt_not_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
-	/** All values less than the given value. */
-	createdAt_lt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values less than or equal the given value. */
-	createdAt_lte?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values greater than the given value. */
-	createdAt_gt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values greater than or equal the given value. */
-	createdAt_gte?: ResolverInputTypes["DateTime"] | undefined | null,
-	id?: string | undefined | null,
-	/** All values that are not equal to given value. */
-	id_not?: string | undefined | null,
-	/** All values that are contained in given list. */
-	id_in?: Array<string | undefined | null> | undefined | null,
-	/** All values that are not contained in given list. */
-	id_not_in?: Array<string | undefined | null> | undefined | null,
-	/** All values containing the given string. */
-	id_contains?: string | undefined | null,
-	/** All values not containing the given string. */
-	id_not_contains?: string | undefined | null,
-	/** All values starting with the given string. */
-	id_starts_with?: string | undefined | null,
-	/** All values not starting with the given string. */
-	id_not_starts_with?: string | undefined | null,
-	/** All values ending with the given string. */
-	id_ends_with?: string | undefined | null,
-	/** All values not ending with the given string */
-	id_not_ends_with?: string | undefined | null,
-	name?: string | undefined | null,
-	/** All values that are not equal to given value. */
-	name_not?: string | undefined | null,
-	/** All values that are contained in given list. */
-	name_in?: Array<string | undefined | null> | undefined | null,
-	/** All values that are not contained in given list. */
-	name_not_in?: Array<string | undefined | null> | undefined | null,
-	/** All values containing the given string. */
-	name_contains?: string | undefined | null,
-	/** All values not containing the given string. */
-	name_not_contains?: string | undefined | null,
-	/** All values starting with the given string. */
-	name_starts_with?: string | undefined | null,
-	/** All values not starting with the given string. */
-	name_not_starts_with?: string | undefined | null,
-	/** All values ending with the given string. */
-	name_ends_with?: string | undefined | null,
-	/** All values not ending with the given string */
-	name_not_ends_with?: string | undefined | null,
-	url?: string | undefined | null,
-	/** All values that are not equal to given value. */
-	url_not?: string | undefined | null,
-	/** All values that are contained in given list. */
-	url_in?: Array<string | undefined | null> | undefined | null,
-	/** All values that are not contained in given list. */
-	url_not_in?: Array<string | undefined | null> | undefined | null,
-	/** All values containing the given string. */
-	url_contains?: string | undefined | null,
-	/** All values not containing the given string. */
-	url_not_contains?: string | undefined | null,
-	/** All values starting with the given string. */
-	url_starts_with?: string | undefined | null,
-	/** All values not starting with the given string. */
-	url_not_starts_with?: string | undefined | null,
-	/** All values ending with the given string. */
-	url_ends_with?: string | undefined | null,
-	/** All values not ending with the given string */
-	url_not_ends_with?: string | undefined | null,
-	publishedBy?: ResolverInputTypes["UserWhereInput"] | undefined | null,
-	updatedBy?: ResolverInputTypes["UserWhereInput"] | undefined | null,
-	createdBy?: ResolverInputTypes["UserWhereInput"] | undefined | null,
-	image?: ResolverInputTypes["AssetWhereInput"] | undefined | null,
-	scheduledIn_every?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null,
-	scheduledIn_some?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null,
-	scheduledIn_none?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null
-};
-	["SocialOrderByInput"]:SocialOrderByInput;
-	["SocialUpdateInput"]: {
-	name?: string | undefined | null,
-	url?: string | undefined | null,
-	color?: ResolverInputTypes["ColorInput"] | undefined | null,
-	image?: ResolverInputTypes["AssetUpdateOneInlineInput"] | undefined | null
-};
-	["SocialUpdateManyInlineInput"]: {
-	/** Create and connect multiple Social documents */
-	create?: Array<ResolverInputTypes["SocialCreateInput"]> | undefined | null,
-	/** Connect multiple existing Social documents */
-	connect?: Array<ResolverInputTypes["SocialConnectInput"]> | undefined | null,
-	/** Override currently-connected documents with multiple existing Social documents */
-	set?: Array<ResolverInputTypes["SocialWhereUniqueInput"]> | undefined | null,
-	/** Update multiple Social documents */
-	update?: Array<ResolverInputTypes["SocialUpdateWithNestedWhereUniqueInput"]> | undefined | null,
-	/** Upsert multiple Social documents */
-	upsert?: Array<ResolverInputTypes["SocialUpsertWithNestedWhereUniqueInput"]> | undefined | null,
-	/** Disconnect multiple Social documents */
-	disconnect?: Array<ResolverInputTypes["SocialWhereUniqueInput"]> | undefined | null,
-	/** Delete multiple Social documents */
-	delete?: Array<ResolverInputTypes["SocialWhereUniqueInput"]> | undefined | null
-};
-	["SocialUpdateManyInput"]: {
-	name?: string | undefined | null,
-	color?: ResolverInputTypes["ColorInput"] | undefined | null
-};
-	["SocialUpdateManyWithNestedWhereInput"]: {
-	/** Document search */
-	where: ResolverInputTypes["SocialWhereInput"],
-	/** Update many input */
-	data: ResolverInputTypes["SocialUpdateManyInput"]
-};
-	["SocialUpdateOneInlineInput"]: {
-	/** Create and connect one Social document */
-	create?: ResolverInputTypes["SocialCreateInput"] | undefined | null,
-	/** Update single Social document */
-	update?: ResolverInputTypes["SocialUpdateWithNestedWhereUniqueInput"] | undefined | null,
-	/** Upsert single Social document */
-	upsert?: ResolverInputTypes["SocialUpsertWithNestedWhereUniqueInput"] | undefined | null,
-	/** Connect existing Social document */
-	connect?: ResolverInputTypes["SocialWhereUniqueInput"] | undefined | null,
-	/** Disconnect currently connected Social document */
-	disconnect?: boolean | undefined | null,
-	/** Delete currently connected Social document */
-	delete?: boolean | undefined | null
-};
-	["SocialUpdateWithNestedWhereUniqueInput"]: {
-	/** Unique document search */
-	where: ResolverInputTypes["SocialWhereUniqueInput"],
-	/** Document to update */
-	data: ResolverInputTypes["SocialUpdateInput"]
-};
-	["SocialUpsertInput"]: {
-	/** Create document if it didn't exist */
-	create: ResolverInputTypes["SocialCreateInput"],
-	/** Update document if it exists */
-	update: ResolverInputTypes["SocialUpdateInput"]
-};
-	["SocialUpsertWithNestedWhereUniqueInput"]: {
-	/** Unique document search */
-	where: ResolverInputTypes["SocialWhereUniqueInput"],
-	/** Upsert data */
-	data: ResolverInputTypes["SocialUpsertInput"]
-};
-	/** Identifies documents */
-["SocialWhereInput"]: {
-	/** Contains search across all appropriate fields. */
-	_search?: string | undefined | null,
-	/** Logical AND on all given filters. */
-	AND?: Array<ResolverInputTypes["SocialWhereInput"]> | undefined | null,
-	/** Logical OR on all given filters. */
-	OR?: Array<ResolverInputTypes["SocialWhereInput"]> | undefined | null,
-	/** Logical NOT on all given filters combined by AND. */
-	NOT?: Array<ResolverInputTypes["SocialWhereInput"]> | undefined | null,
-	publishedAt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values that are not equal to given value. */
-	publishedAt_not?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values that are contained in given list. */
-	publishedAt_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
-	/** All values that are not contained in given list. */
-	publishedAt_not_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
-	/** All values less than the given value. */
-	publishedAt_lt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values less than or equal the given value. */
-	publishedAt_lte?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values greater than the given value. */
-	publishedAt_gt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values greater than or equal the given value. */
-	publishedAt_gte?: ResolverInputTypes["DateTime"] | undefined | null,
-	updatedAt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values that are not equal to given value. */
-	updatedAt_not?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values that are contained in given list. */
-	updatedAt_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
-	/** All values that are not contained in given list. */
-	updatedAt_not_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
-	/** All values less than the given value. */
-	updatedAt_lt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values less than or equal the given value. */
-	updatedAt_lte?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values greater than the given value. */
-	updatedAt_gt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values greater than or equal the given value. */
-	updatedAt_gte?: ResolverInputTypes["DateTime"] | undefined | null,
-	createdAt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values that are not equal to given value. */
-	createdAt_not?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values that are contained in given list. */
-	createdAt_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
-	/** All values that are not contained in given list. */
-	createdAt_not_in?: Array<ResolverInputTypes["DateTime"] | undefined | null> | undefined | null,
-	/** All values less than the given value. */
-	createdAt_lt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values less than or equal the given value. */
-	createdAt_lte?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values greater than the given value. */
-	createdAt_gt?: ResolverInputTypes["DateTime"] | undefined | null,
-	/** All values greater than or equal the given value. */
-	createdAt_gte?: ResolverInputTypes["DateTime"] | undefined | null,
-	id?: string | undefined | null,
-	/** All values that are not equal to given value. */
-	id_not?: string | undefined | null,
-	/** All values that are contained in given list. */
-	id_in?: Array<string | undefined | null> | undefined | null,
-	/** All values that are not contained in given list. */
-	id_not_in?: Array<string | undefined | null> | undefined | null,
-	/** All values containing the given string. */
-	id_contains?: string | undefined | null,
-	/** All values not containing the given string. */
-	id_not_contains?: string | undefined | null,
-	/** All values starting with the given string. */
-	id_starts_with?: string | undefined | null,
-	/** All values not starting with the given string. */
-	id_not_starts_with?: string | undefined | null,
-	/** All values ending with the given string. */
-	id_ends_with?: string | undefined | null,
-	/** All values not ending with the given string */
-	id_not_ends_with?: string | undefined | null,
-	name?: string | undefined | null,
-	/** All values that are not equal to given value. */
-	name_not?: string | undefined | null,
-	/** All values that are contained in given list. */
-	name_in?: Array<string | undefined | null> | undefined | null,
-	/** All values that are not contained in given list. */
-	name_not_in?: Array<string | undefined | null> | undefined | null,
-	/** All values containing the given string. */
-	name_contains?: string | undefined | null,
-	/** All values not containing the given string. */
-	name_not_contains?: string | undefined | null,
-	/** All values starting with the given string. */
-	name_starts_with?: string | undefined | null,
-	/** All values not starting with the given string. */
-	name_not_starts_with?: string | undefined | null,
-	/** All values ending with the given string. */
-	name_ends_with?: string | undefined | null,
-	/** All values not ending with the given string */
-	name_not_ends_with?: string | undefined | null,
-	url?: string | undefined | null,
-	/** All values that are not equal to given value. */
-	url_not?: string | undefined | null,
-	/** All values that are contained in given list. */
-	url_in?: Array<string | undefined | null> | undefined | null,
-	/** All values that are not contained in given list. */
-	url_not_in?: Array<string | undefined | null> | undefined | null,
-	/** All values containing the given string. */
-	url_contains?: string | undefined | null,
-	/** All values not containing the given string. */
-	url_not_contains?: string | undefined | null,
-	/** All values starting with the given string. */
-	url_starts_with?: string | undefined | null,
-	/** All values not starting with the given string. */
-	url_not_starts_with?: string | undefined | null,
-	/** All values ending with the given string. */
-	url_ends_with?: string | undefined | null,
-	/** All values not ending with the given string */
-	url_not_ends_with?: string | undefined | null,
-	publishedBy?: ResolverInputTypes["UserWhereInput"] | undefined | null,
-	updatedBy?: ResolverInputTypes["UserWhereInput"] | undefined | null,
-	createdBy?: ResolverInputTypes["UserWhereInput"] | undefined | null,
-	image?: ResolverInputTypes["AssetWhereInput"] | undefined | null,
-	scheduledIn_every?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null,
-	scheduledIn_some?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null,
-	scheduledIn_none?: ResolverInputTypes["ScheduledOperationWhereInput"] | undefined | null
-};
-	/** References Social record uniquely */
-["SocialWhereUniqueInput"]: {
-	id?: string | undefined | null,
-	url?: string | undefined | null
-};
 	/** Stage system enumeration */
 ["Stage"]:Stage;
 	["SystemDateTimeFieldVariation"]:SystemDateTimeFieldVariation;
+	["Technologies"]:Technologies;
 	["UnpublishLocaleInput"]: {
 	/** Locales to unpublish */
 	locale: ResolverInputTypes["Locale"],
@@ -9335,7 +11334,451 @@ documentInStages?: [{	/** Potential stages that should be returned */
   }
 
 export type ModelTypes = {
-    ["Aggregate"]: {
+    ["AboutMe"]: {
+		/** System stage field */
+	stage: ModelTypes["Stage"],
+	/** Get the document in other stages */
+	documentInStages: Array<ModelTypes["AboutMe"]>,
+	/** The time the document was published. Null on documents in draft stage. */
+	publishedAt?: ModelTypes["DateTime"] | undefined,
+	/** The time the document was updated */
+	updatedAt: ModelTypes["DateTime"],
+	/** The time the document was created */
+	createdAt: ModelTypes["DateTime"],
+	/** The unique identifier */
+	id: string,
+	contactEmail: string,
+	description: string,
+	company?: ModelTypes["Company"] | undefined,
+	links: Array<ModelTypes["AboutMelinksUnion"]>,
+	/** User that last published this document */
+	publishedBy?: ModelTypes["User"] | undefined,
+	/** User that last updated this document */
+	updatedBy?: ModelTypes["User"] | undefined,
+	/** User that created this document */
+	createdBy?: ModelTypes["User"] | undefined,
+	photo: ModelTypes["Asset"],
+	scheduledIn: Array<ModelTypes["ScheduledOperation"]>,
+	/** List of AboutMe versions */
+	history: Array<ModelTypes["Version"]>
+};
+	["AboutMeConnectInput"]: {
+	/** Document to connect */
+	where: ModelTypes["AboutMeWhereUniqueInput"],
+	/** Allow to specify document position in list of connected documents, will default to appending at end of list */
+	position?: ModelTypes["ConnectPositionInput"] | undefined
+};
+	/** A connection to a list of items. */
+["AboutMeConnection"]: {
+		/** Information to aid in pagination. */
+	pageInfo: ModelTypes["PageInfo"],
+	/** A list of edges. */
+	edges: Array<ModelTypes["AboutMeEdge"]>,
+	aggregate: ModelTypes["Aggregate"]
+};
+	["AboutMeCreateInput"]: {
+	updatedAt?: ModelTypes["DateTime"] | undefined,
+	createdAt?: ModelTypes["DateTime"] | undefined,
+	contactEmail: string,
+	description: string,
+	company?: ModelTypes["CompanyCreateOneInlineInput"] | undefined,
+	links?: ModelTypes["AboutMelinksUnionCreateManyInlineInput"] | undefined,
+	photo: ModelTypes["AssetCreateOneInlineInput"]
+};
+	["AboutMeCreateManyInlineInput"]: {
+	/** Create and connect multiple existing AboutMe documents */
+	create?: Array<ModelTypes["AboutMeCreateInput"]> | undefined,
+	/** Connect multiple existing AboutMe documents */
+	connect?: Array<ModelTypes["AboutMeWhereUniqueInput"]> | undefined
+};
+	["AboutMeCreateOneInlineInput"]: {
+	/** Create and connect one AboutMe document */
+	create?: ModelTypes["AboutMeCreateInput"] | undefined,
+	/** Connect one existing AboutMe document */
+	connect?: ModelTypes["AboutMeWhereUniqueInput"] | undefined
+};
+	/** An edge in a connection. */
+["AboutMeEdge"]: {
+		/** The item at the end of the edge. */
+	node: ModelTypes["AboutMe"],
+	/** A cursor for use in pagination. */
+	cursor: string
+};
+	/** Identifies documents */
+["AboutMeManyWhereInput"]: {
+	/** Contains search across all appropriate fields. */
+	_search?: string | undefined,
+	/** Logical AND on all given filters. */
+	AND?: Array<ModelTypes["AboutMeWhereInput"]> | undefined,
+	/** Logical OR on all given filters. */
+	OR?: Array<ModelTypes["AboutMeWhereInput"]> | undefined,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<ModelTypes["AboutMeWhereInput"]> | undefined,
+	publishedAt?: ModelTypes["DateTime"] | undefined,
+	/** All values that are not equal to given value. */
+	publishedAt_not?: ModelTypes["DateTime"] | undefined,
+	/** All values that are contained in given list. */
+	publishedAt_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	publishedAt_not_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
+	/** All values less than the given value. */
+	publishedAt_lt?: ModelTypes["DateTime"] | undefined,
+	/** All values less than or equal the given value. */
+	publishedAt_lte?: ModelTypes["DateTime"] | undefined,
+	/** All values greater than the given value. */
+	publishedAt_gt?: ModelTypes["DateTime"] | undefined,
+	/** All values greater than or equal the given value. */
+	publishedAt_gte?: ModelTypes["DateTime"] | undefined,
+	updatedAt?: ModelTypes["DateTime"] | undefined,
+	/** All values that are not equal to given value. */
+	updatedAt_not?: ModelTypes["DateTime"] | undefined,
+	/** All values that are contained in given list. */
+	updatedAt_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	updatedAt_not_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
+	/** All values less than the given value. */
+	updatedAt_lt?: ModelTypes["DateTime"] | undefined,
+	/** All values less than or equal the given value. */
+	updatedAt_lte?: ModelTypes["DateTime"] | undefined,
+	/** All values greater than the given value. */
+	updatedAt_gt?: ModelTypes["DateTime"] | undefined,
+	/** All values greater than or equal the given value. */
+	updatedAt_gte?: ModelTypes["DateTime"] | undefined,
+	createdAt?: ModelTypes["DateTime"] | undefined,
+	/** All values that are not equal to given value. */
+	createdAt_not?: ModelTypes["DateTime"] | undefined,
+	/** All values that are contained in given list. */
+	createdAt_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	createdAt_not_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
+	/** All values less than the given value. */
+	createdAt_lt?: ModelTypes["DateTime"] | undefined,
+	/** All values less than or equal the given value. */
+	createdAt_lte?: ModelTypes["DateTime"] | undefined,
+	/** All values greater than the given value. */
+	createdAt_gt?: ModelTypes["DateTime"] | undefined,
+	/** All values greater than or equal the given value. */
+	createdAt_gte?: ModelTypes["DateTime"] | undefined,
+	id?: string | undefined,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	id_contains?: string | undefined,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined,
+	contactEmail?: string | undefined,
+	/** All values that are not equal to given value. */
+	contactEmail_not?: string | undefined,
+	/** All values that are contained in given list. */
+	contactEmail_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	contactEmail_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	contactEmail_contains?: string | undefined,
+	/** All values not containing the given string. */
+	contactEmail_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	contactEmail_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	contactEmail_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	contactEmail_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	contactEmail_not_ends_with?: string | undefined,
+	description?: string | undefined,
+	/** All values that are not equal to given value. */
+	description_not?: string | undefined,
+	/** All values that are contained in given list. */
+	description_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	description_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	description_contains?: string | undefined,
+	/** All values not containing the given string. */
+	description_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	description_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	description_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	description_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	description_not_ends_with?: string | undefined,
+	company?: ModelTypes["CompanyWhereInput"] | undefined,
+	publishedBy?: ModelTypes["UserWhereInput"] | undefined,
+	updatedBy?: ModelTypes["UserWhereInput"] | undefined,
+	createdBy?: ModelTypes["UserWhereInput"] | undefined,
+	photo?: ModelTypes["AssetWhereInput"] | undefined,
+	scheduledIn_every?: ModelTypes["ScheduledOperationWhereInput"] | undefined,
+	scheduledIn_some?: ModelTypes["ScheduledOperationWhereInput"] | undefined,
+	scheduledIn_none?: ModelTypes["ScheduledOperationWhereInput"] | undefined
+};
+	["AboutMeOrderByInput"]:AboutMeOrderByInput;
+	["AboutMeUpdateInput"]: {
+	contactEmail?: string | undefined,
+	description?: string | undefined,
+	company?: ModelTypes["CompanyUpdateOneInlineInput"] | undefined,
+	links?: ModelTypes["AboutMelinksUnionUpdateManyInlineInput"] | undefined,
+	photo?: ModelTypes["AssetUpdateOneInlineInput"] | undefined
+};
+	["AboutMeUpdateManyInlineInput"]: {
+	/** Create and connect multiple AboutMe documents */
+	create?: Array<ModelTypes["AboutMeCreateInput"]> | undefined,
+	/** Connect multiple existing AboutMe documents */
+	connect?: Array<ModelTypes["AboutMeConnectInput"]> | undefined,
+	/** Override currently-connected documents with multiple existing AboutMe documents */
+	set?: Array<ModelTypes["AboutMeWhereUniqueInput"]> | undefined,
+	/** Update multiple AboutMe documents */
+	update?: Array<ModelTypes["AboutMeUpdateWithNestedWhereUniqueInput"]> | undefined,
+	/** Upsert multiple AboutMe documents */
+	upsert?: Array<ModelTypes["AboutMeUpsertWithNestedWhereUniqueInput"]> | undefined,
+	/** Disconnect multiple AboutMe documents */
+	disconnect?: Array<ModelTypes["AboutMeWhereUniqueInput"]> | undefined,
+	/** Delete multiple AboutMe documents */
+	delete?: Array<ModelTypes["AboutMeWhereUniqueInput"]> | undefined
+};
+	["AboutMeUpdateManyInput"]: {
+	contactEmail?: string | undefined,
+	description?: string | undefined
+};
+	["AboutMeUpdateManyWithNestedWhereInput"]: {
+	/** Document search */
+	where: ModelTypes["AboutMeWhereInput"],
+	/** Update many input */
+	data: ModelTypes["AboutMeUpdateManyInput"]
+};
+	["AboutMeUpdateOneInlineInput"]: {
+	/** Create and connect one AboutMe document */
+	create?: ModelTypes["AboutMeCreateInput"] | undefined,
+	/** Update single AboutMe document */
+	update?: ModelTypes["AboutMeUpdateWithNestedWhereUniqueInput"] | undefined,
+	/** Upsert single AboutMe document */
+	upsert?: ModelTypes["AboutMeUpsertWithNestedWhereUniqueInput"] | undefined,
+	/** Connect existing AboutMe document */
+	connect?: ModelTypes["AboutMeWhereUniqueInput"] | undefined,
+	/** Disconnect currently connected AboutMe document */
+	disconnect?: boolean | undefined,
+	/** Delete currently connected AboutMe document */
+	delete?: boolean | undefined
+};
+	["AboutMeUpdateWithNestedWhereUniqueInput"]: {
+	/** Unique document search */
+	where: ModelTypes["AboutMeWhereUniqueInput"],
+	/** Document to update */
+	data: ModelTypes["AboutMeUpdateInput"]
+};
+	["AboutMeUpsertInput"]: {
+	/** Create document if it didn't exist */
+	create: ModelTypes["AboutMeCreateInput"],
+	/** Update document if it exists */
+	update: ModelTypes["AboutMeUpdateInput"]
+};
+	["AboutMeUpsertWithNestedWhereUniqueInput"]: {
+	/** Unique document search */
+	where: ModelTypes["AboutMeWhereUniqueInput"],
+	/** Upsert data */
+	data: ModelTypes["AboutMeUpsertInput"]
+};
+	/** Identifies documents */
+["AboutMeWhereInput"]: {
+	/** Contains search across all appropriate fields. */
+	_search?: string | undefined,
+	/** Logical AND on all given filters. */
+	AND?: Array<ModelTypes["AboutMeWhereInput"]> | undefined,
+	/** Logical OR on all given filters. */
+	OR?: Array<ModelTypes["AboutMeWhereInput"]> | undefined,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<ModelTypes["AboutMeWhereInput"]> | undefined,
+	publishedAt?: ModelTypes["DateTime"] | undefined,
+	/** All values that are not equal to given value. */
+	publishedAt_not?: ModelTypes["DateTime"] | undefined,
+	/** All values that are contained in given list. */
+	publishedAt_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	publishedAt_not_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
+	/** All values less than the given value. */
+	publishedAt_lt?: ModelTypes["DateTime"] | undefined,
+	/** All values less than or equal the given value. */
+	publishedAt_lte?: ModelTypes["DateTime"] | undefined,
+	/** All values greater than the given value. */
+	publishedAt_gt?: ModelTypes["DateTime"] | undefined,
+	/** All values greater than or equal the given value. */
+	publishedAt_gte?: ModelTypes["DateTime"] | undefined,
+	updatedAt?: ModelTypes["DateTime"] | undefined,
+	/** All values that are not equal to given value. */
+	updatedAt_not?: ModelTypes["DateTime"] | undefined,
+	/** All values that are contained in given list. */
+	updatedAt_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	updatedAt_not_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
+	/** All values less than the given value. */
+	updatedAt_lt?: ModelTypes["DateTime"] | undefined,
+	/** All values less than or equal the given value. */
+	updatedAt_lte?: ModelTypes["DateTime"] | undefined,
+	/** All values greater than the given value. */
+	updatedAt_gt?: ModelTypes["DateTime"] | undefined,
+	/** All values greater than or equal the given value. */
+	updatedAt_gte?: ModelTypes["DateTime"] | undefined,
+	createdAt?: ModelTypes["DateTime"] | undefined,
+	/** All values that are not equal to given value. */
+	createdAt_not?: ModelTypes["DateTime"] | undefined,
+	/** All values that are contained in given list. */
+	createdAt_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	createdAt_not_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
+	/** All values less than the given value. */
+	createdAt_lt?: ModelTypes["DateTime"] | undefined,
+	/** All values less than or equal the given value. */
+	createdAt_lte?: ModelTypes["DateTime"] | undefined,
+	/** All values greater than the given value. */
+	createdAt_gt?: ModelTypes["DateTime"] | undefined,
+	/** All values greater than or equal the given value. */
+	createdAt_gte?: ModelTypes["DateTime"] | undefined,
+	id?: string | undefined,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	id_contains?: string | undefined,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined,
+	contactEmail?: string | undefined,
+	/** All values that are not equal to given value. */
+	contactEmail_not?: string | undefined,
+	/** All values that are contained in given list. */
+	contactEmail_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	contactEmail_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	contactEmail_contains?: string | undefined,
+	/** All values not containing the given string. */
+	contactEmail_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	contactEmail_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	contactEmail_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	contactEmail_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	contactEmail_not_ends_with?: string | undefined,
+	description?: string | undefined,
+	/** All values that are not equal to given value. */
+	description_not?: string | undefined,
+	/** All values that are contained in given list. */
+	description_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	description_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	description_contains?: string | undefined,
+	/** All values not containing the given string. */
+	description_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	description_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	description_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	description_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	description_not_ends_with?: string | undefined,
+	company?: ModelTypes["CompanyWhereInput"] | undefined,
+	publishedBy?: ModelTypes["UserWhereInput"] | undefined,
+	updatedBy?: ModelTypes["UserWhereInput"] | undefined,
+	createdBy?: ModelTypes["UserWhereInput"] | undefined,
+	photo?: ModelTypes["AssetWhereInput"] | undefined,
+	scheduledIn_every?: ModelTypes["ScheduledOperationWhereInput"] | undefined,
+	scheduledIn_some?: ModelTypes["ScheduledOperationWhereInput"] | undefined,
+	scheduledIn_none?: ModelTypes["ScheduledOperationWhereInput"] | undefined
+};
+	/** References AboutMe record uniquely */
+["AboutMeWhereUniqueInput"]: {
+	id?: string | undefined
+};
+	["AboutMelinksUnion"]:ModelTypes["Link"];
+	["AboutMelinksUnionConnectInput"]: {
+	Link?: ModelTypes["LinkConnectInput"] | undefined
+};
+	["AboutMelinksUnionCreateInput"]: {
+	Link?: ModelTypes["LinkCreateInput"] | undefined
+};
+	["AboutMelinksUnionCreateManyInlineInput"]: {
+	/** Create and connect multiple existing AboutMelinksUnion documents */
+	create?: Array<ModelTypes["AboutMelinksUnionCreateInput"]> | undefined
+};
+	["AboutMelinksUnionCreateOneInlineInput"]: {
+	/** Create and connect one AboutMelinksUnion document */
+	create?: ModelTypes["AboutMelinksUnionCreateInput"] | undefined
+};
+	["AboutMelinksUnionCreateWithPositionInput"]: {
+	Link?: ModelTypes["LinkCreateWithPositionInput"] | undefined
+};
+	["AboutMelinksUnionUpdateInput"]: {
+	Link?: ModelTypes["LinkUpdateInput"] | undefined
+};
+	["AboutMelinksUnionUpdateManyInlineInput"]: {
+	/** Create and connect multiple AboutMelinksUnion component instances */
+	create?: Array<ModelTypes["AboutMelinksUnionCreateWithPositionInput"]> | undefined,
+	/** Update multiple AboutMelinksUnion component instances */
+	update?: Array<ModelTypes["AboutMelinksUnionUpdateWithNestedWhereUniqueAndPositionInput"]> | undefined,
+	/** Upsert multiple AboutMelinksUnion component instances */
+	upsert?: Array<ModelTypes["AboutMelinksUnionUpsertWithNestedWhereUniqueAndPositionInput"]> | undefined,
+	/** Delete multiple AboutMelinksUnion documents */
+	delete?: Array<ModelTypes["AboutMelinksUnionWhereUniqueInput"]> | undefined
+};
+	["AboutMelinksUnionUpdateManyWithNestedWhereInput"]: {
+	Link?: ModelTypes["LinkUpdateManyWithNestedWhereInput"] | undefined
+};
+	["AboutMelinksUnionUpdateOneInlineInput"]: {
+	/** Create and connect one AboutMelinksUnion document */
+	create?: ModelTypes["AboutMelinksUnionCreateInput"] | undefined,
+	/** Update single AboutMelinksUnion document */
+	update?: ModelTypes["AboutMelinksUnionUpdateWithNestedWhereUniqueInput"] | undefined,
+	/** Upsert single AboutMelinksUnion document */
+	upsert?: ModelTypes["AboutMelinksUnionUpsertWithNestedWhereUniqueInput"] | undefined,
+	/** Delete currently connected AboutMelinksUnion document */
+	delete?: boolean | undefined
+};
+	["AboutMelinksUnionUpdateWithNestedWhereUniqueAndPositionInput"]: {
+	Link?: ModelTypes["LinkUpdateWithNestedWhereUniqueAndPositionInput"] | undefined
+};
+	["AboutMelinksUnionUpdateWithNestedWhereUniqueInput"]: {
+	Link?: ModelTypes["LinkUpdateWithNestedWhereUniqueInput"] | undefined
+};
+	["AboutMelinksUnionUpsertWithNestedWhereUniqueAndPositionInput"]: {
+	Link?: ModelTypes["LinkUpsertWithNestedWhereUniqueAndPositionInput"] | undefined
+};
+	["AboutMelinksUnionUpsertWithNestedWhereUniqueInput"]: {
+	Link?: ModelTypes["LinkUpsertWithNestedWhereUniqueInput"] | undefined
+};
+	["AboutMelinksUnionWhereInput"]: {
+	Link?: ModelTypes["LinkWhereInput"] | undefined
+};
+	["AboutMelinksUnionWhereUniqueInput"]: {
+	Link?: ModelTypes["LinkWhereUniqueInput"] | undefined
+};
+	["Aggregate"]: {
 		count: number
 };
 	/** Asset system model */
@@ -9375,9 +11818,8 @@ export type ModelTypes = {
 	/** User that created this document */
 	createdBy?: ModelTypes["User"] | undefined,
 	imageProject: Array<ModelTypes["Project"]>,
-	imageSocial: Array<ModelTypes["Social"]>,
-	imagePageMetadata: Array<ModelTypes["PageMetadata"]>,
-	iconSkill: Array<ModelTypes["Skill"]>,
+	og_imageSeo: Array<ModelTypes["Seo"]>,
+	photoAboutMe: Array<ModelTypes["AboutMe"]>,
 	scheduledIn: Array<ModelTypes["ScheduledOperation"]>,
 	/** List of Asset versions */
 	history: Array<ModelTypes["Version"]>,
@@ -9408,9 +11850,10 @@ export type ModelTypes = {
 	updatedAt?: ModelTypes["DateTime"] | undefined,
 	createdAt?: ModelTypes["DateTime"] | undefined,
 	imageProject?: ModelTypes["ProjectCreateManyInlineInput"] | undefined,
-	imageSocial?: ModelTypes["SocialCreateManyInlineInput"] | undefined,
-	imagePageMetadata?: ModelTypes["PageMetadataCreateManyInlineInput"] | undefined,
+	og_imageSeo?: ModelTypes["SeoCreateManyInlineInput"] | undefined,
+	iconLink?: ModelTypes["LinkCreateManyInlineInput"] | undefined,
 	iconSkill?: ModelTypes["SkillCreateManyInlineInput"] | undefined,
+	photoAboutMe?: ModelTypes["AboutMeCreateManyInlineInput"] | undefined,
 	/** Inline mutations for managing document localizations excluding the default locale */
 	localizations?: ModelTypes["AssetCreateLocalizationsInput"] | undefined
 };
@@ -9532,15 +11975,12 @@ export type ModelTypes = {
 	imageProject_every?: ModelTypes["ProjectWhereInput"] | undefined,
 	imageProject_some?: ModelTypes["ProjectWhereInput"] | undefined,
 	imageProject_none?: ModelTypes["ProjectWhereInput"] | undefined,
-	imageSocial_every?: ModelTypes["SocialWhereInput"] | undefined,
-	imageSocial_some?: ModelTypes["SocialWhereInput"] | undefined,
-	imageSocial_none?: ModelTypes["SocialWhereInput"] | undefined,
-	imagePageMetadata_every?: ModelTypes["PageMetadataWhereInput"] | undefined,
-	imagePageMetadata_some?: ModelTypes["PageMetadataWhereInput"] | undefined,
-	imagePageMetadata_none?: ModelTypes["PageMetadataWhereInput"] | undefined,
-	iconSkill_every?: ModelTypes["SkillWhereInput"] | undefined,
-	iconSkill_some?: ModelTypes["SkillWhereInput"] | undefined,
-	iconSkill_none?: ModelTypes["SkillWhereInput"] | undefined,
+	og_imageSeo_every?: ModelTypes["SeoWhereInput"] | undefined,
+	og_imageSeo_some?: ModelTypes["SeoWhereInput"] | undefined,
+	og_imageSeo_none?: ModelTypes["SeoWhereInput"] | undefined,
+	photoAboutMe_every?: ModelTypes["AboutMeWhereInput"] | undefined,
+	photoAboutMe_some?: ModelTypes["AboutMeWhereInput"] | undefined,
+	photoAboutMe_none?: ModelTypes["AboutMeWhereInput"] | undefined,
 	scheduledIn_every?: ModelTypes["ScheduledOperationWhereInput"] | undefined,
 	scheduledIn_some?: ModelTypes["ScheduledOperationWhereInput"] | undefined,
 	scheduledIn_none?: ModelTypes["ScheduledOperationWhereInput"] | undefined
@@ -9561,9 +12001,10 @@ export type ModelTypes = {
 	fileName?: string | undefined,
 	handle?: string | undefined,
 	imageProject?: ModelTypes["ProjectUpdateManyInlineInput"] | undefined,
-	imageSocial?: ModelTypes["SocialUpdateManyInlineInput"] | undefined,
-	imagePageMetadata?: ModelTypes["PageMetadataUpdateManyInlineInput"] | undefined,
+	og_imageSeo?: ModelTypes["SeoUpdateManyInlineInput"] | undefined,
+	iconLink?: ModelTypes["LinkUpdateManyInlineInput"] | undefined,
 	iconSkill?: ModelTypes["SkillUpdateManyInlineInput"] | undefined,
+	photoAboutMe?: ModelTypes["AboutMeUpdateManyInlineInput"] | undefined,
 	/** Manage document localizations */
 	localizations?: ModelTypes["AssetUpdateLocalizationsInput"] | undefined
 };
@@ -9853,15 +12294,12 @@ export type ModelTypes = {
 	imageProject_every?: ModelTypes["ProjectWhereInput"] | undefined,
 	imageProject_some?: ModelTypes["ProjectWhereInput"] | undefined,
 	imageProject_none?: ModelTypes["ProjectWhereInput"] | undefined,
-	imageSocial_every?: ModelTypes["SocialWhereInput"] | undefined,
-	imageSocial_some?: ModelTypes["SocialWhereInput"] | undefined,
-	imageSocial_none?: ModelTypes["SocialWhereInput"] | undefined,
-	imagePageMetadata_every?: ModelTypes["PageMetadataWhereInput"] | undefined,
-	imagePageMetadata_some?: ModelTypes["PageMetadataWhereInput"] | undefined,
-	imagePageMetadata_none?: ModelTypes["PageMetadataWhereInput"] | undefined,
-	iconSkill_every?: ModelTypes["SkillWhereInput"] | undefined,
-	iconSkill_some?: ModelTypes["SkillWhereInput"] | undefined,
-	iconSkill_none?: ModelTypes["SkillWhereInput"] | undefined,
+	og_imageSeo_every?: ModelTypes["SeoWhereInput"] | undefined,
+	og_imageSeo_some?: ModelTypes["SeoWhereInput"] | undefined,
+	og_imageSeo_none?: ModelTypes["SeoWhereInput"] | undefined,
+	photoAboutMe_every?: ModelTypes["AboutMeWhereInput"] | undefined,
+	photoAboutMe_some?: ModelTypes["AboutMeWhereInput"] | undefined,
+	photoAboutMe_none?: ModelTypes["AboutMeWhereInput"] | undefined,
 	scheduledIn_every?: ModelTypes["ScheduledOperationWhereInput"] | undefined,
 	scheduledIn_some?: ModelTypes["ScheduledOperationWhereInput"] | undefined,
 	scheduledIn_none?: ModelTypes["ScheduledOperationWhereInput"] | undefined
@@ -9884,6 +12322,329 @@ export type ModelTypes = {
 ["ColorInput"]: {
 	hex?: ModelTypes["Hex"] | undefined,
 	rgba?: ModelTypes["RGBAInput"] | undefined
+};
+	["Company"]: {
+		/** System stage field */
+	stage: ModelTypes["Stage"],
+	/** The unique identifier */
+	id: string,
+	companyName: string,
+	companyWebsite: string
+};
+	["CompanyConnectInput"]: {
+	/** Document to connect */
+	where: ModelTypes["CompanyWhereUniqueInput"],
+	/** Allow to specify document position in list of connected documents, will default to appending at end of list */
+	position?: ModelTypes["ConnectPositionInput"] | undefined
+};
+	/** A connection to a list of items. */
+["CompanyConnection"]: {
+		/** Information to aid in pagination. */
+	pageInfo: ModelTypes["PageInfo"],
+	/** A list of edges. */
+	edges: Array<ModelTypes["CompanyEdge"]>,
+	aggregate: ModelTypes["Aggregate"]
+};
+	["CompanyCreateInput"]: {
+	companyName: string,
+	companyWebsite: string
+};
+	["CompanyCreateManyInlineInput"]: {
+	/** Create and connect multiple existing Company documents */
+	create?: Array<ModelTypes["CompanyCreateInput"]> | undefined
+};
+	["CompanyCreateOneInlineInput"]: {
+	/** Create and connect one Company document */
+	create?: ModelTypes["CompanyCreateInput"] | undefined
+};
+	["CompanyCreateWithPositionInput"]: {
+	/** Position in the list of existing component instances, will default to appending at the end of list */
+	position?: ModelTypes["ConnectPositionInput"] | undefined,
+	/** Document to create */
+	data: ModelTypes["CompanyCreateInput"]
+};
+	/** An edge in a connection. */
+["CompanyEdge"]: {
+		/** The item at the end of the edge. */
+	node: ModelTypes["Company"],
+	/** A cursor for use in pagination. */
+	cursor: string
+};
+	/** Identifies documents */
+["CompanyManyWhereInput"]: {
+	/** Contains search across all appropriate fields. */
+	_search?: string | undefined,
+	/** Logical AND on all given filters. */
+	AND?: Array<ModelTypes["CompanyWhereInput"]> | undefined,
+	/** Logical OR on all given filters. */
+	OR?: Array<ModelTypes["CompanyWhereInput"]> | undefined,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<ModelTypes["CompanyWhereInput"]> | undefined,
+	id?: string | undefined,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	id_contains?: string | undefined,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined,
+	companyName?: string | undefined,
+	/** All values that are not equal to given value. */
+	companyName_not?: string | undefined,
+	/** All values that are contained in given list. */
+	companyName_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	companyName_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	companyName_contains?: string | undefined,
+	/** All values not containing the given string. */
+	companyName_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	companyName_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	companyName_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	companyName_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	companyName_not_ends_with?: string | undefined,
+	companyWebsite?: string | undefined,
+	/** All values that are not equal to given value. */
+	companyWebsite_not?: string | undefined,
+	/** All values that are contained in given list. */
+	companyWebsite_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	companyWebsite_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	companyWebsite_contains?: string | undefined,
+	/** All values not containing the given string. */
+	companyWebsite_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	companyWebsite_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	companyWebsite_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	companyWebsite_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	companyWebsite_not_ends_with?: string | undefined
+};
+	["CompanyOrderByInput"]:CompanyOrderByInput;
+	["CompanyParent"]:ModelTypes["AboutMe"];
+	["CompanyParentConnectInput"]: {
+	AboutMe?: ModelTypes["AboutMeConnectInput"] | undefined
+};
+	["CompanyParentCreateInput"]: {
+	AboutMe?: ModelTypes["AboutMeCreateInput"] | undefined
+};
+	["CompanyParentCreateManyInlineInput"]: {
+	/** Create and connect multiple existing CompanyParent documents */
+	create?: Array<ModelTypes["CompanyParentCreateInput"]> | undefined,
+	/** Connect multiple existing CompanyParent documents */
+	connect?: Array<ModelTypes["CompanyParentWhereUniqueInput"]> | undefined
+};
+	["CompanyParentCreateOneInlineInput"]: {
+	/** Create and connect one CompanyParent document */
+	create?: ModelTypes["CompanyParentCreateInput"] | undefined,
+	/** Connect one existing CompanyParent document */
+	connect?: ModelTypes["CompanyParentWhereUniqueInput"] | undefined
+};
+	["CompanyParentUpdateInput"]: {
+	AboutMe?: ModelTypes["AboutMeUpdateInput"] | undefined
+};
+	["CompanyParentUpdateManyInlineInput"]: {
+	/** Create and connect multiple CompanyParent documents */
+	create?: Array<ModelTypes["CompanyParentCreateInput"]> | undefined,
+	/** Connect multiple existing CompanyParent documents */
+	connect?: Array<ModelTypes["CompanyParentConnectInput"]> | undefined,
+	/** Override currently-connected documents with multiple existing CompanyParent documents */
+	set?: Array<ModelTypes["CompanyParentWhereUniqueInput"]> | undefined,
+	/** Update multiple CompanyParent documents */
+	update?: Array<ModelTypes["CompanyParentUpdateWithNestedWhereUniqueInput"]> | undefined,
+	/** Upsert multiple CompanyParent documents */
+	upsert?: Array<ModelTypes["CompanyParentUpsertWithNestedWhereUniqueInput"]> | undefined,
+	/** Disconnect multiple CompanyParent documents */
+	disconnect?: Array<ModelTypes["CompanyParentWhereUniqueInput"]> | undefined,
+	/** Delete multiple CompanyParent documents */
+	delete?: Array<ModelTypes["CompanyParentWhereUniqueInput"]> | undefined
+};
+	["CompanyParentUpdateManyWithNestedWhereInput"]: {
+	AboutMe?: ModelTypes["AboutMeUpdateManyWithNestedWhereInput"] | undefined
+};
+	["CompanyParentUpdateOneInlineInput"]: {
+	/** Create and connect one CompanyParent document */
+	create?: ModelTypes["CompanyParentCreateInput"] | undefined,
+	/** Update single CompanyParent document */
+	update?: ModelTypes["CompanyParentUpdateWithNestedWhereUniqueInput"] | undefined,
+	/** Upsert single CompanyParent document */
+	upsert?: ModelTypes["CompanyParentUpsertWithNestedWhereUniqueInput"] | undefined,
+	/** Connect existing CompanyParent document */
+	connect?: ModelTypes["CompanyParentWhereUniqueInput"] | undefined,
+	/** Disconnect currently connected CompanyParent document */
+	disconnect?: boolean | undefined,
+	/** Delete currently connected CompanyParent document */
+	delete?: boolean | undefined
+};
+	["CompanyParentUpdateWithNestedWhereUniqueInput"]: {
+	AboutMe?: ModelTypes["AboutMeUpdateWithNestedWhereUniqueInput"] | undefined
+};
+	["CompanyParentUpsertWithNestedWhereUniqueInput"]: {
+	AboutMe?: ModelTypes["AboutMeUpsertWithNestedWhereUniqueInput"] | undefined
+};
+	["CompanyParentWhereInput"]: {
+	AboutMe?: ModelTypes["AboutMeWhereInput"] | undefined
+};
+	["CompanyParentWhereUniqueInput"]: {
+	AboutMe?: ModelTypes["AboutMeWhereUniqueInput"] | undefined
+};
+	["CompanyUpdateInput"]: {
+	companyName?: string | undefined,
+	companyWebsite?: string | undefined
+};
+	["CompanyUpdateManyInlineInput"]: {
+	/** Create and connect multiple Company component instances */
+	create?: Array<ModelTypes["CompanyCreateWithPositionInput"]> | undefined,
+	/** Update multiple Company component instances */
+	update?: Array<ModelTypes["CompanyUpdateWithNestedWhereUniqueAndPositionInput"]> | undefined,
+	/** Upsert multiple Company component instances */
+	upsert?: Array<ModelTypes["CompanyUpsertWithNestedWhereUniqueAndPositionInput"]> | undefined,
+	/** Delete multiple Company documents */
+	delete?: Array<ModelTypes["CompanyWhereUniqueInput"]> | undefined
+};
+	["CompanyUpdateManyInput"]: {
+	companyName?: string | undefined,
+	companyWebsite?: string | undefined
+};
+	["CompanyUpdateManyWithNestedWhereInput"]: {
+	/** Document search */
+	where: ModelTypes["CompanyWhereInput"],
+	/** Update many input */
+	data: ModelTypes["CompanyUpdateManyInput"]
+};
+	["CompanyUpdateOneInlineInput"]: {
+	/** Create and connect one Company document */
+	create?: ModelTypes["CompanyCreateInput"] | undefined,
+	/** Update single Company document */
+	update?: ModelTypes["CompanyUpdateWithNestedWhereUniqueInput"] | undefined,
+	/** Upsert single Company document */
+	upsert?: ModelTypes["CompanyUpsertWithNestedWhereUniqueInput"] | undefined,
+	/** Delete currently connected Company document */
+	delete?: boolean | undefined
+};
+	["CompanyUpdateWithNestedWhereUniqueAndPositionInput"]: {
+	/** Unique component instance search */
+	where: ModelTypes["CompanyWhereUniqueInput"],
+	/** Position in the list of existing component instances, will default to appending at the end of list */
+	position?: ModelTypes["ConnectPositionInput"] | undefined,
+	/** Document to update */
+	data?: ModelTypes["CompanyUpdateInput"] | undefined
+};
+	["CompanyUpdateWithNestedWhereUniqueInput"]: {
+	/** Unique document search */
+	where: ModelTypes["CompanyWhereUniqueInput"],
+	/** Document to update */
+	data: ModelTypes["CompanyUpdateInput"]
+};
+	["CompanyUpsertInput"]: {
+	/** Create document if it didn't exist */
+	create: ModelTypes["CompanyCreateInput"],
+	/** Update document if it exists */
+	update: ModelTypes["CompanyUpdateInput"]
+};
+	["CompanyUpsertWithNestedWhereUniqueAndPositionInput"]: {
+	/** Unique component instance search */
+	where: ModelTypes["CompanyWhereUniqueInput"],
+	/** Position in the list of existing component instances, will default to appending at the end of list */
+	position?: ModelTypes["ConnectPositionInput"] | undefined,
+	/** Document to upsert */
+	data?: ModelTypes["CompanyUpsertInput"] | undefined
+};
+	["CompanyUpsertWithNestedWhereUniqueInput"]: {
+	/** Unique document search */
+	where: ModelTypes["CompanyWhereUniqueInput"],
+	/** Upsert data */
+	data: ModelTypes["CompanyUpsertInput"]
+};
+	/** Identifies documents */
+["CompanyWhereInput"]: {
+	/** Contains search across all appropriate fields. */
+	_search?: string | undefined,
+	/** Logical AND on all given filters. */
+	AND?: Array<ModelTypes["CompanyWhereInput"]> | undefined,
+	/** Logical OR on all given filters. */
+	OR?: Array<ModelTypes["CompanyWhereInput"]> | undefined,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<ModelTypes["CompanyWhereInput"]> | undefined,
+	id?: string | undefined,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	id_contains?: string | undefined,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined,
+	companyName?: string | undefined,
+	/** All values that are not equal to given value. */
+	companyName_not?: string | undefined,
+	/** All values that are contained in given list. */
+	companyName_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	companyName_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	companyName_contains?: string | undefined,
+	/** All values not containing the given string. */
+	companyName_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	companyName_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	companyName_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	companyName_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	companyName_not_ends_with?: string | undefined,
+	companyWebsite?: string | undefined,
+	/** All values that are not equal to given value. */
+	companyWebsite_not?: string | undefined,
+	/** All values that are contained in given list. */
+	companyWebsite_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	companyWebsite_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	companyWebsite_contains?: string | undefined,
+	/** All values not containing the given string. */
+	companyWebsite_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	companyWebsite_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	companyWebsite_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	companyWebsite_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	companyWebsite_not_ends_with?: string | undefined
+};
+	/** References Company record uniquely */
+["CompanyWhereUniqueInput"]: {
+	id?: string | undefined
 };
 	["ConnectPositionInput"]: {
 	/** Connect document after specified document */
@@ -9956,6 +12717,334 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 };
 	/** Raw JSON value */
 ["Json"]:any;
+	["Link"]: {
+		/** System stage field */
+	stage: ModelTypes["Stage"],
+	/** The unique identifier */
+	id: string,
+	name: string,
+	url: string,
+	icon?: ModelTypes["Asset"] | undefined
+};
+	["LinkConnectInput"]: {
+	/** Document to connect */
+	where: ModelTypes["LinkWhereUniqueInput"],
+	/** Allow to specify document position in list of connected documents, will default to appending at end of list */
+	position?: ModelTypes["ConnectPositionInput"] | undefined
+};
+	/** A connection to a list of items. */
+["LinkConnection"]: {
+		/** Information to aid in pagination. */
+	pageInfo: ModelTypes["PageInfo"],
+	/** A list of edges. */
+	edges: Array<ModelTypes["LinkEdge"]>,
+	aggregate: ModelTypes["Aggregate"]
+};
+	["LinkCreateInput"]: {
+	name: string,
+	url: string,
+	icon?: ModelTypes["AssetCreateOneInlineInput"] | undefined
+};
+	["LinkCreateManyInlineInput"]: {
+	/** Create and connect multiple existing Link documents */
+	create?: Array<ModelTypes["LinkCreateInput"]> | undefined
+};
+	["LinkCreateOneInlineInput"]: {
+	/** Create and connect one Link document */
+	create?: ModelTypes["LinkCreateInput"] | undefined
+};
+	["LinkCreateWithPositionInput"]: {
+	/** Position in the list of existing component instances, will default to appending at the end of list */
+	position?: ModelTypes["ConnectPositionInput"] | undefined,
+	/** Document to create */
+	data: ModelTypes["LinkCreateInput"]
+};
+	/** An edge in a connection. */
+["LinkEdge"]: {
+		/** The item at the end of the edge. */
+	node: ModelTypes["Link"],
+	/** A cursor for use in pagination. */
+	cursor: string
+};
+	/** Identifies documents */
+["LinkManyWhereInput"]: {
+	/** Contains search across all appropriate fields. */
+	_search?: string | undefined,
+	/** Logical AND on all given filters. */
+	AND?: Array<ModelTypes["LinkWhereInput"]> | undefined,
+	/** Logical OR on all given filters. */
+	OR?: Array<ModelTypes["LinkWhereInput"]> | undefined,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<ModelTypes["LinkWhereInput"]> | undefined,
+	id?: string | undefined,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	id_contains?: string | undefined,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined,
+	name?: string | undefined,
+	/** All values that are not equal to given value. */
+	name_not?: string | undefined,
+	/** All values that are contained in given list. */
+	name_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	name_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	name_contains?: string | undefined,
+	/** All values not containing the given string. */
+	name_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	name_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	name_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	name_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	name_not_ends_with?: string | undefined,
+	url?: string | undefined,
+	/** All values that are not equal to given value. */
+	url_not?: string | undefined,
+	/** All values that are contained in given list. */
+	url_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	url_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	url_contains?: string | undefined,
+	/** All values not containing the given string. */
+	url_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	url_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	url_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	url_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	url_not_ends_with?: string | undefined,
+	icon?: ModelTypes["AssetWhereInput"] | undefined
+};
+	["LinkOrderByInput"]:LinkOrderByInput;
+	["LinkParent"]:ModelTypes["AboutMe"];
+	["LinkParentConnectInput"]: {
+	AboutMe?: ModelTypes["AboutMeConnectInput"] | undefined
+};
+	["LinkParentCreateInput"]: {
+	AboutMe?: ModelTypes["AboutMeCreateInput"] | undefined
+};
+	["LinkParentCreateManyInlineInput"]: {
+	/** Create and connect multiple existing LinkParent documents */
+	create?: Array<ModelTypes["LinkParentCreateInput"]> | undefined,
+	/** Connect multiple existing LinkParent documents */
+	connect?: Array<ModelTypes["LinkParentWhereUniqueInput"]> | undefined
+};
+	["LinkParentCreateOneInlineInput"]: {
+	/** Create and connect one LinkParent document */
+	create?: ModelTypes["LinkParentCreateInput"] | undefined,
+	/** Connect one existing LinkParent document */
+	connect?: ModelTypes["LinkParentWhereUniqueInput"] | undefined
+};
+	["LinkParentUpdateInput"]: {
+	AboutMe?: ModelTypes["AboutMeUpdateInput"] | undefined
+};
+	["LinkParentUpdateManyInlineInput"]: {
+	/** Create and connect multiple LinkParent documents */
+	create?: Array<ModelTypes["LinkParentCreateInput"]> | undefined,
+	/** Connect multiple existing LinkParent documents */
+	connect?: Array<ModelTypes["LinkParentConnectInput"]> | undefined,
+	/** Override currently-connected documents with multiple existing LinkParent documents */
+	set?: Array<ModelTypes["LinkParentWhereUniqueInput"]> | undefined,
+	/** Update multiple LinkParent documents */
+	update?: Array<ModelTypes["LinkParentUpdateWithNestedWhereUniqueInput"]> | undefined,
+	/** Upsert multiple LinkParent documents */
+	upsert?: Array<ModelTypes["LinkParentUpsertWithNestedWhereUniqueInput"]> | undefined,
+	/** Disconnect multiple LinkParent documents */
+	disconnect?: Array<ModelTypes["LinkParentWhereUniqueInput"]> | undefined,
+	/** Delete multiple LinkParent documents */
+	delete?: Array<ModelTypes["LinkParentWhereUniqueInput"]> | undefined
+};
+	["LinkParentUpdateManyWithNestedWhereInput"]: {
+	AboutMe?: ModelTypes["AboutMeUpdateManyWithNestedWhereInput"] | undefined
+};
+	["LinkParentUpdateOneInlineInput"]: {
+	/** Create and connect one LinkParent document */
+	create?: ModelTypes["LinkParentCreateInput"] | undefined,
+	/** Update single LinkParent document */
+	update?: ModelTypes["LinkParentUpdateWithNestedWhereUniqueInput"] | undefined,
+	/** Upsert single LinkParent document */
+	upsert?: ModelTypes["LinkParentUpsertWithNestedWhereUniqueInput"] | undefined,
+	/** Connect existing LinkParent document */
+	connect?: ModelTypes["LinkParentWhereUniqueInput"] | undefined,
+	/** Disconnect currently connected LinkParent document */
+	disconnect?: boolean | undefined,
+	/** Delete currently connected LinkParent document */
+	delete?: boolean | undefined
+};
+	["LinkParentUpdateWithNestedWhereUniqueInput"]: {
+	AboutMe?: ModelTypes["AboutMeUpdateWithNestedWhereUniqueInput"] | undefined
+};
+	["LinkParentUpsertWithNestedWhereUniqueInput"]: {
+	AboutMe?: ModelTypes["AboutMeUpsertWithNestedWhereUniqueInput"] | undefined
+};
+	["LinkParentWhereInput"]: {
+	AboutMe?: ModelTypes["AboutMeWhereInput"] | undefined
+};
+	["LinkParentWhereUniqueInput"]: {
+	AboutMe?: ModelTypes["AboutMeWhereUniqueInput"] | undefined
+};
+	["LinkUpdateInput"]: {
+	name?: string | undefined,
+	url?: string | undefined,
+	icon?: ModelTypes["AssetUpdateOneInlineInput"] | undefined
+};
+	["LinkUpdateManyInlineInput"]: {
+	/** Create and connect multiple Link component instances */
+	create?: Array<ModelTypes["LinkCreateWithPositionInput"]> | undefined,
+	/** Update multiple Link component instances */
+	update?: Array<ModelTypes["LinkUpdateWithNestedWhereUniqueAndPositionInput"]> | undefined,
+	/** Upsert multiple Link component instances */
+	upsert?: Array<ModelTypes["LinkUpsertWithNestedWhereUniqueAndPositionInput"]> | undefined,
+	/** Delete multiple Link documents */
+	delete?: Array<ModelTypes["LinkWhereUniqueInput"]> | undefined
+};
+	["LinkUpdateManyInput"]: {
+	url?: string | undefined
+};
+	["LinkUpdateManyWithNestedWhereInput"]: {
+	/** Document search */
+	where: ModelTypes["LinkWhereInput"],
+	/** Update many input */
+	data: ModelTypes["LinkUpdateManyInput"]
+};
+	["LinkUpdateOneInlineInput"]: {
+	/** Create and connect one Link document */
+	create?: ModelTypes["LinkCreateInput"] | undefined,
+	/** Update single Link document */
+	update?: ModelTypes["LinkUpdateWithNestedWhereUniqueInput"] | undefined,
+	/** Upsert single Link document */
+	upsert?: ModelTypes["LinkUpsertWithNestedWhereUniqueInput"] | undefined,
+	/** Delete currently connected Link document */
+	delete?: boolean | undefined
+};
+	["LinkUpdateWithNestedWhereUniqueAndPositionInput"]: {
+	/** Unique component instance search */
+	where: ModelTypes["LinkWhereUniqueInput"],
+	/** Position in the list of existing component instances, will default to appending at the end of list */
+	position?: ModelTypes["ConnectPositionInput"] | undefined,
+	/** Document to update */
+	data?: ModelTypes["LinkUpdateInput"] | undefined
+};
+	["LinkUpdateWithNestedWhereUniqueInput"]: {
+	/** Unique document search */
+	where: ModelTypes["LinkWhereUniqueInput"],
+	/** Document to update */
+	data: ModelTypes["LinkUpdateInput"]
+};
+	["LinkUpsertInput"]: {
+	/** Create document if it didn't exist */
+	create: ModelTypes["LinkCreateInput"],
+	/** Update document if it exists */
+	update: ModelTypes["LinkUpdateInput"]
+};
+	["LinkUpsertWithNestedWhereUniqueAndPositionInput"]: {
+	/** Unique component instance search */
+	where: ModelTypes["LinkWhereUniqueInput"],
+	/** Position in the list of existing component instances, will default to appending at the end of list */
+	position?: ModelTypes["ConnectPositionInput"] | undefined,
+	/** Document to upsert */
+	data?: ModelTypes["LinkUpsertInput"] | undefined
+};
+	["LinkUpsertWithNestedWhereUniqueInput"]: {
+	/** Unique document search */
+	where: ModelTypes["LinkWhereUniqueInput"],
+	/** Upsert data */
+	data: ModelTypes["LinkUpsertInput"]
+};
+	/** Identifies documents */
+["LinkWhereInput"]: {
+	/** Contains search across all appropriate fields. */
+	_search?: string | undefined,
+	/** Logical AND on all given filters. */
+	AND?: Array<ModelTypes["LinkWhereInput"]> | undefined,
+	/** Logical OR on all given filters. */
+	OR?: Array<ModelTypes["LinkWhereInput"]> | undefined,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<ModelTypes["LinkWhereInput"]> | undefined,
+	id?: string | undefined,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	id_contains?: string | undefined,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined,
+	name?: string | undefined,
+	/** All values that are not equal to given value. */
+	name_not?: string | undefined,
+	/** All values that are contained in given list. */
+	name_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	name_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	name_contains?: string | undefined,
+	/** All values not containing the given string. */
+	name_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	name_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	name_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	name_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	name_not_ends_with?: string | undefined,
+	url?: string | undefined,
+	/** All values that are not equal to given value. */
+	url_not?: string | undefined,
+	/** All values that are contained in given list. */
+	url_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	url_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	url_contains?: string | undefined,
+	/** All values not containing the given string. */
+	url_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	url_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	url_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	url_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	url_not_ends_with?: string | undefined,
+	icon?: ModelTypes["AssetWhereInput"] | undefined
+};
+	/** References Link record uniquely */
+["LinkWhereUniqueInput"]: {
+	id?: string | undefined,
+	name?: string | undefined
+};
 	["Locale"]:Locale;
 	/** Representing a geolocation point with latitude and longitude */
 ["Location"]: {
@@ -10043,105 +13132,105 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	schedulePublishProject?: ModelTypes["Project"] | undefined,
 	/** Unpublish one project from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
 	scheduleUnpublishProject?: ModelTypes["Project"] | undefined,
-	/** Create one social */
-	createSocial?: ModelTypes["Social"] | undefined,
-	/** Update one social */
-	updateSocial?: ModelTypes["Social"] | undefined,
-	/** Delete one social from _all_ existing stages. Returns deleted document. */
-	deleteSocial?: ModelTypes["Social"] | undefined,
-	/** Upsert one social */
-	upsertSocial?: ModelTypes["Social"] | undefined,
-	/** Publish one social */
-	publishSocial?: ModelTypes["Social"] | undefined,
-	/** Unpublish one social from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
-	unpublishSocial?: ModelTypes["Social"] | undefined,
-	/** Update many Social documents */
-	updateManySocialsConnection: ModelTypes["SocialConnection"],
-	/** Delete many Social documents, return deleted documents */
-	deleteManySocialsConnection: ModelTypes["SocialConnection"],
-	/** Publish many Social documents */
-	publishManySocialsConnection: ModelTypes["SocialConnection"],
-	/** Find many Social documents that match criteria in specified stage and unpublish from target stages */
-	unpublishManySocialsConnection: ModelTypes["SocialConnection"],
-	/** Update many socials */
-	updateManySocials: ModelTypes["BatchPayload"],
-	/** Delete many Social documents */
-	deleteManySocials: ModelTypes["BatchPayload"],
-	/** Publish many Social documents */
-	publishManySocials: ModelTypes["BatchPayload"],
-	/** Unpublish many Social documents */
-	unpublishManySocials: ModelTypes["BatchPayload"],
-	/** Schedule to publish one social */
-	schedulePublishSocial?: ModelTypes["Social"] | undefined,
-	/** Unpublish one social from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
-	scheduleUnpublishSocial?: ModelTypes["Social"] | undefined,
-	/** Create one pageMetadata */
-	createPageMetadata?: ModelTypes["PageMetadata"] | undefined,
-	/** Update one pageMetadata */
-	updatePageMetadata?: ModelTypes["PageMetadata"] | undefined,
-	/** Delete one pageMetadata from _all_ existing stages. Returns deleted document. */
-	deletePageMetadata?: ModelTypes["PageMetadata"] | undefined,
-	/** Upsert one pageMetadata */
-	upsertPageMetadata?: ModelTypes["PageMetadata"] | undefined,
-	/** Publish one pageMetadata */
-	publishPageMetadata?: ModelTypes["PageMetadata"] | undefined,
-	/** Unpublish one pageMetadata from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
-	unpublishPageMetadata?: ModelTypes["PageMetadata"] | undefined,
-	/** Update many PageMetadata documents */
-	updateManyPagesMetadataConnection: ModelTypes["PageMetadataConnection"],
-	/** Delete many PageMetadata documents, return deleted documents */
-	deleteManyPagesMetadataConnection: ModelTypes["PageMetadataConnection"],
-	/** Publish many PageMetadata documents */
-	publishManyPagesMetadataConnection: ModelTypes["PageMetadataConnection"],
-	/** Find many PageMetadata documents that match criteria in specified stage and unpublish from target stages */
-	unpublishManyPagesMetadataConnection: ModelTypes["PageMetadataConnection"],
-	/** Update many pagesMetadata */
-	updateManyPagesMetadata: ModelTypes["BatchPayload"],
-	/** Delete many PageMetadata documents */
-	deleteManyPagesMetadata: ModelTypes["BatchPayload"],
-	/** Publish many PageMetadata documents */
-	publishManyPagesMetadata: ModelTypes["BatchPayload"],
-	/** Unpublish many PageMetadata documents */
-	unpublishManyPagesMetadata: ModelTypes["BatchPayload"],
-	/** Schedule to publish one pageMetadata */
-	schedulePublishPageMetadata?: ModelTypes["PageMetadata"] | undefined,
-	/** Unpublish one pageMetadata from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
-	scheduleUnpublishPageMetadata?: ModelTypes["PageMetadata"] | undefined,
-	/** Create one skill */
-	createSkill?: ModelTypes["Skill"] | undefined,
-	/** Update one skill */
-	updateSkill?: ModelTypes["Skill"] | undefined,
-	/** Delete one skill from _all_ existing stages. Returns deleted document. */
-	deleteSkill?: ModelTypes["Skill"] | undefined,
-	/** Upsert one skill */
-	upsertSkill?: ModelTypes["Skill"] | undefined,
-	/** Publish one skill */
-	publishSkill?: ModelTypes["Skill"] | undefined,
-	/** Unpublish one skill from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
-	unpublishSkill?: ModelTypes["Skill"] | undefined,
-	/** Update many Skill documents */
-	updateManySkillsConnection: ModelTypes["SkillConnection"],
-	/** Delete many Skill documents, return deleted documents */
-	deleteManySkillsConnection: ModelTypes["SkillConnection"],
-	/** Publish many Skill documents */
-	publishManySkillsConnection: ModelTypes["SkillConnection"],
-	/** Find many Skill documents that match criteria in specified stage and unpublish from target stages */
-	unpublishManySkillsConnection: ModelTypes["SkillConnection"],
-	/** Update many skills */
-	updateManySkills: ModelTypes["BatchPayload"],
-	/** Delete many Skill documents */
-	deleteManySkills: ModelTypes["BatchPayload"],
-	/** Publish many Skill documents */
-	publishManySkills: ModelTypes["BatchPayload"],
-	/** Unpublish many Skill documents */
-	unpublishManySkills: ModelTypes["BatchPayload"],
-	/** Schedule to publish one skill */
-	schedulePublishSkill?: ModelTypes["Skill"] | undefined,
-	/** Unpublish one skill from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
-	scheduleUnpublishSkill?: ModelTypes["Skill"] | undefined
+	/** Create one seo */
+	createSeo?: ModelTypes["Seo"] | undefined,
+	/** Update one seo */
+	updateSeo?: ModelTypes["Seo"] | undefined,
+	/** Delete one seo from _all_ existing stages. Returns deleted document. */
+	deleteSeo?: ModelTypes["Seo"] | undefined,
+	/** Upsert one seo */
+	upsertSeo?: ModelTypes["Seo"] | undefined,
+	/** Publish one seo */
+	publishSeo?: ModelTypes["Seo"] | undefined,
+	/** Unpublish one seo from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+	unpublishSeo?: ModelTypes["Seo"] | undefined,
+	/** Update many Seo documents */
+	updateManySeosConnection: ModelTypes["SeoConnection"],
+	/** Delete many Seo documents, return deleted documents */
+	deleteManySeosConnection: ModelTypes["SeoConnection"],
+	/** Publish many Seo documents */
+	publishManySeosConnection: ModelTypes["SeoConnection"],
+	/** Find many Seo documents that match criteria in specified stage and unpublish from target stages */
+	unpublishManySeosConnection: ModelTypes["SeoConnection"],
+	/** Update many seos */
+	updateManySeos: ModelTypes["BatchPayload"],
+	/** Delete many Seo documents */
+	deleteManySeos: ModelTypes["BatchPayload"],
+	/** Publish many Seo documents */
+	publishManySeos: ModelTypes["BatchPayload"],
+	/** Unpublish many Seo documents */
+	unpublishManySeos: ModelTypes["BatchPayload"],
+	/** Schedule to publish one seo */
+	schedulePublishSeo?: ModelTypes["Seo"] | undefined,
+	/** Unpublish one seo from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+	scheduleUnpublishSeo?: ModelTypes["Seo"] | undefined,
+	/** Create one aboutMe */
+	createAboutMe?: ModelTypes["AboutMe"] | undefined,
+	/** Update one aboutMe */
+	updateAboutMe?: ModelTypes["AboutMe"] | undefined,
+	/** Delete one aboutMe from _all_ existing stages. Returns deleted document. */
+	deleteAboutMe?: ModelTypes["AboutMe"] | undefined,
+	/** Upsert one aboutMe */
+	upsertAboutMe?: ModelTypes["AboutMe"] | undefined,
+	/** Publish one aboutMe */
+	publishAboutMe?: ModelTypes["AboutMe"] | undefined,
+	/** Unpublish one aboutMe from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+	unpublishAboutMe?: ModelTypes["AboutMe"] | undefined,
+	/** Update many AboutMe documents */
+	updateManyAboutMesConnection: ModelTypes["AboutMeConnection"],
+	/** Delete many AboutMe documents, return deleted documents */
+	deleteManyAboutMesConnection: ModelTypes["AboutMeConnection"],
+	/** Publish many AboutMe documents */
+	publishManyAboutMesConnection: ModelTypes["AboutMeConnection"],
+	/** Find many AboutMe documents that match criteria in specified stage and unpublish from target stages */
+	unpublishManyAboutMesConnection: ModelTypes["AboutMeConnection"],
+	/** Update many aboutMes */
+	updateManyAboutMes: ModelTypes["BatchPayload"],
+	/** Delete many AboutMe documents */
+	deleteManyAboutMes: ModelTypes["BatchPayload"],
+	/** Publish many AboutMe documents */
+	publishManyAboutMes: ModelTypes["BatchPayload"],
+	/** Unpublish many AboutMe documents */
+	unpublishManyAboutMes: ModelTypes["BatchPayload"],
+	/** Schedule to publish one aboutMe */
+	schedulePublishAboutMe?: ModelTypes["AboutMe"] | undefined,
+	/** Unpublish one aboutMe from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+	scheduleUnpublishAboutMe?: ModelTypes["AboutMe"] | undefined,
+	/** Create one skillCategory */
+	createSkillCategory?: ModelTypes["SkillCategory"] | undefined,
+	/** Update one skillCategory */
+	updateSkillCategory?: ModelTypes["SkillCategory"] | undefined,
+	/** Delete one skillCategory from _all_ existing stages. Returns deleted document. */
+	deleteSkillCategory?: ModelTypes["SkillCategory"] | undefined,
+	/** Upsert one skillCategory */
+	upsertSkillCategory?: ModelTypes["SkillCategory"] | undefined,
+	/** Publish one skillCategory */
+	publishSkillCategory?: ModelTypes["SkillCategory"] | undefined,
+	/** Unpublish one skillCategory from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+	unpublishSkillCategory?: ModelTypes["SkillCategory"] | undefined,
+	/** Update many SkillCategory documents */
+	updateManySkillCategoriesConnection: ModelTypes["SkillCategoryConnection"],
+	/** Delete many SkillCategory documents, return deleted documents */
+	deleteManySkillCategoriesConnection: ModelTypes["SkillCategoryConnection"],
+	/** Publish many SkillCategory documents */
+	publishManySkillCategoriesConnection: ModelTypes["SkillCategoryConnection"],
+	/** Find many SkillCategory documents that match criteria in specified stage and unpublish from target stages */
+	unpublishManySkillCategoriesConnection: ModelTypes["SkillCategoryConnection"],
+	/** Update many skillCategories */
+	updateManySkillCategories: ModelTypes["BatchPayload"],
+	/** Delete many SkillCategory documents */
+	deleteManySkillCategories: ModelTypes["BatchPayload"],
+	/** Publish many SkillCategory documents */
+	publishManySkillCategories: ModelTypes["BatchPayload"],
+	/** Unpublish many SkillCategory documents */
+	unpublishManySkillCategories: ModelTypes["BatchPayload"],
+	/** Schedule to publish one skillCategory */
+	schedulePublishSkillCategory?: ModelTypes["SkillCategory"] | undefined,
+	/** Unpublish one skillCategory from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+	scheduleUnpublishSkillCategory?: ModelTypes["SkillCategory"] | undefined
 };
 	/** An object with an ID */
-["Node"]: ModelTypes["Asset"] | ModelTypes["PageMetadata"] | ModelTypes["Project"] | ModelTypes["ScheduledOperation"] | ModelTypes["ScheduledRelease"] | ModelTypes["Skill"] | ModelTypes["Social"] | ModelTypes["User"];
+["Node"]: ModelTypes["AboutMe"] | ModelTypes["Asset"] | ModelTypes["Project"] | ModelTypes["ScheduledOperation"] | ModelTypes["ScheduledRelease"] | ModelTypes["Seo"] | ModelTypes["SkillCategory"] | ModelTypes["User"];
 	/** Information about pagination in a connection. */
 ["PageInfo"]: {
 		/** When paginating forwards, are there more items? */
@@ -10154,462 +13243,6 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	endCursor?: string | undefined,
 	/** Number of items in the current page. */
 	pageSize?: number | undefined
-};
-	/** Page Metadata */
-["PageMetadata"]: {
-		/** System stage field */
-	stage: ModelTypes["Stage"],
-	/** Get the document in other stages */
-	documentInStages: Array<ModelTypes["PageMetadata"]>,
-	/** The time the document was published. Null on documents in draft stage. */
-	publishedAt?: ModelTypes["DateTime"] | undefined,
-	/** The time the document was updated */
-	updatedAt: ModelTypes["DateTime"],
-	/** The time the document was created */
-	createdAt: ModelTypes["DateTime"],
-	/** The unique identifier */
-	id: string,
-	/** Page title */
-	title: string,
-	/** Page content summary */
-	summary: string,
-	/** Page slug */
-	slug?: string | undefined,
-	/** Page number */
-	pageNumber: number,
-	/** User that last published this document */
-	publishedBy?: ModelTypes["User"] | undefined,
-	/** User that last updated this document */
-	updatedBy?: ModelTypes["User"] | undefined,
-	/** User that created this document */
-	createdBy?: ModelTypes["User"] | undefined,
-	/** Page image */
-	image?: ModelTypes["Asset"] | undefined,
-	scheduledIn: Array<ModelTypes["ScheduledOperation"]>,
-	/** List of PageMetadata versions */
-	history: Array<ModelTypes["Version"]>
-};
-	["PageMetadataConnectInput"]: {
-	/** Document to connect */
-	where: ModelTypes["PageMetadataWhereUniqueInput"],
-	/** Allow to specify document position in list of connected documents, will default to appending at end of list */
-	position?: ModelTypes["ConnectPositionInput"] | undefined
-};
-	/** A connection to a list of items. */
-["PageMetadataConnection"]: {
-		/** Information to aid in pagination. */
-	pageInfo: ModelTypes["PageInfo"],
-	/** A list of edges. */
-	edges: Array<ModelTypes["PageMetadataEdge"]>,
-	aggregate: ModelTypes["Aggregate"]
-};
-	["PageMetadataCreateInput"]: {
-	updatedAt?: ModelTypes["DateTime"] | undefined,
-	createdAt?: ModelTypes["DateTime"] | undefined,
-	title: string,
-	summary: string,
-	slug?: string | undefined,
-	pageNumber: number,
-	image?: ModelTypes["AssetCreateOneInlineInput"] | undefined
-};
-	["PageMetadataCreateManyInlineInput"]: {
-	/** Create and connect multiple existing PageMetadata documents */
-	create?: Array<ModelTypes["PageMetadataCreateInput"]> | undefined,
-	/** Connect multiple existing PageMetadata documents */
-	connect?: Array<ModelTypes["PageMetadataWhereUniqueInput"]> | undefined
-};
-	["PageMetadataCreateOneInlineInput"]: {
-	/** Create and connect one PageMetadata document */
-	create?: ModelTypes["PageMetadataCreateInput"] | undefined,
-	/** Connect one existing PageMetadata document */
-	connect?: ModelTypes["PageMetadataWhereUniqueInput"] | undefined
-};
-	/** An edge in a connection. */
-["PageMetadataEdge"]: {
-		/** The item at the end of the edge. */
-	node: ModelTypes["PageMetadata"],
-	/** A cursor for use in pagination. */
-	cursor: string
-};
-	/** Identifies documents */
-["PageMetadataManyWhereInput"]: {
-	/** Contains search across all appropriate fields. */
-	_search?: string | undefined,
-	/** Logical AND on all given filters. */
-	AND?: Array<ModelTypes["PageMetadataWhereInput"]> | undefined,
-	/** Logical OR on all given filters. */
-	OR?: Array<ModelTypes["PageMetadataWhereInput"]> | undefined,
-	/** Logical NOT on all given filters combined by AND. */
-	NOT?: Array<ModelTypes["PageMetadataWhereInput"]> | undefined,
-	publishedAt?: ModelTypes["DateTime"] | undefined,
-	/** All values that are not equal to given value. */
-	publishedAt_not?: ModelTypes["DateTime"] | undefined,
-	/** All values that are contained in given list. */
-	publishedAt_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	publishedAt_not_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
-	/** All values less than the given value. */
-	publishedAt_lt?: ModelTypes["DateTime"] | undefined,
-	/** All values less than or equal the given value. */
-	publishedAt_lte?: ModelTypes["DateTime"] | undefined,
-	/** All values greater than the given value. */
-	publishedAt_gt?: ModelTypes["DateTime"] | undefined,
-	/** All values greater than or equal the given value. */
-	publishedAt_gte?: ModelTypes["DateTime"] | undefined,
-	updatedAt?: ModelTypes["DateTime"] | undefined,
-	/** All values that are not equal to given value. */
-	updatedAt_not?: ModelTypes["DateTime"] | undefined,
-	/** All values that are contained in given list. */
-	updatedAt_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	updatedAt_not_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
-	/** All values less than the given value. */
-	updatedAt_lt?: ModelTypes["DateTime"] | undefined,
-	/** All values less than or equal the given value. */
-	updatedAt_lte?: ModelTypes["DateTime"] | undefined,
-	/** All values greater than the given value. */
-	updatedAt_gt?: ModelTypes["DateTime"] | undefined,
-	/** All values greater than or equal the given value. */
-	updatedAt_gte?: ModelTypes["DateTime"] | undefined,
-	createdAt?: ModelTypes["DateTime"] | undefined,
-	/** All values that are not equal to given value. */
-	createdAt_not?: ModelTypes["DateTime"] | undefined,
-	/** All values that are contained in given list. */
-	createdAt_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	createdAt_not_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
-	/** All values less than the given value. */
-	createdAt_lt?: ModelTypes["DateTime"] | undefined,
-	/** All values less than or equal the given value. */
-	createdAt_lte?: ModelTypes["DateTime"] | undefined,
-	/** All values greater than the given value. */
-	createdAt_gt?: ModelTypes["DateTime"] | undefined,
-	/** All values greater than or equal the given value. */
-	createdAt_gte?: ModelTypes["DateTime"] | undefined,
-	id?: string | undefined,
-	/** All values that are not equal to given value. */
-	id_not?: string | undefined,
-	/** All values that are contained in given list. */
-	id_in?: Array<string | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	id_not_in?: Array<string | undefined> | undefined,
-	/** All values containing the given string. */
-	id_contains?: string | undefined,
-	/** All values not containing the given string. */
-	id_not_contains?: string | undefined,
-	/** All values starting with the given string. */
-	id_starts_with?: string | undefined,
-	/** All values not starting with the given string. */
-	id_not_starts_with?: string | undefined,
-	/** All values ending with the given string. */
-	id_ends_with?: string | undefined,
-	/** All values not ending with the given string */
-	id_not_ends_with?: string | undefined,
-	title?: string | undefined,
-	/** All values that are not equal to given value. */
-	title_not?: string | undefined,
-	/** All values that are contained in given list. */
-	title_in?: Array<string | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	title_not_in?: Array<string | undefined> | undefined,
-	/** All values containing the given string. */
-	title_contains?: string | undefined,
-	/** All values not containing the given string. */
-	title_not_contains?: string | undefined,
-	/** All values starting with the given string. */
-	title_starts_with?: string | undefined,
-	/** All values not starting with the given string. */
-	title_not_starts_with?: string | undefined,
-	/** All values ending with the given string. */
-	title_ends_with?: string | undefined,
-	/** All values not ending with the given string */
-	title_not_ends_with?: string | undefined,
-	summary?: string | undefined,
-	/** All values that are not equal to given value. */
-	summary_not?: string | undefined,
-	/** All values that are contained in given list. */
-	summary_in?: Array<string | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	summary_not_in?: Array<string | undefined> | undefined,
-	/** All values containing the given string. */
-	summary_contains?: string | undefined,
-	/** All values not containing the given string. */
-	summary_not_contains?: string | undefined,
-	/** All values starting with the given string. */
-	summary_starts_with?: string | undefined,
-	/** All values not starting with the given string. */
-	summary_not_starts_with?: string | undefined,
-	/** All values ending with the given string. */
-	summary_ends_with?: string | undefined,
-	/** All values not ending with the given string */
-	summary_not_ends_with?: string | undefined,
-	slug?: string | undefined,
-	/** All values that are not equal to given value. */
-	slug_not?: string | undefined,
-	/** All values that are contained in given list. */
-	slug_in?: Array<string | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	slug_not_in?: Array<string | undefined> | undefined,
-	/** All values containing the given string. */
-	slug_contains?: string | undefined,
-	/** All values not containing the given string. */
-	slug_not_contains?: string | undefined,
-	/** All values starting with the given string. */
-	slug_starts_with?: string | undefined,
-	/** All values not starting with the given string. */
-	slug_not_starts_with?: string | undefined,
-	/** All values ending with the given string. */
-	slug_ends_with?: string | undefined,
-	/** All values not ending with the given string */
-	slug_not_ends_with?: string | undefined,
-	pageNumber?: number | undefined,
-	/** All values that are not equal to given value. */
-	pageNumber_not?: number | undefined,
-	/** All values that are contained in given list. */
-	pageNumber_in?: Array<number | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	pageNumber_not_in?: Array<number | undefined> | undefined,
-	/** All values less than the given value. */
-	pageNumber_lt?: number | undefined,
-	/** All values less than or equal the given value. */
-	pageNumber_lte?: number | undefined,
-	/** All values greater than the given value. */
-	pageNumber_gt?: number | undefined,
-	/** All values greater than or equal the given value. */
-	pageNumber_gte?: number | undefined,
-	publishedBy?: ModelTypes["UserWhereInput"] | undefined,
-	updatedBy?: ModelTypes["UserWhereInput"] | undefined,
-	createdBy?: ModelTypes["UserWhereInput"] | undefined,
-	image?: ModelTypes["AssetWhereInput"] | undefined,
-	scheduledIn_every?: ModelTypes["ScheduledOperationWhereInput"] | undefined,
-	scheduledIn_some?: ModelTypes["ScheduledOperationWhereInput"] | undefined,
-	scheduledIn_none?: ModelTypes["ScheduledOperationWhereInput"] | undefined
-};
-	["PageMetadataOrderByInput"]:PageMetadataOrderByInput;
-	["PageMetadataUpdateInput"]: {
-	title?: string | undefined,
-	summary?: string | undefined,
-	slug?: string | undefined,
-	pageNumber?: number | undefined,
-	image?: ModelTypes["AssetUpdateOneInlineInput"] | undefined
-};
-	["PageMetadataUpdateManyInlineInput"]: {
-	/** Create and connect multiple PageMetadata documents */
-	create?: Array<ModelTypes["PageMetadataCreateInput"]> | undefined,
-	/** Connect multiple existing PageMetadata documents */
-	connect?: Array<ModelTypes["PageMetadataConnectInput"]> | undefined,
-	/** Override currently-connected documents with multiple existing PageMetadata documents */
-	set?: Array<ModelTypes["PageMetadataWhereUniqueInput"]> | undefined,
-	/** Update multiple PageMetadata documents */
-	update?: Array<ModelTypes["PageMetadataUpdateWithNestedWhereUniqueInput"]> | undefined,
-	/** Upsert multiple PageMetadata documents */
-	upsert?: Array<ModelTypes["PageMetadataUpsertWithNestedWhereUniqueInput"]> | undefined,
-	/** Disconnect multiple PageMetadata documents */
-	disconnect?: Array<ModelTypes["PageMetadataWhereUniqueInput"]> | undefined,
-	/** Delete multiple PageMetadata documents */
-	delete?: Array<ModelTypes["PageMetadataWhereUniqueInput"]> | undefined
-};
-	["PageMetadataUpdateManyInput"]: {
-	summary?: string | undefined,
-	pageNumber?: number | undefined
-};
-	["PageMetadataUpdateManyWithNestedWhereInput"]: {
-	/** Document search */
-	where: ModelTypes["PageMetadataWhereInput"],
-	/** Update many input */
-	data: ModelTypes["PageMetadataUpdateManyInput"]
-};
-	["PageMetadataUpdateOneInlineInput"]: {
-	/** Create and connect one PageMetadata document */
-	create?: ModelTypes["PageMetadataCreateInput"] | undefined,
-	/** Update single PageMetadata document */
-	update?: ModelTypes["PageMetadataUpdateWithNestedWhereUniqueInput"] | undefined,
-	/** Upsert single PageMetadata document */
-	upsert?: ModelTypes["PageMetadataUpsertWithNestedWhereUniqueInput"] | undefined,
-	/** Connect existing PageMetadata document */
-	connect?: ModelTypes["PageMetadataWhereUniqueInput"] | undefined,
-	/** Disconnect currently connected PageMetadata document */
-	disconnect?: boolean | undefined,
-	/** Delete currently connected PageMetadata document */
-	delete?: boolean | undefined
-};
-	["PageMetadataUpdateWithNestedWhereUniqueInput"]: {
-	/** Unique document search */
-	where: ModelTypes["PageMetadataWhereUniqueInput"],
-	/** Document to update */
-	data: ModelTypes["PageMetadataUpdateInput"]
-};
-	["PageMetadataUpsertInput"]: {
-	/** Create document if it didn't exist */
-	create: ModelTypes["PageMetadataCreateInput"],
-	/** Update document if it exists */
-	update: ModelTypes["PageMetadataUpdateInput"]
-};
-	["PageMetadataUpsertWithNestedWhereUniqueInput"]: {
-	/** Unique document search */
-	where: ModelTypes["PageMetadataWhereUniqueInput"],
-	/** Upsert data */
-	data: ModelTypes["PageMetadataUpsertInput"]
-};
-	/** Identifies documents */
-["PageMetadataWhereInput"]: {
-	/** Contains search across all appropriate fields. */
-	_search?: string | undefined,
-	/** Logical AND on all given filters. */
-	AND?: Array<ModelTypes["PageMetadataWhereInput"]> | undefined,
-	/** Logical OR on all given filters. */
-	OR?: Array<ModelTypes["PageMetadataWhereInput"]> | undefined,
-	/** Logical NOT on all given filters combined by AND. */
-	NOT?: Array<ModelTypes["PageMetadataWhereInput"]> | undefined,
-	publishedAt?: ModelTypes["DateTime"] | undefined,
-	/** All values that are not equal to given value. */
-	publishedAt_not?: ModelTypes["DateTime"] | undefined,
-	/** All values that are contained in given list. */
-	publishedAt_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	publishedAt_not_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
-	/** All values less than the given value. */
-	publishedAt_lt?: ModelTypes["DateTime"] | undefined,
-	/** All values less than or equal the given value. */
-	publishedAt_lte?: ModelTypes["DateTime"] | undefined,
-	/** All values greater than the given value. */
-	publishedAt_gt?: ModelTypes["DateTime"] | undefined,
-	/** All values greater than or equal the given value. */
-	publishedAt_gte?: ModelTypes["DateTime"] | undefined,
-	updatedAt?: ModelTypes["DateTime"] | undefined,
-	/** All values that are not equal to given value. */
-	updatedAt_not?: ModelTypes["DateTime"] | undefined,
-	/** All values that are contained in given list. */
-	updatedAt_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	updatedAt_not_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
-	/** All values less than the given value. */
-	updatedAt_lt?: ModelTypes["DateTime"] | undefined,
-	/** All values less than or equal the given value. */
-	updatedAt_lte?: ModelTypes["DateTime"] | undefined,
-	/** All values greater than the given value. */
-	updatedAt_gt?: ModelTypes["DateTime"] | undefined,
-	/** All values greater than or equal the given value. */
-	updatedAt_gte?: ModelTypes["DateTime"] | undefined,
-	createdAt?: ModelTypes["DateTime"] | undefined,
-	/** All values that are not equal to given value. */
-	createdAt_not?: ModelTypes["DateTime"] | undefined,
-	/** All values that are contained in given list. */
-	createdAt_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	createdAt_not_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
-	/** All values less than the given value. */
-	createdAt_lt?: ModelTypes["DateTime"] | undefined,
-	/** All values less than or equal the given value. */
-	createdAt_lte?: ModelTypes["DateTime"] | undefined,
-	/** All values greater than the given value. */
-	createdAt_gt?: ModelTypes["DateTime"] | undefined,
-	/** All values greater than or equal the given value. */
-	createdAt_gte?: ModelTypes["DateTime"] | undefined,
-	id?: string | undefined,
-	/** All values that are not equal to given value. */
-	id_not?: string | undefined,
-	/** All values that are contained in given list. */
-	id_in?: Array<string | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	id_not_in?: Array<string | undefined> | undefined,
-	/** All values containing the given string. */
-	id_contains?: string | undefined,
-	/** All values not containing the given string. */
-	id_not_contains?: string | undefined,
-	/** All values starting with the given string. */
-	id_starts_with?: string | undefined,
-	/** All values not starting with the given string. */
-	id_not_starts_with?: string | undefined,
-	/** All values ending with the given string. */
-	id_ends_with?: string | undefined,
-	/** All values not ending with the given string */
-	id_not_ends_with?: string | undefined,
-	title?: string | undefined,
-	/** All values that are not equal to given value. */
-	title_not?: string | undefined,
-	/** All values that are contained in given list. */
-	title_in?: Array<string | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	title_not_in?: Array<string | undefined> | undefined,
-	/** All values containing the given string. */
-	title_contains?: string | undefined,
-	/** All values not containing the given string. */
-	title_not_contains?: string | undefined,
-	/** All values starting with the given string. */
-	title_starts_with?: string | undefined,
-	/** All values not starting with the given string. */
-	title_not_starts_with?: string | undefined,
-	/** All values ending with the given string. */
-	title_ends_with?: string | undefined,
-	/** All values not ending with the given string */
-	title_not_ends_with?: string | undefined,
-	summary?: string | undefined,
-	/** All values that are not equal to given value. */
-	summary_not?: string | undefined,
-	/** All values that are contained in given list. */
-	summary_in?: Array<string | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	summary_not_in?: Array<string | undefined> | undefined,
-	/** All values containing the given string. */
-	summary_contains?: string | undefined,
-	/** All values not containing the given string. */
-	summary_not_contains?: string | undefined,
-	/** All values starting with the given string. */
-	summary_starts_with?: string | undefined,
-	/** All values not starting with the given string. */
-	summary_not_starts_with?: string | undefined,
-	/** All values ending with the given string. */
-	summary_ends_with?: string | undefined,
-	/** All values not ending with the given string */
-	summary_not_ends_with?: string | undefined,
-	slug?: string | undefined,
-	/** All values that are not equal to given value. */
-	slug_not?: string | undefined,
-	/** All values that are contained in given list. */
-	slug_in?: Array<string | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	slug_not_in?: Array<string | undefined> | undefined,
-	/** All values containing the given string. */
-	slug_contains?: string | undefined,
-	/** All values not containing the given string. */
-	slug_not_contains?: string | undefined,
-	/** All values starting with the given string. */
-	slug_starts_with?: string | undefined,
-	/** All values not starting with the given string. */
-	slug_not_starts_with?: string | undefined,
-	/** All values ending with the given string. */
-	slug_ends_with?: string | undefined,
-	/** All values not ending with the given string */
-	slug_not_ends_with?: string | undefined,
-	pageNumber?: number | undefined,
-	/** All values that are not equal to given value. */
-	pageNumber_not?: number | undefined,
-	/** All values that are contained in given list. */
-	pageNumber_in?: Array<number | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	pageNumber_not_in?: Array<number | undefined> | undefined,
-	/** All values less than the given value. */
-	pageNumber_lt?: number | undefined,
-	/** All values less than or equal the given value. */
-	pageNumber_lte?: number | undefined,
-	/** All values greater than the given value. */
-	pageNumber_gt?: number | undefined,
-	/** All values greater than or equal the given value. */
-	pageNumber_gte?: number | undefined,
-	publishedBy?: ModelTypes["UserWhereInput"] | undefined,
-	updatedBy?: ModelTypes["UserWhereInput"] | undefined,
-	createdBy?: ModelTypes["UserWhereInput"] | undefined,
-	image?: ModelTypes["AssetWhereInput"] | undefined,
-	scheduledIn_every?: ModelTypes["ScheduledOperationWhereInput"] | undefined,
-	scheduledIn_some?: ModelTypes["ScheduledOperationWhereInput"] | undefined,
-	scheduledIn_none?: ModelTypes["ScheduledOperationWhereInput"] | undefined
-};
-	/** References PageMetadata record uniquely */
-["PageMetadataWhereUniqueInput"]: {
-	id?: string | undefined,
-	title?: string | undefined,
-	slug?: string | undefined
 };
 	["Project"]: {
 		/** System stage field */
@@ -10625,9 +13258,7 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	/** The unique identifier */
 	id: string,
 	name: string,
-	slug?: string | undefined,
 	description: string,
-	tags: Array<string>,
 	demo?: string | undefined,
 	sourceCode?: string | undefined,
 	/** User that last published this document */
@@ -10638,6 +13269,8 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	createdBy?: ModelTypes["User"] | undefined,
 	/** Add one or more images of the project  */
 	image: Array<ModelTypes["Asset"]>,
+	/** Tech stack for project */
+	stack: Array<ModelTypes["Technologies"]>,
 	scheduledIn: Array<ModelTypes["ScheduledOperation"]>,
 	/** List of Project versions */
 	history: Array<ModelTypes["Version"]>
@@ -10660,12 +13293,11 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	updatedAt?: ModelTypes["DateTime"] | undefined,
 	createdAt?: ModelTypes["DateTime"] | undefined,
 	name: string,
-	slug?: string | undefined,
 	description: string,
-	tags?: Array<string> | undefined,
 	demo?: string | undefined,
 	sourceCode?: string | undefined,
-	image: ModelTypes["AssetCreateManyInlineInput"]
+	image: ModelTypes["AssetCreateManyInlineInput"],
+	stack?: Array<ModelTypes["Technologies"]> | undefined
 };
 	["ProjectCreateManyInlineInput"]: {
 	/** Create and connect multiple existing Project documents */
@@ -10779,25 +13411,6 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	name_ends_with?: string | undefined,
 	/** All values not ending with the given string */
 	name_not_ends_with?: string | undefined,
-	slug?: string | undefined,
-	/** All values that are not equal to given value. */
-	slug_not?: string | undefined,
-	/** All values that are contained in given list. */
-	slug_in?: Array<string | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	slug_not_in?: Array<string | undefined> | undefined,
-	/** All values containing the given string. */
-	slug_contains?: string | undefined,
-	/** All values not containing the given string. */
-	slug_not_contains?: string | undefined,
-	/** All values starting with the given string. */
-	slug_starts_with?: string | undefined,
-	/** All values not starting with the given string. */
-	slug_not_starts_with?: string | undefined,
-	/** All values ending with the given string. */
-	slug_ends_with?: string | undefined,
-	/** All values not ending with the given string */
-	slug_not_ends_with?: string | undefined,
 	description?: string | undefined,
 	/** All values that are not equal to given value. */
 	description_not?: string | undefined,
@@ -10817,16 +13430,6 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	description_ends_with?: string | undefined,
 	/** All values not ending with the given string */
 	description_not_ends_with?: string | undefined,
-	/** Matches if the field array contains *all* items provided to the filter and order does match */
-	tags?: Array<string> | undefined,
-	/** Matches if the field array does not contains *all* items provided to the filter or order does not match */
-	tags_not?: Array<string> | undefined,
-	/** Matches if the field array contains *all* items provided to the filter */
-	tags_contains_all?: Array<string> | undefined,
-	/** Matches if the field array contains at least one item provided to the filter */
-	tags_contains_some?: Array<string> | undefined,
-	/** Matches if the field array does not contain any of the items provided to the filter */
-	tags_contains_none?: Array<string> | undefined,
 	demo?: string | undefined,
 	/** All values that are not equal to given value. */
 	demo_not?: string | undefined,
@@ -10871,6 +13474,16 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	image_every?: ModelTypes["AssetWhereInput"] | undefined,
 	image_some?: ModelTypes["AssetWhereInput"] | undefined,
 	image_none?: ModelTypes["AssetWhereInput"] | undefined,
+	/** Matches if the field array contains *all* items provided to the filter and order does match */
+	stack?: Array<ModelTypes["Technologies"]> | undefined,
+	/** Matches if the field array does not contains *all* items provided to the filter or order does not match */
+	stack_not?: Array<ModelTypes["Technologies"]> | undefined,
+	/** Matches if the field array contains *all* items provided to the filter */
+	stack_contains_all?: Array<ModelTypes["Technologies"]> | undefined,
+	/** Matches if the field array contains at least one item provided to the filter */
+	stack_contains_some?: Array<ModelTypes["Technologies"]> | undefined,
+	/** Matches if the field array does not contain any of the items provided to the filter */
+	stack_contains_none?: Array<ModelTypes["Technologies"]> | undefined,
 	scheduledIn_every?: ModelTypes["ScheduledOperationWhereInput"] | undefined,
 	scheduledIn_some?: ModelTypes["ScheduledOperationWhereInput"] | undefined,
 	scheduledIn_none?: ModelTypes["ScheduledOperationWhereInput"] | undefined
@@ -10878,12 +13491,11 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	["ProjectOrderByInput"]:ProjectOrderByInput;
 	["ProjectUpdateInput"]: {
 	name?: string | undefined,
-	slug?: string | undefined,
 	description?: string | undefined,
-	tags?: Array<string> | undefined,
 	demo?: string | undefined,
 	sourceCode?: string | undefined,
-	image?: ModelTypes["AssetUpdateManyInlineInput"] | undefined
+	image?: ModelTypes["AssetUpdateManyInlineInput"] | undefined,
+	stack?: Array<ModelTypes["Technologies"]> | undefined
 };
 	["ProjectUpdateManyInlineInput"]: {
 	/** Create and connect multiple Project documents */
@@ -10903,9 +13515,9 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 };
 	["ProjectUpdateManyInput"]: {
 	description?: string | undefined,
-	tags?: Array<string> | undefined,
 	demo?: string | undefined,
-	sourceCode?: string | undefined
+	sourceCode?: string | undefined,
+	stack?: Array<ModelTypes["Technologies"]> | undefined
 };
 	["ProjectUpdateManyWithNestedWhereInput"]: {
 	/** Document search */
@@ -11038,25 +13650,6 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	name_ends_with?: string | undefined,
 	/** All values not ending with the given string */
 	name_not_ends_with?: string | undefined,
-	slug?: string | undefined,
-	/** All values that are not equal to given value. */
-	slug_not?: string | undefined,
-	/** All values that are contained in given list. */
-	slug_in?: Array<string | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	slug_not_in?: Array<string | undefined> | undefined,
-	/** All values containing the given string. */
-	slug_contains?: string | undefined,
-	/** All values not containing the given string. */
-	slug_not_contains?: string | undefined,
-	/** All values starting with the given string. */
-	slug_starts_with?: string | undefined,
-	/** All values not starting with the given string. */
-	slug_not_starts_with?: string | undefined,
-	/** All values ending with the given string. */
-	slug_ends_with?: string | undefined,
-	/** All values not ending with the given string */
-	slug_not_ends_with?: string | undefined,
 	description?: string | undefined,
 	/** All values that are not equal to given value. */
 	description_not?: string | undefined,
@@ -11076,16 +13669,6 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	description_ends_with?: string | undefined,
 	/** All values not ending with the given string */
 	description_not_ends_with?: string | undefined,
-	/** Matches if the field array contains *all* items provided to the filter and order does match */
-	tags?: Array<string> | undefined,
-	/** Matches if the field array does not contains *all* items provided to the filter or order does not match */
-	tags_not?: Array<string> | undefined,
-	/** Matches if the field array contains *all* items provided to the filter */
-	tags_contains_all?: Array<string> | undefined,
-	/** Matches if the field array contains at least one item provided to the filter */
-	tags_contains_some?: Array<string> | undefined,
-	/** Matches if the field array does not contain any of the items provided to the filter */
-	tags_contains_none?: Array<string> | undefined,
 	demo?: string | undefined,
 	/** All values that are not equal to given value. */
 	demo_not?: string | undefined,
@@ -11130,6 +13713,16 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	image_every?: ModelTypes["AssetWhereInput"] | undefined,
 	image_some?: ModelTypes["AssetWhereInput"] | undefined,
 	image_none?: ModelTypes["AssetWhereInput"] | undefined,
+	/** Matches if the field array contains *all* items provided to the filter and order does match */
+	stack?: Array<ModelTypes["Technologies"]> | undefined,
+	/** Matches if the field array does not contains *all* items provided to the filter or order does not match */
+	stack_not?: Array<ModelTypes["Technologies"]> | undefined,
+	/** Matches if the field array contains *all* items provided to the filter */
+	stack_contains_all?: Array<ModelTypes["Technologies"]> | undefined,
+	/** Matches if the field array contains at least one item provided to the filter */
+	stack_contains_some?: Array<ModelTypes["Technologies"]> | undefined,
+	/** Matches if the field array does not contain any of the items provided to the filter */
+	stack_contains_none?: Array<ModelTypes["Technologies"]> | undefined,
 	scheduledIn_every?: ModelTypes["ScheduledOperationWhereInput"] | undefined,
 	scheduledIn_some?: ModelTypes["ScheduledOperationWhereInput"] | undefined,
 	scheduledIn_none?: ModelTypes["ScheduledOperationWhereInput"] | undefined
@@ -11137,8 +13730,7 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	/** References Project record uniquely */
 ["ProjectWhereUniqueInput"]: {
 	id?: string | undefined,
-	name?: string | undefined,
-	slug?: string | undefined
+	name?: string | undefined
 };
 	["PublishLocaleInput"]: {
 	/** Locales to publish */
@@ -11183,30 +13775,30 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	projectsConnection: ModelTypes["ProjectConnection"],
 	/** Retrieve document version */
 	projectVersion?: ModelTypes["DocumentVersion"] | undefined,
-	/** Retrieve multiple socials */
-	socials: Array<ModelTypes["Social"]>,
-	/** Retrieve a single social */
-	social?: ModelTypes["Social"] | undefined,
-	/** Retrieve multiple socials using the Relay connection interface */
-	socialsConnection: ModelTypes["SocialConnection"],
+	/** Retrieve multiple seos */
+	seos: Array<ModelTypes["Seo"]>,
+	/** Retrieve a single seo */
+	seo?: ModelTypes["Seo"] | undefined,
+	/** Retrieve multiple seos using the Relay connection interface */
+	seosConnection: ModelTypes["SeoConnection"],
 	/** Retrieve document version */
-	socialVersion?: ModelTypes["DocumentVersion"] | undefined,
-	/** Retrieve multiple pagesMetadata */
-	pagesMetadata: Array<ModelTypes["PageMetadata"]>,
-	/** Retrieve a single pageMetadata */
-	pageMetadata?: ModelTypes["PageMetadata"] | undefined,
-	/** Retrieve multiple pagesMetadata using the Relay connection interface */
-	pagesMetadataConnection: ModelTypes["PageMetadataConnection"],
+	seoVersion?: ModelTypes["DocumentVersion"] | undefined,
+	/** Retrieve multiple aboutMes */
+	aboutMes: Array<ModelTypes["AboutMe"]>,
+	/** Retrieve a single aboutMe */
+	aboutMe?: ModelTypes["AboutMe"] | undefined,
+	/** Retrieve multiple aboutMes using the Relay connection interface */
+	aboutMesConnection: ModelTypes["AboutMeConnection"],
 	/** Retrieve document version */
-	pageMetadataVersion?: ModelTypes["DocumentVersion"] | undefined,
-	/** Retrieve multiple skills */
-	skills: Array<ModelTypes["Skill"]>,
-	/** Retrieve a single skill */
-	skill?: ModelTypes["Skill"] | undefined,
-	/** Retrieve multiple skills using the Relay connection interface */
-	skillsConnection: ModelTypes["SkillConnection"],
+	aboutMeVersion?: ModelTypes["DocumentVersion"] | undefined,
+	/** Retrieve multiple skillCategories */
+	skillCategories: Array<ModelTypes["SkillCategory"]>,
+	/** Retrieve a single skillCategory */
+	skillCategory?: ModelTypes["SkillCategory"] | undefined,
+	/** Retrieve multiple skillCategories using the Relay connection interface */
+	skillCategoriesConnection: ModelTypes["SkillCategoryConnection"],
 	/** Retrieve document version */
-	skillVersion?: ModelTypes["DocumentVersion"] | undefined
+	skillCategoryVersion?: ModelTypes["DocumentVersion"] | undefined
 };
 	/** Representing a RGBA color value: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#rgb()_and_rgba() */
 ["RGBA"]: {
@@ -11269,7 +13861,7 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	status: ModelTypes["ScheduledOperationStatus"],
 	affectedDocuments: Array<ModelTypes["ScheduledOperationAffectedDocument"]>
 };
-	["ScheduledOperationAffectedDocument"]:ModelTypes["Asset"] | ModelTypes["PageMetadata"] | ModelTypes["Project"] | ModelTypes["Skill"] | ModelTypes["Social"];
+	["ScheduledOperationAffectedDocument"]:ModelTypes["AboutMe"] | ModelTypes["Asset"] | ModelTypes["Project"] | ModelTypes["Seo"] | ModelTypes["SkillCategory"];
 	["ScheduledOperationConnectInput"]: {
 	/** Document to connect */
 	where: ModelTypes["ScheduledOperationWhereUniqueInput"],
@@ -12052,11 +14644,417 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 ["ScheduledReleaseWhereUniqueInput"]: {
 	id?: string | undefined
 };
-	["Skill"]: {
+	["Seo"]: {
 		/** System stage field */
 	stage: ModelTypes["Stage"],
 	/** Get the document in other stages */
-	documentInStages: Array<ModelTypes["Skill"]>,
+	documentInStages: Array<ModelTypes["Seo"]>,
+	/** The time the document was published. Null on documents in draft stage. */
+	publishedAt?: ModelTypes["DateTime"] | undefined,
+	/** The time the document was updated */
+	updatedAt: ModelTypes["DateTime"],
+	/** The time the document was created */
+	createdAt: ModelTypes["DateTime"],
+	/** The unique identifier */
+	id: string,
+	title: string,
+	description: string,
+	keywords: Array<string>,
+	/** User that last published this document */
+	publishedBy?: ModelTypes["User"] | undefined,
+	/** User that last updated this document */
+	updatedBy?: ModelTypes["User"] | undefined,
+	/** User that created this document */
+	createdBy?: ModelTypes["User"] | undefined,
+	og_image: ModelTypes["Asset"],
+	scheduledIn: Array<ModelTypes["ScheduledOperation"]>,
+	/** List of Seo versions */
+	history: Array<ModelTypes["Version"]>
+};
+	["SeoConnectInput"]: {
+	/** Document to connect */
+	where: ModelTypes["SeoWhereUniqueInput"],
+	/** Allow to specify document position in list of connected documents, will default to appending at end of list */
+	position?: ModelTypes["ConnectPositionInput"] | undefined
+};
+	/** A connection to a list of items. */
+["SeoConnection"]: {
+		/** Information to aid in pagination. */
+	pageInfo: ModelTypes["PageInfo"],
+	/** A list of edges. */
+	edges: Array<ModelTypes["SeoEdge"]>,
+	aggregate: ModelTypes["Aggregate"]
+};
+	["SeoCreateInput"]: {
+	updatedAt?: ModelTypes["DateTime"] | undefined,
+	createdAt?: ModelTypes["DateTime"] | undefined,
+	title: string,
+	description: string,
+	keywords: Array<string>,
+	og_image: ModelTypes["AssetCreateOneInlineInput"]
+};
+	["SeoCreateManyInlineInput"]: {
+	/** Create and connect multiple existing Seo documents */
+	create?: Array<ModelTypes["SeoCreateInput"]> | undefined,
+	/** Connect multiple existing Seo documents */
+	connect?: Array<ModelTypes["SeoWhereUniqueInput"]> | undefined
+};
+	["SeoCreateOneInlineInput"]: {
+	/** Create and connect one Seo document */
+	create?: ModelTypes["SeoCreateInput"] | undefined,
+	/** Connect one existing Seo document */
+	connect?: ModelTypes["SeoWhereUniqueInput"] | undefined
+};
+	/** An edge in a connection. */
+["SeoEdge"]: {
+		/** The item at the end of the edge. */
+	node: ModelTypes["Seo"],
+	/** A cursor for use in pagination. */
+	cursor: string
+};
+	/** Identifies documents */
+["SeoManyWhereInput"]: {
+	/** Contains search across all appropriate fields. */
+	_search?: string | undefined,
+	/** Logical AND on all given filters. */
+	AND?: Array<ModelTypes["SeoWhereInput"]> | undefined,
+	/** Logical OR on all given filters. */
+	OR?: Array<ModelTypes["SeoWhereInput"]> | undefined,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<ModelTypes["SeoWhereInput"]> | undefined,
+	publishedAt?: ModelTypes["DateTime"] | undefined,
+	/** All values that are not equal to given value. */
+	publishedAt_not?: ModelTypes["DateTime"] | undefined,
+	/** All values that are contained in given list. */
+	publishedAt_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	publishedAt_not_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
+	/** All values less than the given value. */
+	publishedAt_lt?: ModelTypes["DateTime"] | undefined,
+	/** All values less than or equal the given value. */
+	publishedAt_lte?: ModelTypes["DateTime"] | undefined,
+	/** All values greater than the given value. */
+	publishedAt_gt?: ModelTypes["DateTime"] | undefined,
+	/** All values greater than or equal the given value. */
+	publishedAt_gte?: ModelTypes["DateTime"] | undefined,
+	updatedAt?: ModelTypes["DateTime"] | undefined,
+	/** All values that are not equal to given value. */
+	updatedAt_not?: ModelTypes["DateTime"] | undefined,
+	/** All values that are contained in given list. */
+	updatedAt_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	updatedAt_not_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
+	/** All values less than the given value. */
+	updatedAt_lt?: ModelTypes["DateTime"] | undefined,
+	/** All values less than or equal the given value. */
+	updatedAt_lte?: ModelTypes["DateTime"] | undefined,
+	/** All values greater than the given value. */
+	updatedAt_gt?: ModelTypes["DateTime"] | undefined,
+	/** All values greater than or equal the given value. */
+	updatedAt_gte?: ModelTypes["DateTime"] | undefined,
+	createdAt?: ModelTypes["DateTime"] | undefined,
+	/** All values that are not equal to given value. */
+	createdAt_not?: ModelTypes["DateTime"] | undefined,
+	/** All values that are contained in given list. */
+	createdAt_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	createdAt_not_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
+	/** All values less than the given value. */
+	createdAt_lt?: ModelTypes["DateTime"] | undefined,
+	/** All values less than or equal the given value. */
+	createdAt_lte?: ModelTypes["DateTime"] | undefined,
+	/** All values greater than the given value. */
+	createdAt_gt?: ModelTypes["DateTime"] | undefined,
+	/** All values greater than or equal the given value. */
+	createdAt_gte?: ModelTypes["DateTime"] | undefined,
+	id?: string | undefined,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	id_contains?: string | undefined,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined,
+	title?: string | undefined,
+	/** All values that are not equal to given value. */
+	title_not?: string | undefined,
+	/** All values that are contained in given list. */
+	title_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	title_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	title_contains?: string | undefined,
+	/** All values not containing the given string. */
+	title_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	title_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	title_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	title_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	title_not_ends_with?: string | undefined,
+	description?: string | undefined,
+	/** All values that are not equal to given value. */
+	description_not?: string | undefined,
+	/** All values that are contained in given list. */
+	description_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	description_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	description_contains?: string | undefined,
+	/** All values not containing the given string. */
+	description_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	description_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	description_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	description_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	description_not_ends_with?: string | undefined,
+	/** Matches if the field array contains *all* items provided to the filter and order does match */
+	keywords?: Array<string> | undefined,
+	/** Matches if the field array does not contains *all* items provided to the filter or order does not match */
+	keywords_not?: Array<string> | undefined,
+	/** Matches if the field array contains *all* items provided to the filter */
+	keywords_contains_all?: Array<string> | undefined,
+	/** Matches if the field array contains at least one item provided to the filter */
+	keywords_contains_some?: Array<string> | undefined,
+	/** Matches if the field array does not contain any of the items provided to the filter */
+	keywords_contains_none?: Array<string> | undefined,
+	publishedBy?: ModelTypes["UserWhereInput"] | undefined,
+	updatedBy?: ModelTypes["UserWhereInput"] | undefined,
+	createdBy?: ModelTypes["UserWhereInput"] | undefined,
+	og_image?: ModelTypes["AssetWhereInput"] | undefined,
+	scheduledIn_every?: ModelTypes["ScheduledOperationWhereInput"] | undefined,
+	scheduledIn_some?: ModelTypes["ScheduledOperationWhereInput"] | undefined,
+	scheduledIn_none?: ModelTypes["ScheduledOperationWhereInput"] | undefined
+};
+	["SeoOrderByInput"]:SeoOrderByInput;
+	["SeoUpdateInput"]: {
+	title?: string | undefined,
+	description?: string | undefined,
+	keywords?: Array<string> | undefined,
+	og_image?: ModelTypes["AssetUpdateOneInlineInput"] | undefined
+};
+	["SeoUpdateManyInlineInput"]: {
+	/** Create and connect multiple Seo documents */
+	create?: Array<ModelTypes["SeoCreateInput"]> | undefined,
+	/** Connect multiple existing Seo documents */
+	connect?: Array<ModelTypes["SeoConnectInput"]> | undefined,
+	/** Override currently-connected documents with multiple existing Seo documents */
+	set?: Array<ModelTypes["SeoWhereUniqueInput"]> | undefined,
+	/** Update multiple Seo documents */
+	update?: Array<ModelTypes["SeoUpdateWithNestedWhereUniqueInput"]> | undefined,
+	/** Upsert multiple Seo documents */
+	upsert?: Array<ModelTypes["SeoUpsertWithNestedWhereUniqueInput"]> | undefined,
+	/** Disconnect multiple Seo documents */
+	disconnect?: Array<ModelTypes["SeoWhereUniqueInput"]> | undefined,
+	/** Delete multiple Seo documents */
+	delete?: Array<ModelTypes["SeoWhereUniqueInput"]> | undefined
+};
+	["SeoUpdateManyInput"]: {
+	title?: string | undefined,
+	description?: string | undefined,
+	keywords?: Array<string> | undefined
+};
+	["SeoUpdateManyWithNestedWhereInput"]: {
+	/** Document search */
+	where: ModelTypes["SeoWhereInput"],
+	/** Update many input */
+	data: ModelTypes["SeoUpdateManyInput"]
+};
+	["SeoUpdateOneInlineInput"]: {
+	/** Create and connect one Seo document */
+	create?: ModelTypes["SeoCreateInput"] | undefined,
+	/** Update single Seo document */
+	update?: ModelTypes["SeoUpdateWithNestedWhereUniqueInput"] | undefined,
+	/** Upsert single Seo document */
+	upsert?: ModelTypes["SeoUpsertWithNestedWhereUniqueInput"] | undefined,
+	/** Connect existing Seo document */
+	connect?: ModelTypes["SeoWhereUniqueInput"] | undefined,
+	/** Disconnect currently connected Seo document */
+	disconnect?: boolean | undefined,
+	/** Delete currently connected Seo document */
+	delete?: boolean | undefined
+};
+	["SeoUpdateWithNestedWhereUniqueInput"]: {
+	/** Unique document search */
+	where: ModelTypes["SeoWhereUniqueInput"],
+	/** Document to update */
+	data: ModelTypes["SeoUpdateInput"]
+};
+	["SeoUpsertInput"]: {
+	/** Create document if it didn't exist */
+	create: ModelTypes["SeoCreateInput"],
+	/** Update document if it exists */
+	update: ModelTypes["SeoUpdateInput"]
+};
+	["SeoUpsertWithNestedWhereUniqueInput"]: {
+	/** Unique document search */
+	where: ModelTypes["SeoWhereUniqueInput"],
+	/** Upsert data */
+	data: ModelTypes["SeoUpsertInput"]
+};
+	/** Identifies documents */
+["SeoWhereInput"]: {
+	/** Contains search across all appropriate fields. */
+	_search?: string | undefined,
+	/** Logical AND on all given filters. */
+	AND?: Array<ModelTypes["SeoWhereInput"]> | undefined,
+	/** Logical OR on all given filters. */
+	OR?: Array<ModelTypes["SeoWhereInput"]> | undefined,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<ModelTypes["SeoWhereInput"]> | undefined,
+	publishedAt?: ModelTypes["DateTime"] | undefined,
+	/** All values that are not equal to given value. */
+	publishedAt_not?: ModelTypes["DateTime"] | undefined,
+	/** All values that are contained in given list. */
+	publishedAt_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	publishedAt_not_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
+	/** All values less than the given value. */
+	publishedAt_lt?: ModelTypes["DateTime"] | undefined,
+	/** All values less than or equal the given value. */
+	publishedAt_lte?: ModelTypes["DateTime"] | undefined,
+	/** All values greater than the given value. */
+	publishedAt_gt?: ModelTypes["DateTime"] | undefined,
+	/** All values greater than or equal the given value. */
+	publishedAt_gte?: ModelTypes["DateTime"] | undefined,
+	updatedAt?: ModelTypes["DateTime"] | undefined,
+	/** All values that are not equal to given value. */
+	updatedAt_not?: ModelTypes["DateTime"] | undefined,
+	/** All values that are contained in given list. */
+	updatedAt_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	updatedAt_not_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
+	/** All values less than the given value. */
+	updatedAt_lt?: ModelTypes["DateTime"] | undefined,
+	/** All values less than or equal the given value. */
+	updatedAt_lte?: ModelTypes["DateTime"] | undefined,
+	/** All values greater than the given value. */
+	updatedAt_gt?: ModelTypes["DateTime"] | undefined,
+	/** All values greater than or equal the given value. */
+	updatedAt_gte?: ModelTypes["DateTime"] | undefined,
+	createdAt?: ModelTypes["DateTime"] | undefined,
+	/** All values that are not equal to given value. */
+	createdAt_not?: ModelTypes["DateTime"] | undefined,
+	/** All values that are contained in given list. */
+	createdAt_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	createdAt_not_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
+	/** All values less than the given value. */
+	createdAt_lt?: ModelTypes["DateTime"] | undefined,
+	/** All values less than or equal the given value. */
+	createdAt_lte?: ModelTypes["DateTime"] | undefined,
+	/** All values greater than the given value. */
+	createdAt_gt?: ModelTypes["DateTime"] | undefined,
+	/** All values greater than or equal the given value. */
+	createdAt_gte?: ModelTypes["DateTime"] | undefined,
+	id?: string | undefined,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	id_contains?: string | undefined,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined,
+	title?: string | undefined,
+	/** All values that are not equal to given value. */
+	title_not?: string | undefined,
+	/** All values that are contained in given list. */
+	title_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	title_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	title_contains?: string | undefined,
+	/** All values not containing the given string. */
+	title_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	title_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	title_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	title_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	title_not_ends_with?: string | undefined,
+	description?: string | undefined,
+	/** All values that are not equal to given value. */
+	description_not?: string | undefined,
+	/** All values that are contained in given list. */
+	description_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	description_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	description_contains?: string | undefined,
+	/** All values not containing the given string. */
+	description_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	description_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	description_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	description_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	description_not_ends_with?: string | undefined,
+	/** Matches if the field array contains *all* items provided to the filter and order does match */
+	keywords?: Array<string> | undefined,
+	/** Matches if the field array does not contains *all* items provided to the filter or order does not match */
+	keywords_not?: Array<string> | undefined,
+	/** Matches if the field array contains *all* items provided to the filter */
+	keywords_contains_all?: Array<string> | undefined,
+	/** Matches if the field array contains at least one item provided to the filter */
+	keywords_contains_some?: Array<string> | undefined,
+	/** Matches if the field array does not contain any of the items provided to the filter */
+	keywords_contains_none?: Array<string> | undefined,
+	publishedBy?: ModelTypes["UserWhereInput"] | undefined,
+	updatedBy?: ModelTypes["UserWhereInput"] | undefined,
+	createdBy?: ModelTypes["UserWhereInput"] | undefined,
+	og_image?: ModelTypes["AssetWhereInput"] | undefined,
+	scheduledIn_every?: ModelTypes["ScheduledOperationWhereInput"] | undefined,
+	scheduledIn_some?: ModelTypes["ScheduledOperationWhereInput"] | undefined,
+	scheduledIn_none?: ModelTypes["ScheduledOperationWhereInput"] | undefined
+};
+	/** References Seo record uniquely */
+["SeoWhereUniqueInput"]: {
+	id?: string | undefined
+};
+	["Skill"]: {
+		/** System stage field */
+	stage: ModelTypes["Stage"],
+	/** The unique identifier */
+	id: string,
+	name: string,
+	icon: ModelTypes["Asset"]
+};
+	["SkillCategory"]: {
+		/** System stage field */
+	stage: ModelTypes["Stage"],
+	/** Get the document in other stages */
+	documentInStages: Array<ModelTypes["SkillCategory"]>,
 	/** The time the document was published. Null on documents in draft stage. */
 	publishedAt?: ModelTypes["DateTime"] | undefined,
 	/** The time the document was updated */
@@ -12066,66 +15064,66 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	/** The unique identifier */
 	id: string,
 	name: string,
+	skillsList: Array<ModelTypes["SkillCategoryskillsListUnion"]>,
 	/** User that last published this document */
 	publishedBy?: ModelTypes["User"] | undefined,
 	/** User that last updated this document */
 	updatedBy?: ModelTypes["User"] | undefined,
 	/** User that created this document */
 	createdBy?: ModelTypes["User"] | undefined,
-	icon?: ModelTypes["Asset"] | undefined,
 	scheduledIn: Array<ModelTypes["ScheduledOperation"]>,
-	/** List of Skill versions */
+	/** List of SkillCategory versions */
 	history: Array<ModelTypes["Version"]>
 };
-	["SkillConnectInput"]: {
+	["SkillCategoryConnectInput"]: {
 	/** Document to connect */
-	where: ModelTypes["SkillWhereUniqueInput"],
+	where: ModelTypes["SkillCategoryWhereUniqueInput"],
 	/** Allow to specify document position in list of connected documents, will default to appending at end of list */
 	position?: ModelTypes["ConnectPositionInput"] | undefined
 };
 	/** A connection to a list of items. */
-["SkillConnection"]: {
+["SkillCategoryConnection"]: {
 		/** Information to aid in pagination. */
 	pageInfo: ModelTypes["PageInfo"],
 	/** A list of edges. */
-	edges: Array<ModelTypes["SkillEdge"]>,
+	edges: Array<ModelTypes["SkillCategoryEdge"]>,
 	aggregate: ModelTypes["Aggregate"]
 };
-	["SkillCreateInput"]: {
+	["SkillCategoryCreateInput"]: {
 	updatedAt?: ModelTypes["DateTime"] | undefined,
 	createdAt?: ModelTypes["DateTime"] | undefined,
 	name: string,
-	icon?: ModelTypes["AssetCreateOneInlineInput"] | undefined
+	skillsList?: ModelTypes["SkillCategoryskillsListUnionCreateManyInlineInput"] | undefined
 };
-	["SkillCreateManyInlineInput"]: {
-	/** Create and connect multiple existing Skill documents */
-	create?: Array<ModelTypes["SkillCreateInput"]> | undefined,
-	/** Connect multiple existing Skill documents */
-	connect?: Array<ModelTypes["SkillWhereUniqueInput"]> | undefined
+	["SkillCategoryCreateManyInlineInput"]: {
+	/** Create and connect multiple existing SkillCategory documents */
+	create?: Array<ModelTypes["SkillCategoryCreateInput"]> | undefined,
+	/** Connect multiple existing SkillCategory documents */
+	connect?: Array<ModelTypes["SkillCategoryWhereUniqueInput"]> | undefined
 };
-	["SkillCreateOneInlineInput"]: {
-	/** Create and connect one Skill document */
-	create?: ModelTypes["SkillCreateInput"] | undefined,
-	/** Connect one existing Skill document */
-	connect?: ModelTypes["SkillWhereUniqueInput"] | undefined
+	["SkillCategoryCreateOneInlineInput"]: {
+	/** Create and connect one SkillCategory document */
+	create?: ModelTypes["SkillCategoryCreateInput"] | undefined,
+	/** Connect one existing SkillCategory document */
+	connect?: ModelTypes["SkillCategoryWhereUniqueInput"] | undefined
 };
 	/** An edge in a connection. */
-["SkillEdge"]: {
+["SkillCategoryEdge"]: {
 		/** The item at the end of the edge. */
-	node: ModelTypes["Skill"],
+	node: ModelTypes["SkillCategory"],
 	/** A cursor for use in pagination. */
 	cursor: string
 };
 	/** Identifies documents */
-["SkillManyWhereInput"]: {
+["SkillCategoryManyWhereInput"]: {
 	/** Contains search across all appropriate fields. */
 	_search?: string | undefined,
 	/** Logical AND on all given filters. */
-	AND?: Array<ModelTypes["SkillWhereInput"]> | undefined,
+	AND?: Array<ModelTypes["SkillCategoryWhereInput"]> | undefined,
 	/** Logical OR on all given filters. */
-	OR?: Array<ModelTypes["SkillWhereInput"]> | undefined,
+	OR?: Array<ModelTypes["SkillCategoryWhereInput"]> | undefined,
 	/** Logical NOT on all given filters combined by AND. */
-	NOT?: Array<ModelTypes["SkillWhereInput"]> | undefined,
+	NOT?: Array<ModelTypes["SkillCategoryWhereInput"]> | undefined,
 	publishedAt?: ModelTypes["DateTime"] | undefined,
 	/** All values that are not equal to given value. */
 	publishedAt_not?: ModelTypes["DateTime"] | undefined,
@@ -12212,29 +15210,408 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	publishedBy?: ModelTypes["UserWhereInput"] | undefined,
 	updatedBy?: ModelTypes["UserWhereInput"] | undefined,
 	createdBy?: ModelTypes["UserWhereInput"] | undefined,
-	icon?: ModelTypes["AssetWhereInput"] | undefined,
 	scheduledIn_every?: ModelTypes["ScheduledOperationWhereInput"] | undefined,
 	scheduledIn_some?: ModelTypes["ScheduledOperationWhereInput"] | undefined,
 	scheduledIn_none?: ModelTypes["ScheduledOperationWhereInput"] | undefined
 };
+	["SkillCategoryOrderByInput"]:SkillCategoryOrderByInput;
+	["SkillCategoryUpdateInput"]: {
+	name?: string | undefined,
+	skillsList?: ModelTypes["SkillCategoryskillsListUnionUpdateManyInlineInput"] | undefined
+};
+	["SkillCategoryUpdateManyInlineInput"]: {
+	/** Create and connect multiple SkillCategory documents */
+	create?: Array<ModelTypes["SkillCategoryCreateInput"]> | undefined,
+	/** Connect multiple existing SkillCategory documents */
+	connect?: Array<ModelTypes["SkillCategoryConnectInput"]> | undefined,
+	/** Override currently-connected documents with multiple existing SkillCategory documents */
+	set?: Array<ModelTypes["SkillCategoryWhereUniqueInput"]> | undefined,
+	/** Update multiple SkillCategory documents */
+	update?: Array<ModelTypes["SkillCategoryUpdateWithNestedWhereUniqueInput"]> | undefined,
+	/** Upsert multiple SkillCategory documents */
+	upsert?: Array<ModelTypes["SkillCategoryUpsertWithNestedWhereUniqueInput"]> | undefined,
+	/** Disconnect multiple SkillCategory documents */
+	disconnect?: Array<ModelTypes["SkillCategoryWhereUniqueInput"]> | undefined,
+	/** Delete multiple SkillCategory documents */
+	delete?: Array<ModelTypes["SkillCategoryWhereUniqueInput"]> | undefined
+};
+	["SkillCategoryUpdateManyInput"]: {
+	/** No fields in updateMany data input */
+	_?: string | undefined
+};
+	["SkillCategoryUpdateManyWithNestedWhereInput"]: {
+	/** Document search */
+	where: ModelTypes["SkillCategoryWhereInput"],
+	/** Update many input */
+	data: ModelTypes["SkillCategoryUpdateManyInput"]
+};
+	["SkillCategoryUpdateOneInlineInput"]: {
+	/** Create and connect one SkillCategory document */
+	create?: ModelTypes["SkillCategoryCreateInput"] | undefined,
+	/** Update single SkillCategory document */
+	update?: ModelTypes["SkillCategoryUpdateWithNestedWhereUniqueInput"] | undefined,
+	/** Upsert single SkillCategory document */
+	upsert?: ModelTypes["SkillCategoryUpsertWithNestedWhereUniqueInput"] | undefined,
+	/** Connect existing SkillCategory document */
+	connect?: ModelTypes["SkillCategoryWhereUniqueInput"] | undefined,
+	/** Disconnect currently connected SkillCategory document */
+	disconnect?: boolean | undefined,
+	/** Delete currently connected SkillCategory document */
+	delete?: boolean | undefined
+};
+	["SkillCategoryUpdateWithNestedWhereUniqueInput"]: {
+	/** Unique document search */
+	where: ModelTypes["SkillCategoryWhereUniqueInput"],
+	/** Document to update */
+	data: ModelTypes["SkillCategoryUpdateInput"]
+};
+	["SkillCategoryUpsertInput"]: {
+	/** Create document if it didn't exist */
+	create: ModelTypes["SkillCategoryCreateInput"],
+	/** Update document if it exists */
+	update: ModelTypes["SkillCategoryUpdateInput"]
+};
+	["SkillCategoryUpsertWithNestedWhereUniqueInput"]: {
+	/** Unique document search */
+	where: ModelTypes["SkillCategoryWhereUniqueInput"],
+	/** Upsert data */
+	data: ModelTypes["SkillCategoryUpsertInput"]
+};
+	/** Identifies documents */
+["SkillCategoryWhereInput"]: {
+	/** Contains search across all appropriate fields. */
+	_search?: string | undefined,
+	/** Logical AND on all given filters. */
+	AND?: Array<ModelTypes["SkillCategoryWhereInput"]> | undefined,
+	/** Logical OR on all given filters. */
+	OR?: Array<ModelTypes["SkillCategoryWhereInput"]> | undefined,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<ModelTypes["SkillCategoryWhereInput"]> | undefined,
+	publishedAt?: ModelTypes["DateTime"] | undefined,
+	/** All values that are not equal to given value. */
+	publishedAt_not?: ModelTypes["DateTime"] | undefined,
+	/** All values that are contained in given list. */
+	publishedAt_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	publishedAt_not_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
+	/** All values less than the given value. */
+	publishedAt_lt?: ModelTypes["DateTime"] | undefined,
+	/** All values less than or equal the given value. */
+	publishedAt_lte?: ModelTypes["DateTime"] | undefined,
+	/** All values greater than the given value. */
+	publishedAt_gt?: ModelTypes["DateTime"] | undefined,
+	/** All values greater than or equal the given value. */
+	publishedAt_gte?: ModelTypes["DateTime"] | undefined,
+	updatedAt?: ModelTypes["DateTime"] | undefined,
+	/** All values that are not equal to given value. */
+	updatedAt_not?: ModelTypes["DateTime"] | undefined,
+	/** All values that are contained in given list. */
+	updatedAt_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	updatedAt_not_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
+	/** All values less than the given value. */
+	updatedAt_lt?: ModelTypes["DateTime"] | undefined,
+	/** All values less than or equal the given value. */
+	updatedAt_lte?: ModelTypes["DateTime"] | undefined,
+	/** All values greater than the given value. */
+	updatedAt_gt?: ModelTypes["DateTime"] | undefined,
+	/** All values greater than or equal the given value. */
+	updatedAt_gte?: ModelTypes["DateTime"] | undefined,
+	createdAt?: ModelTypes["DateTime"] | undefined,
+	/** All values that are not equal to given value. */
+	createdAt_not?: ModelTypes["DateTime"] | undefined,
+	/** All values that are contained in given list. */
+	createdAt_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	createdAt_not_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
+	/** All values less than the given value. */
+	createdAt_lt?: ModelTypes["DateTime"] | undefined,
+	/** All values less than or equal the given value. */
+	createdAt_lte?: ModelTypes["DateTime"] | undefined,
+	/** All values greater than the given value. */
+	createdAt_gt?: ModelTypes["DateTime"] | undefined,
+	/** All values greater than or equal the given value. */
+	createdAt_gte?: ModelTypes["DateTime"] | undefined,
+	id?: string | undefined,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	id_contains?: string | undefined,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined,
+	name?: string | undefined,
+	/** All values that are not equal to given value. */
+	name_not?: string | undefined,
+	/** All values that are contained in given list. */
+	name_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	name_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	name_contains?: string | undefined,
+	/** All values not containing the given string. */
+	name_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	name_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	name_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	name_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	name_not_ends_with?: string | undefined,
+	publishedBy?: ModelTypes["UserWhereInput"] | undefined,
+	updatedBy?: ModelTypes["UserWhereInput"] | undefined,
+	createdBy?: ModelTypes["UserWhereInput"] | undefined,
+	scheduledIn_every?: ModelTypes["ScheduledOperationWhereInput"] | undefined,
+	scheduledIn_some?: ModelTypes["ScheduledOperationWhereInput"] | undefined,
+	scheduledIn_none?: ModelTypes["ScheduledOperationWhereInput"] | undefined
+};
+	/** References SkillCategory record uniquely */
+["SkillCategoryWhereUniqueInput"]: {
+	id?: string | undefined,
+	name?: string | undefined
+};
+	["SkillCategoryskillsListUnion"]:ModelTypes["Skill"];
+	["SkillCategoryskillsListUnionConnectInput"]: {
+	Skill?: ModelTypes["SkillConnectInput"] | undefined
+};
+	["SkillCategoryskillsListUnionCreateInput"]: {
+	Skill?: ModelTypes["SkillCreateInput"] | undefined
+};
+	["SkillCategoryskillsListUnionCreateManyInlineInput"]: {
+	/** Create and connect multiple existing SkillCategoryskillsListUnion documents */
+	create?: Array<ModelTypes["SkillCategoryskillsListUnionCreateInput"]> | undefined
+};
+	["SkillCategoryskillsListUnionCreateOneInlineInput"]: {
+	/** Create and connect one SkillCategoryskillsListUnion document */
+	create?: ModelTypes["SkillCategoryskillsListUnionCreateInput"] | undefined
+};
+	["SkillCategoryskillsListUnionCreateWithPositionInput"]: {
+	Skill?: ModelTypes["SkillCreateWithPositionInput"] | undefined
+};
+	["SkillCategoryskillsListUnionUpdateInput"]: {
+	Skill?: ModelTypes["SkillUpdateInput"] | undefined
+};
+	["SkillCategoryskillsListUnionUpdateManyInlineInput"]: {
+	/** Create and connect multiple SkillCategoryskillsListUnion component instances */
+	create?: Array<ModelTypes["SkillCategoryskillsListUnionCreateWithPositionInput"]> | undefined,
+	/** Update multiple SkillCategoryskillsListUnion component instances */
+	update?: Array<ModelTypes["SkillCategoryskillsListUnionUpdateWithNestedWhereUniqueAndPositionInput"]> | undefined,
+	/** Upsert multiple SkillCategoryskillsListUnion component instances */
+	upsert?: Array<ModelTypes["SkillCategoryskillsListUnionUpsertWithNestedWhereUniqueAndPositionInput"]> | undefined,
+	/** Delete multiple SkillCategoryskillsListUnion documents */
+	delete?: Array<ModelTypes["SkillCategoryskillsListUnionWhereUniqueInput"]> | undefined
+};
+	["SkillCategoryskillsListUnionUpdateManyWithNestedWhereInput"]: {
+	Skill?: ModelTypes["SkillUpdateManyWithNestedWhereInput"] | undefined
+};
+	["SkillCategoryskillsListUnionUpdateOneInlineInput"]: {
+	/** Create and connect one SkillCategoryskillsListUnion document */
+	create?: ModelTypes["SkillCategoryskillsListUnionCreateInput"] | undefined,
+	/** Update single SkillCategoryskillsListUnion document */
+	update?: ModelTypes["SkillCategoryskillsListUnionUpdateWithNestedWhereUniqueInput"] | undefined,
+	/** Upsert single SkillCategoryskillsListUnion document */
+	upsert?: ModelTypes["SkillCategoryskillsListUnionUpsertWithNestedWhereUniqueInput"] | undefined,
+	/** Delete currently connected SkillCategoryskillsListUnion document */
+	delete?: boolean | undefined
+};
+	["SkillCategoryskillsListUnionUpdateWithNestedWhereUniqueAndPositionInput"]: {
+	Skill?: ModelTypes["SkillUpdateWithNestedWhereUniqueAndPositionInput"] | undefined
+};
+	["SkillCategoryskillsListUnionUpdateWithNestedWhereUniqueInput"]: {
+	Skill?: ModelTypes["SkillUpdateWithNestedWhereUniqueInput"] | undefined
+};
+	["SkillCategoryskillsListUnionUpsertWithNestedWhereUniqueAndPositionInput"]: {
+	Skill?: ModelTypes["SkillUpsertWithNestedWhereUniqueAndPositionInput"] | undefined
+};
+	["SkillCategoryskillsListUnionUpsertWithNestedWhereUniqueInput"]: {
+	Skill?: ModelTypes["SkillUpsertWithNestedWhereUniqueInput"] | undefined
+};
+	["SkillCategoryskillsListUnionWhereInput"]: {
+	Skill?: ModelTypes["SkillWhereInput"] | undefined
+};
+	["SkillCategoryskillsListUnionWhereUniqueInput"]: {
+	Skill?: ModelTypes["SkillWhereUniqueInput"] | undefined
+};
+	["SkillConnectInput"]: {
+	/** Document to connect */
+	where: ModelTypes["SkillWhereUniqueInput"],
+	/** Allow to specify document position in list of connected documents, will default to appending at end of list */
+	position?: ModelTypes["ConnectPositionInput"] | undefined
+};
+	/** A connection to a list of items. */
+["SkillConnection"]: {
+		/** Information to aid in pagination. */
+	pageInfo: ModelTypes["PageInfo"],
+	/** A list of edges. */
+	edges: Array<ModelTypes["SkillEdge"]>,
+	aggregate: ModelTypes["Aggregate"]
+};
+	["SkillCreateInput"]: {
+	name: string,
+	icon: ModelTypes["AssetCreateOneInlineInput"]
+};
+	["SkillCreateManyInlineInput"]: {
+	/** Create and connect multiple existing Skill documents */
+	create?: Array<ModelTypes["SkillCreateInput"]> | undefined
+};
+	["SkillCreateOneInlineInput"]: {
+	/** Create and connect one Skill document */
+	create?: ModelTypes["SkillCreateInput"] | undefined
+};
+	["SkillCreateWithPositionInput"]: {
+	/** Position in the list of existing component instances, will default to appending at the end of list */
+	position?: ModelTypes["ConnectPositionInput"] | undefined,
+	/** Document to create */
+	data: ModelTypes["SkillCreateInput"]
+};
+	/** An edge in a connection. */
+["SkillEdge"]: {
+		/** The item at the end of the edge. */
+	node: ModelTypes["Skill"],
+	/** A cursor for use in pagination. */
+	cursor: string
+};
+	/** Identifies documents */
+["SkillManyWhereInput"]: {
+	/** Contains search across all appropriate fields. */
+	_search?: string | undefined,
+	/** Logical AND on all given filters. */
+	AND?: Array<ModelTypes["SkillWhereInput"]> | undefined,
+	/** Logical OR on all given filters. */
+	OR?: Array<ModelTypes["SkillWhereInput"]> | undefined,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<ModelTypes["SkillWhereInput"]> | undefined,
+	id?: string | undefined,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	id_contains?: string | undefined,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined,
+	name?: string | undefined,
+	/** All values that are not equal to given value. */
+	name_not?: string | undefined,
+	/** All values that are contained in given list. */
+	name_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	name_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	name_contains?: string | undefined,
+	/** All values not containing the given string. */
+	name_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	name_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	name_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	name_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	name_not_ends_with?: string | undefined,
+	icon?: ModelTypes["AssetWhereInput"] | undefined
+};
 	["SkillOrderByInput"]:SkillOrderByInput;
+	["SkillParent"]:ModelTypes["SkillCategory"];
+	["SkillParentConnectInput"]: {
+	SkillCategory?: ModelTypes["SkillCategoryConnectInput"] | undefined
+};
+	["SkillParentCreateInput"]: {
+	SkillCategory?: ModelTypes["SkillCategoryCreateInput"] | undefined
+};
+	["SkillParentCreateManyInlineInput"]: {
+	/** Create and connect multiple existing SkillParent documents */
+	create?: Array<ModelTypes["SkillParentCreateInput"]> | undefined,
+	/** Connect multiple existing SkillParent documents */
+	connect?: Array<ModelTypes["SkillParentWhereUniqueInput"]> | undefined
+};
+	["SkillParentCreateOneInlineInput"]: {
+	/** Create and connect one SkillParent document */
+	create?: ModelTypes["SkillParentCreateInput"] | undefined,
+	/** Connect one existing SkillParent document */
+	connect?: ModelTypes["SkillParentWhereUniqueInput"] | undefined
+};
+	["SkillParentUpdateInput"]: {
+	SkillCategory?: ModelTypes["SkillCategoryUpdateInput"] | undefined
+};
+	["SkillParentUpdateManyInlineInput"]: {
+	/** Create and connect multiple SkillParent documents */
+	create?: Array<ModelTypes["SkillParentCreateInput"]> | undefined,
+	/** Connect multiple existing SkillParent documents */
+	connect?: Array<ModelTypes["SkillParentConnectInput"]> | undefined,
+	/** Override currently-connected documents with multiple existing SkillParent documents */
+	set?: Array<ModelTypes["SkillParentWhereUniqueInput"]> | undefined,
+	/** Update multiple SkillParent documents */
+	update?: Array<ModelTypes["SkillParentUpdateWithNestedWhereUniqueInput"]> | undefined,
+	/** Upsert multiple SkillParent documents */
+	upsert?: Array<ModelTypes["SkillParentUpsertWithNestedWhereUniqueInput"]> | undefined,
+	/** Disconnect multiple SkillParent documents */
+	disconnect?: Array<ModelTypes["SkillParentWhereUniqueInput"]> | undefined,
+	/** Delete multiple SkillParent documents */
+	delete?: Array<ModelTypes["SkillParentWhereUniqueInput"]> | undefined
+};
+	["SkillParentUpdateManyWithNestedWhereInput"]: {
+	SkillCategory?: ModelTypes["SkillCategoryUpdateManyWithNestedWhereInput"] | undefined
+};
+	["SkillParentUpdateOneInlineInput"]: {
+	/** Create and connect one SkillParent document */
+	create?: ModelTypes["SkillParentCreateInput"] | undefined,
+	/** Update single SkillParent document */
+	update?: ModelTypes["SkillParentUpdateWithNestedWhereUniqueInput"] | undefined,
+	/** Upsert single SkillParent document */
+	upsert?: ModelTypes["SkillParentUpsertWithNestedWhereUniqueInput"] | undefined,
+	/** Connect existing SkillParent document */
+	connect?: ModelTypes["SkillParentWhereUniqueInput"] | undefined,
+	/** Disconnect currently connected SkillParent document */
+	disconnect?: boolean | undefined,
+	/** Delete currently connected SkillParent document */
+	delete?: boolean | undefined
+};
+	["SkillParentUpdateWithNestedWhereUniqueInput"]: {
+	SkillCategory?: ModelTypes["SkillCategoryUpdateWithNestedWhereUniqueInput"] | undefined
+};
+	["SkillParentUpsertWithNestedWhereUniqueInput"]: {
+	SkillCategory?: ModelTypes["SkillCategoryUpsertWithNestedWhereUniqueInput"] | undefined
+};
+	["SkillParentWhereInput"]: {
+	SkillCategory?: ModelTypes["SkillCategoryWhereInput"] | undefined
+};
+	["SkillParentWhereUniqueInput"]: {
+	SkillCategory?: ModelTypes["SkillCategoryWhereUniqueInput"] | undefined
+};
 	["SkillUpdateInput"]: {
 	name?: string | undefined,
 	icon?: ModelTypes["AssetUpdateOneInlineInput"] | undefined
 };
 	["SkillUpdateManyInlineInput"]: {
-	/** Create and connect multiple Skill documents */
-	create?: Array<ModelTypes["SkillCreateInput"]> | undefined,
-	/** Connect multiple existing Skill documents */
-	connect?: Array<ModelTypes["SkillConnectInput"]> | undefined,
-	/** Override currently-connected documents with multiple existing Skill documents */
-	set?: Array<ModelTypes["SkillWhereUniqueInput"]> | undefined,
-	/** Update multiple Skill documents */
-	update?: Array<ModelTypes["SkillUpdateWithNestedWhereUniqueInput"]> | undefined,
-	/** Upsert multiple Skill documents */
-	upsert?: Array<ModelTypes["SkillUpsertWithNestedWhereUniqueInput"]> | undefined,
-	/** Disconnect multiple Skill documents */
-	disconnect?: Array<ModelTypes["SkillWhereUniqueInput"]> | undefined,
+	/** Create and connect multiple Skill component instances */
+	create?: Array<ModelTypes["SkillCreateWithPositionInput"]> | undefined,
+	/** Update multiple Skill component instances */
+	update?: Array<ModelTypes["SkillUpdateWithNestedWhereUniqueAndPositionInput"]> | undefined,
+	/** Upsert multiple Skill component instances */
+	upsert?: Array<ModelTypes["SkillUpsertWithNestedWhereUniqueAndPositionInput"]> | undefined,
 	/** Delete multiple Skill documents */
 	delete?: Array<ModelTypes["SkillWhereUniqueInput"]> | undefined
 };
@@ -12255,12 +15632,16 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	update?: ModelTypes["SkillUpdateWithNestedWhereUniqueInput"] | undefined,
 	/** Upsert single Skill document */
 	upsert?: ModelTypes["SkillUpsertWithNestedWhereUniqueInput"] | undefined,
-	/** Connect existing Skill document */
-	connect?: ModelTypes["SkillWhereUniqueInput"] | undefined,
-	/** Disconnect currently connected Skill document */
-	disconnect?: boolean | undefined,
 	/** Delete currently connected Skill document */
 	delete?: boolean | undefined
+};
+	["SkillUpdateWithNestedWhereUniqueAndPositionInput"]: {
+	/** Unique component instance search */
+	where: ModelTypes["SkillWhereUniqueInput"],
+	/** Position in the list of existing component instances, will default to appending at the end of list */
+	position?: ModelTypes["ConnectPositionInput"] | undefined,
+	/** Document to update */
+	data?: ModelTypes["SkillUpdateInput"] | undefined
 };
 	["SkillUpdateWithNestedWhereUniqueInput"]: {
 	/** Unique document search */
@@ -12273,6 +15654,14 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	create: ModelTypes["SkillCreateInput"],
 	/** Update document if it exists */
 	update: ModelTypes["SkillUpdateInput"]
+};
+	["SkillUpsertWithNestedWhereUniqueAndPositionInput"]: {
+	/** Unique component instance search */
+	where: ModelTypes["SkillWhereUniqueInput"],
+	/** Position in the list of existing component instances, will default to appending at the end of list */
+	position?: ModelTypes["ConnectPositionInput"] | undefined,
+	/** Document to upsert */
+	data?: ModelTypes["SkillUpsertInput"] | undefined
 };
 	["SkillUpsertWithNestedWhereUniqueInput"]: {
 	/** Unique document search */
@@ -12290,51 +15679,6 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	OR?: Array<ModelTypes["SkillWhereInput"]> | undefined,
 	/** Logical NOT on all given filters combined by AND. */
 	NOT?: Array<ModelTypes["SkillWhereInput"]> | undefined,
-	publishedAt?: ModelTypes["DateTime"] | undefined,
-	/** All values that are not equal to given value. */
-	publishedAt_not?: ModelTypes["DateTime"] | undefined,
-	/** All values that are contained in given list. */
-	publishedAt_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	publishedAt_not_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
-	/** All values less than the given value. */
-	publishedAt_lt?: ModelTypes["DateTime"] | undefined,
-	/** All values less than or equal the given value. */
-	publishedAt_lte?: ModelTypes["DateTime"] | undefined,
-	/** All values greater than the given value. */
-	publishedAt_gt?: ModelTypes["DateTime"] | undefined,
-	/** All values greater than or equal the given value. */
-	publishedAt_gte?: ModelTypes["DateTime"] | undefined,
-	updatedAt?: ModelTypes["DateTime"] | undefined,
-	/** All values that are not equal to given value. */
-	updatedAt_not?: ModelTypes["DateTime"] | undefined,
-	/** All values that are contained in given list. */
-	updatedAt_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	updatedAt_not_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
-	/** All values less than the given value. */
-	updatedAt_lt?: ModelTypes["DateTime"] | undefined,
-	/** All values less than or equal the given value. */
-	updatedAt_lte?: ModelTypes["DateTime"] | undefined,
-	/** All values greater than the given value. */
-	updatedAt_gt?: ModelTypes["DateTime"] | undefined,
-	/** All values greater than or equal the given value. */
-	updatedAt_gte?: ModelTypes["DateTime"] | undefined,
-	createdAt?: ModelTypes["DateTime"] | undefined,
-	/** All values that are not equal to given value. */
-	createdAt_not?: ModelTypes["DateTime"] | undefined,
-	/** All values that are contained in given list. */
-	createdAt_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	createdAt_not_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
-	/** All values less than the given value. */
-	createdAt_lt?: ModelTypes["DateTime"] | undefined,
-	/** All values less than or equal the given value. */
-	createdAt_lte?: ModelTypes["DateTime"] | undefined,
-	/** All values greater than the given value. */
-	createdAt_gt?: ModelTypes["DateTime"] | undefined,
-	/** All values greater than or equal the given value. */
-	createdAt_gte?: ModelTypes["DateTime"] | undefined,
 	id?: string | undefined,
 	/** All values that are not equal to given value. */
 	id_not?: string | undefined,
@@ -12373,403 +15717,16 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	name_ends_with?: string | undefined,
 	/** All values not ending with the given string */
 	name_not_ends_with?: string | undefined,
-	publishedBy?: ModelTypes["UserWhereInput"] | undefined,
-	updatedBy?: ModelTypes["UserWhereInput"] | undefined,
-	createdBy?: ModelTypes["UserWhereInput"] | undefined,
-	icon?: ModelTypes["AssetWhereInput"] | undefined,
-	scheduledIn_every?: ModelTypes["ScheduledOperationWhereInput"] | undefined,
-	scheduledIn_some?: ModelTypes["ScheduledOperationWhereInput"] | undefined,
-	scheduledIn_none?: ModelTypes["ScheduledOperationWhereInput"] | undefined
+	icon?: ModelTypes["AssetWhereInput"] | undefined
 };
 	/** References Skill record uniquely */
 ["SkillWhereUniqueInput"]: {
 	id?: string | undefined,
 	name?: string | undefined
 };
-	["Social"]: {
-		/** System stage field */
-	stage: ModelTypes["Stage"],
-	/** Get the document in other stages */
-	documentInStages: Array<ModelTypes["Social"]>,
-	/** The time the document was published. Null on documents in draft stage. */
-	publishedAt?: ModelTypes["DateTime"] | undefined,
-	/** The time the document was updated */
-	updatedAt: ModelTypes["DateTime"],
-	/** The time the document was created */
-	createdAt: ModelTypes["DateTime"],
-	/** The unique identifier */
-	id: string,
-	/** Social media name */
-	name: string,
-	/** Social media link */
-	url: string,
-	/** Social media color */
-	color?: ModelTypes["Color"] | undefined,
-	/** User that last published this document */
-	publishedBy?: ModelTypes["User"] | undefined,
-	/** User that last updated this document */
-	updatedBy?: ModelTypes["User"] | undefined,
-	/** User that created this document */
-	createdBy?: ModelTypes["User"] | undefined,
-	/** Social media logo */
-	image: ModelTypes["Asset"],
-	scheduledIn: Array<ModelTypes["ScheduledOperation"]>,
-	/** List of Social versions */
-	history: Array<ModelTypes["Version"]>
-};
-	["SocialConnectInput"]: {
-	/** Document to connect */
-	where: ModelTypes["SocialWhereUniqueInput"],
-	/** Allow to specify document position in list of connected documents, will default to appending at end of list */
-	position?: ModelTypes["ConnectPositionInput"] | undefined
-};
-	/** A connection to a list of items. */
-["SocialConnection"]: {
-		/** Information to aid in pagination. */
-	pageInfo: ModelTypes["PageInfo"],
-	/** A list of edges. */
-	edges: Array<ModelTypes["SocialEdge"]>,
-	aggregate: ModelTypes["Aggregate"]
-};
-	["SocialCreateInput"]: {
-	updatedAt?: ModelTypes["DateTime"] | undefined,
-	createdAt?: ModelTypes["DateTime"] | undefined,
-	name: string,
-	url: string,
-	color?: ModelTypes["ColorInput"] | undefined,
-	image: ModelTypes["AssetCreateOneInlineInput"]
-};
-	["SocialCreateManyInlineInput"]: {
-	/** Create and connect multiple existing Social documents */
-	create?: Array<ModelTypes["SocialCreateInput"]> | undefined,
-	/** Connect multiple existing Social documents */
-	connect?: Array<ModelTypes["SocialWhereUniqueInput"]> | undefined
-};
-	["SocialCreateOneInlineInput"]: {
-	/** Create and connect one Social document */
-	create?: ModelTypes["SocialCreateInput"] | undefined,
-	/** Connect one existing Social document */
-	connect?: ModelTypes["SocialWhereUniqueInput"] | undefined
-};
-	/** An edge in a connection. */
-["SocialEdge"]: {
-		/** The item at the end of the edge. */
-	node: ModelTypes["Social"],
-	/** A cursor for use in pagination. */
-	cursor: string
-};
-	/** Identifies documents */
-["SocialManyWhereInput"]: {
-	/** Contains search across all appropriate fields. */
-	_search?: string | undefined,
-	/** Logical AND on all given filters. */
-	AND?: Array<ModelTypes["SocialWhereInput"]> | undefined,
-	/** Logical OR on all given filters. */
-	OR?: Array<ModelTypes["SocialWhereInput"]> | undefined,
-	/** Logical NOT on all given filters combined by AND. */
-	NOT?: Array<ModelTypes["SocialWhereInput"]> | undefined,
-	publishedAt?: ModelTypes["DateTime"] | undefined,
-	/** All values that are not equal to given value. */
-	publishedAt_not?: ModelTypes["DateTime"] | undefined,
-	/** All values that are contained in given list. */
-	publishedAt_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	publishedAt_not_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
-	/** All values less than the given value. */
-	publishedAt_lt?: ModelTypes["DateTime"] | undefined,
-	/** All values less than or equal the given value. */
-	publishedAt_lte?: ModelTypes["DateTime"] | undefined,
-	/** All values greater than the given value. */
-	publishedAt_gt?: ModelTypes["DateTime"] | undefined,
-	/** All values greater than or equal the given value. */
-	publishedAt_gte?: ModelTypes["DateTime"] | undefined,
-	updatedAt?: ModelTypes["DateTime"] | undefined,
-	/** All values that are not equal to given value. */
-	updatedAt_not?: ModelTypes["DateTime"] | undefined,
-	/** All values that are contained in given list. */
-	updatedAt_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	updatedAt_not_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
-	/** All values less than the given value. */
-	updatedAt_lt?: ModelTypes["DateTime"] | undefined,
-	/** All values less than or equal the given value. */
-	updatedAt_lte?: ModelTypes["DateTime"] | undefined,
-	/** All values greater than the given value. */
-	updatedAt_gt?: ModelTypes["DateTime"] | undefined,
-	/** All values greater than or equal the given value. */
-	updatedAt_gte?: ModelTypes["DateTime"] | undefined,
-	createdAt?: ModelTypes["DateTime"] | undefined,
-	/** All values that are not equal to given value. */
-	createdAt_not?: ModelTypes["DateTime"] | undefined,
-	/** All values that are contained in given list. */
-	createdAt_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	createdAt_not_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
-	/** All values less than the given value. */
-	createdAt_lt?: ModelTypes["DateTime"] | undefined,
-	/** All values less than or equal the given value. */
-	createdAt_lte?: ModelTypes["DateTime"] | undefined,
-	/** All values greater than the given value. */
-	createdAt_gt?: ModelTypes["DateTime"] | undefined,
-	/** All values greater than or equal the given value. */
-	createdAt_gte?: ModelTypes["DateTime"] | undefined,
-	id?: string | undefined,
-	/** All values that are not equal to given value. */
-	id_not?: string | undefined,
-	/** All values that are contained in given list. */
-	id_in?: Array<string | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	id_not_in?: Array<string | undefined> | undefined,
-	/** All values containing the given string. */
-	id_contains?: string | undefined,
-	/** All values not containing the given string. */
-	id_not_contains?: string | undefined,
-	/** All values starting with the given string. */
-	id_starts_with?: string | undefined,
-	/** All values not starting with the given string. */
-	id_not_starts_with?: string | undefined,
-	/** All values ending with the given string. */
-	id_ends_with?: string | undefined,
-	/** All values not ending with the given string */
-	id_not_ends_with?: string | undefined,
-	name?: string | undefined,
-	/** All values that are not equal to given value. */
-	name_not?: string | undefined,
-	/** All values that are contained in given list. */
-	name_in?: Array<string | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	name_not_in?: Array<string | undefined> | undefined,
-	/** All values containing the given string. */
-	name_contains?: string | undefined,
-	/** All values not containing the given string. */
-	name_not_contains?: string | undefined,
-	/** All values starting with the given string. */
-	name_starts_with?: string | undefined,
-	/** All values not starting with the given string. */
-	name_not_starts_with?: string | undefined,
-	/** All values ending with the given string. */
-	name_ends_with?: string | undefined,
-	/** All values not ending with the given string */
-	name_not_ends_with?: string | undefined,
-	url?: string | undefined,
-	/** All values that are not equal to given value. */
-	url_not?: string | undefined,
-	/** All values that are contained in given list. */
-	url_in?: Array<string | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	url_not_in?: Array<string | undefined> | undefined,
-	/** All values containing the given string. */
-	url_contains?: string | undefined,
-	/** All values not containing the given string. */
-	url_not_contains?: string | undefined,
-	/** All values starting with the given string. */
-	url_starts_with?: string | undefined,
-	/** All values not starting with the given string. */
-	url_not_starts_with?: string | undefined,
-	/** All values ending with the given string. */
-	url_ends_with?: string | undefined,
-	/** All values not ending with the given string */
-	url_not_ends_with?: string | undefined,
-	publishedBy?: ModelTypes["UserWhereInput"] | undefined,
-	updatedBy?: ModelTypes["UserWhereInput"] | undefined,
-	createdBy?: ModelTypes["UserWhereInput"] | undefined,
-	image?: ModelTypes["AssetWhereInput"] | undefined,
-	scheduledIn_every?: ModelTypes["ScheduledOperationWhereInput"] | undefined,
-	scheduledIn_some?: ModelTypes["ScheduledOperationWhereInput"] | undefined,
-	scheduledIn_none?: ModelTypes["ScheduledOperationWhereInput"] | undefined
-};
-	["SocialOrderByInput"]:SocialOrderByInput;
-	["SocialUpdateInput"]: {
-	name?: string | undefined,
-	url?: string | undefined,
-	color?: ModelTypes["ColorInput"] | undefined,
-	image?: ModelTypes["AssetUpdateOneInlineInput"] | undefined
-};
-	["SocialUpdateManyInlineInput"]: {
-	/** Create and connect multiple Social documents */
-	create?: Array<ModelTypes["SocialCreateInput"]> | undefined,
-	/** Connect multiple existing Social documents */
-	connect?: Array<ModelTypes["SocialConnectInput"]> | undefined,
-	/** Override currently-connected documents with multiple existing Social documents */
-	set?: Array<ModelTypes["SocialWhereUniqueInput"]> | undefined,
-	/** Update multiple Social documents */
-	update?: Array<ModelTypes["SocialUpdateWithNestedWhereUniqueInput"]> | undefined,
-	/** Upsert multiple Social documents */
-	upsert?: Array<ModelTypes["SocialUpsertWithNestedWhereUniqueInput"]> | undefined,
-	/** Disconnect multiple Social documents */
-	disconnect?: Array<ModelTypes["SocialWhereUniqueInput"]> | undefined,
-	/** Delete multiple Social documents */
-	delete?: Array<ModelTypes["SocialWhereUniqueInput"]> | undefined
-};
-	["SocialUpdateManyInput"]: {
-	name?: string | undefined,
-	color?: ModelTypes["ColorInput"] | undefined
-};
-	["SocialUpdateManyWithNestedWhereInput"]: {
-	/** Document search */
-	where: ModelTypes["SocialWhereInput"],
-	/** Update many input */
-	data: ModelTypes["SocialUpdateManyInput"]
-};
-	["SocialUpdateOneInlineInput"]: {
-	/** Create and connect one Social document */
-	create?: ModelTypes["SocialCreateInput"] | undefined,
-	/** Update single Social document */
-	update?: ModelTypes["SocialUpdateWithNestedWhereUniqueInput"] | undefined,
-	/** Upsert single Social document */
-	upsert?: ModelTypes["SocialUpsertWithNestedWhereUniqueInput"] | undefined,
-	/** Connect existing Social document */
-	connect?: ModelTypes["SocialWhereUniqueInput"] | undefined,
-	/** Disconnect currently connected Social document */
-	disconnect?: boolean | undefined,
-	/** Delete currently connected Social document */
-	delete?: boolean | undefined
-};
-	["SocialUpdateWithNestedWhereUniqueInput"]: {
-	/** Unique document search */
-	where: ModelTypes["SocialWhereUniqueInput"],
-	/** Document to update */
-	data: ModelTypes["SocialUpdateInput"]
-};
-	["SocialUpsertInput"]: {
-	/** Create document if it didn't exist */
-	create: ModelTypes["SocialCreateInput"],
-	/** Update document if it exists */
-	update: ModelTypes["SocialUpdateInput"]
-};
-	["SocialUpsertWithNestedWhereUniqueInput"]: {
-	/** Unique document search */
-	where: ModelTypes["SocialWhereUniqueInput"],
-	/** Upsert data */
-	data: ModelTypes["SocialUpsertInput"]
-};
-	/** Identifies documents */
-["SocialWhereInput"]: {
-	/** Contains search across all appropriate fields. */
-	_search?: string | undefined,
-	/** Logical AND on all given filters. */
-	AND?: Array<ModelTypes["SocialWhereInput"]> | undefined,
-	/** Logical OR on all given filters. */
-	OR?: Array<ModelTypes["SocialWhereInput"]> | undefined,
-	/** Logical NOT on all given filters combined by AND. */
-	NOT?: Array<ModelTypes["SocialWhereInput"]> | undefined,
-	publishedAt?: ModelTypes["DateTime"] | undefined,
-	/** All values that are not equal to given value. */
-	publishedAt_not?: ModelTypes["DateTime"] | undefined,
-	/** All values that are contained in given list. */
-	publishedAt_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	publishedAt_not_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
-	/** All values less than the given value. */
-	publishedAt_lt?: ModelTypes["DateTime"] | undefined,
-	/** All values less than or equal the given value. */
-	publishedAt_lte?: ModelTypes["DateTime"] | undefined,
-	/** All values greater than the given value. */
-	publishedAt_gt?: ModelTypes["DateTime"] | undefined,
-	/** All values greater than or equal the given value. */
-	publishedAt_gte?: ModelTypes["DateTime"] | undefined,
-	updatedAt?: ModelTypes["DateTime"] | undefined,
-	/** All values that are not equal to given value. */
-	updatedAt_not?: ModelTypes["DateTime"] | undefined,
-	/** All values that are contained in given list. */
-	updatedAt_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	updatedAt_not_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
-	/** All values less than the given value. */
-	updatedAt_lt?: ModelTypes["DateTime"] | undefined,
-	/** All values less than or equal the given value. */
-	updatedAt_lte?: ModelTypes["DateTime"] | undefined,
-	/** All values greater than the given value. */
-	updatedAt_gt?: ModelTypes["DateTime"] | undefined,
-	/** All values greater than or equal the given value. */
-	updatedAt_gte?: ModelTypes["DateTime"] | undefined,
-	createdAt?: ModelTypes["DateTime"] | undefined,
-	/** All values that are not equal to given value. */
-	createdAt_not?: ModelTypes["DateTime"] | undefined,
-	/** All values that are contained in given list. */
-	createdAt_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	createdAt_not_in?: Array<ModelTypes["DateTime"] | undefined> | undefined,
-	/** All values less than the given value. */
-	createdAt_lt?: ModelTypes["DateTime"] | undefined,
-	/** All values less than or equal the given value. */
-	createdAt_lte?: ModelTypes["DateTime"] | undefined,
-	/** All values greater than the given value. */
-	createdAt_gt?: ModelTypes["DateTime"] | undefined,
-	/** All values greater than or equal the given value. */
-	createdAt_gte?: ModelTypes["DateTime"] | undefined,
-	id?: string | undefined,
-	/** All values that are not equal to given value. */
-	id_not?: string | undefined,
-	/** All values that are contained in given list. */
-	id_in?: Array<string | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	id_not_in?: Array<string | undefined> | undefined,
-	/** All values containing the given string. */
-	id_contains?: string | undefined,
-	/** All values not containing the given string. */
-	id_not_contains?: string | undefined,
-	/** All values starting with the given string. */
-	id_starts_with?: string | undefined,
-	/** All values not starting with the given string. */
-	id_not_starts_with?: string | undefined,
-	/** All values ending with the given string. */
-	id_ends_with?: string | undefined,
-	/** All values not ending with the given string */
-	id_not_ends_with?: string | undefined,
-	name?: string | undefined,
-	/** All values that are not equal to given value. */
-	name_not?: string | undefined,
-	/** All values that are contained in given list. */
-	name_in?: Array<string | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	name_not_in?: Array<string | undefined> | undefined,
-	/** All values containing the given string. */
-	name_contains?: string | undefined,
-	/** All values not containing the given string. */
-	name_not_contains?: string | undefined,
-	/** All values starting with the given string. */
-	name_starts_with?: string | undefined,
-	/** All values not starting with the given string. */
-	name_not_starts_with?: string | undefined,
-	/** All values ending with the given string. */
-	name_ends_with?: string | undefined,
-	/** All values not ending with the given string */
-	name_not_ends_with?: string | undefined,
-	url?: string | undefined,
-	/** All values that are not equal to given value. */
-	url_not?: string | undefined,
-	/** All values that are contained in given list. */
-	url_in?: Array<string | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	url_not_in?: Array<string | undefined> | undefined,
-	/** All values containing the given string. */
-	url_contains?: string | undefined,
-	/** All values not containing the given string. */
-	url_not_contains?: string | undefined,
-	/** All values starting with the given string. */
-	url_starts_with?: string | undefined,
-	/** All values not starting with the given string. */
-	url_not_starts_with?: string | undefined,
-	/** All values ending with the given string. */
-	url_ends_with?: string | undefined,
-	/** All values not ending with the given string */
-	url_not_ends_with?: string | undefined,
-	publishedBy?: ModelTypes["UserWhereInput"] | undefined,
-	updatedBy?: ModelTypes["UserWhereInput"] | undefined,
-	createdBy?: ModelTypes["UserWhereInput"] | undefined,
-	image?: ModelTypes["AssetWhereInput"] | undefined,
-	scheduledIn_every?: ModelTypes["ScheduledOperationWhereInput"] | undefined,
-	scheduledIn_some?: ModelTypes["ScheduledOperationWhereInput"] | undefined,
-	scheduledIn_none?: ModelTypes["ScheduledOperationWhereInput"] | undefined
-};
-	/** References Social record uniquely */
-["SocialWhereUniqueInput"]: {
-	id?: string | undefined,
-	url?: string | undefined
-};
 	["Stage"]:Stage;
 	["SystemDateTimeFieldVariation"]:SystemDateTimeFieldVariation;
+	["Technologies"]:Technologies;
 	["UnpublishLocaleInput"]: {
 	/** Locales to unpublish */
 	locale: ModelTypes["Locale"],
@@ -13116,7 +16073,457 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
     }
 
 export type GraphQLTypes = {
-    ["Aggregate"]: {
+    ["AboutMe"]: {
+	__typename: "AboutMe",
+	/** System stage field */
+	stage: GraphQLTypes["Stage"],
+	/** Get the document in other stages */
+	documentInStages: Array<GraphQLTypes["AboutMe"]>,
+	/** The time the document was published. Null on documents in draft stage. */
+	publishedAt?: GraphQLTypes["DateTime"] | undefined,
+	/** The time the document was updated */
+	updatedAt: GraphQLTypes["DateTime"],
+	/** The time the document was created */
+	createdAt: GraphQLTypes["DateTime"],
+	/** The unique identifier */
+	id: string,
+	contactEmail: string,
+	description: string,
+	company?: GraphQLTypes["Company"] | undefined,
+	links: Array<GraphQLTypes["AboutMelinksUnion"]>,
+	/** User that last published this document */
+	publishedBy?: GraphQLTypes["User"] | undefined,
+	/** User that last updated this document */
+	updatedBy?: GraphQLTypes["User"] | undefined,
+	/** User that created this document */
+	createdBy?: GraphQLTypes["User"] | undefined,
+	photo: GraphQLTypes["Asset"],
+	scheduledIn: Array<GraphQLTypes["ScheduledOperation"]>,
+	/** List of AboutMe versions */
+	history: Array<GraphQLTypes["Version"]>
+};
+	["AboutMeConnectInput"]: {
+		/** Document to connect */
+	where: GraphQLTypes["AboutMeWhereUniqueInput"],
+	/** Allow to specify document position in list of connected documents, will default to appending at end of list */
+	position?: GraphQLTypes["ConnectPositionInput"] | undefined
+};
+	/** A connection to a list of items. */
+["AboutMeConnection"]: {
+	__typename: "AboutMeConnection",
+	/** Information to aid in pagination. */
+	pageInfo: GraphQLTypes["PageInfo"],
+	/** A list of edges. */
+	edges: Array<GraphQLTypes["AboutMeEdge"]>,
+	aggregate: GraphQLTypes["Aggregate"]
+};
+	["AboutMeCreateInput"]: {
+		updatedAt?: GraphQLTypes["DateTime"] | undefined,
+	createdAt?: GraphQLTypes["DateTime"] | undefined,
+	contactEmail: string,
+	description: string,
+	company?: GraphQLTypes["CompanyCreateOneInlineInput"] | undefined,
+	links?: GraphQLTypes["AboutMelinksUnionCreateManyInlineInput"] | undefined,
+	photo: GraphQLTypes["AssetCreateOneInlineInput"]
+};
+	["AboutMeCreateManyInlineInput"]: {
+		/** Create and connect multiple existing AboutMe documents */
+	create?: Array<GraphQLTypes["AboutMeCreateInput"]> | undefined,
+	/** Connect multiple existing AboutMe documents */
+	connect?: Array<GraphQLTypes["AboutMeWhereUniqueInput"]> | undefined
+};
+	["AboutMeCreateOneInlineInput"]: {
+		/** Create and connect one AboutMe document */
+	create?: GraphQLTypes["AboutMeCreateInput"] | undefined,
+	/** Connect one existing AboutMe document */
+	connect?: GraphQLTypes["AboutMeWhereUniqueInput"] | undefined
+};
+	/** An edge in a connection. */
+["AboutMeEdge"]: {
+	__typename: "AboutMeEdge",
+	/** The item at the end of the edge. */
+	node: GraphQLTypes["AboutMe"],
+	/** A cursor for use in pagination. */
+	cursor: string
+};
+	/** Identifies documents */
+["AboutMeManyWhereInput"]: {
+		/** Contains search across all appropriate fields. */
+	_search?: string | undefined,
+	/** Logical AND on all given filters. */
+	AND?: Array<GraphQLTypes["AboutMeWhereInput"]> | undefined,
+	/** Logical OR on all given filters. */
+	OR?: Array<GraphQLTypes["AboutMeWhereInput"]> | undefined,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<GraphQLTypes["AboutMeWhereInput"]> | undefined,
+	publishedAt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values that are not equal to given value. */
+	publishedAt_not?: GraphQLTypes["DateTime"] | undefined,
+	/** All values that are contained in given list. */
+	publishedAt_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	publishedAt_not_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
+	/** All values less than the given value. */
+	publishedAt_lt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values less than or equal the given value. */
+	publishedAt_lte?: GraphQLTypes["DateTime"] | undefined,
+	/** All values greater than the given value. */
+	publishedAt_gt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values greater than or equal the given value. */
+	publishedAt_gte?: GraphQLTypes["DateTime"] | undefined,
+	updatedAt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values that are not equal to given value. */
+	updatedAt_not?: GraphQLTypes["DateTime"] | undefined,
+	/** All values that are contained in given list. */
+	updatedAt_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	updatedAt_not_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
+	/** All values less than the given value. */
+	updatedAt_lt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values less than or equal the given value. */
+	updatedAt_lte?: GraphQLTypes["DateTime"] | undefined,
+	/** All values greater than the given value. */
+	updatedAt_gt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values greater than or equal the given value. */
+	updatedAt_gte?: GraphQLTypes["DateTime"] | undefined,
+	createdAt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values that are not equal to given value. */
+	createdAt_not?: GraphQLTypes["DateTime"] | undefined,
+	/** All values that are contained in given list. */
+	createdAt_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	createdAt_not_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
+	/** All values less than the given value. */
+	createdAt_lt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values less than or equal the given value. */
+	createdAt_lte?: GraphQLTypes["DateTime"] | undefined,
+	/** All values greater than the given value. */
+	createdAt_gt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values greater than or equal the given value. */
+	createdAt_gte?: GraphQLTypes["DateTime"] | undefined,
+	id?: string | undefined,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	id_contains?: string | undefined,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined,
+	contactEmail?: string | undefined,
+	/** All values that are not equal to given value. */
+	contactEmail_not?: string | undefined,
+	/** All values that are contained in given list. */
+	contactEmail_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	contactEmail_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	contactEmail_contains?: string | undefined,
+	/** All values not containing the given string. */
+	contactEmail_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	contactEmail_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	contactEmail_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	contactEmail_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	contactEmail_not_ends_with?: string | undefined,
+	description?: string | undefined,
+	/** All values that are not equal to given value. */
+	description_not?: string | undefined,
+	/** All values that are contained in given list. */
+	description_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	description_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	description_contains?: string | undefined,
+	/** All values not containing the given string. */
+	description_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	description_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	description_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	description_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	description_not_ends_with?: string | undefined,
+	company?: GraphQLTypes["CompanyWhereInput"] | undefined,
+	publishedBy?: GraphQLTypes["UserWhereInput"] | undefined,
+	updatedBy?: GraphQLTypes["UserWhereInput"] | undefined,
+	createdBy?: GraphQLTypes["UserWhereInput"] | undefined,
+	photo?: GraphQLTypes["AssetWhereInput"] | undefined,
+	scheduledIn_every?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined,
+	scheduledIn_some?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined,
+	scheduledIn_none?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined
+};
+	["AboutMeOrderByInput"]: AboutMeOrderByInput;
+	["AboutMeUpdateInput"]: {
+		contactEmail?: string | undefined,
+	description?: string | undefined,
+	company?: GraphQLTypes["CompanyUpdateOneInlineInput"] | undefined,
+	links?: GraphQLTypes["AboutMelinksUnionUpdateManyInlineInput"] | undefined,
+	photo?: GraphQLTypes["AssetUpdateOneInlineInput"] | undefined
+};
+	["AboutMeUpdateManyInlineInput"]: {
+		/** Create and connect multiple AboutMe documents */
+	create?: Array<GraphQLTypes["AboutMeCreateInput"]> | undefined,
+	/** Connect multiple existing AboutMe documents */
+	connect?: Array<GraphQLTypes["AboutMeConnectInput"]> | undefined,
+	/** Override currently-connected documents with multiple existing AboutMe documents */
+	set?: Array<GraphQLTypes["AboutMeWhereUniqueInput"]> | undefined,
+	/** Update multiple AboutMe documents */
+	update?: Array<GraphQLTypes["AboutMeUpdateWithNestedWhereUniqueInput"]> | undefined,
+	/** Upsert multiple AboutMe documents */
+	upsert?: Array<GraphQLTypes["AboutMeUpsertWithNestedWhereUniqueInput"]> | undefined,
+	/** Disconnect multiple AboutMe documents */
+	disconnect?: Array<GraphQLTypes["AboutMeWhereUniqueInput"]> | undefined,
+	/** Delete multiple AboutMe documents */
+	delete?: Array<GraphQLTypes["AboutMeWhereUniqueInput"]> | undefined
+};
+	["AboutMeUpdateManyInput"]: {
+		contactEmail?: string | undefined,
+	description?: string | undefined
+};
+	["AboutMeUpdateManyWithNestedWhereInput"]: {
+		/** Document search */
+	where: GraphQLTypes["AboutMeWhereInput"],
+	/** Update many input */
+	data: GraphQLTypes["AboutMeUpdateManyInput"]
+};
+	["AboutMeUpdateOneInlineInput"]: {
+		/** Create and connect one AboutMe document */
+	create?: GraphQLTypes["AboutMeCreateInput"] | undefined,
+	/** Update single AboutMe document */
+	update?: GraphQLTypes["AboutMeUpdateWithNestedWhereUniqueInput"] | undefined,
+	/** Upsert single AboutMe document */
+	upsert?: GraphQLTypes["AboutMeUpsertWithNestedWhereUniqueInput"] | undefined,
+	/** Connect existing AboutMe document */
+	connect?: GraphQLTypes["AboutMeWhereUniqueInput"] | undefined,
+	/** Disconnect currently connected AboutMe document */
+	disconnect?: boolean | undefined,
+	/** Delete currently connected AboutMe document */
+	delete?: boolean | undefined
+};
+	["AboutMeUpdateWithNestedWhereUniqueInput"]: {
+		/** Unique document search */
+	where: GraphQLTypes["AboutMeWhereUniqueInput"],
+	/** Document to update */
+	data: GraphQLTypes["AboutMeUpdateInput"]
+};
+	["AboutMeUpsertInput"]: {
+		/** Create document if it didn't exist */
+	create: GraphQLTypes["AboutMeCreateInput"],
+	/** Update document if it exists */
+	update: GraphQLTypes["AboutMeUpdateInput"]
+};
+	["AboutMeUpsertWithNestedWhereUniqueInput"]: {
+		/** Unique document search */
+	where: GraphQLTypes["AboutMeWhereUniqueInput"],
+	/** Upsert data */
+	data: GraphQLTypes["AboutMeUpsertInput"]
+};
+	/** Identifies documents */
+["AboutMeWhereInput"]: {
+		/** Contains search across all appropriate fields. */
+	_search?: string | undefined,
+	/** Logical AND on all given filters. */
+	AND?: Array<GraphQLTypes["AboutMeWhereInput"]> | undefined,
+	/** Logical OR on all given filters. */
+	OR?: Array<GraphQLTypes["AboutMeWhereInput"]> | undefined,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<GraphQLTypes["AboutMeWhereInput"]> | undefined,
+	publishedAt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values that are not equal to given value. */
+	publishedAt_not?: GraphQLTypes["DateTime"] | undefined,
+	/** All values that are contained in given list. */
+	publishedAt_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	publishedAt_not_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
+	/** All values less than the given value. */
+	publishedAt_lt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values less than or equal the given value. */
+	publishedAt_lte?: GraphQLTypes["DateTime"] | undefined,
+	/** All values greater than the given value. */
+	publishedAt_gt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values greater than or equal the given value. */
+	publishedAt_gte?: GraphQLTypes["DateTime"] | undefined,
+	updatedAt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values that are not equal to given value. */
+	updatedAt_not?: GraphQLTypes["DateTime"] | undefined,
+	/** All values that are contained in given list. */
+	updatedAt_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	updatedAt_not_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
+	/** All values less than the given value. */
+	updatedAt_lt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values less than or equal the given value. */
+	updatedAt_lte?: GraphQLTypes["DateTime"] | undefined,
+	/** All values greater than the given value. */
+	updatedAt_gt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values greater than or equal the given value. */
+	updatedAt_gte?: GraphQLTypes["DateTime"] | undefined,
+	createdAt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values that are not equal to given value. */
+	createdAt_not?: GraphQLTypes["DateTime"] | undefined,
+	/** All values that are contained in given list. */
+	createdAt_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	createdAt_not_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
+	/** All values less than the given value. */
+	createdAt_lt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values less than or equal the given value. */
+	createdAt_lte?: GraphQLTypes["DateTime"] | undefined,
+	/** All values greater than the given value. */
+	createdAt_gt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values greater than or equal the given value. */
+	createdAt_gte?: GraphQLTypes["DateTime"] | undefined,
+	id?: string | undefined,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	id_contains?: string | undefined,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined,
+	contactEmail?: string | undefined,
+	/** All values that are not equal to given value. */
+	contactEmail_not?: string | undefined,
+	/** All values that are contained in given list. */
+	contactEmail_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	contactEmail_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	contactEmail_contains?: string | undefined,
+	/** All values not containing the given string. */
+	contactEmail_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	contactEmail_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	contactEmail_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	contactEmail_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	contactEmail_not_ends_with?: string | undefined,
+	description?: string | undefined,
+	/** All values that are not equal to given value. */
+	description_not?: string | undefined,
+	/** All values that are contained in given list. */
+	description_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	description_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	description_contains?: string | undefined,
+	/** All values not containing the given string. */
+	description_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	description_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	description_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	description_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	description_not_ends_with?: string | undefined,
+	company?: GraphQLTypes["CompanyWhereInput"] | undefined,
+	publishedBy?: GraphQLTypes["UserWhereInput"] | undefined,
+	updatedBy?: GraphQLTypes["UserWhereInput"] | undefined,
+	createdBy?: GraphQLTypes["UserWhereInput"] | undefined,
+	photo?: GraphQLTypes["AssetWhereInput"] | undefined,
+	scheduledIn_every?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined,
+	scheduledIn_some?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined,
+	scheduledIn_none?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined
+};
+	/** References AboutMe record uniquely */
+["AboutMeWhereUniqueInput"]: {
+		id?: string | undefined
+};
+	["AboutMelinksUnion"]:{
+        	__typename:"Link"
+        	['...on Link']: '__union' & GraphQLTypes["Link"];
+};
+	["AboutMelinksUnionConnectInput"]: {
+		Link?: GraphQLTypes["LinkConnectInput"] | undefined
+};
+	["AboutMelinksUnionCreateInput"]: {
+		Link?: GraphQLTypes["LinkCreateInput"] | undefined
+};
+	["AboutMelinksUnionCreateManyInlineInput"]: {
+		/** Create and connect multiple existing AboutMelinksUnion documents */
+	create?: Array<GraphQLTypes["AboutMelinksUnionCreateInput"]> | undefined
+};
+	["AboutMelinksUnionCreateOneInlineInput"]: {
+		/** Create and connect one AboutMelinksUnion document */
+	create?: GraphQLTypes["AboutMelinksUnionCreateInput"] | undefined
+};
+	["AboutMelinksUnionCreateWithPositionInput"]: {
+		Link?: GraphQLTypes["LinkCreateWithPositionInput"] | undefined
+};
+	["AboutMelinksUnionUpdateInput"]: {
+		Link?: GraphQLTypes["LinkUpdateInput"] | undefined
+};
+	["AboutMelinksUnionUpdateManyInlineInput"]: {
+		/** Create and connect multiple AboutMelinksUnion component instances */
+	create?: Array<GraphQLTypes["AboutMelinksUnionCreateWithPositionInput"]> | undefined,
+	/** Update multiple AboutMelinksUnion component instances */
+	update?: Array<GraphQLTypes["AboutMelinksUnionUpdateWithNestedWhereUniqueAndPositionInput"]> | undefined,
+	/** Upsert multiple AboutMelinksUnion component instances */
+	upsert?: Array<GraphQLTypes["AboutMelinksUnionUpsertWithNestedWhereUniqueAndPositionInput"]> | undefined,
+	/** Delete multiple AboutMelinksUnion documents */
+	delete?: Array<GraphQLTypes["AboutMelinksUnionWhereUniqueInput"]> | undefined
+};
+	["AboutMelinksUnionUpdateManyWithNestedWhereInput"]: {
+		Link?: GraphQLTypes["LinkUpdateManyWithNestedWhereInput"] | undefined
+};
+	["AboutMelinksUnionUpdateOneInlineInput"]: {
+		/** Create and connect one AboutMelinksUnion document */
+	create?: GraphQLTypes["AboutMelinksUnionCreateInput"] | undefined,
+	/** Update single AboutMelinksUnion document */
+	update?: GraphQLTypes["AboutMelinksUnionUpdateWithNestedWhereUniqueInput"] | undefined,
+	/** Upsert single AboutMelinksUnion document */
+	upsert?: GraphQLTypes["AboutMelinksUnionUpsertWithNestedWhereUniqueInput"] | undefined,
+	/** Delete currently connected AboutMelinksUnion document */
+	delete?: boolean | undefined
+};
+	["AboutMelinksUnionUpdateWithNestedWhereUniqueAndPositionInput"]: {
+		Link?: GraphQLTypes["LinkUpdateWithNestedWhereUniqueAndPositionInput"] | undefined
+};
+	["AboutMelinksUnionUpdateWithNestedWhereUniqueInput"]: {
+		Link?: GraphQLTypes["LinkUpdateWithNestedWhereUniqueInput"] | undefined
+};
+	["AboutMelinksUnionUpsertWithNestedWhereUniqueAndPositionInput"]: {
+		Link?: GraphQLTypes["LinkUpsertWithNestedWhereUniqueAndPositionInput"] | undefined
+};
+	["AboutMelinksUnionUpsertWithNestedWhereUniqueInput"]: {
+		Link?: GraphQLTypes["LinkUpsertWithNestedWhereUniqueInput"] | undefined
+};
+	["AboutMelinksUnionWhereInput"]: {
+		Link?: GraphQLTypes["LinkWhereInput"] | undefined
+};
+	["AboutMelinksUnionWhereUniqueInput"]: {
+		Link?: GraphQLTypes["LinkWhereUniqueInput"] | undefined
+};
+	["Aggregate"]: {
 	__typename: "Aggregate",
 	count: number
 };
@@ -13158,9 +16565,8 @@ export type GraphQLTypes = {
 	/** User that created this document */
 	createdBy?: GraphQLTypes["User"] | undefined,
 	imageProject: Array<GraphQLTypes["Project"]>,
-	imageSocial: Array<GraphQLTypes["Social"]>,
-	imagePageMetadata: Array<GraphQLTypes["PageMetadata"]>,
-	iconSkill: Array<GraphQLTypes["Skill"]>,
+	og_imageSeo: Array<GraphQLTypes["Seo"]>,
+	photoAboutMe: Array<GraphQLTypes["AboutMe"]>,
 	scheduledIn: Array<GraphQLTypes["ScheduledOperation"]>,
 	/** List of Asset versions */
 	history: Array<GraphQLTypes["Version"]>,
@@ -13192,9 +16598,10 @@ export type GraphQLTypes = {
 	updatedAt?: GraphQLTypes["DateTime"] | undefined,
 	createdAt?: GraphQLTypes["DateTime"] | undefined,
 	imageProject?: GraphQLTypes["ProjectCreateManyInlineInput"] | undefined,
-	imageSocial?: GraphQLTypes["SocialCreateManyInlineInput"] | undefined,
-	imagePageMetadata?: GraphQLTypes["PageMetadataCreateManyInlineInput"] | undefined,
+	og_imageSeo?: GraphQLTypes["SeoCreateManyInlineInput"] | undefined,
+	iconLink?: GraphQLTypes["LinkCreateManyInlineInput"] | undefined,
 	iconSkill?: GraphQLTypes["SkillCreateManyInlineInput"] | undefined,
+	photoAboutMe?: GraphQLTypes["AboutMeCreateManyInlineInput"] | undefined,
 	/** Inline mutations for managing document localizations excluding the default locale */
 	localizations?: GraphQLTypes["AssetCreateLocalizationsInput"] | undefined
 };
@@ -13317,15 +16724,12 @@ export type GraphQLTypes = {
 	imageProject_every?: GraphQLTypes["ProjectWhereInput"] | undefined,
 	imageProject_some?: GraphQLTypes["ProjectWhereInput"] | undefined,
 	imageProject_none?: GraphQLTypes["ProjectWhereInput"] | undefined,
-	imageSocial_every?: GraphQLTypes["SocialWhereInput"] | undefined,
-	imageSocial_some?: GraphQLTypes["SocialWhereInput"] | undefined,
-	imageSocial_none?: GraphQLTypes["SocialWhereInput"] | undefined,
-	imagePageMetadata_every?: GraphQLTypes["PageMetadataWhereInput"] | undefined,
-	imagePageMetadata_some?: GraphQLTypes["PageMetadataWhereInput"] | undefined,
-	imagePageMetadata_none?: GraphQLTypes["PageMetadataWhereInput"] | undefined,
-	iconSkill_every?: GraphQLTypes["SkillWhereInput"] | undefined,
-	iconSkill_some?: GraphQLTypes["SkillWhereInput"] | undefined,
-	iconSkill_none?: GraphQLTypes["SkillWhereInput"] | undefined,
+	og_imageSeo_every?: GraphQLTypes["SeoWhereInput"] | undefined,
+	og_imageSeo_some?: GraphQLTypes["SeoWhereInput"] | undefined,
+	og_imageSeo_none?: GraphQLTypes["SeoWhereInput"] | undefined,
+	photoAboutMe_every?: GraphQLTypes["AboutMeWhereInput"] | undefined,
+	photoAboutMe_some?: GraphQLTypes["AboutMeWhereInput"] | undefined,
+	photoAboutMe_none?: GraphQLTypes["AboutMeWhereInput"] | undefined,
 	scheduledIn_every?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined,
 	scheduledIn_some?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined,
 	scheduledIn_none?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined
@@ -13346,9 +16750,10 @@ export type GraphQLTypes = {
 	fileName?: string | undefined,
 	handle?: string | undefined,
 	imageProject?: GraphQLTypes["ProjectUpdateManyInlineInput"] | undefined,
-	imageSocial?: GraphQLTypes["SocialUpdateManyInlineInput"] | undefined,
-	imagePageMetadata?: GraphQLTypes["PageMetadataUpdateManyInlineInput"] | undefined,
+	og_imageSeo?: GraphQLTypes["SeoUpdateManyInlineInput"] | undefined,
+	iconLink?: GraphQLTypes["LinkUpdateManyInlineInput"] | undefined,
 	iconSkill?: GraphQLTypes["SkillUpdateManyInlineInput"] | undefined,
+	photoAboutMe?: GraphQLTypes["AboutMeUpdateManyInlineInput"] | undefined,
 	/** Manage document localizations */
 	localizations?: GraphQLTypes["AssetUpdateLocalizationsInput"] | undefined
 };
@@ -13638,15 +17043,12 @@ export type GraphQLTypes = {
 	imageProject_every?: GraphQLTypes["ProjectWhereInput"] | undefined,
 	imageProject_some?: GraphQLTypes["ProjectWhereInput"] | undefined,
 	imageProject_none?: GraphQLTypes["ProjectWhereInput"] | undefined,
-	imageSocial_every?: GraphQLTypes["SocialWhereInput"] | undefined,
-	imageSocial_some?: GraphQLTypes["SocialWhereInput"] | undefined,
-	imageSocial_none?: GraphQLTypes["SocialWhereInput"] | undefined,
-	imagePageMetadata_every?: GraphQLTypes["PageMetadataWhereInput"] | undefined,
-	imagePageMetadata_some?: GraphQLTypes["PageMetadataWhereInput"] | undefined,
-	imagePageMetadata_none?: GraphQLTypes["PageMetadataWhereInput"] | undefined,
-	iconSkill_every?: GraphQLTypes["SkillWhereInput"] | undefined,
-	iconSkill_some?: GraphQLTypes["SkillWhereInput"] | undefined,
-	iconSkill_none?: GraphQLTypes["SkillWhereInput"] | undefined,
+	og_imageSeo_every?: GraphQLTypes["SeoWhereInput"] | undefined,
+	og_imageSeo_some?: GraphQLTypes["SeoWhereInput"] | undefined,
+	og_imageSeo_none?: GraphQLTypes["SeoWhereInput"] | undefined,
+	photoAboutMe_every?: GraphQLTypes["AboutMeWhereInput"] | undefined,
+	photoAboutMe_some?: GraphQLTypes["AboutMeWhereInput"] | undefined,
+	photoAboutMe_none?: GraphQLTypes["AboutMeWhereInput"] | undefined,
 	scheduledIn_every?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined,
 	scheduledIn_some?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined,
 	scheduledIn_none?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined
@@ -13671,6 +17073,335 @@ export type GraphQLTypes = {
 ["ColorInput"]: {
 		hex?: GraphQLTypes["Hex"] | undefined,
 	rgba?: GraphQLTypes["RGBAInput"] | undefined
+};
+	["Company"]: {
+	__typename: "Company",
+	/** System stage field */
+	stage: GraphQLTypes["Stage"],
+	/** The unique identifier */
+	id: string,
+	companyName: string,
+	companyWebsite: string
+};
+	["CompanyConnectInput"]: {
+		/** Document to connect */
+	where: GraphQLTypes["CompanyWhereUniqueInput"],
+	/** Allow to specify document position in list of connected documents, will default to appending at end of list */
+	position?: GraphQLTypes["ConnectPositionInput"] | undefined
+};
+	/** A connection to a list of items. */
+["CompanyConnection"]: {
+	__typename: "CompanyConnection",
+	/** Information to aid in pagination. */
+	pageInfo: GraphQLTypes["PageInfo"],
+	/** A list of edges. */
+	edges: Array<GraphQLTypes["CompanyEdge"]>,
+	aggregate: GraphQLTypes["Aggregate"]
+};
+	["CompanyCreateInput"]: {
+		companyName: string,
+	companyWebsite: string
+};
+	["CompanyCreateManyInlineInput"]: {
+		/** Create and connect multiple existing Company documents */
+	create?: Array<GraphQLTypes["CompanyCreateInput"]> | undefined
+};
+	["CompanyCreateOneInlineInput"]: {
+		/** Create and connect one Company document */
+	create?: GraphQLTypes["CompanyCreateInput"] | undefined
+};
+	["CompanyCreateWithPositionInput"]: {
+		/** Position in the list of existing component instances, will default to appending at the end of list */
+	position?: GraphQLTypes["ConnectPositionInput"] | undefined,
+	/** Document to create */
+	data: GraphQLTypes["CompanyCreateInput"]
+};
+	/** An edge in a connection. */
+["CompanyEdge"]: {
+	__typename: "CompanyEdge",
+	/** The item at the end of the edge. */
+	node: GraphQLTypes["Company"],
+	/** A cursor for use in pagination. */
+	cursor: string
+};
+	/** Identifies documents */
+["CompanyManyWhereInput"]: {
+		/** Contains search across all appropriate fields. */
+	_search?: string | undefined,
+	/** Logical AND on all given filters. */
+	AND?: Array<GraphQLTypes["CompanyWhereInput"]> | undefined,
+	/** Logical OR on all given filters. */
+	OR?: Array<GraphQLTypes["CompanyWhereInput"]> | undefined,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<GraphQLTypes["CompanyWhereInput"]> | undefined,
+	id?: string | undefined,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	id_contains?: string | undefined,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined,
+	companyName?: string | undefined,
+	/** All values that are not equal to given value. */
+	companyName_not?: string | undefined,
+	/** All values that are contained in given list. */
+	companyName_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	companyName_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	companyName_contains?: string | undefined,
+	/** All values not containing the given string. */
+	companyName_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	companyName_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	companyName_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	companyName_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	companyName_not_ends_with?: string | undefined,
+	companyWebsite?: string | undefined,
+	/** All values that are not equal to given value. */
+	companyWebsite_not?: string | undefined,
+	/** All values that are contained in given list. */
+	companyWebsite_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	companyWebsite_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	companyWebsite_contains?: string | undefined,
+	/** All values not containing the given string. */
+	companyWebsite_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	companyWebsite_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	companyWebsite_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	companyWebsite_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	companyWebsite_not_ends_with?: string | undefined
+};
+	["CompanyOrderByInput"]: CompanyOrderByInput;
+	["CompanyParent"]:{
+        	__typename:"AboutMe"
+        	['...on AboutMe']: '__union' & GraphQLTypes["AboutMe"];
+};
+	["CompanyParentConnectInput"]: {
+		AboutMe?: GraphQLTypes["AboutMeConnectInput"] | undefined
+};
+	["CompanyParentCreateInput"]: {
+		AboutMe?: GraphQLTypes["AboutMeCreateInput"] | undefined
+};
+	["CompanyParentCreateManyInlineInput"]: {
+		/** Create and connect multiple existing CompanyParent documents */
+	create?: Array<GraphQLTypes["CompanyParentCreateInput"]> | undefined,
+	/** Connect multiple existing CompanyParent documents */
+	connect?: Array<GraphQLTypes["CompanyParentWhereUniqueInput"]> | undefined
+};
+	["CompanyParentCreateOneInlineInput"]: {
+		/** Create and connect one CompanyParent document */
+	create?: GraphQLTypes["CompanyParentCreateInput"] | undefined,
+	/** Connect one existing CompanyParent document */
+	connect?: GraphQLTypes["CompanyParentWhereUniqueInput"] | undefined
+};
+	["CompanyParentUpdateInput"]: {
+		AboutMe?: GraphQLTypes["AboutMeUpdateInput"] | undefined
+};
+	["CompanyParentUpdateManyInlineInput"]: {
+		/** Create and connect multiple CompanyParent documents */
+	create?: Array<GraphQLTypes["CompanyParentCreateInput"]> | undefined,
+	/** Connect multiple existing CompanyParent documents */
+	connect?: Array<GraphQLTypes["CompanyParentConnectInput"]> | undefined,
+	/** Override currently-connected documents with multiple existing CompanyParent documents */
+	set?: Array<GraphQLTypes["CompanyParentWhereUniqueInput"]> | undefined,
+	/** Update multiple CompanyParent documents */
+	update?: Array<GraphQLTypes["CompanyParentUpdateWithNestedWhereUniqueInput"]> | undefined,
+	/** Upsert multiple CompanyParent documents */
+	upsert?: Array<GraphQLTypes["CompanyParentUpsertWithNestedWhereUniqueInput"]> | undefined,
+	/** Disconnect multiple CompanyParent documents */
+	disconnect?: Array<GraphQLTypes["CompanyParentWhereUniqueInput"]> | undefined,
+	/** Delete multiple CompanyParent documents */
+	delete?: Array<GraphQLTypes["CompanyParentWhereUniqueInput"]> | undefined
+};
+	["CompanyParentUpdateManyWithNestedWhereInput"]: {
+		AboutMe?: GraphQLTypes["AboutMeUpdateManyWithNestedWhereInput"] | undefined
+};
+	["CompanyParentUpdateOneInlineInput"]: {
+		/** Create and connect one CompanyParent document */
+	create?: GraphQLTypes["CompanyParentCreateInput"] | undefined,
+	/** Update single CompanyParent document */
+	update?: GraphQLTypes["CompanyParentUpdateWithNestedWhereUniqueInput"] | undefined,
+	/** Upsert single CompanyParent document */
+	upsert?: GraphQLTypes["CompanyParentUpsertWithNestedWhereUniqueInput"] | undefined,
+	/** Connect existing CompanyParent document */
+	connect?: GraphQLTypes["CompanyParentWhereUniqueInput"] | undefined,
+	/** Disconnect currently connected CompanyParent document */
+	disconnect?: boolean | undefined,
+	/** Delete currently connected CompanyParent document */
+	delete?: boolean | undefined
+};
+	["CompanyParentUpdateWithNestedWhereUniqueInput"]: {
+		AboutMe?: GraphQLTypes["AboutMeUpdateWithNestedWhereUniqueInput"] | undefined
+};
+	["CompanyParentUpsertWithNestedWhereUniqueInput"]: {
+		AboutMe?: GraphQLTypes["AboutMeUpsertWithNestedWhereUniqueInput"] | undefined
+};
+	["CompanyParentWhereInput"]: {
+		AboutMe?: GraphQLTypes["AboutMeWhereInput"] | undefined
+};
+	["CompanyParentWhereUniqueInput"]: {
+		AboutMe?: GraphQLTypes["AboutMeWhereUniqueInput"] | undefined
+};
+	["CompanyUpdateInput"]: {
+		companyName?: string | undefined,
+	companyWebsite?: string | undefined
+};
+	["CompanyUpdateManyInlineInput"]: {
+		/** Create and connect multiple Company component instances */
+	create?: Array<GraphQLTypes["CompanyCreateWithPositionInput"]> | undefined,
+	/** Update multiple Company component instances */
+	update?: Array<GraphQLTypes["CompanyUpdateWithNestedWhereUniqueAndPositionInput"]> | undefined,
+	/** Upsert multiple Company component instances */
+	upsert?: Array<GraphQLTypes["CompanyUpsertWithNestedWhereUniqueAndPositionInput"]> | undefined,
+	/** Delete multiple Company documents */
+	delete?: Array<GraphQLTypes["CompanyWhereUniqueInput"]> | undefined
+};
+	["CompanyUpdateManyInput"]: {
+		companyName?: string | undefined,
+	companyWebsite?: string | undefined
+};
+	["CompanyUpdateManyWithNestedWhereInput"]: {
+		/** Document search */
+	where: GraphQLTypes["CompanyWhereInput"],
+	/** Update many input */
+	data: GraphQLTypes["CompanyUpdateManyInput"]
+};
+	["CompanyUpdateOneInlineInput"]: {
+		/** Create and connect one Company document */
+	create?: GraphQLTypes["CompanyCreateInput"] | undefined,
+	/** Update single Company document */
+	update?: GraphQLTypes["CompanyUpdateWithNestedWhereUniqueInput"] | undefined,
+	/** Upsert single Company document */
+	upsert?: GraphQLTypes["CompanyUpsertWithNestedWhereUniqueInput"] | undefined,
+	/** Delete currently connected Company document */
+	delete?: boolean | undefined
+};
+	["CompanyUpdateWithNestedWhereUniqueAndPositionInput"]: {
+		/** Unique component instance search */
+	where: GraphQLTypes["CompanyWhereUniqueInput"],
+	/** Position in the list of existing component instances, will default to appending at the end of list */
+	position?: GraphQLTypes["ConnectPositionInput"] | undefined,
+	/** Document to update */
+	data?: GraphQLTypes["CompanyUpdateInput"] | undefined
+};
+	["CompanyUpdateWithNestedWhereUniqueInput"]: {
+		/** Unique document search */
+	where: GraphQLTypes["CompanyWhereUniqueInput"],
+	/** Document to update */
+	data: GraphQLTypes["CompanyUpdateInput"]
+};
+	["CompanyUpsertInput"]: {
+		/** Create document if it didn't exist */
+	create: GraphQLTypes["CompanyCreateInput"],
+	/** Update document if it exists */
+	update: GraphQLTypes["CompanyUpdateInput"]
+};
+	["CompanyUpsertWithNestedWhereUniqueAndPositionInput"]: {
+		/** Unique component instance search */
+	where: GraphQLTypes["CompanyWhereUniqueInput"],
+	/** Position in the list of existing component instances, will default to appending at the end of list */
+	position?: GraphQLTypes["ConnectPositionInput"] | undefined,
+	/** Document to upsert */
+	data?: GraphQLTypes["CompanyUpsertInput"] | undefined
+};
+	["CompanyUpsertWithNestedWhereUniqueInput"]: {
+		/** Unique document search */
+	where: GraphQLTypes["CompanyWhereUniqueInput"],
+	/** Upsert data */
+	data: GraphQLTypes["CompanyUpsertInput"]
+};
+	/** Identifies documents */
+["CompanyWhereInput"]: {
+		/** Contains search across all appropriate fields. */
+	_search?: string | undefined,
+	/** Logical AND on all given filters. */
+	AND?: Array<GraphQLTypes["CompanyWhereInput"]> | undefined,
+	/** Logical OR on all given filters. */
+	OR?: Array<GraphQLTypes["CompanyWhereInput"]> | undefined,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<GraphQLTypes["CompanyWhereInput"]> | undefined,
+	id?: string | undefined,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	id_contains?: string | undefined,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined,
+	companyName?: string | undefined,
+	/** All values that are not equal to given value. */
+	companyName_not?: string | undefined,
+	/** All values that are contained in given list. */
+	companyName_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	companyName_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	companyName_contains?: string | undefined,
+	/** All values not containing the given string. */
+	companyName_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	companyName_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	companyName_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	companyName_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	companyName_not_ends_with?: string | undefined,
+	companyWebsite?: string | undefined,
+	/** All values that are not equal to given value. */
+	companyWebsite_not?: string | undefined,
+	/** All values that are contained in given list. */
+	companyWebsite_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	companyWebsite_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	companyWebsite_contains?: string | undefined,
+	/** All values not containing the given string. */
+	companyWebsite_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	companyWebsite_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	companyWebsite_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	companyWebsite_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	companyWebsite_not_ends_with?: string | undefined
+};
+	/** References Company record uniquely */
+["CompanyWhereUniqueInput"]: {
+		id?: string | undefined
 };
 	["ConnectPositionInput"]: {
 		/** Connect document after specified document */
@@ -13744,6 +17475,340 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 };
 	/** Raw JSON value */
 ["Json"]: "scalar" & { name: "Json" };
+	["Link"]: {
+	__typename: "Link",
+	/** System stage field */
+	stage: GraphQLTypes["Stage"],
+	/** The unique identifier */
+	id: string,
+	name: string,
+	url: string,
+	icon?: GraphQLTypes["Asset"] | undefined
+};
+	["LinkConnectInput"]: {
+		/** Document to connect */
+	where: GraphQLTypes["LinkWhereUniqueInput"],
+	/** Allow to specify document position in list of connected documents, will default to appending at end of list */
+	position?: GraphQLTypes["ConnectPositionInput"] | undefined
+};
+	/** A connection to a list of items. */
+["LinkConnection"]: {
+	__typename: "LinkConnection",
+	/** Information to aid in pagination. */
+	pageInfo: GraphQLTypes["PageInfo"],
+	/** A list of edges. */
+	edges: Array<GraphQLTypes["LinkEdge"]>,
+	aggregate: GraphQLTypes["Aggregate"]
+};
+	["LinkCreateInput"]: {
+		name: string,
+	url: string,
+	icon?: GraphQLTypes["AssetCreateOneInlineInput"] | undefined
+};
+	["LinkCreateManyInlineInput"]: {
+		/** Create and connect multiple existing Link documents */
+	create?: Array<GraphQLTypes["LinkCreateInput"]> | undefined
+};
+	["LinkCreateOneInlineInput"]: {
+		/** Create and connect one Link document */
+	create?: GraphQLTypes["LinkCreateInput"] | undefined
+};
+	["LinkCreateWithPositionInput"]: {
+		/** Position in the list of existing component instances, will default to appending at the end of list */
+	position?: GraphQLTypes["ConnectPositionInput"] | undefined,
+	/** Document to create */
+	data: GraphQLTypes["LinkCreateInput"]
+};
+	/** An edge in a connection. */
+["LinkEdge"]: {
+	__typename: "LinkEdge",
+	/** The item at the end of the edge. */
+	node: GraphQLTypes["Link"],
+	/** A cursor for use in pagination. */
+	cursor: string
+};
+	/** Identifies documents */
+["LinkManyWhereInput"]: {
+		/** Contains search across all appropriate fields. */
+	_search?: string | undefined,
+	/** Logical AND on all given filters. */
+	AND?: Array<GraphQLTypes["LinkWhereInput"]> | undefined,
+	/** Logical OR on all given filters. */
+	OR?: Array<GraphQLTypes["LinkWhereInput"]> | undefined,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<GraphQLTypes["LinkWhereInput"]> | undefined,
+	id?: string | undefined,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	id_contains?: string | undefined,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined,
+	name?: string | undefined,
+	/** All values that are not equal to given value. */
+	name_not?: string | undefined,
+	/** All values that are contained in given list. */
+	name_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	name_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	name_contains?: string | undefined,
+	/** All values not containing the given string. */
+	name_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	name_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	name_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	name_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	name_not_ends_with?: string | undefined,
+	url?: string | undefined,
+	/** All values that are not equal to given value. */
+	url_not?: string | undefined,
+	/** All values that are contained in given list. */
+	url_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	url_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	url_contains?: string | undefined,
+	/** All values not containing the given string. */
+	url_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	url_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	url_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	url_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	url_not_ends_with?: string | undefined,
+	icon?: GraphQLTypes["AssetWhereInput"] | undefined
+};
+	["LinkOrderByInput"]: LinkOrderByInput;
+	["LinkParent"]:{
+        	__typename:"AboutMe"
+        	['...on AboutMe']: '__union' & GraphQLTypes["AboutMe"];
+};
+	["LinkParentConnectInput"]: {
+		AboutMe?: GraphQLTypes["AboutMeConnectInput"] | undefined
+};
+	["LinkParentCreateInput"]: {
+		AboutMe?: GraphQLTypes["AboutMeCreateInput"] | undefined
+};
+	["LinkParentCreateManyInlineInput"]: {
+		/** Create and connect multiple existing LinkParent documents */
+	create?: Array<GraphQLTypes["LinkParentCreateInput"]> | undefined,
+	/** Connect multiple existing LinkParent documents */
+	connect?: Array<GraphQLTypes["LinkParentWhereUniqueInput"]> | undefined
+};
+	["LinkParentCreateOneInlineInput"]: {
+		/** Create and connect one LinkParent document */
+	create?: GraphQLTypes["LinkParentCreateInput"] | undefined,
+	/** Connect one existing LinkParent document */
+	connect?: GraphQLTypes["LinkParentWhereUniqueInput"] | undefined
+};
+	["LinkParentUpdateInput"]: {
+		AboutMe?: GraphQLTypes["AboutMeUpdateInput"] | undefined
+};
+	["LinkParentUpdateManyInlineInput"]: {
+		/** Create and connect multiple LinkParent documents */
+	create?: Array<GraphQLTypes["LinkParentCreateInput"]> | undefined,
+	/** Connect multiple existing LinkParent documents */
+	connect?: Array<GraphQLTypes["LinkParentConnectInput"]> | undefined,
+	/** Override currently-connected documents with multiple existing LinkParent documents */
+	set?: Array<GraphQLTypes["LinkParentWhereUniqueInput"]> | undefined,
+	/** Update multiple LinkParent documents */
+	update?: Array<GraphQLTypes["LinkParentUpdateWithNestedWhereUniqueInput"]> | undefined,
+	/** Upsert multiple LinkParent documents */
+	upsert?: Array<GraphQLTypes["LinkParentUpsertWithNestedWhereUniqueInput"]> | undefined,
+	/** Disconnect multiple LinkParent documents */
+	disconnect?: Array<GraphQLTypes["LinkParentWhereUniqueInput"]> | undefined,
+	/** Delete multiple LinkParent documents */
+	delete?: Array<GraphQLTypes["LinkParentWhereUniqueInput"]> | undefined
+};
+	["LinkParentUpdateManyWithNestedWhereInput"]: {
+		AboutMe?: GraphQLTypes["AboutMeUpdateManyWithNestedWhereInput"] | undefined
+};
+	["LinkParentUpdateOneInlineInput"]: {
+		/** Create and connect one LinkParent document */
+	create?: GraphQLTypes["LinkParentCreateInput"] | undefined,
+	/** Update single LinkParent document */
+	update?: GraphQLTypes["LinkParentUpdateWithNestedWhereUniqueInput"] | undefined,
+	/** Upsert single LinkParent document */
+	upsert?: GraphQLTypes["LinkParentUpsertWithNestedWhereUniqueInput"] | undefined,
+	/** Connect existing LinkParent document */
+	connect?: GraphQLTypes["LinkParentWhereUniqueInput"] | undefined,
+	/** Disconnect currently connected LinkParent document */
+	disconnect?: boolean | undefined,
+	/** Delete currently connected LinkParent document */
+	delete?: boolean | undefined
+};
+	["LinkParentUpdateWithNestedWhereUniqueInput"]: {
+		AboutMe?: GraphQLTypes["AboutMeUpdateWithNestedWhereUniqueInput"] | undefined
+};
+	["LinkParentUpsertWithNestedWhereUniqueInput"]: {
+		AboutMe?: GraphQLTypes["AboutMeUpsertWithNestedWhereUniqueInput"] | undefined
+};
+	["LinkParentWhereInput"]: {
+		AboutMe?: GraphQLTypes["AboutMeWhereInput"] | undefined
+};
+	["LinkParentWhereUniqueInput"]: {
+		AboutMe?: GraphQLTypes["AboutMeWhereUniqueInput"] | undefined
+};
+	["LinkUpdateInput"]: {
+		name?: string | undefined,
+	url?: string | undefined,
+	icon?: GraphQLTypes["AssetUpdateOneInlineInput"] | undefined
+};
+	["LinkUpdateManyInlineInput"]: {
+		/** Create and connect multiple Link component instances */
+	create?: Array<GraphQLTypes["LinkCreateWithPositionInput"]> | undefined,
+	/** Update multiple Link component instances */
+	update?: Array<GraphQLTypes["LinkUpdateWithNestedWhereUniqueAndPositionInput"]> | undefined,
+	/** Upsert multiple Link component instances */
+	upsert?: Array<GraphQLTypes["LinkUpsertWithNestedWhereUniqueAndPositionInput"]> | undefined,
+	/** Delete multiple Link documents */
+	delete?: Array<GraphQLTypes["LinkWhereUniqueInput"]> | undefined
+};
+	["LinkUpdateManyInput"]: {
+		url?: string | undefined
+};
+	["LinkUpdateManyWithNestedWhereInput"]: {
+		/** Document search */
+	where: GraphQLTypes["LinkWhereInput"],
+	/** Update many input */
+	data: GraphQLTypes["LinkUpdateManyInput"]
+};
+	["LinkUpdateOneInlineInput"]: {
+		/** Create and connect one Link document */
+	create?: GraphQLTypes["LinkCreateInput"] | undefined,
+	/** Update single Link document */
+	update?: GraphQLTypes["LinkUpdateWithNestedWhereUniqueInput"] | undefined,
+	/** Upsert single Link document */
+	upsert?: GraphQLTypes["LinkUpsertWithNestedWhereUniqueInput"] | undefined,
+	/** Delete currently connected Link document */
+	delete?: boolean | undefined
+};
+	["LinkUpdateWithNestedWhereUniqueAndPositionInput"]: {
+		/** Unique component instance search */
+	where: GraphQLTypes["LinkWhereUniqueInput"],
+	/** Position in the list of existing component instances, will default to appending at the end of list */
+	position?: GraphQLTypes["ConnectPositionInput"] | undefined,
+	/** Document to update */
+	data?: GraphQLTypes["LinkUpdateInput"] | undefined
+};
+	["LinkUpdateWithNestedWhereUniqueInput"]: {
+		/** Unique document search */
+	where: GraphQLTypes["LinkWhereUniqueInput"],
+	/** Document to update */
+	data: GraphQLTypes["LinkUpdateInput"]
+};
+	["LinkUpsertInput"]: {
+		/** Create document if it didn't exist */
+	create: GraphQLTypes["LinkCreateInput"],
+	/** Update document if it exists */
+	update: GraphQLTypes["LinkUpdateInput"]
+};
+	["LinkUpsertWithNestedWhereUniqueAndPositionInput"]: {
+		/** Unique component instance search */
+	where: GraphQLTypes["LinkWhereUniqueInput"],
+	/** Position in the list of existing component instances, will default to appending at the end of list */
+	position?: GraphQLTypes["ConnectPositionInput"] | undefined,
+	/** Document to upsert */
+	data?: GraphQLTypes["LinkUpsertInput"] | undefined
+};
+	["LinkUpsertWithNestedWhereUniqueInput"]: {
+		/** Unique document search */
+	where: GraphQLTypes["LinkWhereUniqueInput"],
+	/** Upsert data */
+	data: GraphQLTypes["LinkUpsertInput"]
+};
+	/** Identifies documents */
+["LinkWhereInput"]: {
+		/** Contains search across all appropriate fields. */
+	_search?: string | undefined,
+	/** Logical AND on all given filters. */
+	AND?: Array<GraphQLTypes["LinkWhereInput"]> | undefined,
+	/** Logical OR on all given filters. */
+	OR?: Array<GraphQLTypes["LinkWhereInput"]> | undefined,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<GraphQLTypes["LinkWhereInput"]> | undefined,
+	id?: string | undefined,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	id_contains?: string | undefined,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined,
+	name?: string | undefined,
+	/** All values that are not equal to given value. */
+	name_not?: string | undefined,
+	/** All values that are contained in given list. */
+	name_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	name_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	name_contains?: string | undefined,
+	/** All values not containing the given string. */
+	name_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	name_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	name_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	name_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	name_not_ends_with?: string | undefined,
+	url?: string | undefined,
+	/** All values that are not equal to given value. */
+	url_not?: string | undefined,
+	/** All values that are contained in given list. */
+	url_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	url_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	url_contains?: string | undefined,
+	/** All values not containing the given string. */
+	url_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	url_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	url_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	url_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	url_not_ends_with?: string | undefined,
+	icon?: GraphQLTypes["AssetWhereInput"] | undefined
+};
+	/** References Link record uniquely */
+["LinkWhereUniqueInput"]: {
+		id?: string | undefined,
+	name?: string | undefined
+};
 	/** Locale system enumeration */
 ["Locale"]: Locale;
 	/** Representing a geolocation point with latitude and longitude */
@@ -13834,117 +17899,117 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	schedulePublishProject?: GraphQLTypes["Project"] | undefined,
 	/** Unpublish one project from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
 	scheduleUnpublishProject?: GraphQLTypes["Project"] | undefined,
-	/** Create one social */
-	createSocial?: GraphQLTypes["Social"] | undefined,
-	/** Update one social */
-	updateSocial?: GraphQLTypes["Social"] | undefined,
-	/** Delete one social from _all_ existing stages. Returns deleted document. */
-	deleteSocial?: GraphQLTypes["Social"] | undefined,
-	/** Upsert one social */
-	upsertSocial?: GraphQLTypes["Social"] | undefined,
-	/** Publish one social */
-	publishSocial?: GraphQLTypes["Social"] | undefined,
-	/** Unpublish one social from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
-	unpublishSocial?: GraphQLTypes["Social"] | undefined,
-	/** Update many Social documents */
-	updateManySocialsConnection: GraphQLTypes["SocialConnection"],
-	/** Delete many Social documents, return deleted documents */
-	deleteManySocialsConnection: GraphQLTypes["SocialConnection"],
-	/** Publish many Social documents */
-	publishManySocialsConnection: GraphQLTypes["SocialConnection"],
-	/** Find many Social documents that match criteria in specified stage and unpublish from target stages */
-	unpublishManySocialsConnection: GraphQLTypes["SocialConnection"],
-	/** Update many socials */
-	updateManySocials: GraphQLTypes["BatchPayload"],
-	/** Delete many Social documents */
-	deleteManySocials: GraphQLTypes["BatchPayload"],
-	/** Publish many Social documents */
-	publishManySocials: GraphQLTypes["BatchPayload"],
-	/** Unpublish many Social documents */
-	unpublishManySocials: GraphQLTypes["BatchPayload"],
-	/** Schedule to publish one social */
-	schedulePublishSocial?: GraphQLTypes["Social"] | undefined,
-	/** Unpublish one social from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
-	scheduleUnpublishSocial?: GraphQLTypes["Social"] | undefined,
-	/** Create one pageMetadata */
-	createPageMetadata?: GraphQLTypes["PageMetadata"] | undefined,
-	/** Update one pageMetadata */
-	updatePageMetadata?: GraphQLTypes["PageMetadata"] | undefined,
-	/** Delete one pageMetadata from _all_ existing stages. Returns deleted document. */
-	deletePageMetadata?: GraphQLTypes["PageMetadata"] | undefined,
-	/** Upsert one pageMetadata */
-	upsertPageMetadata?: GraphQLTypes["PageMetadata"] | undefined,
-	/** Publish one pageMetadata */
-	publishPageMetadata?: GraphQLTypes["PageMetadata"] | undefined,
-	/** Unpublish one pageMetadata from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
-	unpublishPageMetadata?: GraphQLTypes["PageMetadata"] | undefined,
-	/** Update many PageMetadata documents */
-	updateManyPagesMetadataConnection: GraphQLTypes["PageMetadataConnection"],
-	/** Delete many PageMetadata documents, return deleted documents */
-	deleteManyPagesMetadataConnection: GraphQLTypes["PageMetadataConnection"],
-	/** Publish many PageMetadata documents */
-	publishManyPagesMetadataConnection: GraphQLTypes["PageMetadataConnection"],
-	/** Find many PageMetadata documents that match criteria in specified stage and unpublish from target stages */
-	unpublishManyPagesMetadataConnection: GraphQLTypes["PageMetadataConnection"],
-	/** Update many pagesMetadata */
-	updateManyPagesMetadata: GraphQLTypes["BatchPayload"],
-	/** Delete many PageMetadata documents */
-	deleteManyPagesMetadata: GraphQLTypes["BatchPayload"],
-	/** Publish many PageMetadata documents */
-	publishManyPagesMetadata: GraphQLTypes["BatchPayload"],
-	/** Unpublish many PageMetadata documents */
-	unpublishManyPagesMetadata: GraphQLTypes["BatchPayload"],
-	/** Schedule to publish one pageMetadata */
-	schedulePublishPageMetadata?: GraphQLTypes["PageMetadata"] | undefined,
-	/** Unpublish one pageMetadata from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
-	scheduleUnpublishPageMetadata?: GraphQLTypes["PageMetadata"] | undefined,
-	/** Create one skill */
-	createSkill?: GraphQLTypes["Skill"] | undefined,
-	/** Update one skill */
-	updateSkill?: GraphQLTypes["Skill"] | undefined,
-	/** Delete one skill from _all_ existing stages. Returns deleted document. */
-	deleteSkill?: GraphQLTypes["Skill"] | undefined,
-	/** Upsert one skill */
-	upsertSkill?: GraphQLTypes["Skill"] | undefined,
-	/** Publish one skill */
-	publishSkill?: GraphQLTypes["Skill"] | undefined,
-	/** Unpublish one skill from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
-	unpublishSkill?: GraphQLTypes["Skill"] | undefined,
-	/** Update many Skill documents */
-	updateManySkillsConnection: GraphQLTypes["SkillConnection"],
-	/** Delete many Skill documents, return deleted documents */
-	deleteManySkillsConnection: GraphQLTypes["SkillConnection"],
-	/** Publish many Skill documents */
-	publishManySkillsConnection: GraphQLTypes["SkillConnection"],
-	/** Find many Skill documents that match criteria in specified stage and unpublish from target stages */
-	unpublishManySkillsConnection: GraphQLTypes["SkillConnection"],
-	/** Update many skills */
-	updateManySkills: GraphQLTypes["BatchPayload"],
-	/** Delete many Skill documents */
-	deleteManySkills: GraphQLTypes["BatchPayload"],
-	/** Publish many Skill documents */
-	publishManySkills: GraphQLTypes["BatchPayload"],
-	/** Unpublish many Skill documents */
-	unpublishManySkills: GraphQLTypes["BatchPayload"],
-	/** Schedule to publish one skill */
-	schedulePublishSkill?: GraphQLTypes["Skill"] | undefined,
-	/** Unpublish one skill from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
-	scheduleUnpublishSkill?: GraphQLTypes["Skill"] | undefined
+	/** Create one seo */
+	createSeo?: GraphQLTypes["Seo"] | undefined,
+	/** Update one seo */
+	updateSeo?: GraphQLTypes["Seo"] | undefined,
+	/** Delete one seo from _all_ existing stages. Returns deleted document. */
+	deleteSeo?: GraphQLTypes["Seo"] | undefined,
+	/** Upsert one seo */
+	upsertSeo?: GraphQLTypes["Seo"] | undefined,
+	/** Publish one seo */
+	publishSeo?: GraphQLTypes["Seo"] | undefined,
+	/** Unpublish one seo from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+	unpublishSeo?: GraphQLTypes["Seo"] | undefined,
+	/** Update many Seo documents */
+	updateManySeosConnection: GraphQLTypes["SeoConnection"],
+	/** Delete many Seo documents, return deleted documents */
+	deleteManySeosConnection: GraphQLTypes["SeoConnection"],
+	/** Publish many Seo documents */
+	publishManySeosConnection: GraphQLTypes["SeoConnection"],
+	/** Find many Seo documents that match criteria in specified stage and unpublish from target stages */
+	unpublishManySeosConnection: GraphQLTypes["SeoConnection"],
+	/** Update many seos */
+	updateManySeos: GraphQLTypes["BatchPayload"],
+	/** Delete many Seo documents */
+	deleteManySeos: GraphQLTypes["BatchPayload"],
+	/** Publish many Seo documents */
+	publishManySeos: GraphQLTypes["BatchPayload"],
+	/** Unpublish many Seo documents */
+	unpublishManySeos: GraphQLTypes["BatchPayload"],
+	/** Schedule to publish one seo */
+	schedulePublishSeo?: GraphQLTypes["Seo"] | undefined,
+	/** Unpublish one seo from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+	scheduleUnpublishSeo?: GraphQLTypes["Seo"] | undefined,
+	/** Create one aboutMe */
+	createAboutMe?: GraphQLTypes["AboutMe"] | undefined,
+	/** Update one aboutMe */
+	updateAboutMe?: GraphQLTypes["AboutMe"] | undefined,
+	/** Delete one aboutMe from _all_ existing stages. Returns deleted document. */
+	deleteAboutMe?: GraphQLTypes["AboutMe"] | undefined,
+	/** Upsert one aboutMe */
+	upsertAboutMe?: GraphQLTypes["AboutMe"] | undefined,
+	/** Publish one aboutMe */
+	publishAboutMe?: GraphQLTypes["AboutMe"] | undefined,
+	/** Unpublish one aboutMe from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+	unpublishAboutMe?: GraphQLTypes["AboutMe"] | undefined,
+	/** Update many AboutMe documents */
+	updateManyAboutMesConnection: GraphQLTypes["AboutMeConnection"],
+	/** Delete many AboutMe documents, return deleted documents */
+	deleteManyAboutMesConnection: GraphQLTypes["AboutMeConnection"],
+	/** Publish many AboutMe documents */
+	publishManyAboutMesConnection: GraphQLTypes["AboutMeConnection"],
+	/** Find many AboutMe documents that match criteria in specified stage and unpublish from target stages */
+	unpublishManyAboutMesConnection: GraphQLTypes["AboutMeConnection"],
+	/** Update many aboutMes */
+	updateManyAboutMes: GraphQLTypes["BatchPayload"],
+	/** Delete many AboutMe documents */
+	deleteManyAboutMes: GraphQLTypes["BatchPayload"],
+	/** Publish many AboutMe documents */
+	publishManyAboutMes: GraphQLTypes["BatchPayload"],
+	/** Unpublish many AboutMe documents */
+	unpublishManyAboutMes: GraphQLTypes["BatchPayload"],
+	/** Schedule to publish one aboutMe */
+	schedulePublishAboutMe?: GraphQLTypes["AboutMe"] | undefined,
+	/** Unpublish one aboutMe from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+	scheduleUnpublishAboutMe?: GraphQLTypes["AboutMe"] | undefined,
+	/** Create one skillCategory */
+	createSkillCategory?: GraphQLTypes["SkillCategory"] | undefined,
+	/** Update one skillCategory */
+	updateSkillCategory?: GraphQLTypes["SkillCategory"] | undefined,
+	/** Delete one skillCategory from _all_ existing stages. Returns deleted document. */
+	deleteSkillCategory?: GraphQLTypes["SkillCategory"] | undefined,
+	/** Upsert one skillCategory */
+	upsertSkillCategory?: GraphQLTypes["SkillCategory"] | undefined,
+	/** Publish one skillCategory */
+	publishSkillCategory?: GraphQLTypes["SkillCategory"] | undefined,
+	/** Unpublish one skillCategory from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+	unpublishSkillCategory?: GraphQLTypes["SkillCategory"] | undefined,
+	/** Update many SkillCategory documents */
+	updateManySkillCategoriesConnection: GraphQLTypes["SkillCategoryConnection"],
+	/** Delete many SkillCategory documents, return deleted documents */
+	deleteManySkillCategoriesConnection: GraphQLTypes["SkillCategoryConnection"],
+	/** Publish many SkillCategory documents */
+	publishManySkillCategoriesConnection: GraphQLTypes["SkillCategoryConnection"],
+	/** Find many SkillCategory documents that match criteria in specified stage and unpublish from target stages */
+	unpublishManySkillCategoriesConnection: GraphQLTypes["SkillCategoryConnection"],
+	/** Update many skillCategories */
+	updateManySkillCategories: GraphQLTypes["BatchPayload"],
+	/** Delete many SkillCategory documents */
+	deleteManySkillCategories: GraphQLTypes["BatchPayload"],
+	/** Publish many SkillCategory documents */
+	publishManySkillCategories: GraphQLTypes["BatchPayload"],
+	/** Unpublish many SkillCategory documents */
+	unpublishManySkillCategories: GraphQLTypes["BatchPayload"],
+	/** Schedule to publish one skillCategory */
+	schedulePublishSkillCategory?: GraphQLTypes["SkillCategory"] | undefined,
+	/** Unpublish one skillCategory from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+	scheduleUnpublishSkillCategory?: GraphQLTypes["SkillCategory"] | undefined
 };
 	/** An object with an ID */
 ["Node"]: {
-	__typename:"Asset" | "PageMetadata" | "Project" | "ScheduledOperation" | "ScheduledRelease" | "Skill" | "Social" | "User",
+	__typename:"AboutMe" | "Asset" | "Project" | "ScheduledOperation" | "ScheduledRelease" | "Seo" | "SkillCategory" | "User",
 	/** The id of the object. */
 	id: string,
 	/** The Stage of an object */
 	stage: GraphQLTypes["Stage"]
+	['...on AboutMe']: '__union' & GraphQLTypes["AboutMe"];
 	['...on Asset']: '__union' & GraphQLTypes["Asset"];
-	['...on PageMetadata']: '__union' & GraphQLTypes["PageMetadata"];
 	['...on Project']: '__union' & GraphQLTypes["Project"];
 	['...on ScheduledOperation']: '__union' & GraphQLTypes["ScheduledOperation"];
 	['...on ScheduledRelease']: '__union' & GraphQLTypes["ScheduledRelease"];
-	['...on Skill']: '__union' & GraphQLTypes["Skill"];
-	['...on Social']: '__union' & GraphQLTypes["Social"];
+	['...on Seo']: '__union' & GraphQLTypes["Seo"];
+	['...on SkillCategory']: '__union' & GraphQLTypes["SkillCategory"];
 	['...on User']: '__union' & GraphQLTypes["User"];
 };
 	/** Information about pagination in a connection. */
@@ -13961,465 +18026,6 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	/** Number of items in the current page. */
 	pageSize?: number | undefined
 };
-	/** Page Metadata */
-["PageMetadata"]: {
-	__typename: "PageMetadata",
-	/** System stage field */
-	stage: GraphQLTypes["Stage"],
-	/** Get the document in other stages */
-	documentInStages: Array<GraphQLTypes["PageMetadata"]>,
-	/** The time the document was published. Null on documents in draft stage. */
-	publishedAt?: GraphQLTypes["DateTime"] | undefined,
-	/** The time the document was updated */
-	updatedAt: GraphQLTypes["DateTime"],
-	/** The time the document was created */
-	createdAt: GraphQLTypes["DateTime"],
-	/** The unique identifier */
-	id: string,
-	/** Page title */
-	title: string,
-	/** Page content summary */
-	summary: string,
-	/** Page slug */
-	slug?: string | undefined,
-	/** Page number */
-	pageNumber: number,
-	/** User that last published this document */
-	publishedBy?: GraphQLTypes["User"] | undefined,
-	/** User that last updated this document */
-	updatedBy?: GraphQLTypes["User"] | undefined,
-	/** User that created this document */
-	createdBy?: GraphQLTypes["User"] | undefined,
-	/** Page image */
-	image?: GraphQLTypes["Asset"] | undefined,
-	scheduledIn: Array<GraphQLTypes["ScheduledOperation"]>,
-	/** List of PageMetadata versions */
-	history: Array<GraphQLTypes["Version"]>
-};
-	["PageMetadataConnectInput"]: {
-		/** Document to connect */
-	where: GraphQLTypes["PageMetadataWhereUniqueInput"],
-	/** Allow to specify document position in list of connected documents, will default to appending at end of list */
-	position?: GraphQLTypes["ConnectPositionInput"] | undefined
-};
-	/** A connection to a list of items. */
-["PageMetadataConnection"]: {
-	__typename: "PageMetadataConnection",
-	/** Information to aid in pagination. */
-	pageInfo: GraphQLTypes["PageInfo"],
-	/** A list of edges. */
-	edges: Array<GraphQLTypes["PageMetadataEdge"]>,
-	aggregate: GraphQLTypes["Aggregate"]
-};
-	["PageMetadataCreateInput"]: {
-		updatedAt?: GraphQLTypes["DateTime"] | undefined,
-	createdAt?: GraphQLTypes["DateTime"] | undefined,
-	title: string,
-	summary: string,
-	slug?: string | undefined,
-	pageNumber: number,
-	image?: GraphQLTypes["AssetCreateOneInlineInput"] | undefined
-};
-	["PageMetadataCreateManyInlineInput"]: {
-		/** Create and connect multiple existing PageMetadata documents */
-	create?: Array<GraphQLTypes["PageMetadataCreateInput"]> | undefined,
-	/** Connect multiple existing PageMetadata documents */
-	connect?: Array<GraphQLTypes["PageMetadataWhereUniqueInput"]> | undefined
-};
-	["PageMetadataCreateOneInlineInput"]: {
-		/** Create and connect one PageMetadata document */
-	create?: GraphQLTypes["PageMetadataCreateInput"] | undefined,
-	/** Connect one existing PageMetadata document */
-	connect?: GraphQLTypes["PageMetadataWhereUniqueInput"] | undefined
-};
-	/** An edge in a connection. */
-["PageMetadataEdge"]: {
-	__typename: "PageMetadataEdge",
-	/** The item at the end of the edge. */
-	node: GraphQLTypes["PageMetadata"],
-	/** A cursor for use in pagination. */
-	cursor: string
-};
-	/** Identifies documents */
-["PageMetadataManyWhereInput"]: {
-		/** Contains search across all appropriate fields. */
-	_search?: string | undefined,
-	/** Logical AND on all given filters. */
-	AND?: Array<GraphQLTypes["PageMetadataWhereInput"]> | undefined,
-	/** Logical OR on all given filters. */
-	OR?: Array<GraphQLTypes["PageMetadataWhereInput"]> | undefined,
-	/** Logical NOT on all given filters combined by AND. */
-	NOT?: Array<GraphQLTypes["PageMetadataWhereInput"]> | undefined,
-	publishedAt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values that are not equal to given value. */
-	publishedAt_not?: GraphQLTypes["DateTime"] | undefined,
-	/** All values that are contained in given list. */
-	publishedAt_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	publishedAt_not_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
-	/** All values less than the given value. */
-	publishedAt_lt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values less than or equal the given value. */
-	publishedAt_lte?: GraphQLTypes["DateTime"] | undefined,
-	/** All values greater than the given value. */
-	publishedAt_gt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values greater than or equal the given value. */
-	publishedAt_gte?: GraphQLTypes["DateTime"] | undefined,
-	updatedAt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values that are not equal to given value. */
-	updatedAt_not?: GraphQLTypes["DateTime"] | undefined,
-	/** All values that are contained in given list. */
-	updatedAt_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	updatedAt_not_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
-	/** All values less than the given value. */
-	updatedAt_lt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values less than or equal the given value. */
-	updatedAt_lte?: GraphQLTypes["DateTime"] | undefined,
-	/** All values greater than the given value. */
-	updatedAt_gt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values greater than or equal the given value. */
-	updatedAt_gte?: GraphQLTypes["DateTime"] | undefined,
-	createdAt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values that are not equal to given value. */
-	createdAt_not?: GraphQLTypes["DateTime"] | undefined,
-	/** All values that are contained in given list. */
-	createdAt_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	createdAt_not_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
-	/** All values less than the given value. */
-	createdAt_lt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values less than or equal the given value. */
-	createdAt_lte?: GraphQLTypes["DateTime"] | undefined,
-	/** All values greater than the given value. */
-	createdAt_gt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values greater than or equal the given value. */
-	createdAt_gte?: GraphQLTypes["DateTime"] | undefined,
-	id?: string | undefined,
-	/** All values that are not equal to given value. */
-	id_not?: string | undefined,
-	/** All values that are contained in given list. */
-	id_in?: Array<string | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	id_not_in?: Array<string | undefined> | undefined,
-	/** All values containing the given string. */
-	id_contains?: string | undefined,
-	/** All values not containing the given string. */
-	id_not_contains?: string | undefined,
-	/** All values starting with the given string. */
-	id_starts_with?: string | undefined,
-	/** All values not starting with the given string. */
-	id_not_starts_with?: string | undefined,
-	/** All values ending with the given string. */
-	id_ends_with?: string | undefined,
-	/** All values not ending with the given string */
-	id_not_ends_with?: string | undefined,
-	title?: string | undefined,
-	/** All values that are not equal to given value. */
-	title_not?: string | undefined,
-	/** All values that are contained in given list. */
-	title_in?: Array<string | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	title_not_in?: Array<string | undefined> | undefined,
-	/** All values containing the given string. */
-	title_contains?: string | undefined,
-	/** All values not containing the given string. */
-	title_not_contains?: string | undefined,
-	/** All values starting with the given string. */
-	title_starts_with?: string | undefined,
-	/** All values not starting with the given string. */
-	title_not_starts_with?: string | undefined,
-	/** All values ending with the given string. */
-	title_ends_with?: string | undefined,
-	/** All values not ending with the given string */
-	title_not_ends_with?: string | undefined,
-	summary?: string | undefined,
-	/** All values that are not equal to given value. */
-	summary_not?: string | undefined,
-	/** All values that are contained in given list. */
-	summary_in?: Array<string | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	summary_not_in?: Array<string | undefined> | undefined,
-	/** All values containing the given string. */
-	summary_contains?: string | undefined,
-	/** All values not containing the given string. */
-	summary_not_contains?: string | undefined,
-	/** All values starting with the given string. */
-	summary_starts_with?: string | undefined,
-	/** All values not starting with the given string. */
-	summary_not_starts_with?: string | undefined,
-	/** All values ending with the given string. */
-	summary_ends_with?: string | undefined,
-	/** All values not ending with the given string */
-	summary_not_ends_with?: string | undefined,
-	slug?: string | undefined,
-	/** All values that are not equal to given value. */
-	slug_not?: string | undefined,
-	/** All values that are contained in given list. */
-	slug_in?: Array<string | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	slug_not_in?: Array<string | undefined> | undefined,
-	/** All values containing the given string. */
-	slug_contains?: string | undefined,
-	/** All values not containing the given string. */
-	slug_not_contains?: string | undefined,
-	/** All values starting with the given string. */
-	slug_starts_with?: string | undefined,
-	/** All values not starting with the given string. */
-	slug_not_starts_with?: string | undefined,
-	/** All values ending with the given string. */
-	slug_ends_with?: string | undefined,
-	/** All values not ending with the given string */
-	slug_not_ends_with?: string | undefined,
-	pageNumber?: number | undefined,
-	/** All values that are not equal to given value. */
-	pageNumber_not?: number | undefined,
-	/** All values that are contained in given list. */
-	pageNumber_in?: Array<number | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	pageNumber_not_in?: Array<number | undefined> | undefined,
-	/** All values less than the given value. */
-	pageNumber_lt?: number | undefined,
-	/** All values less than or equal the given value. */
-	pageNumber_lte?: number | undefined,
-	/** All values greater than the given value. */
-	pageNumber_gt?: number | undefined,
-	/** All values greater than or equal the given value. */
-	pageNumber_gte?: number | undefined,
-	publishedBy?: GraphQLTypes["UserWhereInput"] | undefined,
-	updatedBy?: GraphQLTypes["UserWhereInput"] | undefined,
-	createdBy?: GraphQLTypes["UserWhereInput"] | undefined,
-	image?: GraphQLTypes["AssetWhereInput"] | undefined,
-	scheduledIn_every?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined,
-	scheduledIn_some?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined,
-	scheduledIn_none?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined
-};
-	["PageMetadataOrderByInput"]: PageMetadataOrderByInput;
-	["PageMetadataUpdateInput"]: {
-		title?: string | undefined,
-	summary?: string | undefined,
-	slug?: string | undefined,
-	pageNumber?: number | undefined,
-	image?: GraphQLTypes["AssetUpdateOneInlineInput"] | undefined
-};
-	["PageMetadataUpdateManyInlineInput"]: {
-		/** Create and connect multiple PageMetadata documents */
-	create?: Array<GraphQLTypes["PageMetadataCreateInput"]> | undefined,
-	/** Connect multiple existing PageMetadata documents */
-	connect?: Array<GraphQLTypes["PageMetadataConnectInput"]> | undefined,
-	/** Override currently-connected documents with multiple existing PageMetadata documents */
-	set?: Array<GraphQLTypes["PageMetadataWhereUniqueInput"]> | undefined,
-	/** Update multiple PageMetadata documents */
-	update?: Array<GraphQLTypes["PageMetadataUpdateWithNestedWhereUniqueInput"]> | undefined,
-	/** Upsert multiple PageMetadata documents */
-	upsert?: Array<GraphQLTypes["PageMetadataUpsertWithNestedWhereUniqueInput"]> | undefined,
-	/** Disconnect multiple PageMetadata documents */
-	disconnect?: Array<GraphQLTypes["PageMetadataWhereUniqueInput"]> | undefined,
-	/** Delete multiple PageMetadata documents */
-	delete?: Array<GraphQLTypes["PageMetadataWhereUniqueInput"]> | undefined
-};
-	["PageMetadataUpdateManyInput"]: {
-		summary?: string | undefined,
-	pageNumber?: number | undefined
-};
-	["PageMetadataUpdateManyWithNestedWhereInput"]: {
-		/** Document search */
-	where: GraphQLTypes["PageMetadataWhereInput"],
-	/** Update many input */
-	data: GraphQLTypes["PageMetadataUpdateManyInput"]
-};
-	["PageMetadataUpdateOneInlineInput"]: {
-		/** Create and connect one PageMetadata document */
-	create?: GraphQLTypes["PageMetadataCreateInput"] | undefined,
-	/** Update single PageMetadata document */
-	update?: GraphQLTypes["PageMetadataUpdateWithNestedWhereUniqueInput"] | undefined,
-	/** Upsert single PageMetadata document */
-	upsert?: GraphQLTypes["PageMetadataUpsertWithNestedWhereUniqueInput"] | undefined,
-	/** Connect existing PageMetadata document */
-	connect?: GraphQLTypes["PageMetadataWhereUniqueInput"] | undefined,
-	/** Disconnect currently connected PageMetadata document */
-	disconnect?: boolean | undefined,
-	/** Delete currently connected PageMetadata document */
-	delete?: boolean | undefined
-};
-	["PageMetadataUpdateWithNestedWhereUniqueInput"]: {
-		/** Unique document search */
-	where: GraphQLTypes["PageMetadataWhereUniqueInput"],
-	/** Document to update */
-	data: GraphQLTypes["PageMetadataUpdateInput"]
-};
-	["PageMetadataUpsertInput"]: {
-		/** Create document if it didn't exist */
-	create: GraphQLTypes["PageMetadataCreateInput"],
-	/** Update document if it exists */
-	update: GraphQLTypes["PageMetadataUpdateInput"]
-};
-	["PageMetadataUpsertWithNestedWhereUniqueInput"]: {
-		/** Unique document search */
-	where: GraphQLTypes["PageMetadataWhereUniqueInput"],
-	/** Upsert data */
-	data: GraphQLTypes["PageMetadataUpsertInput"]
-};
-	/** Identifies documents */
-["PageMetadataWhereInput"]: {
-		/** Contains search across all appropriate fields. */
-	_search?: string | undefined,
-	/** Logical AND on all given filters. */
-	AND?: Array<GraphQLTypes["PageMetadataWhereInput"]> | undefined,
-	/** Logical OR on all given filters. */
-	OR?: Array<GraphQLTypes["PageMetadataWhereInput"]> | undefined,
-	/** Logical NOT on all given filters combined by AND. */
-	NOT?: Array<GraphQLTypes["PageMetadataWhereInput"]> | undefined,
-	publishedAt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values that are not equal to given value. */
-	publishedAt_not?: GraphQLTypes["DateTime"] | undefined,
-	/** All values that are contained in given list. */
-	publishedAt_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	publishedAt_not_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
-	/** All values less than the given value. */
-	publishedAt_lt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values less than or equal the given value. */
-	publishedAt_lte?: GraphQLTypes["DateTime"] | undefined,
-	/** All values greater than the given value. */
-	publishedAt_gt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values greater than or equal the given value. */
-	publishedAt_gte?: GraphQLTypes["DateTime"] | undefined,
-	updatedAt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values that are not equal to given value. */
-	updatedAt_not?: GraphQLTypes["DateTime"] | undefined,
-	/** All values that are contained in given list. */
-	updatedAt_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	updatedAt_not_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
-	/** All values less than the given value. */
-	updatedAt_lt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values less than or equal the given value. */
-	updatedAt_lte?: GraphQLTypes["DateTime"] | undefined,
-	/** All values greater than the given value. */
-	updatedAt_gt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values greater than or equal the given value. */
-	updatedAt_gte?: GraphQLTypes["DateTime"] | undefined,
-	createdAt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values that are not equal to given value. */
-	createdAt_not?: GraphQLTypes["DateTime"] | undefined,
-	/** All values that are contained in given list. */
-	createdAt_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	createdAt_not_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
-	/** All values less than the given value. */
-	createdAt_lt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values less than or equal the given value. */
-	createdAt_lte?: GraphQLTypes["DateTime"] | undefined,
-	/** All values greater than the given value. */
-	createdAt_gt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values greater than or equal the given value. */
-	createdAt_gte?: GraphQLTypes["DateTime"] | undefined,
-	id?: string | undefined,
-	/** All values that are not equal to given value. */
-	id_not?: string | undefined,
-	/** All values that are contained in given list. */
-	id_in?: Array<string | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	id_not_in?: Array<string | undefined> | undefined,
-	/** All values containing the given string. */
-	id_contains?: string | undefined,
-	/** All values not containing the given string. */
-	id_not_contains?: string | undefined,
-	/** All values starting with the given string. */
-	id_starts_with?: string | undefined,
-	/** All values not starting with the given string. */
-	id_not_starts_with?: string | undefined,
-	/** All values ending with the given string. */
-	id_ends_with?: string | undefined,
-	/** All values not ending with the given string */
-	id_not_ends_with?: string | undefined,
-	title?: string | undefined,
-	/** All values that are not equal to given value. */
-	title_not?: string | undefined,
-	/** All values that are contained in given list. */
-	title_in?: Array<string | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	title_not_in?: Array<string | undefined> | undefined,
-	/** All values containing the given string. */
-	title_contains?: string | undefined,
-	/** All values not containing the given string. */
-	title_not_contains?: string | undefined,
-	/** All values starting with the given string. */
-	title_starts_with?: string | undefined,
-	/** All values not starting with the given string. */
-	title_not_starts_with?: string | undefined,
-	/** All values ending with the given string. */
-	title_ends_with?: string | undefined,
-	/** All values not ending with the given string */
-	title_not_ends_with?: string | undefined,
-	summary?: string | undefined,
-	/** All values that are not equal to given value. */
-	summary_not?: string | undefined,
-	/** All values that are contained in given list. */
-	summary_in?: Array<string | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	summary_not_in?: Array<string | undefined> | undefined,
-	/** All values containing the given string. */
-	summary_contains?: string | undefined,
-	/** All values not containing the given string. */
-	summary_not_contains?: string | undefined,
-	/** All values starting with the given string. */
-	summary_starts_with?: string | undefined,
-	/** All values not starting with the given string. */
-	summary_not_starts_with?: string | undefined,
-	/** All values ending with the given string. */
-	summary_ends_with?: string | undefined,
-	/** All values not ending with the given string */
-	summary_not_ends_with?: string | undefined,
-	slug?: string | undefined,
-	/** All values that are not equal to given value. */
-	slug_not?: string | undefined,
-	/** All values that are contained in given list. */
-	slug_in?: Array<string | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	slug_not_in?: Array<string | undefined> | undefined,
-	/** All values containing the given string. */
-	slug_contains?: string | undefined,
-	/** All values not containing the given string. */
-	slug_not_contains?: string | undefined,
-	/** All values starting with the given string. */
-	slug_starts_with?: string | undefined,
-	/** All values not starting with the given string. */
-	slug_not_starts_with?: string | undefined,
-	/** All values ending with the given string. */
-	slug_ends_with?: string | undefined,
-	/** All values not ending with the given string */
-	slug_not_ends_with?: string | undefined,
-	pageNumber?: number | undefined,
-	/** All values that are not equal to given value. */
-	pageNumber_not?: number | undefined,
-	/** All values that are contained in given list. */
-	pageNumber_in?: Array<number | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	pageNumber_not_in?: Array<number | undefined> | undefined,
-	/** All values less than the given value. */
-	pageNumber_lt?: number | undefined,
-	/** All values less than or equal the given value. */
-	pageNumber_lte?: number | undefined,
-	/** All values greater than the given value. */
-	pageNumber_gt?: number | undefined,
-	/** All values greater than or equal the given value. */
-	pageNumber_gte?: number | undefined,
-	publishedBy?: GraphQLTypes["UserWhereInput"] | undefined,
-	updatedBy?: GraphQLTypes["UserWhereInput"] | undefined,
-	createdBy?: GraphQLTypes["UserWhereInput"] | undefined,
-	image?: GraphQLTypes["AssetWhereInput"] | undefined,
-	scheduledIn_every?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined,
-	scheduledIn_some?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined,
-	scheduledIn_none?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined
-};
-	/** References PageMetadata record uniquely */
-["PageMetadataWhereUniqueInput"]: {
-		id?: string | undefined,
-	title?: string | undefined,
-	slug?: string | undefined
-};
 	["Project"]: {
 	__typename: "Project",
 	/** System stage field */
@@ -14435,9 +18041,7 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	/** The unique identifier */
 	id: string,
 	name: string,
-	slug?: string | undefined,
 	description: string,
-	tags: Array<string>,
 	demo?: string | undefined,
 	sourceCode?: string | undefined,
 	/** User that last published this document */
@@ -14448,6 +18052,8 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	createdBy?: GraphQLTypes["User"] | undefined,
 	/** Add one or more images of the project  */
 	image: Array<GraphQLTypes["Asset"]>,
+	/** Tech stack for project */
+	stack: Array<GraphQLTypes["Technologies"]>,
 	scheduledIn: Array<GraphQLTypes["ScheduledOperation"]>,
 	/** List of Project versions */
 	history: Array<GraphQLTypes["Version"]>
@@ -14471,12 +18077,11 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 		updatedAt?: GraphQLTypes["DateTime"] | undefined,
 	createdAt?: GraphQLTypes["DateTime"] | undefined,
 	name: string,
-	slug?: string | undefined,
 	description: string,
-	tags?: Array<string> | undefined,
 	demo?: string | undefined,
 	sourceCode?: string | undefined,
-	image: GraphQLTypes["AssetCreateManyInlineInput"]
+	image: GraphQLTypes["AssetCreateManyInlineInput"],
+	stack?: Array<GraphQLTypes["Technologies"]> | undefined
 };
 	["ProjectCreateManyInlineInput"]: {
 		/** Create and connect multiple existing Project documents */
@@ -14591,25 +18196,6 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	name_ends_with?: string | undefined,
 	/** All values not ending with the given string */
 	name_not_ends_with?: string | undefined,
-	slug?: string | undefined,
-	/** All values that are not equal to given value. */
-	slug_not?: string | undefined,
-	/** All values that are contained in given list. */
-	slug_in?: Array<string | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	slug_not_in?: Array<string | undefined> | undefined,
-	/** All values containing the given string. */
-	slug_contains?: string | undefined,
-	/** All values not containing the given string. */
-	slug_not_contains?: string | undefined,
-	/** All values starting with the given string. */
-	slug_starts_with?: string | undefined,
-	/** All values not starting with the given string. */
-	slug_not_starts_with?: string | undefined,
-	/** All values ending with the given string. */
-	slug_ends_with?: string | undefined,
-	/** All values not ending with the given string */
-	slug_not_ends_with?: string | undefined,
 	description?: string | undefined,
 	/** All values that are not equal to given value. */
 	description_not?: string | undefined,
@@ -14629,16 +18215,6 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	description_ends_with?: string | undefined,
 	/** All values not ending with the given string */
 	description_not_ends_with?: string | undefined,
-	/** Matches if the field array contains *all* items provided to the filter and order does match */
-	tags?: Array<string> | undefined,
-	/** Matches if the field array does not contains *all* items provided to the filter or order does not match */
-	tags_not?: Array<string> | undefined,
-	/** Matches if the field array contains *all* items provided to the filter */
-	tags_contains_all?: Array<string> | undefined,
-	/** Matches if the field array contains at least one item provided to the filter */
-	tags_contains_some?: Array<string> | undefined,
-	/** Matches if the field array does not contain any of the items provided to the filter */
-	tags_contains_none?: Array<string> | undefined,
 	demo?: string | undefined,
 	/** All values that are not equal to given value. */
 	demo_not?: string | undefined,
@@ -14683,6 +18259,16 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	image_every?: GraphQLTypes["AssetWhereInput"] | undefined,
 	image_some?: GraphQLTypes["AssetWhereInput"] | undefined,
 	image_none?: GraphQLTypes["AssetWhereInput"] | undefined,
+	/** Matches if the field array contains *all* items provided to the filter and order does match */
+	stack?: Array<GraphQLTypes["Technologies"]> | undefined,
+	/** Matches if the field array does not contains *all* items provided to the filter or order does not match */
+	stack_not?: Array<GraphQLTypes["Technologies"]> | undefined,
+	/** Matches if the field array contains *all* items provided to the filter */
+	stack_contains_all?: Array<GraphQLTypes["Technologies"]> | undefined,
+	/** Matches if the field array contains at least one item provided to the filter */
+	stack_contains_some?: Array<GraphQLTypes["Technologies"]> | undefined,
+	/** Matches if the field array does not contain any of the items provided to the filter */
+	stack_contains_none?: Array<GraphQLTypes["Technologies"]> | undefined,
 	scheduledIn_every?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined,
 	scheduledIn_some?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined,
 	scheduledIn_none?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined
@@ -14690,12 +18276,11 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	["ProjectOrderByInput"]: ProjectOrderByInput;
 	["ProjectUpdateInput"]: {
 		name?: string | undefined,
-	slug?: string | undefined,
 	description?: string | undefined,
-	tags?: Array<string> | undefined,
 	demo?: string | undefined,
 	sourceCode?: string | undefined,
-	image?: GraphQLTypes["AssetUpdateManyInlineInput"] | undefined
+	image?: GraphQLTypes["AssetUpdateManyInlineInput"] | undefined,
+	stack?: Array<GraphQLTypes["Technologies"]> | undefined
 };
 	["ProjectUpdateManyInlineInput"]: {
 		/** Create and connect multiple Project documents */
@@ -14715,9 +18300,9 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 };
 	["ProjectUpdateManyInput"]: {
 		description?: string | undefined,
-	tags?: Array<string> | undefined,
 	demo?: string | undefined,
-	sourceCode?: string | undefined
+	sourceCode?: string | undefined,
+	stack?: Array<GraphQLTypes["Technologies"]> | undefined
 };
 	["ProjectUpdateManyWithNestedWhereInput"]: {
 		/** Document search */
@@ -14850,25 +18435,6 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	name_ends_with?: string | undefined,
 	/** All values not ending with the given string */
 	name_not_ends_with?: string | undefined,
-	slug?: string | undefined,
-	/** All values that are not equal to given value. */
-	slug_not?: string | undefined,
-	/** All values that are contained in given list. */
-	slug_in?: Array<string | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	slug_not_in?: Array<string | undefined> | undefined,
-	/** All values containing the given string. */
-	slug_contains?: string | undefined,
-	/** All values not containing the given string. */
-	slug_not_contains?: string | undefined,
-	/** All values starting with the given string. */
-	slug_starts_with?: string | undefined,
-	/** All values not starting with the given string. */
-	slug_not_starts_with?: string | undefined,
-	/** All values ending with the given string. */
-	slug_ends_with?: string | undefined,
-	/** All values not ending with the given string */
-	slug_not_ends_with?: string | undefined,
 	description?: string | undefined,
 	/** All values that are not equal to given value. */
 	description_not?: string | undefined,
@@ -14888,16 +18454,6 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	description_ends_with?: string | undefined,
 	/** All values not ending with the given string */
 	description_not_ends_with?: string | undefined,
-	/** Matches if the field array contains *all* items provided to the filter and order does match */
-	tags?: Array<string> | undefined,
-	/** Matches if the field array does not contains *all* items provided to the filter or order does not match */
-	tags_not?: Array<string> | undefined,
-	/** Matches if the field array contains *all* items provided to the filter */
-	tags_contains_all?: Array<string> | undefined,
-	/** Matches if the field array contains at least one item provided to the filter */
-	tags_contains_some?: Array<string> | undefined,
-	/** Matches if the field array does not contain any of the items provided to the filter */
-	tags_contains_none?: Array<string> | undefined,
 	demo?: string | undefined,
 	/** All values that are not equal to given value. */
 	demo_not?: string | undefined,
@@ -14942,6 +18498,16 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	image_every?: GraphQLTypes["AssetWhereInput"] | undefined,
 	image_some?: GraphQLTypes["AssetWhereInput"] | undefined,
 	image_none?: GraphQLTypes["AssetWhereInput"] | undefined,
+	/** Matches if the field array contains *all* items provided to the filter and order does match */
+	stack?: Array<GraphQLTypes["Technologies"]> | undefined,
+	/** Matches if the field array does not contains *all* items provided to the filter or order does not match */
+	stack_not?: Array<GraphQLTypes["Technologies"]> | undefined,
+	/** Matches if the field array contains *all* items provided to the filter */
+	stack_contains_all?: Array<GraphQLTypes["Technologies"]> | undefined,
+	/** Matches if the field array contains at least one item provided to the filter */
+	stack_contains_some?: Array<GraphQLTypes["Technologies"]> | undefined,
+	/** Matches if the field array does not contain any of the items provided to the filter */
+	stack_contains_none?: Array<GraphQLTypes["Technologies"]> | undefined,
 	scheduledIn_every?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined,
 	scheduledIn_some?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined,
 	scheduledIn_none?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined
@@ -14949,8 +18515,7 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	/** References Project record uniquely */
 ["ProjectWhereUniqueInput"]: {
 		id?: string | undefined,
-	name?: string | undefined,
-	slug?: string | undefined
+	name?: string | undefined
 };
 	["PublishLocaleInput"]: {
 		/** Locales to publish */
@@ -14996,30 +18561,30 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	projectsConnection: GraphQLTypes["ProjectConnection"],
 	/** Retrieve document version */
 	projectVersion?: GraphQLTypes["DocumentVersion"] | undefined,
-	/** Retrieve multiple socials */
-	socials: Array<GraphQLTypes["Social"]>,
-	/** Retrieve a single social */
-	social?: GraphQLTypes["Social"] | undefined,
-	/** Retrieve multiple socials using the Relay connection interface */
-	socialsConnection: GraphQLTypes["SocialConnection"],
+	/** Retrieve multiple seos */
+	seos: Array<GraphQLTypes["Seo"]>,
+	/** Retrieve a single seo */
+	seo?: GraphQLTypes["Seo"] | undefined,
+	/** Retrieve multiple seos using the Relay connection interface */
+	seosConnection: GraphQLTypes["SeoConnection"],
 	/** Retrieve document version */
-	socialVersion?: GraphQLTypes["DocumentVersion"] | undefined,
-	/** Retrieve multiple pagesMetadata */
-	pagesMetadata: Array<GraphQLTypes["PageMetadata"]>,
-	/** Retrieve a single pageMetadata */
-	pageMetadata?: GraphQLTypes["PageMetadata"] | undefined,
-	/** Retrieve multiple pagesMetadata using the Relay connection interface */
-	pagesMetadataConnection: GraphQLTypes["PageMetadataConnection"],
+	seoVersion?: GraphQLTypes["DocumentVersion"] | undefined,
+	/** Retrieve multiple aboutMes */
+	aboutMes: Array<GraphQLTypes["AboutMe"]>,
+	/** Retrieve a single aboutMe */
+	aboutMe?: GraphQLTypes["AboutMe"] | undefined,
+	/** Retrieve multiple aboutMes using the Relay connection interface */
+	aboutMesConnection: GraphQLTypes["AboutMeConnection"],
 	/** Retrieve document version */
-	pageMetadataVersion?: GraphQLTypes["DocumentVersion"] | undefined,
-	/** Retrieve multiple skills */
-	skills: Array<GraphQLTypes["Skill"]>,
-	/** Retrieve a single skill */
-	skill?: GraphQLTypes["Skill"] | undefined,
-	/** Retrieve multiple skills using the Relay connection interface */
-	skillsConnection: GraphQLTypes["SkillConnection"],
+	aboutMeVersion?: GraphQLTypes["DocumentVersion"] | undefined,
+	/** Retrieve multiple skillCategories */
+	skillCategories: Array<GraphQLTypes["SkillCategory"]>,
+	/** Retrieve a single skillCategory */
+	skillCategory?: GraphQLTypes["SkillCategory"] | undefined,
+	/** Retrieve multiple skillCategories using the Relay connection interface */
+	skillCategoriesConnection: GraphQLTypes["SkillCategoryConnection"],
 	/** Retrieve document version */
-	skillVersion?: GraphQLTypes["DocumentVersion"] | undefined
+	skillCategoryVersion?: GraphQLTypes["DocumentVersion"] | undefined
 };
 	/** Representing a RGBA color value: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#rgb()_and_rgba() */
 ["RGBA"]: {
@@ -15086,12 +18651,12 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	affectedDocuments: Array<GraphQLTypes["ScheduledOperationAffectedDocument"]>
 };
 	["ScheduledOperationAffectedDocument"]:{
-        	__typename:"Asset" | "PageMetadata" | "Project" | "Skill" | "Social"
-        	['...on Asset']: '__union' & GraphQLTypes["Asset"];
-	['...on PageMetadata']: '__union' & GraphQLTypes["PageMetadata"];
+        	__typename:"AboutMe" | "Asset" | "Project" | "Seo" | "SkillCategory"
+        	['...on AboutMe']: '__union' & GraphQLTypes["AboutMe"];
+	['...on Asset']: '__union' & GraphQLTypes["Asset"];
 	['...on Project']: '__union' & GraphQLTypes["Project"];
-	['...on Skill']: '__union' & GraphQLTypes["Skill"];
-	['...on Social']: '__union' & GraphQLTypes["Social"];
+	['...on Seo']: '__union' & GraphQLTypes["Seo"];
+	['...on SkillCategory']: '__union' & GraphQLTypes["SkillCategory"];
 };
 	["ScheduledOperationConnectInput"]: {
 		/** Document to connect */
@@ -15882,12 +19447,422 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 ["ScheduledReleaseWhereUniqueInput"]: {
 		id?: string | undefined
 };
+	["Seo"]: {
+	__typename: "Seo",
+	/** System stage field */
+	stage: GraphQLTypes["Stage"],
+	/** Get the document in other stages */
+	documentInStages: Array<GraphQLTypes["Seo"]>,
+	/** The time the document was published. Null on documents in draft stage. */
+	publishedAt?: GraphQLTypes["DateTime"] | undefined,
+	/** The time the document was updated */
+	updatedAt: GraphQLTypes["DateTime"],
+	/** The time the document was created */
+	createdAt: GraphQLTypes["DateTime"],
+	/** The unique identifier */
+	id: string,
+	title: string,
+	description: string,
+	keywords: Array<string>,
+	/** User that last published this document */
+	publishedBy?: GraphQLTypes["User"] | undefined,
+	/** User that last updated this document */
+	updatedBy?: GraphQLTypes["User"] | undefined,
+	/** User that created this document */
+	createdBy?: GraphQLTypes["User"] | undefined,
+	og_image: GraphQLTypes["Asset"],
+	scheduledIn: Array<GraphQLTypes["ScheduledOperation"]>,
+	/** List of Seo versions */
+	history: Array<GraphQLTypes["Version"]>
+};
+	["SeoConnectInput"]: {
+		/** Document to connect */
+	where: GraphQLTypes["SeoWhereUniqueInput"],
+	/** Allow to specify document position in list of connected documents, will default to appending at end of list */
+	position?: GraphQLTypes["ConnectPositionInput"] | undefined
+};
+	/** A connection to a list of items. */
+["SeoConnection"]: {
+	__typename: "SeoConnection",
+	/** Information to aid in pagination. */
+	pageInfo: GraphQLTypes["PageInfo"],
+	/** A list of edges. */
+	edges: Array<GraphQLTypes["SeoEdge"]>,
+	aggregate: GraphQLTypes["Aggregate"]
+};
+	["SeoCreateInput"]: {
+		updatedAt?: GraphQLTypes["DateTime"] | undefined,
+	createdAt?: GraphQLTypes["DateTime"] | undefined,
+	title: string,
+	description: string,
+	keywords: Array<string>,
+	og_image: GraphQLTypes["AssetCreateOneInlineInput"]
+};
+	["SeoCreateManyInlineInput"]: {
+		/** Create and connect multiple existing Seo documents */
+	create?: Array<GraphQLTypes["SeoCreateInput"]> | undefined,
+	/** Connect multiple existing Seo documents */
+	connect?: Array<GraphQLTypes["SeoWhereUniqueInput"]> | undefined
+};
+	["SeoCreateOneInlineInput"]: {
+		/** Create and connect one Seo document */
+	create?: GraphQLTypes["SeoCreateInput"] | undefined,
+	/** Connect one existing Seo document */
+	connect?: GraphQLTypes["SeoWhereUniqueInput"] | undefined
+};
+	/** An edge in a connection. */
+["SeoEdge"]: {
+	__typename: "SeoEdge",
+	/** The item at the end of the edge. */
+	node: GraphQLTypes["Seo"],
+	/** A cursor for use in pagination. */
+	cursor: string
+};
+	/** Identifies documents */
+["SeoManyWhereInput"]: {
+		/** Contains search across all appropriate fields. */
+	_search?: string | undefined,
+	/** Logical AND on all given filters. */
+	AND?: Array<GraphQLTypes["SeoWhereInput"]> | undefined,
+	/** Logical OR on all given filters. */
+	OR?: Array<GraphQLTypes["SeoWhereInput"]> | undefined,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<GraphQLTypes["SeoWhereInput"]> | undefined,
+	publishedAt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values that are not equal to given value. */
+	publishedAt_not?: GraphQLTypes["DateTime"] | undefined,
+	/** All values that are contained in given list. */
+	publishedAt_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	publishedAt_not_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
+	/** All values less than the given value. */
+	publishedAt_lt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values less than or equal the given value. */
+	publishedAt_lte?: GraphQLTypes["DateTime"] | undefined,
+	/** All values greater than the given value. */
+	publishedAt_gt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values greater than or equal the given value. */
+	publishedAt_gte?: GraphQLTypes["DateTime"] | undefined,
+	updatedAt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values that are not equal to given value. */
+	updatedAt_not?: GraphQLTypes["DateTime"] | undefined,
+	/** All values that are contained in given list. */
+	updatedAt_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	updatedAt_not_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
+	/** All values less than the given value. */
+	updatedAt_lt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values less than or equal the given value. */
+	updatedAt_lte?: GraphQLTypes["DateTime"] | undefined,
+	/** All values greater than the given value. */
+	updatedAt_gt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values greater than or equal the given value. */
+	updatedAt_gte?: GraphQLTypes["DateTime"] | undefined,
+	createdAt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values that are not equal to given value. */
+	createdAt_not?: GraphQLTypes["DateTime"] | undefined,
+	/** All values that are contained in given list. */
+	createdAt_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	createdAt_not_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
+	/** All values less than the given value. */
+	createdAt_lt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values less than or equal the given value. */
+	createdAt_lte?: GraphQLTypes["DateTime"] | undefined,
+	/** All values greater than the given value. */
+	createdAt_gt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values greater than or equal the given value. */
+	createdAt_gte?: GraphQLTypes["DateTime"] | undefined,
+	id?: string | undefined,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	id_contains?: string | undefined,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined,
+	title?: string | undefined,
+	/** All values that are not equal to given value. */
+	title_not?: string | undefined,
+	/** All values that are contained in given list. */
+	title_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	title_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	title_contains?: string | undefined,
+	/** All values not containing the given string. */
+	title_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	title_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	title_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	title_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	title_not_ends_with?: string | undefined,
+	description?: string | undefined,
+	/** All values that are not equal to given value. */
+	description_not?: string | undefined,
+	/** All values that are contained in given list. */
+	description_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	description_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	description_contains?: string | undefined,
+	/** All values not containing the given string. */
+	description_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	description_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	description_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	description_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	description_not_ends_with?: string | undefined,
+	/** Matches if the field array contains *all* items provided to the filter and order does match */
+	keywords?: Array<string> | undefined,
+	/** Matches if the field array does not contains *all* items provided to the filter or order does not match */
+	keywords_not?: Array<string> | undefined,
+	/** Matches if the field array contains *all* items provided to the filter */
+	keywords_contains_all?: Array<string> | undefined,
+	/** Matches if the field array contains at least one item provided to the filter */
+	keywords_contains_some?: Array<string> | undefined,
+	/** Matches if the field array does not contain any of the items provided to the filter */
+	keywords_contains_none?: Array<string> | undefined,
+	publishedBy?: GraphQLTypes["UserWhereInput"] | undefined,
+	updatedBy?: GraphQLTypes["UserWhereInput"] | undefined,
+	createdBy?: GraphQLTypes["UserWhereInput"] | undefined,
+	og_image?: GraphQLTypes["AssetWhereInput"] | undefined,
+	scheduledIn_every?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined,
+	scheduledIn_some?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined,
+	scheduledIn_none?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined
+};
+	["SeoOrderByInput"]: SeoOrderByInput;
+	["SeoUpdateInput"]: {
+		title?: string | undefined,
+	description?: string | undefined,
+	keywords?: Array<string> | undefined,
+	og_image?: GraphQLTypes["AssetUpdateOneInlineInput"] | undefined
+};
+	["SeoUpdateManyInlineInput"]: {
+		/** Create and connect multiple Seo documents */
+	create?: Array<GraphQLTypes["SeoCreateInput"]> | undefined,
+	/** Connect multiple existing Seo documents */
+	connect?: Array<GraphQLTypes["SeoConnectInput"]> | undefined,
+	/** Override currently-connected documents with multiple existing Seo documents */
+	set?: Array<GraphQLTypes["SeoWhereUniqueInput"]> | undefined,
+	/** Update multiple Seo documents */
+	update?: Array<GraphQLTypes["SeoUpdateWithNestedWhereUniqueInput"]> | undefined,
+	/** Upsert multiple Seo documents */
+	upsert?: Array<GraphQLTypes["SeoUpsertWithNestedWhereUniqueInput"]> | undefined,
+	/** Disconnect multiple Seo documents */
+	disconnect?: Array<GraphQLTypes["SeoWhereUniqueInput"]> | undefined,
+	/** Delete multiple Seo documents */
+	delete?: Array<GraphQLTypes["SeoWhereUniqueInput"]> | undefined
+};
+	["SeoUpdateManyInput"]: {
+		title?: string | undefined,
+	description?: string | undefined,
+	keywords?: Array<string> | undefined
+};
+	["SeoUpdateManyWithNestedWhereInput"]: {
+		/** Document search */
+	where: GraphQLTypes["SeoWhereInput"],
+	/** Update many input */
+	data: GraphQLTypes["SeoUpdateManyInput"]
+};
+	["SeoUpdateOneInlineInput"]: {
+		/** Create and connect one Seo document */
+	create?: GraphQLTypes["SeoCreateInput"] | undefined,
+	/** Update single Seo document */
+	update?: GraphQLTypes["SeoUpdateWithNestedWhereUniqueInput"] | undefined,
+	/** Upsert single Seo document */
+	upsert?: GraphQLTypes["SeoUpsertWithNestedWhereUniqueInput"] | undefined,
+	/** Connect existing Seo document */
+	connect?: GraphQLTypes["SeoWhereUniqueInput"] | undefined,
+	/** Disconnect currently connected Seo document */
+	disconnect?: boolean | undefined,
+	/** Delete currently connected Seo document */
+	delete?: boolean | undefined
+};
+	["SeoUpdateWithNestedWhereUniqueInput"]: {
+		/** Unique document search */
+	where: GraphQLTypes["SeoWhereUniqueInput"],
+	/** Document to update */
+	data: GraphQLTypes["SeoUpdateInput"]
+};
+	["SeoUpsertInput"]: {
+		/** Create document if it didn't exist */
+	create: GraphQLTypes["SeoCreateInput"],
+	/** Update document if it exists */
+	update: GraphQLTypes["SeoUpdateInput"]
+};
+	["SeoUpsertWithNestedWhereUniqueInput"]: {
+		/** Unique document search */
+	where: GraphQLTypes["SeoWhereUniqueInput"],
+	/** Upsert data */
+	data: GraphQLTypes["SeoUpsertInput"]
+};
+	/** Identifies documents */
+["SeoWhereInput"]: {
+		/** Contains search across all appropriate fields. */
+	_search?: string | undefined,
+	/** Logical AND on all given filters. */
+	AND?: Array<GraphQLTypes["SeoWhereInput"]> | undefined,
+	/** Logical OR on all given filters. */
+	OR?: Array<GraphQLTypes["SeoWhereInput"]> | undefined,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<GraphQLTypes["SeoWhereInput"]> | undefined,
+	publishedAt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values that are not equal to given value. */
+	publishedAt_not?: GraphQLTypes["DateTime"] | undefined,
+	/** All values that are contained in given list. */
+	publishedAt_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	publishedAt_not_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
+	/** All values less than the given value. */
+	publishedAt_lt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values less than or equal the given value. */
+	publishedAt_lte?: GraphQLTypes["DateTime"] | undefined,
+	/** All values greater than the given value. */
+	publishedAt_gt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values greater than or equal the given value. */
+	publishedAt_gte?: GraphQLTypes["DateTime"] | undefined,
+	updatedAt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values that are not equal to given value. */
+	updatedAt_not?: GraphQLTypes["DateTime"] | undefined,
+	/** All values that are contained in given list. */
+	updatedAt_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	updatedAt_not_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
+	/** All values less than the given value. */
+	updatedAt_lt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values less than or equal the given value. */
+	updatedAt_lte?: GraphQLTypes["DateTime"] | undefined,
+	/** All values greater than the given value. */
+	updatedAt_gt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values greater than or equal the given value. */
+	updatedAt_gte?: GraphQLTypes["DateTime"] | undefined,
+	createdAt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values that are not equal to given value. */
+	createdAt_not?: GraphQLTypes["DateTime"] | undefined,
+	/** All values that are contained in given list. */
+	createdAt_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	createdAt_not_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
+	/** All values less than the given value. */
+	createdAt_lt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values less than or equal the given value. */
+	createdAt_lte?: GraphQLTypes["DateTime"] | undefined,
+	/** All values greater than the given value. */
+	createdAt_gt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values greater than or equal the given value. */
+	createdAt_gte?: GraphQLTypes["DateTime"] | undefined,
+	id?: string | undefined,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	id_contains?: string | undefined,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined,
+	title?: string | undefined,
+	/** All values that are not equal to given value. */
+	title_not?: string | undefined,
+	/** All values that are contained in given list. */
+	title_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	title_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	title_contains?: string | undefined,
+	/** All values not containing the given string. */
+	title_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	title_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	title_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	title_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	title_not_ends_with?: string | undefined,
+	description?: string | undefined,
+	/** All values that are not equal to given value. */
+	description_not?: string | undefined,
+	/** All values that are contained in given list. */
+	description_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	description_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	description_contains?: string | undefined,
+	/** All values not containing the given string. */
+	description_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	description_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	description_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	description_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	description_not_ends_with?: string | undefined,
+	/** Matches if the field array contains *all* items provided to the filter and order does match */
+	keywords?: Array<string> | undefined,
+	/** Matches if the field array does not contains *all* items provided to the filter or order does not match */
+	keywords_not?: Array<string> | undefined,
+	/** Matches if the field array contains *all* items provided to the filter */
+	keywords_contains_all?: Array<string> | undefined,
+	/** Matches if the field array contains at least one item provided to the filter */
+	keywords_contains_some?: Array<string> | undefined,
+	/** Matches if the field array does not contain any of the items provided to the filter */
+	keywords_contains_none?: Array<string> | undefined,
+	publishedBy?: GraphQLTypes["UserWhereInput"] | undefined,
+	updatedBy?: GraphQLTypes["UserWhereInput"] | undefined,
+	createdBy?: GraphQLTypes["UserWhereInput"] | undefined,
+	og_image?: GraphQLTypes["AssetWhereInput"] | undefined,
+	scheduledIn_every?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined,
+	scheduledIn_some?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined,
+	scheduledIn_none?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined
+};
+	/** References Seo record uniquely */
+["SeoWhereUniqueInput"]: {
+		id?: string | undefined
+};
 	["Skill"]: {
 	__typename: "Skill",
 	/** System stage field */
 	stage: GraphQLTypes["Stage"],
+	/** The unique identifier */
+	id: string,
+	name: string,
+	icon: GraphQLTypes["Asset"]
+};
+	["SkillCategory"]: {
+	__typename: "SkillCategory",
+	/** System stage field */
+	stage: GraphQLTypes["Stage"],
 	/** Get the document in other stages */
-	documentInStages: Array<GraphQLTypes["Skill"]>,
+	documentInStages: Array<GraphQLTypes["SkillCategory"]>,
 	/** The time the document was published. Null on documents in draft stage. */
 	publishedAt?: GraphQLTypes["DateTime"] | undefined,
 	/** The time the document was updated */
@@ -15897,68 +19872,68 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	/** The unique identifier */
 	id: string,
 	name: string,
+	skillsList: Array<GraphQLTypes["SkillCategoryskillsListUnion"]>,
 	/** User that last published this document */
 	publishedBy?: GraphQLTypes["User"] | undefined,
 	/** User that last updated this document */
 	updatedBy?: GraphQLTypes["User"] | undefined,
 	/** User that created this document */
 	createdBy?: GraphQLTypes["User"] | undefined,
-	icon?: GraphQLTypes["Asset"] | undefined,
 	scheduledIn: Array<GraphQLTypes["ScheduledOperation"]>,
-	/** List of Skill versions */
+	/** List of SkillCategory versions */
 	history: Array<GraphQLTypes["Version"]>
 };
-	["SkillConnectInput"]: {
+	["SkillCategoryConnectInput"]: {
 		/** Document to connect */
-	where: GraphQLTypes["SkillWhereUniqueInput"],
+	where: GraphQLTypes["SkillCategoryWhereUniqueInput"],
 	/** Allow to specify document position in list of connected documents, will default to appending at end of list */
 	position?: GraphQLTypes["ConnectPositionInput"] | undefined
 };
 	/** A connection to a list of items. */
-["SkillConnection"]: {
-	__typename: "SkillConnection",
+["SkillCategoryConnection"]: {
+	__typename: "SkillCategoryConnection",
 	/** Information to aid in pagination. */
 	pageInfo: GraphQLTypes["PageInfo"],
 	/** A list of edges. */
-	edges: Array<GraphQLTypes["SkillEdge"]>,
+	edges: Array<GraphQLTypes["SkillCategoryEdge"]>,
 	aggregate: GraphQLTypes["Aggregate"]
 };
-	["SkillCreateInput"]: {
+	["SkillCategoryCreateInput"]: {
 		updatedAt?: GraphQLTypes["DateTime"] | undefined,
 	createdAt?: GraphQLTypes["DateTime"] | undefined,
 	name: string,
-	icon?: GraphQLTypes["AssetCreateOneInlineInput"] | undefined
+	skillsList?: GraphQLTypes["SkillCategoryskillsListUnionCreateManyInlineInput"] | undefined
 };
-	["SkillCreateManyInlineInput"]: {
-		/** Create and connect multiple existing Skill documents */
-	create?: Array<GraphQLTypes["SkillCreateInput"]> | undefined,
-	/** Connect multiple existing Skill documents */
-	connect?: Array<GraphQLTypes["SkillWhereUniqueInput"]> | undefined
+	["SkillCategoryCreateManyInlineInput"]: {
+		/** Create and connect multiple existing SkillCategory documents */
+	create?: Array<GraphQLTypes["SkillCategoryCreateInput"]> | undefined,
+	/** Connect multiple existing SkillCategory documents */
+	connect?: Array<GraphQLTypes["SkillCategoryWhereUniqueInput"]> | undefined
 };
-	["SkillCreateOneInlineInput"]: {
-		/** Create and connect one Skill document */
-	create?: GraphQLTypes["SkillCreateInput"] | undefined,
-	/** Connect one existing Skill document */
-	connect?: GraphQLTypes["SkillWhereUniqueInput"] | undefined
+	["SkillCategoryCreateOneInlineInput"]: {
+		/** Create and connect one SkillCategory document */
+	create?: GraphQLTypes["SkillCategoryCreateInput"] | undefined,
+	/** Connect one existing SkillCategory document */
+	connect?: GraphQLTypes["SkillCategoryWhereUniqueInput"] | undefined
 };
 	/** An edge in a connection. */
-["SkillEdge"]: {
-	__typename: "SkillEdge",
+["SkillCategoryEdge"]: {
+	__typename: "SkillCategoryEdge",
 	/** The item at the end of the edge. */
-	node: GraphQLTypes["Skill"],
+	node: GraphQLTypes["SkillCategory"],
 	/** A cursor for use in pagination. */
 	cursor: string
 };
 	/** Identifies documents */
-["SkillManyWhereInput"]: {
+["SkillCategoryManyWhereInput"]: {
 		/** Contains search across all appropriate fields. */
 	_search?: string | undefined,
 	/** Logical AND on all given filters. */
-	AND?: Array<GraphQLTypes["SkillWhereInput"]> | undefined,
+	AND?: Array<GraphQLTypes["SkillCategoryWhereInput"]> | undefined,
 	/** Logical OR on all given filters. */
-	OR?: Array<GraphQLTypes["SkillWhereInput"]> | undefined,
+	OR?: Array<GraphQLTypes["SkillCategoryWhereInput"]> | undefined,
 	/** Logical NOT on all given filters combined by AND. */
-	NOT?: Array<GraphQLTypes["SkillWhereInput"]> | undefined,
+	NOT?: Array<GraphQLTypes["SkillCategoryWhereInput"]> | undefined,
 	publishedAt?: GraphQLTypes["DateTime"] | undefined,
 	/** All values that are not equal to given value. */
 	publishedAt_not?: GraphQLTypes["DateTime"] | undefined,
@@ -16045,29 +20020,416 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	publishedBy?: GraphQLTypes["UserWhereInput"] | undefined,
 	updatedBy?: GraphQLTypes["UserWhereInput"] | undefined,
 	createdBy?: GraphQLTypes["UserWhereInput"] | undefined,
-	icon?: GraphQLTypes["AssetWhereInput"] | undefined,
 	scheduledIn_every?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined,
 	scheduledIn_some?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined,
 	scheduledIn_none?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined
 };
+	["SkillCategoryOrderByInput"]: SkillCategoryOrderByInput;
+	["SkillCategoryUpdateInput"]: {
+		name?: string | undefined,
+	skillsList?: GraphQLTypes["SkillCategoryskillsListUnionUpdateManyInlineInput"] | undefined
+};
+	["SkillCategoryUpdateManyInlineInput"]: {
+		/** Create and connect multiple SkillCategory documents */
+	create?: Array<GraphQLTypes["SkillCategoryCreateInput"]> | undefined,
+	/** Connect multiple existing SkillCategory documents */
+	connect?: Array<GraphQLTypes["SkillCategoryConnectInput"]> | undefined,
+	/** Override currently-connected documents with multiple existing SkillCategory documents */
+	set?: Array<GraphQLTypes["SkillCategoryWhereUniqueInput"]> | undefined,
+	/** Update multiple SkillCategory documents */
+	update?: Array<GraphQLTypes["SkillCategoryUpdateWithNestedWhereUniqueInput"]> | undefined,
+	/** Upsert multiple SkillCategory documents */
+	upsert?: Array<GraphQLTypes["SkillCategoryUpsertWithNestedWhereUniqueInput"]> | undefined,
+	/** Disconnect multiple SkillCategory documents */
+	disconnect?: Array<GraphQLTypes["SkillCategoryWhereUniqueInput"]> | undefined,
+	/** Delete multiple SkillCategory documents */
+	delete?: Array<GraphQLTypes["SkillCategoryWhereUniqueInput"]> | undefined
+};
+	["SkillCategoryUpdateManyInput"]: {
+		/** No fields in updateMany data input */
+	_?: string | undefined
+};
+	["SkillCategoryUpdateManyWithNestedWhereInput"]: {
+		/** Document search */
+	where: GraphQLTypes["SkillCategoryWhereInput"],
+	/** Update many input */
+	data: GraphQLTypes["SkillCategoryUpdateManyInput"]
+};
+	["SkillCategoryUpdateOneInlineInput"]: {
+		/** Create and connect one SkillCategory document */
+	create?: GraphQLTypes["SkillCategoryCreateInput"] | undefined,
+	/** Update single SkillCategory document */
+	update?: GraphQLTypes["SkillCategoryUpdateWithNestedWhereUniqueInput"] | undefined,
+	/** Upsert single SkillCategory document */
+	upsert?: GraphQLTypes["SkillCategoryUpsertWithNestedWhereUniqueInput"] | undefined,
+	/** Connect existing SkillCategory document */
+	connect?: GraphQLTypes["SkillCategoryWhereUniqueInput"] | undefined,
+	/** Disconnect currently connected SkillCategory document */
+	disconnect?: boolean | undefined,
+	/** Delete currently connected SkillCategory document */
+	delete?: boolean | undefined
+};
+	["SkillCategoryUpdateWithNestedWhereUniqueInput"]: {
+		/** Unique document search */
+	where: GraphQLTypes["SkillCategoryWhereUniqueInput"],
+	/** Document to update */
+	data: GraphQLTypes["SkillCategoryUpdateInput"]
+};
+	["SkillCategoryUpsertInput"]: {
+		/** Create document if it didn't exist */
+	create: GraphQLTypes["SkillCategoryCreateInput"],
+	/** Update document if it exists */
+	update: GraphQLTypes["SkillCategoryUpdateInput"]
+};
+	["SkillCategoryUpsertWithNestedWhereUniqueInput"]: {
+		/** Unique document search */
+	where: GraphQLTypes["SkillCategoryWhereUniqueInput"],
+	/** Upsert data */
+	data: GraphQLTypes["SkillCategoryUpsertInput"]
+};
+	/** Identifies documents */
+["SkillCategoryWhereInput"]: {
+		/** Contains search across all appropriate fields. */
+	_search?: string | undefined,
+	/** Logical AND on all given filters. */
+	AND?: Array<GraphQLTypes["SkillCategoryWhereInput"]> | undefined,
+	/** Logical OR on all given filters. */
+	OR?: Array<GraphQLTypes["SkillCategoryWhereInput"]> | undefined,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<GraphQLTypes["SkillCategoryWhereInput"]> | undefined,
+	publishedAt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values that are not equal to given value. */
+	publishedAt_not?: GraphQLTypes["DateTime"] | undefined,
+	/** All values that are contained in given list. */
+	publishedAt_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	publishedAt_not_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
+	/** All values less than the given value. */
+	publishedAt_lt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values less than or equal the given value. */
+	publishedAt_lte?: GraphQLTypes["DateTime"] | undefined,
+	/** All values greater than the given value. */
+	publishedAt_gt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values greater than or equal the given value. */
+	publishedAt_gte?: GraphQLTypes["DateTime"] | undefined,
+	updatedAt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values that are not equal to given value. */
+	updatedAt_not?: GraphQLTypes["DateTime"] | undefined,
+	/** All values that are contained in given list. */
+	updatedAt_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	updatedAt_not_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
+	/** All values less than the given value. */
+	updatedAt_lt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values less than or equal the given value. */
+	updatedAt_lte?: GraphQLTypes["DateTime"] | undefined,
+	/** All values greater than the given value. */
+	updatedAt_gt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values greater than or equal the given value. */
+	updatedAt_gte?: GraphQLTypes["DateTime"] | undefined,
+	createdAt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values that are not equal to given value. */
+	createdAt_not?: GraphQLTypes["DateTime"] | undefined,
+	/** All values that are contained in given list. */
+	createdAt_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	createdAt_not_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
+	/** All values less than the given value. */
+	createdAt_lt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values less than or equal the given value. */
+	createdAt_lte?: GraphQLTypes["DateTime"] | undefined,
+	/** All values greater than the given value. */
+	createdAt_gt?: GraphQLTypes["DateTime"] | undefined,
+	/** All values greater than or equal the given value. */
+	createdAt_gte?: GraphQLTypes["DateTime"] | undefined,
+	id?: string | undefined,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	id_contains?: string | undefined,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined,
+	name?: string | undefined,
+	/** All values that are not equal to given value. */
+	name_not?: string | undefined,
+	/** All values that are contained in given list. */
+	name_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	name_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	name_contains?: string | undefined,
+	/** All values not containing the given string. */
+	name_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	name_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	name_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	name_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	name_not_ends_with?: string | undefined,
+	publishedBy?: GraphQLTypes["UserWhereInput"] | undefined,
+	updatedBy?: GraphQLTypes["UserWhereInput"] | undefined,
+	createdBy?: GraphQLTypes["UserWhereInput"] | undefined,
+	scheduledIn_every?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined,
+	scheduledIn_some?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined,
+	scheduledIn_none?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined
+};
+	/** References SkillCategory record uniquely */
+["SkillCategoryWhereUniqueInput"]: {
+		id?: string | undefined,
+	name?: string | undefined
+};
+	["SkillCategoryskillsListUnion"]:{
+        	__typename:"Skill"
+        	['...on Skill']: '__union' & GraphQLTypes["Skill"];
+};
+	["SkillCategoryskillsListUnionConnectInput"]: {
+		Skill?: GraphQLTypes["SkillConnectInput"] | undefined
+};
+	["SkillCategoryskillsListUnionCreateInput"]: {
+		Skill?: GraphQLTypes["SkillCreateInput"] | undefined
+};
+	["SkillCategoryskillsListUnionCreateManyInlineInput"]: {
+		/** Create and connect multiple existing SkillCategoryskillsListUnion documents */
+	create?: Array<GraphQLTypes["SkillCategoryskillsListUnionCreateInput"]> | undefined
+};
+	["SkillCategoryskillsListUnionCreateOneInlineInput"]: {
+		/** Create and connect one SkillCategoryskillsListUnion document */
+	create?: GraphQLTypes["SkillCategoryskillsListUnionCreateInput"] | undefined
+};
+	["SkillCategoryskillsListUnionCreateWithPositionInput"]: {
+		Skill?: GraphQLTypes["SkillCreateWithPositionInput"] | undefined
+};
+	["SkillCategoryskillsListUnionUpdateInput"]: {
+		Skill?: GraphQLTypes["SkillUpdateInput"] | undefined
+};
+	["SkillCategoryskillsListUnionUpdateManyInlineInput"]: {
+		/** Create and connect multiple SkillCategoryskillsListUnion component instances */
+	create?: Array<GraphQLTypes["SkillCategoryskillsListUnionCreateWithPositionInput"]> | undefined,
+	/** Update multiple SkillCategoryskillsListUnion component instances */
+	update?: Array<GraphQLTypes["SkillCategoryskillsListUnionUpdateWithNestedWhereUniqueAndPositionInput"]> | undefined,
+	/** Upsert multiple SkillCategoryskillsListUnion component instances */
+	upsert?: Array<GraphQLTypes["SkillCategoryskillsListUnionUpsertWithNestedWhereUniqueAndPositionInput"]> | undefined,
+	/** Delete multiple SkillCategoryskillsListUnion documents */
+	delete?: Array<GraphQLTypes["SkillCategoryskillsListUnionWhereUniqueInput"]> | undefined
+};
+	["SkillCategoryskillsListUnionUpdateManyWithNestedWhereInput"]: {
+		Skill?: GraphQLTypes["SkillUpdateManyWithNestedWhereInput"] | undefined
+};
+	["SkillCategoryskillsListUnionUpdateOneInlineInput"]: {
+		/** Create and connect one SkillCategoryskillsListUnion document */
+	create?: GraphQLTypes["SkillCategoryskillsListUnionCreateInput"] | undefined,
+	/** Update single SkillCategoryskillsListUnion document */
+	update?: GraphQLTypes["SkillCategoryskillsListUnionUpdateWithNestedWhereUniqueInput"] | undefined,
+	/** Upsert single SkillCategoryskillsListUnion document */
+	upsert?: GraphQLTypes["SkillCategoryskillsListUnionUpsertWithNestedWhereUniqueInput"] | undefined,
+	/** Delete currently connected SkillCategoryskillsListUnion document */
+	delete?: boolean | undefined
+};
+	["SkillCategoryskillsListUnionUpdateWithNestedWhereUniqueAndPositionInput"]: {
+		Skill?: GraphQLTypes["SkillUpdateWithNestedWhereUniqueAndPositionInput"] | undefined
+};
+	["SkillCategoryskillsListUnionUpdateWithNestedWhereUniqueInput"]: {
+		Skill?: GraphQLTypes["SkillUpdateWithNestedWhereUniqueInput"] | undefined
+};
+	["SkillCategoryskillsListUnionUpsertWithNestedWhereUniqueAndPositionInput"]: {
+		Skill?: GraphQLTypes["SkillUpsertWithNestedWhereUniqueAndPositionInput"] | undefined
+};
+	["SkillCategoryskillsListUnionUpsertWithNestedWhereUniqueInput"]: {
+		Skill?: GraphQLTypes["SkillUpsertWithNestedWhereUniqueInput"] | undefined
+};
+	["SkillCategoryskillsListUnionWhereInput"]: {
+		Skill?: GraphQLTypes["SkillWhereInput"] | undefined
+};
+	["SkillCategoryskillsListUnionWhereUniqueInput"]: {
+		Skill?: GraphQLTypes["SkillWhereUniqueInput"] | undefined
+};
+	["SkillConnectInput"]: {
+		/** Document to connect */
+	where: GraphQLTypes["SkillWhereUniqueInput"],
+	/** Allow to specify document position in list of connected documents, will default to appending at end of list */
+	position?: GraphQLTypes["ConnectPositionInput"] | undefined
+};
+	/** A connection to a list of items. */
+["SkillConnection"]: {
+	__typename: "SkillConnection",
+	/** Information to aid in pagination. */
+	pageInfo: GraphQLTypes["PageInfo"],
+	/** A list of edges. */
+	edges: Array<GraphQLTypes["SkillEdge"]>,
+	aggregate: GraphQLTypes["Aggregate"]
+};
+	["SkillCreateInput"]: {
+		name: string,
+	icon: GraphQLTypes["AssetCreateOneInlineInput"]
+};
+	["SkillCreateManyInlineInput"]: {
+		/** Create and connect multiple existing Skill documents */
+	create?: Array<GraphQLTypes["SkillCreateInput"]> | undefined
+};
+	["SkillCreateOneInlineInput"]: {
+		/** Create and connect one Skill document */
+	create?: GraphQLTypes["SkillCreateInput"] | undefined
+};
+	["SkillCreateWithPositionInput"]: {
+		/** Position in the list of existing component instances, will default to appending at the end of list */
+	position?: GraphQLTypes["ConnectPositionInput"] | undefined,
+	/** Document to create */
+	data: GraphQLTypes["SkillCreateInput"]
+};
+	/** An edge in a connection. */
+["SkillEdge"]: {
+	__typename: "SkillEdge",
+	/** The item at the end of the edge. */
+	node: GraphQLTypes["Skill"],
+	/** A cursor for use in pagination. */
+	cursor: string
+};
+	/** Identifies documents */
+["SkillManyWhereInput"]: {
+		/** Contains search across all appropriate fields. */
+	_search?: string | undefined,
+	/** Logical AND on all given filters. */
+	AND?: Array<GraphQLTypes["SkillWhereInput"]> | undefined,
+	/** Logical OR on all given filters. */
+	OR?: Array<GraphQLTypes["SkillWhereInput"]> | undefined,
+	/** Logical NOT on all given filters combined by AND. */
+	NOT?: Array<GraphQLTypes["SkillWhereInput"]> | undefined,
+	id?: string | undefined,
+	/** All values that are not equal to given value. */
+	id_not?: string | undefined,
+	/** All values that are contained in given list. */
+	id_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	id_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	id_contains?: string | undefined,
+	/** All values not containing the given string. */
+	id_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	id_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	id_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	id_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	id_not_ends_with?: string | undefined,
+	name?: string | undefined,
+	/** All values that are not equal to given value. */
+	name_not?: string | undefined,
+	/** All values that are contained in given list. */
+	name_in?: Array<string | undefined> | undefined,
+	/** All values that are not contained in given list. */
+	name_not_in?: Array<string | undefined> | undefined,
+	/** All values containing the given string. */
+	name_contains?: string | undefined,
+	/** All values not containing the given string. */
+	name_not_contains?: string | undefined,
+	/** All values starting with the given string. */
+	name_starts_with?: string | undefined,
+	/** All values not starting with the given string. */
+	name_not_starts_with?: string | undefined,
+	/** All values ending with the given string. */
+	name_ends_with?: string | undefined,
+	/** All values not ending with the given string */
+	name_not_ends_with?: string | undefined,
+	icon?: GraphQLTypes["AssetWhereInput"] | undefined
+};
 	["SkillOrderByInput"]: SkillOrderByInput;
+	["SkillParent"]:{
+        	__typename:"SkillCategory"
+        	['...on SkillCategory']: '__union' & GraphQLTypes["SkillCategory"];
+};
+	["SkillParentConnectInput"]: {
+		SkillCategory?: GraphQLTypes["SkillCategoryConnectInput"] | undefined
+};
+	["SkillParentCreateInput"]: {
+		SkillCategory?: GraphQLTypes["SkillCategoryCreateInput"] | undefined
+};
+	["SkillParentCreateManyInlineInput"]: {
+		/** Create and connect multiple existing SkillParent documents */
+	create?: Array<GraphQLTypes["SkillParentCreateInput"]> | undefined,
+	/** Connect multiple existing SkillParent documents */
+	connect?: Array<GraphQLTypes["SkillParentWhereUniqueInput"]> | undefined
+};
+	["SkillParentCreateOneInlineInput"]: {
+		/** Create and connect one SkillParent document */
+	create?: GraphQLTypes["SkillParentCreateInput"] | undefined,
+	/** Connect one existing SkillParent document */
+	connect?: GraphQLTypes["SkillParentWhereUniqueInput"] | undefined
+};
+	["SkillParentUpdateInput"]: {
+		SkillCategory?: GraphQLTypes["SkillCategoryUpdateInput"] | undefined
+};
+	["SkillParentUpdateManyInlineInput"]: {
+		/** Create and connect multiple SkillParent documents */
+	create?: Array<GraphQLTypes["SkillParentCreateInput"]> | undefined,
+	/** Connect multiple existing SkillParent documents */
+	connect?: Array<GraphQLTypes["SkillParentConnectInput"]> | undefined,
+	/** Override currently-connected documents with multiple existing SkillParent documents */
+	set?: Array<GraphQLTypes["SkillParentWhereUniqueInput"]> | undefined,
+	/** Update multiple SkillParent documents */
+	update?: Array<GraphQLTypes["SkillParentUpdateWithNestedWhereUniqueInput"]> | undefined,
+	/** Upsert multiple SkillParent documents */
+	upsert?: Array<GraphQLTypes["SkillParentUpsertWithNestedWhereUniqueInput"]> | undefined,
+	/** Disconnect multiple SkillParent documents */
+	disconnect?: Array<GraphQLTypes["SkillParentWhereUniqueInput"]> | undefined,
+	/** Delete multiple SkillParent documents */
+	delete?: Array<GraphQLTypes["SkillParentWhereUniqueInput"]> | undefined
+};
+	["SkillParentUpdateManyWithNestedWhereInput"]: {
+		SkillCategory?: GraphQLTypes["SkillCategoryUpdateManyWithNestedWhereInput"] | undefined
+};
+	["SkillParentUpdateOneInlineInput"]: {
+		/** Create and connect one SkillParent document */
+	create?: GraphQLTypes["SkillParentCreateInput"] | undefined,
+	/** Update single SkillParent document */
+	update?: GraphQLTypes["SkillParentUpdateWithNestedWhereUniqueInput"] | undefined,
+	/** Upsert single SkillParent document */
+	upsert?: GraphQLTypes["SkillParentUpsertWithNestedWhereUniqueInput"] | undefined,
+	/** Connect existing SkillParent document */
+	connect?: GraphQLTypes["SkillParentWhereUniqueInput"] | undefined,
+	/** Disconnect currently connected SkillParent document */
+	disconnect?: boolean | undefined,
+	/** Delete currently connected SkillParent document */
+	delete?: boolean | undefined
+};
+	["SkillParentUpdateWithNestedWhereUniqueInput"]: {
+		SkillCategory?: GraphQLTypes["SkillCategoryUpdateWithNestedWhereUniqueInput"] | undefined
+};
+	["SkillParentUpsertWithNestedWhereUniqueInput"]: {
+		SkillCategory?: GraphQLTypes["SkillCategoryUpsertWithNestedWhereUniqueInput"] | undefined
+};
+	["SkillParentWhereInput"]: {
+		SkillCategory?: GraphQLTypes["SkillCategoryWhereInput"] | undefined
+};
+	["SkillParentWhereUniqueInput"]: {
+		SkillCategory?: GraphQLTypes["SkillCategoryWhereUniqueInput"] | undefined
+};
 	["SkillUpdateInput"]: {
 		name?: string | undefined,
 	icon?: GraphQLTypes["AssetUpdateOneInlineInput"] | undefined
 };
 	["SkillUpdateManyInlineInput"]: {
-		/** Create and connect multiple Skill documents */
-	create?: Array<GraphQLTypes["SkillCreateInput"]> | undefined,
-	/** Connect multiple existing Skill documents */
-	connect?: Array<GraphQLTypes["SkillConnectInput"]> | undefined,
-	/** Override currently-connected documents with multiple existing Skill documents */
-	set?: Array<GraphQLTypes["SkillWhereUniqueInput"]> | undefined,
-	/** Update multiple Skill documents */
-	update?: Array<GraphQLTypes["SkillUpdateWithNestedWhereUniqueInput"]> | undefined,
-	/** Upsert multiple Skill documents */
-	upsert?: Array<GraphQLTypes["SkillUpsertWithNestedWhereUniqueInput"]> | undefined,
-	/** Disconnect multiple Skill documents */
-	disconnect?: Array<GraphQLTypes["SkillWhereUniqueInput"]> | undefined,
+		/** Create and connect multiple Skill component instances */
+	create?: Array<GraphQLTypes["SkillCreateWithPositionInput"]> | undefined,
+	/** Update multiple Skill component instances */
+	update?: Array<GraphQLTypes["SkillUpdateWithNestedWhereUniqueAndPositionInput"]> | undefined,
+	/** Upsert multiple Skill component instances */
+	upsert?: Array<GraphQLTypes["SkillUpsertWithNestedWhereUniqueAndPositionInput"]> | undefined,
 	/** Delete multiple Skill documents */
 	delete?: Array<GraphQLTypes["SkillWhereUniqueInput"]> | undefined
 };
@@ -16088,12 +20450,16 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	update?: GraphQLTypes["SkillUpdateWithNestedWhereUniqueInput"] | undefined,
 	/** Upsert single Skill document */
 	upsert?: GraphQLTypes["SkillUpsertWithNestedWhereUniqueInput"] | undefined,
-	/** Connect existing Skill document */
-	connect?: GraphQLTypes["SkillWhereUniqueInput"] | undefined,
-	/** Disconnect currently connected Skill document */
-	disconnect?: boolean | undefined,
 	/** Delete currently connected Skill document */
 	delete?: boolean | undefined
+};
+	["SkillUpdateWithNestedWhereUniqueAndPositionInput"]: {
+		/** Unique component instance search */
+	where: GraphQLTypes["SkillWhereUniqueInput"],
+	/** Position in the list of existing component instances, will default to appending at the end of list */
+	position?: GraphQLTypes["ConnectPositionInput"] | undefined,
+	/** Document to update */
+	data?: GraphQLTypes["SkillUpdateInput"] | undefined
 };
 	["SkillUpdateWithNestedWhereUniqueInput"]: {
 		/** Unique document search */
@@ -16106,6 +20472,14 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	create: GraphQLTypes["SkillCreateInput"],
 	/** Update document if it exists */
 	update: GraphQLTypes["SkillUpdateInput"]
+};
+	["SkillUpsertWithNestedWhereUniqueAndPositionInput"]: {
+		/** Unique component instance search */
+	where: GraphQLTypes["SkillWhereUniqueInput"],
+	/** Position in the list of existing component instances, will default to appending at the end of list */
+	position?: GraphQLTypes["ConnectPositionInput"] | undefined,
+	/** Document to upsert */
+	data?: GraphQLTypes["SkillUpsertInput"] | undefined
 };
 	["SkillUpsertWithNestedWhereUniqueInput"]: {
 		/** Unique document search */
@@ -16123,51 +20497,6 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	OR?: Array<GraphQLTypes["SkillWhereInput"]> | undefined,
 	/** Logical NOT on all given filters combined by AND. */
 	NOT?: Array<GraphQLTypes["SkillWhereInput"]> | undefined,
-	publishedAt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values that are not equal to given value. */
-	publishedAt_not?: GraphQLTypes["DateTime"] | undefined,
-	/** All values that are contained in given list. */
-	publishedAt_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	publishedAt_not_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
-	/** All values less than the given value. */
-	publishedAt_lt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values less than or equal the given value. */
-	publishedAt_lte?: GraphQLTypes["DateTime"] | undefined,
-	/** All values greater than the given value. */
-	publishedAt_gt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values greater than or equal the given value. */
-	publishedAt_gte?: GraphQLTypes["DateTime"] | undefined,
-	updatedAt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values that are not equal to given value. */
-	updatedAt_not?: GraphQLTypes["DateTime"] | undefined,
-	/** All values that are contained in given list. */
-	updatedAt_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	updatedAt_not_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
-	/** All values less than the given value. */
-	updatedAt_lt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values less than or equal the given value. */
-	updatedAt_lte?: GraphQLTypes["DateTime"] | undefined,
-	/** All values greater than the given value. */
-	updatedAt_gt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values greater than or equal the given value. */
-	updatedAt_gte?: GraphQLTypes["DateTime"] | undefined,
-	createdAt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values that are not equal to given value. */
-	createdAt_not?: GraphQLTypes["DateTime"] | undefined,
-	/** All values that are contained in given list. */
-	createdAt_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	createdAt_not_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
-	/** All values less than the given value. */
-	createdAt_lt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values less than or equal the given value. */
-	createdAt_lte?: GraphQLTypes["DateTime"] | undefined,
-	/** All values greater than the given value. */
-	createdAt_gt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values greater than or equal the given value. */
-	createdAt_gte?: GraphQLTypes["DateTime"] | undefined,
 	id?: string | undefined,
 	/** All values that are not equal to given value. */
 	id_not?: string | undefined,
@@ -16206,407 +20535,17 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	name_ends_with?: string | undefined,
 	/** All values not ending with the given string */
 	name_not_ends_with?: string | undefined,
-	publishedBy?: GraphQLTypes["UserWhereInput"] | undefined,
-	updatedBy?: GraphQLTypes["UserWhereInput"] | undefined,
-	createdBy?: GraphQLTypes["UserWhereInput"] | undefined,
-	icon?: GraphQLTypes["AssetWhereInput"] | undefined,
-	scheduledIn_every?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined,
-	scheduledIn_some?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined,
-	scheduledIn_none?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined
+	icon?: GraphQLTypes["AssetWhereInput"] | undefined
 };
 	/** References Skill record uniquely */
 ["SkillWhereUniqueInput"]: {
 		id?: string | undefined,
 	name?: string | undefined
 };
-	["Social"]: {
-	__typename: "Social",
-	/** System stage field */
-	stage: GraphQLTypes["Stage"],
-	/** Get the document in other stages */
-	documentInStages: Array<GraphQLTypes["Social"]>,
-	/** The time the document was published. Null on documents in draft stage. */
-	publishedAt?: GraphQLTypes["DateTime"] | undefined,
-	/** The time the document was updated */
-	updatedAt: GraphQLTypes["DateTime"],
-	/** The time the document was created */
-	createdAt: GraphQLTypes["DateTime"],
-	/** The unique identifier */
-	id: string,
-	/** Social media name */
-	name: string,
-	/** Social media link */
-	url: string,
-	/** Social media color */
-	color?: GraphQLTypes["Color"] | undefined,
-	/** User that last published this document */
-	publishedBy?: GraphQLTypes["User"] | undefined,
-	/** User that last updated this document */
-	updatedBy?: GraphQLTypes["User"] | undefined,
-	/** User that created this document */
-	createdBy?: GraphQLTypes["User"] | undefined,
-	/** Social media logo */
-	image: GraphQLTypes["Asset"],
-	scheduledIn: Array<GraphQLTypes["ScheduledOperation"]>,
-	/** List of Social versions */
-	history: Array<GraphQLTypes["Version"]>
-};
-	["SocialConnectInput"]: {
-		/** Document to connect */
-	where: GraphQLTypes["SocialWhereUniqueInput"],
-	/** Allow to specify document position in list of connected documents, will default to appending at end of list */
-	position?: GraphQLTypes["ConnectPositionInput"] | undefined
-};
-	/** A connection to a list of items. */
-["SocialConnection"]: {
-	__typename: "SocialConnection",
-	/** Information to aid in pagination. */
-	pageInfo: GraphQLTypes["PageInfo"],
-	/** A list of edges. */
-	edges: Array<GraphQLTypes["SocialEdge"]>,
-	aggregate: GraphQLTypes["Aggregate"]
-};
-	["SocialCreateInput"]: {
-		updatedAt?: GraphQLTypes["DateTime"] | undefined,
-	createdAt?: GraphQLTypes["DateTime"] | undefined,
-	name: string,
-	url: string,
-	color?: GraphQLTypes["ColorInput"] | undefined,
-	image: GraphQLTypes["AssetCreateOneInlineInput"]
-};
-	["SocialCreateManyInlineInput"]: {
-		/** Create and connect multiple existing Social documents */
-	create?: Array<GraphQLTypes["SocialCreateInput"]> | undefined,
-	/** Connect multiple existing Social documents */
-	connect?: Array<GraphQLTypes["SocialWhereUniqueInput"]> | undefined
-};
-	["SocialCreateOneInlineInput"]: {
-		/** Create and connect one Social document */
-	create?: GraphQLTypes["SocialCreateInput"] | undefined,
-	/** Connect one existing Social document */
-	connect?: GraphQLTypes["SocialWhereUniqueInput"] | undefined
-};
-	/** An edge in a connection. */
-["SocialEdge"]: {
-	__typename: "SocialEdge",
-	/** The item at the end of the edge. */
-	node: GraphQLTypes["Social"],
-	/** A cursor for use in pagination. */
-	cursor: string
-};
-	/** Identifies documents */
-["SocialManyWhereInput"]: {
-		/** Contains search across all appropriate fields. */
-	_search?: string | undefined,
-	/** Logical AND on all given filters. */
-	AND?: Array<GraphQLTypes["SocialWhereInput"]> | undefined,
-	/** Logical OR on all given filters. */
-	OR?: Array<GraphQLTypes["SocialWhereInput"]> | undefined,
-	/** Logical NOT on all given filters combined by AND. */
-	NOT?: Array<GraphQLTypes["SocialWhereInput"]> | undefined,
-	publishedAt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values that are not equal to given value. */
-	publishedAt_not?: GraphQLTypes["DateTime"] | undefined,
-	/** All values that are contained in given list. */
-	publishedAt_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	publishedAt_not_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
-	/** All values less than the given value. */
-	publishedAt_lt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values less than or equal the given value. */
-	publishedAt_lte?: GraphQLTypes["DateTime"] | undefined,
-	/** All values greater than the given value. */
-	publishedAt_gt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values greater than or equal the given value. */
-	publishedAt_gte?: GraphQLTypes["DateTime"] | undefined,
-	updatedAt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values that are not equal to given value. */
-	updatedAt_not?: GraphQLTypes["DateTime"] | undefined,
-	/** All values that are contained in given list. */
-	updatedAt_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	updatedAt_not_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
-	/** All values less than the given value. */
-	updatedAt_lt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values less than or equal the given value. */
-	updatedAt_lte?: GraphQLTypes["DateTime"] | undefined,
-	/** All values greater than the given value. */
-	updatedAt_gt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values greater than or equal the given value. */
-	updatedAt_gte?: GraphQLTypes["DateTime"] | undefined,
-	createdAt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values that are not equal to given value. */
-	createdAt_not?: GraphQLTypes["DateTime"] | undefined,
-	/** All values that are contained in given list. */
-	createdAt_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	createdAt_not_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
-	/** All values less than the given value. */
-	createdAt_lt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values less than or equal the given value. */
-	createdAt_lte?: GraphQLTypes["DateTime"] | undefined,
-	/** All values greater than the given value. */
-	createdAt_gt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values greater than or equal the given value. */
-	createdAt_gte?: GraphQLTypes["DateTime"] | undefined,
-	id?: string | undefined,
-	/** All values that are not equal to given value. */
-	id_not?: string | undefined,
-	/** All values that are contained in given list. */
-	id_in?: Array<string | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	id_not_in?: Array<string | undefined> | undefined,
-	/** All values containing the given string. */
-	id_contains?: string | undefined,
-	/** All values not containing the given string. */
-	id_not_contains?: string | undefined,
-	/** All values starting with the given string. */
-	id_starts_with?: string | undefined,
-	/** All values not starting with the given string. */
-	id_not_starts_with?: string | undefined,
-	/** All values ending with the given string. */
-	id_ends_with?: string | undefined,
-	/** All values not ending with the given string */
-	id_not_ends_with?: string | undefined,
-	name?: string | undefined,
-	/** All values that are not equal to given value. */
-	name_not?: string | undefined,
-	/** All values that are contained in given list. */
-	name_in?: Array<string | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	name_not_in?: Array<string | undefined> | undefined,
-	/** All values containing the given string. */
-	name_contains?: string | undefined,
-	/** All values not containing the given string. */
-	name_not_contains?: string | undefined,
-	/** All values starting with the given string. */
-	name_starts_with?: string | undefined,
-	/** All values not starting with the given string. */
-	name_not_starts_with?: string | undefined,
-	/** All values ending with the given string. */
-	name_ends_with?: string | undefined,
-	/** All values not ending with the given string */
-	name_not_ends_with?: string | undefined,
-	url?: string | undefined,
-	/** All values that are not equal to given value. */
-	url_not?: string | undefined,
-	/** All values that are contained in given list. */
-	url_in?: Array<string | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	url_not_in?: Array<string | undefined> | undefined,
-	/** All values containing the given string. */
-	url_contains?: string | undefined,
-	/** All values not containing the given string. */
-	url_not_contains?: string | undefined,
-	/** All values starting with the given string. */
-	url_starts_with?: string | undefined,
-	/** All values not starting with the given string. */
-	url_not_starts_with?: string | undefined,
-	/** All values ending with the given string. */
-	url_ends_with?: string | undefined,
-	/** All values not ending with the given string */
-	url_not_ends_with?: string | undefined,
-	publishedBy?: GraphQLTypes["UserWhereInput"] | undefined,
-	updatedBy?: GraphQLTypes["UserWhereInput"] | undefined,
-	createdBy?: GraphQLTypes["UserWhereInput"] | undefined,
-	image?: GraphQLTypes["AssetWhereInput"] | undefined,
-	scheduledIn_every?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined,
-	scheduledIn_some?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined,
-	scheduledIn_none?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined
-};
-	["SocialOrderByInput"]: SocialOrderByInput;
-	["SocialUpdateInput"]: {
-		name?: string | undefined,
-	url?: string | undefined,
-	color?: GraphQLTypes["ColorInput"] | undefined,
-	image?: GraphQLTypes["AssetUpdateOneInlineInput"] | undefined
-};
-	["SocialUpdateManyInlineInput"]: {
-		/** Create and connect multiple Social documents */
-	create?: Array<GraphQLTypes["SocialCreateInput"]> | undefined,
-	/** Connect multiple existing Social documents */
-	connect?: Array<GraphQLTypes["SocialConnectInput"]> | undefined,
-	/** Override currently-connected documents with multiple existing Social documents */
-	set?: Array<GraphQLTypes["SocialWhereUniqueInput"]> | undefined,
-	/** Update multiple Social documents */
-	update?: Array<GraphQLTypes["SocialUpdateWithNestedWhereUniqueInput"]> | undefined,
-	/** Upsert multiple Social documents */
-	upsert?: Array<GraphQLTypes["SocialUpsertWithNestedWhereUniqueInput"]> | undefined,
-	/** Disconnect multiple Social documents */
-	disconnect?: Array<GraphQLTypes["SocialWhereUniqueInput"]> | undefined,
-	/** Delete multiple Social documents */
-	delete?: Array<GraphQLTypes["SocialWhereUniqueInput"]> | undefined
-};
-	["SocialUpdateManyInput"]: {
-		name?: string | undefined,
-	color?: GraphQLTypes["ColorInput"] | undefined
-};
-	["SocialUpdateManyWithNestedWhereInput"]: {
-		/** Document search */
-	where: GraphQLTypes["SocialWhereInput"],
-	/** Update many input */
-	data: GraphQLTypes["SocialUpdateManyInput"]
-};
-	["SocialUpdateOneInlineInput"]: {
-		/** Create and connect one Social document */
-	create?: GraphQLTypes["SocialCreateInput"] | undefined,
-	/** Update single Social document */
-	update?: GraphQLTypes["SocialUpdateWithNestedWhereUniqueInput"] | undefined,
-	/** Upsert single Social document */
-	upsert?: GraphQLTypes["SocialUpsertWithNestedWhereUniqueInput"] | undefined,
-	/** Connect existing Social document */
-	connect?: GraphQLTypes["SocialWhereUniqueInput"] | undefined,
-	/** Disconnect currently connected Social document */
-	disconnect?: boolean | undefined,
-	/** Delete currently connected Social document */
-	delete?: boolean | undefined
-};
-	["SocialUpdateWithNestedWhereUniqueInput"]: {
-		/** Unique document search */
-	where: GraphQLTypes["SocialWhereUniqueInput"],
-	/** Document to update */
-	data: GraphQLTypes["SocialUpdateInput"]
-};
-	["SocialUpsertInput"]: {
-		/** Create document if it didn't exist */
-	create: GraphQLTypes["SocialCreateInput"],
-	/** Update document if it exists */
-	update: GraphQLTypes["SocialUpdateInput"]
-};
-	["SocialUpsertWithNestedWhereUniqueInput"]: {
-		/** Unique document search */
-	where: GraphQLTypes["SocialWhereUniqueInput"],
-	/** Upsert data */
-	data: GraphQLTypes["SocialUpsertInput"]
-};
-	/** Identifies documents */
-["SocialWhereInput"]: {
-		/** Contains search across all appropriate fields. */
-	_search?: string | undefined,
-	/** Logical AND on all given filters. */
-	AND?: Array<GraphQLTypes["SocialWhereInput"]> | undefined,
-	/** Logical OR on all given filters. */
-	OR?: Array<GraphQLTypes["SocialWhereInput"]> | undefined,
-	/** Logical NOT on all given filters combined by AND. */
-	NOT?: Array<GraphQLTypes["SocialWhereInput"]> | undefined,
-	publishedAt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values that are not equal to given value. */
-	publishedAt_not?: GraphQLTypes["DateTime"] | undefined,
-	/** All values that are contained in given list. */
-	publishedAt_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	publishedAt_not_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
-	/** All values less than the given value. */
-	publishedAt_lt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values less than or equal the given value. */
-	publishedAt_lte?: GraphQLTypes["DateTime"] | undefined,
-	/** All values greater than the given value. */
-	publishedAt_gt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values greater than or equal the given value. */
-	publishedAt_gte?: GraphQLTypes["DateTime"] | undefined,
-	updatedAt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values that are not equal to given value. */
-	updatedAt_not?: GraphQLTypes["DateTime"] | undefined,
-	/** All values that are contained in given list. */
-	updatedAt_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	updatedAt_not_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
-	/** All values less than the given value. */
-	updatedAt_lt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values less than or equal the given value. */
-	updatedAt_lte?: GraphQLTypes["DateTime"] | undefined,
-	/** All values greater than the given value. */
-	updatedAt_gt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values greater than or equal the given value. */
-	updatedAt_gte?: GraphQLTypes["DateTime"] | undefined,
-	createdAt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values that are not equal to given value. */
-	createdAt_not?: GraphQLTypes["DateTime"] | undefined,
-	/** All values that are contained in given list. */
-	createdAt_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	createdAt_not_in?: Array<GraphQLTypes["DateTime"] | undefined> | undefined,
-	/** All values less than the given value. */
-	createdAt_lt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values less than or equal the given value. */
-	createdAt_lte?: GraphQLTypes["DateTime"] | undefined,
-	/** All values greater than the given value. */
-	createdAt_gt?: GraphQLTypes["DateTime"] | undefined,
-	/** All values greater than or equal the given value. */
-	createdAt_gte?: GraphQLTypes["DateTime"] | undefined,
-	id?: string | undefined,
-	/** All values that are not equal to given value. */
-	id_not?: string | undefined,
-	/** All values that are contained in given list. */
-	id_in?: Array<string | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	id_not_in?: Array<string | undefined> | undefined,
-	/** All values containing the given string. */
-	id_contains?: string | undefined,
-	/** All values not containing the given string. */
-	id_not_contains?: string | undefined,
-	/** All values starting with the given string. */
-	id_starts_with?: string | undefined,
-	/** All values not starting with the given string. */
-	id_not_starts_with?: string | undefined,
-	/** All values ending with the given string. */
-	id_ends_with?: string | undefined,
-	/** All values not ending with the given string */
-	id_not_ends_with?: string | undefined,
-	name?: string | undefined,
-	/** All values that are not equal to given value. */
-	name_not?: string | undefined,
-	/** All values that are contained in given list. */
-	name_in?: Array<string | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	name_not_in?: Array<string | undefined> | undefined,
-	/** All values containing the given string. */
-	name_contains?: string | undefined,
-	/** All values not containing the given string. */
-	name_not_contains?: string | undefined,
-	/** All values starting with the given string. */
-	name_starts_with?: string | undefined,
-	/** All values not starting with the given string. */
-	name_not_starts_with?: string | undefined,
-	/** All values ending with the given string. */
-	name_ends_with?: string | undefined,
-	/** All values not ending with the given string */
-	name_not_ends_with?: string | undefined,
-	url?: string | undefined,
-	/** All values that are not equal to given value. */
-	url_not?: string | undefined,
-	/** All values that are contained in given list. */
-	url_in?: Array<string | undefined> | undefined,
-	/** All values that are not contained in given list. */
-	url_not_in?: Array<string | undefined> | undefined,
-	/** All values containing the given string. */
-	url_contains?: string | undefined,
-	/** All values not containing the given string. */
-	url_not_contains?: string | undefined,
-	/** All values starting with the given string. */
-	url_starts_with?: string | undefined,
-	/** All values not starting with the given string. */
-	url_not_starts_with?: string | undefined,
-	/** All values ending with the given string. */
-	url_ends_with?: string | undefined,
-	/** All values not ending with the given string */
-	url_not_ends_with?: string | undefined,
-	publishedBy?: GraphQLTypes["UserWhereInput"] | undefined,
-	updatedBy?: GraphQLTypes["UserWhereInput"] | undefined,
-	createdBy?: GraphQLTypes["UserWhereInput"] | undefined,
-	image?: GraphQLTypes["AssetWhereInput"] | undefined,
-	scheduledIn_every?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined,
-	scheduledIn_some?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined,
-	scheduledIn_none?: GraphQLTypes["ScheduledOperationWhereInput"] | undefined
-};
-	/** References Social record uniquely */
-["SocialWhereUniqueInput"]: {
-		id?: string | undefined,
-	url?: string | undefined
-};
 	/** Stage system enumeration */
 ["Stage"]: Stage;
 	["SystemDateTimeFieldVariation"]: SystemDateTimeFieldVariation;
+	["Technologies"]: Technologies;
 	["UnpublishLocaleInput"]: {
 		/** Locales to unpublish */
 	locale: GraphQLTypes["Locale"],
@@ -16956,6 +20895,20 @@ TXT:	jpg, html, odt, pdf, svg, and webp */
 	["_RelationKind"]: _RelationKind;
 	["_SystemDateTimeFieldVariation"]: _SystemDateTimeFieldVariation
     }
+export const enum AboutMeOrderByInput {
+	publishedAt_ASC = "publishedAt_ASC",
+	publishedAt_DESC = "publishedAt_DESC",
+	updatedAt_ASC = "updatedAt_ASC",
+	updatedAt_DESC = "updatedAt_DESC",
+	createdAt_ASC = "createdAt_ASC",
+	createdAt_DESC = "createdAt_DESC",
+	id_ASC = "id_ASC",
+	id_DESC = "id_DESC",
+	contactEmail_ASC = "contactEmail_ASC",
+	contactEmail_DESC = "contactEmail_DESC",
+	description_ASC = "description_ASC",
+	description_DESC = "description_DESC"
+}
 export const enum AssetOrderByInput {
 	mimeType_ASC = "mimeType_ASC",
 	mimeType_DESC = "mimeType_DESC",
@@ -16977,6 +20930,14 @@ export const enum AssetOrderByInput {
 	createdAt_DESC = "createdAt_DESC",
 	id_ASC = "id_ASC",
 	id_DESC = "id_DESC"
+}
+export const enum CompanyOrderByInput {
+	id_ASC = "id_ASC",
+	id_DESC = "id_DESC",
+	companyName_ASC = "companyName_ASC",
+	companyName_DESC = "companyName_DESC",
+	companyWebsite_ASC = "companyWebsite_ASC",
+	companyWebsite_DESC = "companyWebsite_DESC"
 }
 export const enum DocumentFileTypes {
 	jpg = "jpg",
@@ -17002,27 +20963,17 @@ export const enum ImageFit {
 	scale = "scale",
 	max = "max"
 }
+export const enum LinkOrderByInput {
+	id_ASC = "id_ASC",
+	id_DESC = "id_DESC",
+	name_ASC = "name_ASC",
+	name_DESC = "name_DESC",
+	url_ASC = "url_ASC",
+	url_DESC = "url_DESC"
+}
 /** Locale system enumeration */
 export const enum Locale {
 	en = "en"
-}
-export const enum PageMetadataOrderByInput {
-	publishedAt_ASC = "publishedAt_ASC",
-	publishedAt_DESC = "publishedAt_DESC",
-	updatedAt_ASC = "updatedAt_ASC",
-	updatedAt_DESC = "updatedAt_DESC",
-	createdAt_ASC = "createdAt_ASC",
-	createdAt_DESC = "createdAt_DESC",
-	id_ASC = "id_ASC",
-	id_DESC = "id_DESC",
-	title_ASC = "title_ASC",
-	title_DESC = "title_DESC",
-	summary_ASC = "summary_ASC",
-	summary_DESC = "summary_DESC",
-	slug_ASC = "slug_ASC",
-	slug_DESC = "slug_DESC",
-	pageNumber_ASC = "pageNumber_ASC",
-	pageNumber_DESC = "pageNumber_DESC"
 }
 export const enum ProjectOrderByInput {
 	publishedAt_ASC = "publishedAt_ASC",
@@ -17035,16 +20986,14 @@ export const enum ProjectOrderByInput {
 	id_DESC = "id_DESC",
 	name_ASC = "name_ASC",
 	name_DESC = "name_DESC",
-	slug_ASC = "slug_ASC",
-	slug_DESC = "slug_DESC",
 	description_ASC = "description_ASC",
 	description_DESC = "description_DESC",
-	tags_ASC = "tags_ASC",
-	tags_DESC = "tags_DESC",
 	demo_ASC = "demo_ASC",
 	demo_DESC = "demo_DESC",
 	sourceCode_ASC = "sourceCode_ASC",
-	sourceCode_DESC = "sourceCode_DESC"
+	sourceCode_DESC = "sourceCode_DESC",
+	stack_ASC = "stack_ASC",
+	stack_DESC = "stack_DESC"
 }
 export const enum ScheduledOperationOrderByInput {
 	errorMessage_ASC = "errorMessage_ASC",
@@ -17101,7 +21050,23 @@ export const enum ScheduledReleaseStatus {
 	IN_PROGRESS = "IN_PROGRESS",
 	PENDING = "PENDING"
 }
-export const enum SkillOrderByInput {
+export const enum SeoOrderByInput {
+	publishedAt_ASC = "publishedAt_ASC",
+	publishedAt_DESC = "publishedAt_DESC",
+	updatedAt_ASC = "updatedAt_ASC",
+	updatedAt_DESC = "updatedAt_DESC",
+	createdAt_ASC = "createdAt_ASC",
+	createdAt_DESC = "createdAt_DESC",
+	id_ASC = "id_ASC",
+	id_DESC = "id_DESC",
+	title_ASC = "title_ASC",
+	title_DESC = "title_DESC",
+	description_ASC = "description_ASC",
+	description_DESC = "description_DESC",
+	keywords_ASC = "keywords_ASC",
+	keywords_DESC = "keywords_DESC"
+}
+export const enum SkillCategoryOrderByInput {
 	publishedAt_ASC = "publishedAt_ASC",
 	publishedAt_DESC = "publishedAt_DESC",
 	updatedAt_ASC = "updatedAt_ASC",
@@ -17113,19 +21078,11 @@ export const enum SkillOrderByInput {
 	name_ASC = "name_ASC",
 	name_DESC = "name_DESC"
 }
-export const enum SocialOrderByInput {
-	publishedAt_ASC = "publishedAt_ASC",
-	publishedAt_DESC = "publishedAt_DESC",
-	updatedAt_ASC = "updatedAt_ASC",
-	updatedAt_DESC = "updatedAt_DESC",
-	createdAt_ASC = "createdAt_ASC",
-	createdAt_DESC = "createdAt_DESC",
+export const enum SkillOrderByInput {
 	id_ASC = "id_ASC",
 	id_DESC = "id_DESC",
 	name_ASC = "name_ASC",
-	name_DESC = "name_DESC",
-	url_ASC = "url_ASC",
-	url_DESC = "url_DESC"
+	name_DESC = "name_DESC"
 }
 /** Stage system enumeration */
 export const enum Stage {
@@ -17136,6 +21093,32 @@ export const enum SystemDateTimeFieldVariation {
 	BASE = "BASE",
 	LOCALIZATION = "LOCALIZATION",
 	COMBINED = "COMBINED"
+}
+export const enum Technologies {
+	Angular = "Angular",
+	Auth0 = "Auth0",
+	ChakraUI = "ChakraUI",
+	CSS = "CSS",
+	Firebase = "Firebase",
+	Formik = "Formik",
+	FramerMotion = "FramerMotion",
+	GraphQL = "GraphQL",
+	GSAP = "GSAP",
+	HTML = "HTML",
+	JavaScript = "JavaScript",
+	MaterialUI = "MaterialUI",
+	MongoDB = "MongoDB",
+	NextJS = "NextJS",
+	NodeJS = "NodeJS",
+	React = "React",
+	ReactHookForm = "ReactHookForm",
+	Redux = "Redux",
+	StyledComponents = "StyledComponents",
+	TailwindCSS = "TailwindCSS",
+	TypeScript = "TypeScript",
+	UnstatedNext = "UnstatedNext",
+	VueJS = "VueJS",
+	Yup = "Yup"
 }
 /** System User Kind */
 export const enum UserKind {
@@ -17235,6 +21218,37 @@ export const enum _SystemDateTimeFieldVariation {
 }
 
 type ZEUS_VARIABLES = {
+	["AboutMeConnectInput"]: ValueTypes["AboutMeConnectInput"];
+	["AboutMeCreateInput"]: ValueTypes["AboutMeCreateInput"];
+	["AboutMeCreateManyInlineInput"]: ValueTypes["AboutMeCreateManyInlineInput"];
+	["AboutMeCreateOneInlineInput"]: ValueTypes["AboutMeCreateOneInlineInput"];
+	["AboutMeManyWhereInput"]: ValueTypes["AboutMeManyWhereInput"];
+	["AboutMeOrderByInput"]: ValueTypes["AboutMeOrderByInput"];
+	["AboutMeUpdateInput"]: ValueTypes["AboutMeUpdateInput"];
+	["AboutMeUpdateManyInlineInput"]: ValueTypes["AboutMeUpdateManyInlineInput"];
+	["AboutMeUpdateManyInput"]: ValueTypes["AboutMeUpdateManyInput"];
+	["AboutMeUpdateManyWithNestedWhereInput"]: ValueTypes["AboutMeUpdateManyWithNestedWhereInput"];
+	["AboutMeUpdateOneInlineInput"]: ValueTypes["AboutMeUpdateOneInlineInput"];
+	["AboutMeUpdateWithNestedWhereUniqueInput"]: ValueTypes["AboutMeUpdateWithNestedWhereUniqueInput"];
+	["AboutMeUpsertInput"]: ValueTypes["AboutMeUpsertInput"];
+	["AboutMeUpsertWithNestedWhereUniqueInput"]: ValueTypes["AboutMeUpsertWithNestedWhereUniqueInput"];
+	["AboutMeWhereInput"]: ValueTypes["AboutMeWhereInput"];
+	["AboutMeWhereUniqueInput"]: ValueTypes["AboutMeWhereUniqueInput"];
+	["AboutMelinksUnionConnectInput"]: ValueTypes["AboutMelinksUnionConnectInput"];
+	["AboutMelinksUnionCreateInput"]: ValueTypes["AboutMelinksUnionCreateInput"];
+	["AboutMelinksUnionCreateManyInlineInput"]: ValueTypes["AboutMelinksUnionCreateManyInlineInput"];
+	["AboutMelinksUnionCreateOneInlineInput"]: ValueTypes["AboutMelinksUnionCreateOneInlineInput"];
+	["AboutMelinksUnionCreateWithPositionInput"]: ValueTypes["AboutMelinksUnionCreateWithPositionInput"];
+	["AboutMelinksUnionUpdateInput"]: ValueTypes["AboutMelinksUnionUpdateInput"];
+	["AboutMelinksUnionUpdateManyInlineInput"]: ValueTypes["AboutMelinksUnionUpdateManyInlineInput"];
+	["AboutMelinksUnionUpdateManyWithNestedWhereInput"]: ValueTypes["AboutMelinksUnionUpdateManyWithNestedWhereInput"];
+	["AboutMelinksUnionUpdateOneInlineInput"]: ValueTypes["AboutMelinksUnionUpdateOneInlineInput"];
+	["AboutMelinksUnionUpdateWithNestedWhereUniqueAndPositionInput"]: ValueTypes["AboutMelinksUnionUpdateWithNestedWhereUniqueAndPositionInput"];
+	["AboutMelinksUnionUpdateWithNestedWhereUniqueInput"]: ValueTypes["AboutMelinksUnionUpdateWithNestedWhereUniqueInput"];
+	["AboutMelinksUnionUpsertWithNestedWhereUniqueAndPositionInput"]: ValueTypes["AboutMelinksUnionUpsertWithNestedWhereUniqueAndPositionInput"];
+	["AboutMelinksUnionUpsertWithNestedWhereUniqueInput"]: ValueTypes["AboutMelinksUnionUpsertWithNestedWhereUniqueInput"];
+	["AboutMelinksUnionWhereInput"]: ValueTypes["AboutMelinksUnionWhereInput"];
+	["AboutMelinksUnionWhereUniqueInput"]: ValueTypes["AboutMelinksUnionWhereUniqueInput"];
 	["AssetConnectInput"]: ValueTypes["AssetConnectInput"];
 	["AssetCreateInput"]: ValueTypes["AssetCreateInput"];
 	["AssetCreateLocalizationDataInput"]: ValueTypes["AssetCreateLocalizationDataInput"];
@@ -17263,6 +21277,37 @@ type ZEUS_VARIABLES = {
 	["AssetWhereInput"]: ValueTypes["AssetWhereInput"];
 	["AssetWhereUniqueInput"]: ValueTypes["AssetWhereUniqueInput"];
 	["ColorInput"]: ValueTypes["ColorInput"];
+	["CompanyConnectInput"]: ValueTypes["CompanyConnectInput"];
+	["CompanyCreateInput"]: ValueTypes["CompanyCreateInput"];
+	["CompanyCreateManyInlineInput"]: ValueTypes["CompanyCreateManyInlineInput"];
+	["CompanyCreateOneInlineInput"]: ValueTypes["CompanyCreateOneInlineInput"];
+	["CompanyCreateWithPositionInput"]: ValueTypes["CompanyCreateWithPositionInput"];
+	["CompanyManyWhereInput"]: ValueTypes["CompanyManyWhereInput"];
+	["CompanyOrderByInput"]: ValueTypes["CompanyOrderByInput"];
+	["CompanyParentConnectInput"]: ValueTypes["CompanyParentConnectInput"];
+	["CompanyParentCreateInput"]: ValueTypes["CompanyParentCreateInput"];
+	["CompanyParentCreateManyInlineInput"]: ValueTypes["CompanyParentCreateManyInlineInput"];
+	["CompanyParentCreateOneInlineInput"]: ValueTypes["CompanyParentCreateOneInlineInput"];
+	["CompanyParentUpdateInput"]: ValueTypes["CompanyParentUpdateInput"];
+	["CompanyParentUpdateManyInlineInput"]: ValueTypes["CompanyParentUpdateManyInlineInput"];
+	["CompanyParentUpdateManyWithNestedWhereInput"]: ValueTypes["CompanyParentUpdateManyWithNestedWhereInput"];
+	["CompanyParentUpdateOneInlineInput"]: ValueTypes["CompanyParentUpdateOneInlineInput"];
+	["CompanyParentUpdateWithNestedWhereUniqueInput"]: ValueTypes["CompanyParentUpdateWithNestedWhereUniqueInput"];
+	["CompanyParentUpsertWithNestedWhereUniqueInput"]: ValueTypes["CompanyParentUpsertWithNestedWhereUniqueInput"];
+	["CompanyParentWhereInput"]: ValueTypes["CompanyParentWhereInput"];
+	["CompanyParentWhereUniqueInput"]: ValueTypes["CompanyParentWhereUniqueInput"];
+	["CompanyUpdateInput"]: ValueTypes["CompanyUpdateInput"];
+	["CompanyUpdateManyInlineInput"]: ValueTypes["CompanyUpdateManyInlineInput"];
+	["CompanyUpdateManyInput"]: ValueTypes["CompanyUpdateManyInput"];
+	["CompanyUpdateManyWithNestedWhereInput"]: ValueTypes["CompanyUpdateManyWithNestedWhereInput"];
+	["CompanyUpdateOneInlineInput"]: ValueTypes["CompanyUpdateOneInlineInput"];
+	["CompanyUpdateWithNestedWhereUniqueAndPositionInput"]: ValueTypes["CompanyUpdateWithNestedWhereUniqueAndPositionInput"];
+	["CompanyUpdateWithNestedWhereUniqueInput"]: ValueTypes["CompanyUpdateWithNestedWhereUniqueInput"];
+	["CompanyUpsertInput"]: ValueTypes["CompanyUpsertInput"];
+	["CompanyUpsertWithNestedWhereUniqueAndPositionInput"]: ValueTypes["CompanyUpsertWithNestedWhereUniqueAndPositionInput"];
+	["CompanyUpsertWithNestedWhereUniqueInput"]: ValueTypes["CompanyUpsertWithNestedWhereUniqueInput"];
+	["CompanyWhereInput"]: ValueTypes["CompanyWhereInput"];
+	["CompanyWhereUniqueInput"]: ValueTypes["CompanyWhereUniqueInput"];
 	["ConnectPositionInput"]: ValueTypes["ConnectPositionInput"];
 	["Date"]: ValueTypes["Date"];
 	["DateTime"]: ValueTypes["DateTime"];
@@ -17274,25 +21319,40 @@ type ZEUS_VARIABLES = {
 	["ImageResizeInput"]: ValueTypes["ImageResizeInput"];
 	["ImageTransformationInput"]: ValueTypes["ImageTransformationInput"];
 	["Json"]: ValueTypes["Json"];
+	["LinkConnectInput"]: ValueTypes["LinkConnectInput"];
+	["LinkCreateInput"]: ValueTypes["LinkCreateInput"];
+	["LinkCreateManyInlineInput"]: ValueTypes["LinkCreateManyInlineInput"];
+	["LinkCreateOneInlineInput"]: ValueTypes["LinkCreateOneInlineInput"];
+	["LinkCreateWithPositionInput"]: ValueTypes["LinkCreateWithPositionInput"];
+	["LinkManyWhereInput"]: ValueTypes["LinkManyWhereInput"];
+	["LinkOrderByInput"]: ValueTypes["LinkOrderByInput"];
+	["LinkParentConnectInput"]: ValueTypes["LinkParentConnectInput"];
+	["LinkParentCreateInput"]: ValueTypes["LinkParentCreateInput"];
+	["LinkParentCreateManyInlineInput"]: ValueTypes["LinkParentCreateManyInlineInput"];
+	["LinkParentCreateOneInlineInput"]: ValueTypes["LinkParentCreateOneInlineInput"];
+	["LinkParentUpdateInput"]: ValueTypes["LinkParentUpdateInput"];
+	["LinkParentUpdateManyInlineInput"]: ValueTypes["LinkParentUpdateManyInlineInput"];
+	["LinkParentUpdateManyWithNestedWhereInput"]: ValueTypes["LinkParentUpdateManyWithNestedWhereInput"];
+	["LinkParentUpdateOneInlineInput"]: ValueTypes["LinkParentUpdateOneInlineInput"];
+	["LinkParentUpdateWithNestedWhereUniqueInput"]: ValueTypes["LinkParentUpdateWithNestedWhereUniqueInput"];
+	["LinkParentUpsertWithNestedWhereUniqueInput"]: ValueTypes["LinkParentUpsertWithNestedWhereUniqueInput"];
+	["LinkParentWhereInput"]: ValueTypes["LinkParentWhereInput"];
+	["LinkParentWhereUniqueInput"]: ValueTypes["LinkParentWhereUniqueInput"];
+	["LinkUpdateInput"]: ValueTypes["LinkUpdateInput"];
+	["LinkUpdateManyInlineInput"]: ValueTypes["LinkUpdateManyInlineInput"];
+	["LinkUpdateManyInput"]: ValueTypes["LinkUpdateManyInput"];
+	["LinkUpdateManyWithNestedWhereInput"]: ValueTypes["LinkUpdateManyWithNestedWhereInput"];
+	["LinkUpdateOneInlineInput"]: ValueTypes["LinkUpdateOneInlineInput"];
+	["LinkUpdateWithNestedWhereUniqueAndPositionInput"]: ValueTypes["LinkUpdateWithNestedWhereUniqueAndPositionInput"];
+	["LinkUpdateWithNestedWhereUniqueInput"]: ValueTypes["LinkUpdateWithNestedWhereUniqueInput"];
+	["LinkUpsertInput"]: ValueTypes["LinkUpsertInput"];
+	["LinkUpsertWithNestedWhereUniqueAndPositionInput"]: ValueTypes["LinkUpsertWithNestedWhereUniqueAndPositionInput"];
+	["LinkUpsertWithNestedWhereUniqueInput"]: ValueTypes["LinkUpsertWithNestedWhereUniqueInput"];
+	["LinkWhereInput"]: ValueTypes["LinkWhereInput"];
+	["LinkWhereUniqueInput"]: ValueTypes["LinkWhereUniqueInput"];
 	["Locale"]: ValueTypes["Locale"];
 	["LocationInput"]: ValueTypes["LocationInput"];
 	["Long"]: ValueTypes["Long"];
-	["PageMetadataConnectInput"]: ValueTypes["PageMetadataConnectInput"];
-	["PageMetadataCreateInput"]: ValueTypes["PageMetadataCreateInput"];
-	["PageMetadataCreateManyInlineInput"]: ValueTypes["PageMetadataCreateManyInlineInput"];
-	["PageMetadataCreateOneInlineInput"]: ValueTypes["PageMetadataCreateOneInlineInput"];
-	["PageMetadataManyWhereInput"]: ValueTypes["PageMetadataManyWhereInput"];
-	["PageMetadataOrderByInput"]: ValueTypes["PageMetadataOrderByInput"];
-	["PageMetadataUpdateInput"]: ValueTypes["PageMetadataUpdateInput"];
-	["PageMetadataUpdateManyInlineInput"]: ValueTypes["PageMetadataUpdateManyInlineInput"];
-	["PageMetadataUpdateManyInput"]: ValueTypes["PageMetadataUpdateManyInput"];
-	["PageMetadataUpdateManyWithNestedWhereInput"]: ValueTypes["PageMetadataUpdateManyWithNestedWhereInput"];
-	["PageMetadataUpdateOneInlineInput"]: ValueTypes["PageMetadataUpdateOneInlineInput"];
-	["PageMetadataUpdateWithNestedWhereUniqueInput"]: ValueTypes["PageMetadataUpdateWithNestedWhereUniqueInput"];
-	["PageMetadataUpsertInput"]: ValueTypes["PageMetadataUpsertInput"];
-	["PageMetadataUpsertWithNestedWhereUniqueInput"]: ValueTypes["PageMetadataUpsertWithNestedWhereUniqueInput"];
-	["PageMetadataWhereInput"]: ValueTypes["PageMetadataWhereInput"];
-	["PageMetadataWhereUniqueInput"]: ValueTypes["PageMetadataWhereUniqueInput"];
 	["ProjectConnectInput"]: ValueTypes["ProjectConnectInput"];
 	["ProjectCreateInput"]: ValueTypes["ProjectCreateInput"];
 	["ProjectCreateManyInlineInput"]: ValueTypes["ProjectCreateManyInlineInput"];
@@ -17341,40 +21401,87 @@ type ZEUS_VARIABLES = {
 	["ScheduledReleaseUpsertWithNestedWhereUniqueInput"]: ValueTypes["ScheduledReleaseUpsertWithNestedWhereUniqueInput"];
 	["ScheduledReleaseWhereInput"]: ValueTypes["ScheduledReleaseWhereInput"];
 	["ScheduledReleaseWhereUniqueInput"]: ValueTypes["ScheduledReleaseWhereUniqueInput"];
+	["SeoConnectInput"]: ValueTypes["SeoConnectInput"];
+	["SeoCreateInput"]: ValueTypes["SeoCreateInput"];
+	["SeoCreateManyInlineInput"]: ValueTypes["SeoCreateManyInlineInput"];
+	["SeoCreateOneInlineInput"]: ValueTypes["SeoCreateOneInlineInput"];
+	["SeoManyWhereInput"]: ValueTypes["SeoManyWhereInput"];
+	["SeoOrderByInput"]: ValueTypes["SeoOrderByInput"];
+	["SeoUpdateInput"]: ValueTypes["SeoUpdateInput"];
+	["SeoUpdateManyInlineInput"]: ValueTypes["SeoUpdateManyInlineInput"];
+	["SeoUpdateManyInput"]: ValueTypes["SeoUpdateManyInput"];
+	["SeoUpdateManyWithNestedWhereInput"]: ValueTypes["SeoUpdateManyWithNestedWhereInput"];
+	["SeoUpdateOneInlineInput"]: ValueTypes["SeoUpdateOneInlineInput"];
+	["SeoUpdateWithNestedWhereUniqueInput"]: ValueTypes["SeoUpdateWithNestedWhereUniqueInput"];
+	["SeoUpsertInput"]: ValueTypes["SeoUpsertInput"];
+	["SeoUpsertWithNestedWhereUniqueInput"]: ValueTypes["SeoUpsertWithNestedWhereUniqueInput"];
+	["SeoWhereInput"]: ValueTypes["SeoWhereInput"];
+	["SeoWhereUniqueInput"]: ValueTypes["SeoWhereUniqueInput"];
+	["SkillCategoryConnectInput"]: ValueTypes["SkillCategoryConnectInput"];
+	["SkillCategoryCreateInput"]: ValueTypes["SkillCategoryCreateInput"];
+	["SkillCategoryCreateManyInlineInput"]: ValueTypes["SkillCategoryCreateManyInlineInput"];
+	["SkillCategoryCreateOneInlineInput"]: ValueTypes["SkillCategoryCreateOneInlineInput"];
+	["SkillCategoryManyWhereInput"]: ValueTypes["SkillCategoryManyWhereInput"];
+	["SkillCategoryOrderByInput"]: ValueTypes["SkillCategoryOrderByInput"];
+	["SkillCategoryUpdateInput"]: ValueTypes["SkillCategoryUpdateInput"];
+	["SkillCategoryUpdateManyInlineInput"]: ValueTypes["SkillCategoryUpdateManyInlineInput"];
+	["SkillCategoryUpdateManyInput"]: ValueTypes["SkillCategoryUpdateManyInput"];
+	["SkillCategoryUpdateManyWithNestedWhereInput"]: ValueTypes["SkillCategoryUpdateManyWithNestedWhereInput"];
+	["SkillCategoryUpdateOneInlineInput"]: ValueTypes["SkillCategoryUpdateOneInlineInput"];
+	["SkillCategoryUpdateWithNestedWhereUniqueInput"]: ValueTypes["SkillCategoryUpdateWithNestedWhereUniqueInput"];
+	["SkillCategoryUpsertInput"]: ValueTypes["SkillCategoryUpsertInput"];
+	["SkillCategoryUpsertWithNestedWhereUniqueInput"]: ValueTypes["SkillCategoryUpsertWithNestedWhereUniqueInput"];
+	["SkillCategoryWhereInput"]: ValueTypes["SkillCategoryWhereInput"];
+	["SkillCategoryWhereUniqueInput"]: ValueTypes["SkillCategoryWhereUniqueInput"];
+	["SkillCategoryskillsListUnionConnectInput"]: ValueTypes["SkillCategoryskillsListUnionConnectInput"];
+	["SkillCategoryskillsListUnionCreateInput"]: ValueTypes["SkillCategoryskillsListUnionCreateInput"];
+	["SkillCategoryskillsListUnionCreateManyInlineInput"]: ValueTypes["SkillCategoryskillsListUnionCreateManyInlineInput"];
+	["SkillCategoryskillsListUnionCreateOneInlineInput"]: ValueTypes["SkillCategoryskillsListUnionCreateOneInlineInput"];
+	["SkillCategoryskillsListUnionCreateWithPositionInput"]: ValueTypes["SkillCategoryskillsListUnionCreateWithPositionInput"];
+	["SkillCategoryskillsListUnionUpdateInput"]: ValueTypes["SkillCategoryskillsListUnionUpdateInput"];
+	["SkillCategoryskillsListUnionUpdateManyInlineInput"]: ValueTypes["SkillCategoryskillsListUnionUpdateManyInlineInput"];
+	["SkillCategoryskillsListUnionUpdateManyWithNestedWhereInput"]: ValueTypes["SkillCategoryskillsListUnionUpdateManyWithNestedWhereInput"];
+	["SkillCategoryskillsListUnionUpdateOneInlineInput"]: ValueTypes["SkillCategoryskillsListUnionUpdateOneInlineInput"];
+	["SkillCategoryskillsListUnionUpdateWithNestedWhereUniqueAndPositionInput"]: ValueTypes["SkillCategoryskillsListUnionUpdateWithNestedWhereUniqueAndPositionInput"];
+	["SkillCategoryskillsListUnionUpdateWithNestedWhereUniqueInput"]: ValueTypes["SkillCategoryskillsListUnionUpdateWithNestedWhereUniqueInput"];
+	["SkillCategoryskillsListUnionUpsertWithNestedWhereUniqueAndPositionInput"]: ValueTypes["SkillCategoryskillsListUnionUpsertWithNestedWhereUniqueAndPositionInput"];
+	["SkillCategoryskillsListUnionUpsertWithNestedWhereUniqueInput"]: ValueTypes["SkillCategoryskillsListUnionUpsertWithNestedWhereUniqueInput"];
+	["SkillCategoryskillsListUnionWhereInput"]: ValueTypes["SkillCategoryskillsListUnionWhereInput"];
+	["SkillCategoryskillsListUnionWhereUniqueInput"]: ValueTypes["SkillCategoryskillsListUnionWhereUniqueInput"];
 	["SkillConnectInput"]: ValueTypes["SkillConnectInput"];
 	["SkillCreateInput"]: ValueTypes["SkillCreateInput"];
 	["SkillCreateManyInlineInput"]: ValueTypes["SkillCreateManyInlineInput"];
 	["SkillCreateOneInlineInput"]: ValueTypes["SkillCreateOneInlineInput"];
+	["SkillCreateWithPositionInput"]: ValueTypes["SkillCreateWithPositionInput"];
 	["SkillManyWhereInput"]: ValueTypes["SkillManyWhereInput"];
 	["SkillOrderByInput"]: ValueTypes["SkillOrderByInput"];
+	["SkillParentConnectInput"]: ValueTypes["SkillParentConnectInput"];
+	["SkillParentCreateInput"]: ValueTypes["SkillParentCreateInput"];
+	["SkillParentCreateManyInlineInput"]: ValueTypes["SkillParentCreateManyInlineInput"];
+	["SkillParentCreateOneInlineInput"]: ValueTypes["SkillParentCreateOneInlineInput"];
+	["SkillParentUpdateInput"]: ValueTypes["SkillParentUpdateInput"];
+	["SkillParentUpdateManyInlineInput"]: ValueTypes["SkillParentUpdateManyInlineInput"];
+	["SkillParentUpdateManyWithNestedWhereInput"]: ValueTypes["SkillParentUpdateManyWithNestedWhereInput"];
+	["SkillParentUpdateOneInlineInput"]: ValueTypes["SkillParentUpdateOneInlineInput"];
+	["SkillParentUpdateWithNestedWhereUniqueInput"]: ValueTypes["SkillParentUpdateWithNestedWhereUniqueInput"];
+	["SkillParentUpsertWithNestedWhereUniqueInput"]: ValueTypes["SkillParentUpsertWithNestedWhereUniqueInput"];
+	["SkillParentWhereInput"]: ValueTypes["SkillParentWhereInput"];
+	["SkillParentWhereUniqueInput"]: ValueTypes["SkillParentWhereUniqueInput"];
 	["SkillUpdateInput"]: ValueTypes["SkillUpdateInput"];
 	["SkillUpdateManyInlineInput"]: ValueTypes["SkillUpdateManyInlineInput"];
 	["SkillUpdateManyInput"]: ValueTypes["SkillUpdateManyInput"];
 	["SkillUpdateManyWithNestedWhereInput"]: ValueTypes["SkillUpdateManyWithNestedWhereInput"];
 	["SkillUpdateOneInlineInput"]: ValueTypes["SkillUpdateOneInlineInput"];
+	["SkillUpdateWithNestedWhereUniqueAndPositionInput"]: ValueTypes["SkillUpdateWithNestedWhereUniqueAndPositionInput"];
 	["SkillUpdateWithNestedWhereUniqueInput"]: ValueTypes["SkillUpdateWithNestedWhereUniqueInput"];
 	["SkillUpsertInput"]: ValueTypes["SkillUpsertInput"];
+	["SkillUpsertWithNestedWhereUniqueAndPositionInput"]: ValueTypes["SkillUpsertWithNestedWhereUniqueAndPositionInput"];
 	["SkillUpsertWithNestedWhereUniqueInput"]: ValueTypes["SkillUpsertWithNestedWhereUniqueInput"];
 	["SkillWhereInput"]: ValueTypes["SkillWhereInput"];
 	["SkillWhereUniqueInput"]: ValueTypes["SkillWhereUniqueInput"];
-	["SocialConnectInput"]: ValueTypes["SocialConnectInput"];
-	["SocialCreateInput"]: ValueTypes["SocialCreateInput"];
-	["SocialCreateManyInlineInput"]: ValueTypes["SocialCreateManyInlineInput"];
-	["SocialCreateOneInlineInput"]: ValueTypes["SocialCreateOneInlineInput"];
-	["SocialManyWhereInput"]: ValueTypes["SocialManyWhereInput"];
-	["SocialOrderByInput"]: ValueTypes["SocialOrderByInput"];
-	["SocialUpdateInput"]: ValueTypes["SocialUpdateInput"];
-	["SocialUpdateManyInlineInput"]: ValueTypes["SocialUpdateManyInlineInput"];
-	["SocialUpdateManyInput"]: ValueTypes["SocialUpdateManyInput"];
-	["SocialUpdateManyWithNestedWhereInput"]: ValueTypes["SocialUpdateManyWithNestedWhereInput"];
-	["SocialUpdateOneInlineInput"]: ValueTypes["SocialUpdateOneInlineInput"];
-	["SocialUpdateWithNestedWhereUniqueInput"]: ValueTypes["SocialUpdateWithNestedWhereUniqueInput"];
-	["SocialUpsertInput"]: ValueTypes["SocialUpsertInput"];
-	["SocialUpsertWithNestedWhereUniqueInput"]: ValueTypes["SocialUpsertWithNestedWhereUniqueInput"];
-	["SocialWhereInput"]: ValueTypes["SocialWhereInput"];
-	["SocialWhereUniqueInput"]: ValueTypes["SocialWhereUniqueInput"];
 	["Stage"]: ValueTypes["Stage"];
 	["SystemDateTimeFieldVariation"]: ValueTypes["SystemDateTimeFieldVariation"];
+	["Technologies"]: ValueTypes["Technologies"];
 	["UnpublishLocaleInput"]: ValueTypes["UnpublishLocaleInput"];
 	["UserConnectInput"]: ValueTypes["UserConnectInput"];
 	["UserCreateManyInlineInput"]: ValueTypes["UserCreateManyInlineInput"];
