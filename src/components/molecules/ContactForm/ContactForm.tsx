@@ -21,7 +21,7 @@ export const ContactForm = () => {
     })
 
     return (
-        <form onSubmit={formik.handleSubmit} className="flex flex-col gap-4 w-full max-w-4xl h-full max-h-96 scale-125">
+        <form onSubmit={formik.handleSubmit} className="flex flex-col gap-4 w-full max-w-5xl">
             <Input
                 label="Name"
                 name="name"

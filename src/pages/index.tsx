@@ -5,12 +5,12 @@ import { LandingProps } from 'types/global'
 
 const Home: NextPage<LandingProps> = ({ aboutMe, portfolio, seo, skills }) => {
     return (
-        <div>
+        <>
             <HeroSection links={aboutMe.links} company={aboutMe.company} />
             <PortfolioSection portfolio={portfolio.slice(0, 6)} />
             <AboutMeSection aboutMe={aboutMe} skills={skills} />
             <ContactSection />
-        </div>
+        </>
     )
 }
 

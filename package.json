@@ -10,6 +10,7 @@
         "zeus": "zeus https://api-eu-central-1.hygraph.com/v2/cl6pf5b2z20oo01szgaeke2r9/master --ts ./"
     },
     "dependencies": {
+        "@fullpage/react-fullpage": "^0.1.28",
         "formik": "^2.2.9",
         "framer-motion": "^7.2.1",
         "hamburger-react": "^2.5.0",

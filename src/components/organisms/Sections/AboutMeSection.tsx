@@ -1,16 +1,14 @@
-import { MeCard } from 'components/atoms/MeCard'
+import { SectionTitle, SkillCategory } from 'components'
 import React from 'react'
 import { AboutMeProps } from './types'
 
-export const AboutMeSection: React.FC<AboutMeProps> = ({ aboutMe, skills }) => {
-    return (
-        <section className="min-h-screen flex items-center justify-between">
-            <div className="flex justify-between gap-8">
-                <div className="w-[32rem] shrink-0">
-                    <MeCard image={aboutMe.photo?.url} description={aboutMe.description} />
-                </div>
-                <div className="w-full"></div>
-            </div>
-        </section>
-    )
-}
+export const AboutMeSection: React.FC<AboutMeProps> = ({ aboutMe, skills }) => (
+    <section className="flex flex-col gap-8">
+        <SectionTitle title="Skills" />
+        <div className="flex flex-col gap-8">
+            {skills.map((skill) => (
+                <SkillCategory key={skill.id} {...skill} />
+            ))}
+        </div>
+    </section>
+)
