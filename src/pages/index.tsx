@@ -1,0 +1,26 @@
+import { getAboutMe, getProjects, getSeo, getSkillCategories } from 'chain'
+import { AboutMeSection, ContactSection, HeroSection, PortfolioSection } from 'components'
+import type { GetStaticProps, NextPage } from 'next'
+import { LandingProps } from 'types/global'
+
+const Home: NextPage<LandingProps> = ({ aboutMe, portfolio, seo, skills }) => {
+    return (
+        <>
+            <HeroSection links={aboutMe.links} company={aboutMe.company} />
+            <PortfolioSection portfolio={portfolio.slice(0, 6)} />
+            <AboutMeSection aboutMe={aboutMe} skills={skills} />
+            <ContactSection />
+        </>
+    )
+}
+
+export const getStaticProps: GetStaticProps<LandingProps> = async () => ({
+    props: {
+        portfolio: (await getProjects()).projects,
+        seo: (await getSeo()).seos[0],
+        aboutMe: (await getAboutMe()).aboutMes[0],
+        skills: (await getSkillCategories()).skillCategories
+    }
+})
+
+export default Home
