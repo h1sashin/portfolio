@@ -10,6 +10,7 @@ body {
         Helvetica Neue, sans-serif;
     background: #353e48;
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 a {

@@ -6,7 +6,7 @@ import { HeroProps } from './types'
 
 export const HeroSection: React.FC<HeroProps> = ({ company, links }) => {
     return (
-        <section className="h-screen w-full flex relative items-center justify-center">
+        <section id="hero" className="h-screen w-full flex relative items-center justify-center">
             <div className="absolute right-16 top-3/4">
                 <Image src="https://svgsilh.com/svg/26432.svg" height="256" width="256" />
             </div>
