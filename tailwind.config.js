@@ -13,6 +13,11 @@ module.exports = {
             warning: '#F7C065',
             info: '#76CDD9',
             success: '#33D989'
+        },
+        extend: {
+            gridTemplateColumns: {
+                auto: 'repeat(auto-fill, minmax(8rem, 1fr))'
+            }
         }
     },
     plugins: []

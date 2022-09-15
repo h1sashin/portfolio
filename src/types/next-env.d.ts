@@ -5,5 +5,6 @@ declare namespace NodeJS {
     interface ProcessEnv {
         HOST: string
         CMS_TOKEN: string
+        NEXT_PUBLIC_GTM_ID: string
     }
 }

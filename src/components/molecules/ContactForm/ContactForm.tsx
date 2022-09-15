@@ -5,9 +5,33 @@ import { ContactFormValues } from './types'
 import { validation } from './validation'
 
 export const ContactForm = () => {
-    const handleSubmit = ({ email, message, name }: ContactFormValues) => {
+    const handleSubmit = async ({ email, message, name }: ContactFormValues) => {
         formik.setSubmitting(true)
-        setTimeout(() => formik.setSubmitting(false), 2000)
+        window.dataLayer.push({
+            event: 'contactFormSubmit'
+        })
+        const data = {
+            service_id: process.env.NEXT_PUBLIC_SERVICE_ID,
+            template_id: process.env.NEXT_PUBLIC_TEMPLATE_ID,
+            user_id: process.env.NEXT_PUBLIC_USER_ID,
+            template_params: {
+                email,
+                message,
+                name
+            }
+        }
+        try {
+            await fetch('https://api.emailj.com/api/v1.0/email/send', {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            alert('Message sent successfully')
+        } catch {
+            alert('Unfortunately, message was not sent, an error occured')
+        }
     }
 
     const formik = useFormik<ContactFormValues>({
