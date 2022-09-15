@@ -17,7 +17,7 @@ export const Footer: React.FC = () => {
             </div>
             <div className="gap-6 flex flex-wrap justify-center items-center">
                 {sections.map((section) => (
-                    <Link href={`#${section}`} passHref>
+                    <Link key={section} href={`#${section}`} passHref>
                         <a className="capitalize font-medium text-lg text-white">{section.replace('-', ' ')}</a>
                     </Link>
                 ))}
