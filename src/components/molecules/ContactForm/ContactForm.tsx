@@ -21,12 +21,13 @@ export const ContactForm = () => {
             }
         }
         try {
-            await fetch('https://api.emailj.com/api/v1.0/email/send', {
+            await fetch('https://api.emailjs.com/api/v1.0/email/send', {
                 method: 'POST',
-                body: JSON.stringify(data),
                 headers: {
-                    'Content-Type': 'application/json'
-                }
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json'
+                },
+                body: JSON.stringify(data)
             })
             alert('Message sent successfully')
         } catch {
