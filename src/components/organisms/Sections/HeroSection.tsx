@@ -46,8 +46,10 @@ export const HeroSection: React.FC<HeroProps> = ({ company, links }) => {
                 </div>
                 <div className="flex gap-8 flex-wrap">
                     {links.map(({ name, url }) => (
-                        <Link key={name} href={url}>
-                            <Button>{name}</Button>
+                        <Link key={name} href={url} passHref>
+                            <a target="_blank">
+                                <Button>{name}</Button>
+                            </a>
                         </Link>
                     ))}
                     <Link href="mailto:">
