@@ -1,0 +1,22 @@
+{
+    "short_name": "Dawid Szemborowski's Portfolio",
+    "name": "Dawid Szemborowski - JavaScript Developer / React Engineer",
+    "icons": [
+        {
+            "src": "/images/favicon.ico",
+            "sizes": "64x64 32x32 24x24 16x16",
+            "type": "image/x-icon"
+        },
+        {
+            "src": "/images/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "scope": "/",
+    "disaplay": "standalone",
+    "description": "Dawid Szemborowski's Portfolio",
+    "start_url": "/",
+    "background_color": "#353e48",
+    "theme_color": "#353e48"
+}
