@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { InputProps } from './types'
 
-export const Input: React.FC<InputProps> = ({ label, error, ...props }) => {
+export const Input: React.FC<InputProps> = memo(({ label, error, ...props }) => {
     return (
         <div className="relative h-20 bg-secondary flex mb-5 items-end pt-2.5">
             <input
@@ -24,4 +24,4 @@ export const Input: React.FC<InputProps> = ({ label, error, ...props }) => {
             {!!error && <span className="absolute top-full left-5 text-error text-sm">{error}</span>}
         </div>
     )
-}
+})

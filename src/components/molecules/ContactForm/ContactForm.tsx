@@ -1,11 +1,11 @@
 import { Input, Textarea, Button } from 'components'
 import { useFormik } from 'formik'
-import React from 'react'
+import React, { useCallback } from 'react'
 import { ContactFormValues } from './types'
 import { validation } from './validation'
 
 export const ContactForm = () => {
-    const handleSubmit = async ({ email, message, name }: ContactFormValues) => {
+    const handleSubmit = useCallback(async ({ email, message, name }: ContactFormValues) => {
         formik.setSubmitting(true)
         window.dataLayer.push({
             event: 'contactFormSubmit'
@@ -33,7 +33,7 @@ export const ContactForm = () => {
         } catch {
             alert('Unfortunately, message was not sent, an error occured')
         }
-    }
+    }, [])
 
     const formik = useFormik<ContactFormValues>({
         initialValues: {
