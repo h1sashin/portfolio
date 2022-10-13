@@ -25,14 +25,14 @@ export const Project: React.FC<ProjectProps> = ({ project }) => {
                     <div className="flex gap-4 text-white">
                         {project.demo && (
                             <Link href={project.demo} passHref>
-                                <a>
+                                <a target="_blank">
                                     <ExternalLink size={'3rem'} />
                                 </a>
                             </Link>
                         )}
                         {project.sourceCode && (
                             <Link href={project.sourceCode} passHref>
-                                <a>
+                                <a target="_blank">
                                     <BrandGithub size={'4rem'} />
                                 </a>
                             </Link>
