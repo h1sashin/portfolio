@@ -10,13 +10,11 @@
         "zeus": "zeus https://api-eu-central-1.hygraph.com/v2/cl6pf5b2z20oo01szgaeke2r9/master --ts ./"
     },
     "dependencies": {
-        "@fullpage/react-fullpage": "^0.1.28",
         "formik": "^2.2.9",
         "framer-motion": "^7.2.1",
         "next": "12.2.5",
         "react": "18.2.0",
         "react-dom": "18.2.0",
-        "react-gtm-module": "^2.0.11",
         "tabler-icons-react": "^1.54.0",
         "unstated-next": "^1.1.0",
         "yup": "^0.32.11"
