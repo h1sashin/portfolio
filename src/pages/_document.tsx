@@ -11,6 +11,13 @@ const Document: DocumentType = () => {
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
                 <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" rel="stylesheet" />
+                <script async src="https://www.googletagmanager.com/gtag/js?id=G-RCRRMRVD7C"></script>
+                <script>
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());\
+                  gtag('config', 'G-RCRRMRVD7C');
+                </script>
             </Head>
             <body className="bg-black">
                 <Main />
